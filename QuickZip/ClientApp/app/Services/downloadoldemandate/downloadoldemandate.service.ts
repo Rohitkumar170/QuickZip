@@ -16,7 +16,6 @@ export class DownloadoldemandateService {
     constructor(private _http: HttpClient, @Inject('BASE_URL') myAppUrl: string) {
         this.baseUrl = myAppUrl;
     }
-
     BankBind(userid): Observable<any> {
         alert(userid);
         return this._http.get<any>(this.baseUrl + 'api/Downloadoldemandate/BankBind/' + userid);
