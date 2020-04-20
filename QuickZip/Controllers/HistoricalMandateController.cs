@@ -16,6 +16,7 @@ namespace QuickZip.Controllers
         [Route("api/BindData/DatesWise/{FromDate}/{ToDate}")]
         public IEnumerable<HistoricalMandateClass> GetDataApi(string FromDate, string ToDate)
         {
+
             return objHMDA.GetDataFromDB(FromDate, ToDate);
         }
     }
