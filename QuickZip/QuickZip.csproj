@@ -1,0 +1,919 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4486FAEA-D45B-46B2-970A-8C188430C217}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickZip</RootNamespace>
+    <AssemblyName>QuickZip</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BusinessLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BusinessLibrary\bin\Debug\BusinessLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\AMYDEV02\Desktop\DLL\Encryption.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\app\app.component.css" />
+    <Content Include="ClientApp\app\app.component.html" />
+    <Content Include="ClientApp\app\change-password\change-password.component.css" />
+    <Content Include="ClientApp\app\change-password\change-password.component.html" />
+    <Content Include="ClientApp\app\footer\footer.component.css" />
+    <Content Include="ClientApp\app\footer\footer.component.html" />
+    <Content Include="ClientApp\app\header\header.component.css" />
+    <Content Include="ClientApp\app\header\header.component.html" />
+    <Content Include="ClientApp\app\login\login.component.css" />
+    <Content Include="ClientApp\app\login\login.component.html" />
+    <Content Include="ClientApp\app\main-layout\main-layout.component.css" />
+    <Content Include="ClientApp\app\main-layout\main-layout.component.html" />
+    <Content Include="ClientApp\app\master\allumrn\allumrn.component.css" />
+    <Content Include="ClientApp\app\master\allumrn\allumrn.component.html" />
+    <Content Include="ClientApp\app\master\dashboard\dashboard.component.css" />
+    <Content Include="ClientApp\app\master\dashboard\dashboard.component.html" />
+    <Content Include="ClientApp\app\master\demoemandate\demoemandate.component.css" />
+    <Content Include="ClientApp\app\master\demoemandate\demoemandate.component.html" />
+    <Content Include="ClientApp\app\master\demophysical\demophysical.component.css" />
+    <Content Include="ClientApp\app\master\demophysical\demophysical.component.html" />
+    <Content Include="ClientApp\app\master\download-emandate\download-emandate.component.css" />
+    <Content Include="ClientApp\app\master\download-emandate\download-emandate.component.html" />
+    <Content Include="ClientApp\app\master\downloadmandate\downloadmandate.component.css" />
+    <Content Include="ClientApp\app\master\downloadmandate\downloadmandate.component.html" />
+    <Content Include="ClientApp\app\master\downloadoldemandate\downloadoldemandate.component.css" />
+    <Content Include="ClientApp\app\master\downloadoldemandate\downloadoldemandate.component.html" />
+    <Content Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.css" />
+    <Content Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.html" />
+    <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.css" />
+    <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.html" />
+    <Content Include="ClientApp\app\master\nach-mandate\nach-mandate.component.css" />
+    <Content Include="ClientApp\app\master\nach-mandate\nach-mandate.component.html" />
+    <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.css" />
+    <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.html" />
+    <Content Include="ClientApp\app\master\umrnhistory\umrnhistory.component.css" />
+    <Content Include="ClientApp\app\master\umrnhistory\umrnhistory.component.html" />
+    <Content Include="ClientApp\app\master\umrnupload\umrnupload.component.css" />
+    <Content Include="ClientApp\app\master\umrnupload\umrnupload.component.html" />
+    <Content Include="ClientApp\app\master\user\user.component.css" />
+    <Content Include="ClientApp\app\master\user\user.component.html" />
+    <Content Include="ClientApp\app\sidebar\sidebar.component.css" />
+    <Content Include="ClientApp\app\sidebar\sidebar.component.html" />
+    <Content Include="ClientApp\assets\css\ace.min.css" />
+    <Content Include="ClientApp\assets\css\font-awesome.min.css" />
+    <Content Include="ClientApp\assets\images\kotak-bank-logo.png" />
+    <Content Include="ClientApp\assets\images\loader.gif" />
+    <Content Include="ClientApp\assets\images\quickcheck.png" />
+    <Content Include="ClientApp\assets\images\quickcheck1.png" />
+    <Content Include="ClientApp\favicon.ico" />
+    <Content Include="ClientApp\index.html" />
+    <Content Include="ClientApp\karma.conf.js" />
+    <Content Include="ClientApp\styles.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Entity\QuickZip.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuickZip.edmx</DependentUpon>
+      <LastGenOutput>QuickZip.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\QuickZip.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuickZip.edmx</DependentUpon>
+      <LastGenOutput>QuickZip.cs</LastGenOutput>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="angular.json" />
+    <Content Include="package.json" />
+    <Content Include="ClientApp\assets\.gitkeep" />
+    <Content Include="ClientApp\browserslist" />
+    <Content Include="ClientApp\tsconfig.app.json" />
+    <Content Include="ClientApp\tsconfig.spec.json" />
+    <Content Include="ClientApp\tslint.json" />
+    <EntityDeploy Include="Entity\QuickZip.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuickZip.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entity\QuickZip.edmx.diagram">
+      <DependentUpon>QuickZip.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ServerRouteConstraint.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HistoricalMandateController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Entity\Common.cs" />
+    <Compile Include="Entity\DbSecurity.cs" />
+    <Compile Include="Entity\GetEntityID_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\GetMandateStatus_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\GetYears_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Global.cs" />
+    <Compile Include="Entity\Mirror_tblUserLogin.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\parseJSON_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\QuickZip.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickZip.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\QuickZip.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\QuickZip.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickZip.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Split_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_BranchCreation_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Bulkmandate_25072019_6_00pm_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Bulkmandate_bkp_18072019_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Bulkmandate_BKP_29Mar2020_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Bulkmandate_Physical_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Bulkmandate_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_CollectionStatus_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_CreateLAndTFile_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_CreatePresenmentFile_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Dashboard_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_DownloadEMandate_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_ENach_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Entity_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_ESign_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_FinalDashbaord_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SP_GeneraateMandateRegFile_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SP_GenerateZipFromServiceForHDFC_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SP_GenerateZipFromService_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_GetDashBoardData_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_GetEmailData_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Home_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_KotakDashboard_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_MandateAnalysis_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_MandateDetails_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_MandateDirectDebit_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_MandateHistory_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_MandateReport_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Mandate_bkp_29Jan2020_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Mandate_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_OTP_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_Payment_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_PostmandateStatus_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Presenment_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_QbackRequest_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SP_Report_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_SelectForChangeRefrence_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_SelectForPhysical_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_UpdateFileStatus_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Uploaddata1_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_Uploaddata_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sp_UserLogin_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_user_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_WebSevice_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Sp_WindowsService_Result.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sysdiagram.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TblAccessRight.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblAddressMaster.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblAllBulkMandate.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblbankData.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblBankHeader.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblBankIMP.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblBankTransAmount.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblBranch.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblBranchUser.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TblBulkSMS_MandateWise_Helper.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblCity.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblclientData.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblConsent.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblCountry.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblCustomer.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblCustomerCardDetail.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblDateFormat.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntity.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityBankSetup.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityBankSetupDate.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityBusinessCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityCategoryCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityDebitType.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityFrequency.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TblEntityMandateMode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityPaymentMode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityPeriondEnableOn.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntitySponsorcodeFileName.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEntityTodebit.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblErrorCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEsignErrorMandateLog.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEsignLogMessageId.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEsignRequest.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblEsignResponse.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblExlUploadedData.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblExlUploadedDataHeader.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblFileFormat.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblFileNumberSequence.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TBLFILESEQUENCE.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblIDFCResponseCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblIDFC_SeqCount.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblIFSCBank.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblInCompleteMandate.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblLegacyDetail.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblLegacyHeader.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblLegacyUploaded.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TblLoginSessionTrxn.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tbllogMandate.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tbllogMandateDirectDebit.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblLogoImage.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblLogoImage1.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblLogTransaction.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TblMailMsgTransaction.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandate.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateActivity.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateActivityDate.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateActivityLog.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateAdhar.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateDirectDebit.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateDirectdebitUniqueId.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateFile.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateMobile.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateStatu.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateStatusMaster.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateTransaction.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMandateUniqueId.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMergedData.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMobileUserLogin.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMsgMaster.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblMsgTransaction.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblNPCIResponse.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblNPCIResponseFromService.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblNPCIResponseHDFC.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPaymentMode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPaymentRequest.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPaymentResponse.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPresentmentDetailSeqCount.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPresentmentMaker.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPresentmentRejectedUMRN.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPresentmentResponseDetail.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPresentmentResponseHeader.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblPresentmentSeqcount.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblQbackActivity.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblQbackLogPaymentResponse.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblQbackPaymentRequest.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblQbackPaymentResponse.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblReasonCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblRecipientMailId.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblRedirectURL.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblReportMapDB.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblServiceLog.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblSponsorBankCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblSponsorBankCodeDetail.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblState.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblStatusMaster.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblTempIFSCBank.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblTransactionPresentment.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblTransactionPresentmentHistory.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblTransPresentmentHeader.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TblUserCategoryCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblUserLogin.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblUserPaymentMode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblUserSponsorBankCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblUserUtilityCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblUtlityCode.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblYoekiResponse.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Tbl_Icon.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Tbl_Links.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tbl_MSG91_DeliveryReport.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\vwKotakBillingReport.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\vwMandateLastTransaction.cs">
+      <DependentUpon>QuickZip.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommonFlag.cs" />
+    <Compile Include="Models\ForgotPassword\Forgotflag.cs" />
+    <Compile Include="Models\ForgotPassword\UserDetails.cs" />
+    <Compile Include="Models\ForgotPassword\Value.cs" />
+    <Compile Include="Models\HistoricalMandate\HistoricalMandateClass.cs" />
+    <Compile Include="Models\HistoricalMandate\HistoricalMandateDataAccess.cs" />
+    <Compile Include="Models\Login\Login.cs" />
+    <Compile Include="Models\Login\Logindetails.cs" />
+    <Compile Include="Models\Login\SaveLoginSessionTrxn.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tslint.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\change-password\change-password-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\change-password\change-password.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\change-password\change-password.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\change-password\change-password.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\footer\footer.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\footer\footer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\header\header.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\header\header.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\login\login.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\login\login-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\login\login.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\main-layout\main-layout.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\main-layout\main-layout.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\allumrn\all-umrn-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\allumrn\all-umrn.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demoemandate\demoemandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demoemandate\demoemandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demoemandate\demoemandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demoemandate\demoemandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demophysical\demophysical.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demophysical\demophysical.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demophysical\demophysical-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\demophysical\demophysical.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\download-emandate\download-emandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\download-emandate\download-emandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\download-emandate\downloademandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\download-emandate\downloademandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadmandate\downloadmandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadmandate\downloadmandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadmandate\downloadmandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadmandate\downloadmandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldemandate\downloadoldemandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldemandate\downloadoldemandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldemandate\downloadoledemandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldemandate\downloadoledemandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\lay-out-module.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\lay-out-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nach-mandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nach-mandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nachmandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nachmandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnupload\umrn-upload-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnupload\umrn-upload.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnupload\umrnupload.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\umrnupload\umrnupload.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\user\user.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\user\user.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.ts" />
+    <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
+    <TypeScriptCompile Include="ClientApp\test.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53378</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53378/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

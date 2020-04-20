@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title  QuickZip</title>
+    <base href="/">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <style>
+        .loaderposition {
+            position: absolute;
+            left: 48%;
+            z-index: 9999 !important;
+            top: 33%;
+        }
+    </style>
+</head>
+<body>
+    <div class="fluid-container body-content">
+        <div class="col-md-12 col-sm-12 col-xs-12 loaderposition" style="display: none;">
+            <img src="~/ClientApp/assets/images/loader.gif" />
+        </div>
+        @RenderBody()
+    </div>
+    <script src="~/dist/MyApp/dashboard-dashboard-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/demoemandate-demoemandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/allumrn-all-umrn-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/demophysical-demophysical-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/download-emandate-downloademandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/downloadmandate-downloadmandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/downloadoldemandate-downloadoledemandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/downloadoldmandate-downloadoldmandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/historical-mandate-historicalmandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/nach-mandate-nachmandate-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/nachtransactionpresentation-nachtransactionpresentation-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/umrnhistory-umrnhistory-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/umrnupload-umrn-upload-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/user-user-module-ngfactory.js"></script>
+    <script src="~/dist/MyApp/main.js"></script>
+    <script src="~/dist/MyApp/polyfills.js"></script>
+    <script src="~/dist/MyApp/runtime.js"></script>
+    <script src="~/dist/MyApp/styles.js"></script>
+    <script src="~/dist/MyApp/vendor.js"></script>
+</body>
+</html>
