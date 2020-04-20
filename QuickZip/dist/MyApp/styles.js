@@ -557,7 +557,7 @@ module.exports = function (css) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projects\WorkingProject\QuickZip\QuickZip\QuickZip\ClientApp\styles.css */"./ClientApp/styles.css");
+module.exports = __webpack_require__(/*! E:\projects\NewQuickzip\QuickZip\ClientApp\styles.css */"./ClientApp/styles.css");
 
 
 /***/ })
