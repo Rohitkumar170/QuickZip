@@ -25,7 +25,6 @@ namespace QuickZip.Controllers
         {
             return objlogin.SendMail(Username);
         }
-
         [HttpGet]
         [Route("api/Login/UpdatePassword/{Password}/{Email}")]
         public IEnumerable<CommonFlag> UpdatePassword(string Password, string Email)
