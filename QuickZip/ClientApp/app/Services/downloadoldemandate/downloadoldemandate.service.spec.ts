@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
 import { DownloadoldemandateService } from './downloadoldemandate.service';
-
 describe('DownloadoldemandateService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
   it('should be created', () => {
