@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Garima\garima\DLL\Encryption.dll</HintPath>
+      <HintPath>C:\Users\ABSK\Desktop\Encryption.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -228,10 +228,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\USerController.cs" />
     <Compile Include="Entity\Common.cs" />
     <Compile Include="Entity\DbSecurity.cs" />
     <Compile Include="Entity\GetEntityID_Result.cs">
@@ -746,6 +746,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CommonFlag.cs" />
+    <Compile Include="Models\DownloadEmandate\DownloadEmandateaccesslayer.cs" />
+    <Compile Include="Models\DownloadEmandate\Downloademandatebank.cs" />
+    <Compile Include="Models\DownloadEmandate\DownLoadEmandateBind.cs" />
     <Compile Include="Models\ForgotPassword\Forgotflag.cs" />
     <Compile Include="Models\ForgotPassword\UserDetails.cs" />
     <Compile Include="Models\ForgotPassword\Value.cs" />
@@ -754,27 +757,6 @@
     <Compile Include="Models\Login\Login.cs" />
     <Compile Include="Models\Login\Logindetails.cs" />
     <Compile Include="Models\Login\SaveLoginSessionTrxn.cs" />
-    <Compile Include="Models\User\AccessRights.cs" />
-    <Compile Include="Models\User\CategoryCodes.cs" />
-    <Compile Include="Models\User\Checker.cs" />
-    <Compile Include="Models\User\EntityMandateMode.cs" />
-    <Compile Include="Models\User\EntityPaymentMode.cs" />
-    <Compile Include="Models\User\getAccessRights.cs" />
-    <Compile Include="Models\User\getCategoryCode.cs" />
-    <Compile Include="Models\User\getIsPresent.cs" />
-    <Compile Include="Models\User\getMaker.cs" />
-    <Compile Include="Models\User\getPaymentMode.cs" />
-    <Compile Include="Models\User\getsponsorcode.cs" />
-    <Compile Include="Models\User\getutilitycode.cs" />
-    <Compile Include="Models\User\Maker.cs" />
-    <Compile Include="Models\User\NachUser.cs" />
-    <Compile Include="Models\User\SponsorBankCode.cs" />
-    <Compile Include="Models\User\TempData.cs" />
-    <Compile Include="Models\User\User.cs" />
-    <Compile Include="Models\User\UserData.cs" />
-    <Compile Include="Models\User\UserEntity.cs" />
-    <Compile Include="Models\User\Users.cs" />
-    <Compile Include="Models\User\UtilityCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -880,12 +862,12 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\User\user-service.service.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\User\user-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
@@ -894,23 +876,6 @@
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\access-rights.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\bankval.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\category-code.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\checker.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\get-access-rights.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\get-category-code.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\get-is-present.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\get-maker.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\get-payment-mode.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\getsponsorcode.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\getutilitycode.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\maker.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\nach-user.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\sponsor-bank-code.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\temp-data.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\user.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\users.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
     <TypeScriptCompile Include="ClientApp\test.ts" />

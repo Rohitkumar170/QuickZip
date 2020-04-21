@@ -11,9 +11,10 @@
 
                         <li>
                             <i class="fa fa-download" aria-hidden="true" title="Export"></i>
-                            <label>
+                            <!--<button type="button" class="btn btn-success" (click)="downloadExcel()">Download Mandate Excel File</button>-->
+                            <!--<label (click)="download()">
                                 Download Mandate Excel File
-                            </label>
+                            </label>-->
                         </li>
                         <li>
                             <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
@@ -66,7 +67,7 @@
                             From Date
                         </label>
                         <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="date" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                            <input type="date" name="FromDate" #FromDate value="{{CurrentDate | date:'yyyy-MM-dd'}}" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
                             To Date
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="date" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                            <input type="date" name="ToDate" #ToDate (change)="mydate(FromDate.value,ToDate.value,selected.value)" value="{{CurrentDate | date:'yyyy-MM-dd'}}" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
                         </div>
                     </div>
                 </div>
@@ -86,7 +87,7 @@
                             Reference No.
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="text" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                            <input type="text" name="Reference" #Reference class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
                         </div>
                     </div>
                 </div>
@@ -98,9 +99,11 @@
                             Bank
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <select id="" class="alldropdown">
-                                <option value="volvo">Bank 1</option>
-                                <option value="saab">Bank 2</option>
+                            <select id="" class="alldropdown" name="selected" #selected (change)="SelectBank(FromDate.value,ToDate.value,selected.value)">
+
+                                <option *ngFor="let td of bankdrop" [value]="td.sponsorbankcode">{{td.name}}</option>
+
+
 
                             </select>
                         </div>
@@ -108,7 +111,10 @@
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
                     <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
-                           value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;" />
+                           value="Search" (click)="SearchByReference(Reference.value)" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;" />
+                    <button type="button" class="btn btn-success" (click)="downloadExcel()">Download Mandate Excel File</button>
+                    <!--<button type="button" class="btn btn-success" (click)="checkedDemo()"> Excel File DEmo</button>-->
+
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
 
@@ -137,22 +143,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="width:150px;"><input type="checkbox" name="all"></td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
+                    <tr *ngFor="let td of tabledata; let i=index;">
+                        <td style="width:150px;"><input type="checkbox" (change)="ifchecked(td.mandateid,td.Customer1,td.DateOnMandate,td.IsPrint,td.IsScan,td.Refrence1,td.Amount,td.AcNo,td.Code,td.BankName,td.Frequency,td.debittype,td.ToDebit,td.createdon)" name="all">{{i+1}}</td>
+                        <td style="width:150px;">{{td.mandateid}}</td>
+                        <td style="width:150px;">{{td.Customer1}}</td>
+                        <td style="width:150px;">{{td.DateOnMandate}}</td>
+                        <td style="width:150px;">{{td.IsPrint}}</td>
+                        <td style="width:150px;">{{td.IsScan}}</td>
+                        <td style="width:150px;">{{td.Refrence1}}</td>
+                        <td style="width:150px;">{{td.Amount}}</td>
+                        <td style="width:150px;">{{td.AcNo}}</td>
+                        <td style="width:150px;">{{td.Code}}</td>
+                        <td style="width:150px;">{{td.BankName}}</td>
+                        <td style="width:150px;">{{td.Frequency}}</td>
+                        <td style="width:150px;">{{td.debittype}}</td>
+                        <td style="width:150px;">{{td.ToDebit}}</td>
+                        <td style="width:150px;">{{td.createdon}}</td>
                     </tr>
 
                 </tbody>
