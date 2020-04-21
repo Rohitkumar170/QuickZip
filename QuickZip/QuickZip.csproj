@@ -228,6 +228,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -745,6 +746,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CommonFlag.cs" />
+    <Compile Include="Models\DownloadEmandate\DownloadEmandateaccesslayer.cs" />
+    <Compile Include="Models\DownloadEmandate\Downloademandatebank.cs" />
+    <Compile Include="Models\DownloadEmandate\DownLoadEmandateBind.cs" />
     <Compile Include="Models\ForgotPassword\Forgotflag.cs" />
     <Compile Include="Models\ForgotPassword\UserDetails.cs" />
     <Compile Include="Models\ForgotPassword\Value.cs" />
@@ -858,6 +862,8 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
