@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\Encryption.dll</HintPath>
+      <HintPath>C:\Users\dev-y02\Desktop\DLL\Encryption.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -228,10 +228,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
+    <Compile Include="Controllers\DownloadoldemandateController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\OldMandateController.cs" />
     <Compile Include="Entity\Common.cs" />
     <Compile Include="Entity\DbSecurity.cs" />
     <Compile Include="Entity\GetEntityID_Result.cs">
@@ -754,8 +755,9 @@
     <Compile Include="Models\Login\Login.cs" />
     <Compile Include="Models\Login\Logindetails.cs" />
     <Compile Include="Models\Login\SaveLoginSessionTrxn.cs" />
-    <Compile Include="Models\OldMandate\OldMandateAttribute.cs" />
-    <Compile Include="Models\OldMandate\OldMandateClass.cs" />
+    <Compile Include="Models\OldEmandate\BankBind.cs" />
+    <Compile Include="Models\OldEmandate\Downloadoldemandateaccesslayer.cs" />
+    <Compile Include="Models\OldEmandate\Searchdata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -861,12 +863,12 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
@@ -875,7 +877,8 @@
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateClass1.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\OldEmandate\Bankbind.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\OldEmandate\SearchData.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
     <TypeScriptCompile Include="ClientApp\test.ts" />

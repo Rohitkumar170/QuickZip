@@ -11,7 +11,9 @@ namespace QuickZip.Controllers
 {
     public class LoginController : ApiController
     {
-        
+
+
+
         Login objlogin = new Login();
         [HttpGet]
         [Route("api/Login/getlogindetails/{Username}/{Password}")]
