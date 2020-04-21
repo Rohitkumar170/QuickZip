@@ -557,7 +557,7 @@ module.exports = function (css) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Kotak_project\QuickZip\ClientApp\styles.css */"./ClientApp/styles.css");
+module.exports = __webpack_require__(/*! D:\New QuickZip Angular Project\QuickZip\ClientApp\styles.css */"./ClientApp/styles.css");
 
 
 /***/ })
