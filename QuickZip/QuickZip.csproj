@@ -181,6 +181,8 @@
     <Content Include="ClientApp\assets\images\loader.gif" />
     <Content Include="ClientApp\assets\images\quickcheck.png" />
     <Content Include="ClientApp\assets\images\quickcheck1.png" />
+    <Content Include="ClientApp\assets\images\saveSuccessImg.png" />
+    <Content Include="ClientApp\assets\images\saveTickUPdated.png" />
     <Content Include="ClientApp\favicon.ico" />
     <Content Include="ClientApp\index.html" />
     <Content Include="ClientApp\karma.conf.js" />

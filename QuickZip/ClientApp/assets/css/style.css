@@ -1,10 +1,30 @@
 ﻿
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.modal {
+    background: rgba(0,0,0,0.6) !important;
 }
+    .modal .modal-dialog {
+    margin:100px auto}
+.modal .modal-header .close {
+        position: absolute;
+        right: 9px;
+        top: 0;
+    }
+.modal .modal-header .modal-title {
+    margin:0 auto}
+.modal .modal-body p {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 0px;
+        color: #0c335a;
+        font-weight: bold;
+    }
+
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
 
 
