@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\ABSK\Desktop\Encryption.dll</HintPath>
+      <HintPath>C:\Users\AMYDEV02\Desktop\DLL\Encryption.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -176,6 +176,7 @@
     <Content Include="ClientApp\app\sidebar\sidebar.component.html" />
     <Content Include="ClientApp\assets\css\ace.min.css" />
     <Content Include="ClientApp\assets\css\font-awesome.min.css" />
+    <Content Include="ClientApp\assets\css\style.css" />
     <Content Include="ClientApp\assets\images\kotak-bank-logo.png" />
     <Content Include="ClientApp\assets\images\loader.gif" />
     <Content Include="ClientApp\assets\images\quickcheck.png" />
@@ -223,6 +224,12 @@
     <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -771,12 +778,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

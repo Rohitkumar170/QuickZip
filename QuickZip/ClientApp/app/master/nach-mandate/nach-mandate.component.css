@@ -2,16 +2,41 @@
     padding: 0px;
 }
 .catogeriebox {
-    position: relative;
+    position: absolute;
     top: 0px;
-    left: 33%;
+    left: 34%;
 }
+
+.checkbox, .radio {
+    margin-bottom: 0px !important;
+}
+
+
+.labeldiv {
+    height: 25px;
+    background: #d4d4d4;
+    border-right: 1px solid #8c8787;
+}
+
+.border {
+    border: 1px solid #989797 !important;
+}
+
 #btnSave {
     float:right;
 }
 #btnBack {
     float: right;
 }
+
+.form-group {
+    margin-bottom: 0% !important;
+    display: block;
+    overflow: hidden;
+    margin-top: 0% !important;
+    clear: both;
+}
+
 .boxhead {
     margin-top: 10px;
     border: 2px solid #e6edf3;
