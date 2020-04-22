@@ -13,7 +13,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         //  this.currentdate;
         this.BankdataBind();
     };
-    DownloadoldmandateComponent.prototype.ifchecked = function (mandateid, Customer1, DateOnMandate, IsPrint, IsScan, Refrence1, Amount, AcNo, Code, BankName, Frequency, debittype, ToDebit, createdon, event) {
+    DownloadoldmandateComponent.prototype.ifchecked = function (mandateid, Customer1, DateOnMandate, IsPrint, IsScan, Refrence1, Amount, AcNo, Code, BankName, Frequency, debittype, ToDebit, createdon) {
         //  console.log(mandateid);
         var aa = {
             'mandateid': mandateid,
@@ -31,19 +31,8 @@ var DownloadoldmandateComponent = /** @class */ (function () {
             'ToDebit': ToDebit,
             'createdon': createdon
         };
-        if (event.target.checked) {
-            this.list.push(aa);
-        }
-        else {
-            var removeindex = this.findIndex(function (itm) { return itm.mandateid === mandateid; }, function (itm1) { return itm1.Customer1 === Customer1; }, function (itm2) { return itm2.DateOnMandate === DateOnMandate; }, function (itm3) { return itm3.IsPrint === IsPrint; }, function (itm4) { return itm4.IsScan === IsScan; }, function (itm5) { return itm5.Refrence1 === Refrence1; }, function (itm6) { return itm6.Amount === Amount; }, function (itm7) { return itm7.AcNo === AcNo; }, function (itm8) { return itm8.Code === Code; }, function (itm9) { return itm9.BankName === BankName; }, function (itm10) { return itm10.Frequency === Frequency; }, function (itm11) { return itm11.debittype === debittype; }, function (itm12) { return itm12.ToDebit === ToDebit; }, function (itm13) { return itm13.createdon === createdon; });
-            if (removeindex !== -1)
-                this.list.splice(removeindex, 1);
-        }
-        // this.list.push(aa);
+        this.list.push(aa);
         console.log(this.list);
-    };
-    DownloadoldmandateComponent.prototype.findIndex = function (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) {
-        throw new Error("Method not implemented.");
     };
     DownloadoldmandateComponent.prototype.BankdataBind = function () {
         var _this = this;
