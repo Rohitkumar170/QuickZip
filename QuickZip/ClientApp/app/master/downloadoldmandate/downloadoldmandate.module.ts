@@ -13,6 +13,9 @@ import { OldmandateService } from '../../Services/oldmandate/oldmandate.service'
       ReactiveFormsModule,
       FormsModule
     ],
-    providers: [OldmandateService]
+    providers: [OldmandateService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
 })
 export class DownloadoldmandateModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}

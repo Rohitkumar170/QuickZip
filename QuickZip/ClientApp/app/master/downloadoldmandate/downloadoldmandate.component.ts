@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OldMandateClass1 } from '../../../Models/Old-Mandate/OldMandateClass1';
 import { OldmandateService } from '../../Services/oldmandate/oldmandate.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-downloadoldmandate',
@@ -11,43 +12,187 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class DownloadoldmandateComponent implements OnInit {
 
-    constructor(public myservice: OldmandateService) { }
+    checkFlag: number = 0;
+    Ischecked: number = 0;
+    IsMandateID: string;
+    Isallcheck: number = 0;
+    SelectionStatusOfMutants = []
+    selectMandateId = [];
+    i: any;
+    SponserBankCode: any;
+    length: any;
 
+
+
+    constructor(public myservice: OldmandateService) { }
+    showModal: boolean;
+
+    show() {
+        this.showModal = true;
+    }
+    hide() {
+        this.showModal = false;
+    }
     ngOnInit() {
-        //let item = JSON.parse(sessionStorage.getItem('User'));
+      //  let item = JSON.parse(sessionStorage.getItem('User'));
         //                console.log(item.UserId);
         //  this.currentdate;
 
         this.BankdataBind();
+       // this.mydate(this.FromDate, thius,ToDate, selected);
+        
+
+        let item = JSON.parse(sessionStorage.getItem('User'));
+        // console.log(item.UserId);
+        this.myservice.BankBind(item.UserId).subscribe((res) => {
+            // console.log(res);
+            this.bankdrop = res;
+            this.i = Object.entries(this.bankdrop)[0][1];
+            this.SponserBankCode = this.i.sponsorbankcode;
+          //  alert(this.SponserBankCode)
+            var u = this.SponserBankCode;
+            var k = formatDate(new Date(), "yyyy-MM-dd", "en");
+            this.mydate(k, k, u);
+
+          //  mydate(FromDate, ToDate, selected)
+
+
+        });
+
+
+
     }
     bankdrop;
     CurrentDate = new Date();
-    list = [];
-    ifchecked(mandateid, Customer1, DateOnMandate, IsPrint, IsScan, Refrence1, Amount, AcNo, Code, BankName, Frequency, debittype, ToDebit, createdon) {
+  //  list = [];
+    //reject mandate
+    RejectData(FromDate, ToDate, RejectedReason,selected) {
+      //  alert(FromDate + " " + ToDate + " " + RejectedReason);
+        //   alert(this.selectMandateId);
+        //var modal = <HTMLElement>document.getElementById('myModal');
+        //modal.style.display = 'block';
+     //   var dta = <HTMLElement>document.getElementById('myform');
+        this.showModal = false;
+        var dta = <HTMLInputElement>document.getElementById('myform');
+        dta.value = "";
+        let item = JSON.parse(sessionStorage.getItem('User'));
+       // alert(item.UserId);
+        if (RejectedReason != null) {
+            this.myservice.RejectData(FromDate, ToDate, RejectedReason, item.UserId, this.selectMandateId).subscribe((res) => {
+                console.log(res);
+               // this.tabledata = res;
+                this.mydate(FromDate, ToDate, selected);
+                alert('Mandate Rejected');
+            })
+                }
+        else {
+            alert("please checked the mandate and fill the Reason");
+        }
+     
+    }
 
-        //  console.log(mandateid);
 
-        var aa =
-        {
-            'mandateid': mandateid,
-            'Customer1': Customer1,
-            'DateOnMandate': DateOnMandate,
-            'IsPrint': IsPrint,
-            'IsScan': IsScan,
-            'Refrence1': Refrence1,
-            'Amount': Amount,
-            'AcNo': AcNo,
-            'Code': Code,
-            'BankName': BankName,
-            'Frequency': Frequency,
-            'debittype': debittype,
-            'ToDebit': ToDebit,
-            'createdon': createdon
+    toggleSelect = function (event) {
+        //toggleSelect(event) {
+        // var SelectionStatusOfMutants = [];
+        this.all = event.target.checked;
+        this.tabledata.forEach(function (item) {
+            // console.log(item);
+            item.selected = event.target.checked;
+            // this.onChange(event, item);
+
+        });
+
+        this.checkFlag = 1;
+
+        if (event.target.checked) {
+            this.Ischecked = 1;
+            //  this.Isallcheck = 1;
+        }
+        else {
+            this.Ischecked = 0;
         }
 
-        this.list.push(aa);
-        console.log(this.list);
-    }
+
+    }       
+
+
+    onChange(event, item) {
+
+        //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
+        //var isChecked = element.checked;
+        //if (count == '') {
+        this.checkFlag = 0;
+        // this.IsMandateID = item.mandateid;
+        var CheckedCount = 0, UncheckedCount = 0;
+
+        if (event.target.checked) {
+            this.SelectionStatusOfMutants.push(item);
+            this.selectMandateId.push(item.mandateid);
+
+
+
+            console.log(this.SelectionStatusOfMutants);
+          //  alert('checked')
+            this.Ischecked = 1;
+            CheckedCount++;
+
+        }
+        else {
+            //
+            alert('not checked')
+            this.SelectionStatusOfMutants.pop();
+            UncheckedCount++;
+            if (UncheckedCount == CheckedCount) {
+                this.Ischecked = 0;
+            }
+        }
+        //}
+        //else
+        //{
+        //    this.bindgrid.forEach(function (item) {
+        //        // console.log(item);
+        //        //item.selected = event.target.checked;
+        //        // this.onChange(event, item);
+        //        if (event.target.checked) {
+        //            this.SelectionStatusOfMutants.push(item);
+        //            alert('c')
+        //        }
+        //        else {
+        //            this.SelectionStatusOfMutants.pop();
+        //            alert('nc')
+        //        }
+
+        //    });
+
+        //}
+    }   
+
+    //ifchecked(mandateid, Customer1, DateOnMandate, IsPrint, IsScan, Refrence1, Amount, AcNo, Code, BankName, Frequency, debittype, ToDebit, createdon) {
+
+    //    //  console.log(mandateid);
+
+    //    var aa =
+    //    {
+    //        'mandateid': mandateid,
+    //        'Customer1': Customer1,
+    //        'DateOnMandate': DateOnMandate,
+    //        'IsPrint': IsPrint,
+    //        'IsScan': IsScan,
+    //        'Refrence1': Refrence1,
+    //        'Amount': Amount,
+    //        'AcNo': AcNo,
+    //        'Code': Code,
+    //        'BankName': BankName,
+    //        'Frequency': Frequency,
+    //        'debittype': debittype,
+    //        'ToDebit': ToDebit,
+    //        'createdon': createdon
+    //    }
+
+    //    this.list.push(aa);
+    //    console.log(this.list);
+    //}
 
     BankdataBind() {
         let item = JSON.parse(sessionStorage.getItem('User'));
@@ -88,14 +233,14 @@ export class DownloadoldmandateComponent implements OnInit {
             //var c = selected;
 
             this.myservice.BindbyDate(item.UserId, FromDate, ToDate, selected).subscribe((res) => {
-                //   console.log(res);
+                   console.log(res);
                 this.tabledata = res;
             });
         }
         else {
             alert("please choose the Date");
         }
-        console.log(this.list);
+      //  console.log(this.list);
 
 
     }
@@ -156,8 +301,19 @@ export class DownloadoldmandateComponent implements OnInit {
         return str;
     }
     downloadExcel() {
-        alert("this method is working");
-        var csvData = this.ConvertToCSV(JSON.stringify(this.list));
+       // alert("this method is working");
+
+        alert(this.Ischecked);
+        //console.log(this.checkFlag);
+        if (this.Ischecked == 1) {
+            if (this.checkFlag == 0) {
+                var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
+            }
+            else {
+                var csvData = this.ConvertToCSV(JSON.stringify(this.tabledata));
+
+            }
+       // var csvData = this.ConvertToCSV(JSON.stringify(this.list));
         var a = document.createElement("a");
         a.setAttribute('style', 'display:none;');
         document.body.appendChild(a);
@@ -166,7 +322,11 @@ export class DownloadoldmandateComponent implements OnInit {
         a.href = url;
         a.download = 'User_Results.csv';/* your file name*/
         a.click();
-        return 'success';
+            return 'success';
+        }
+        else {
+            alert('checkbox not selected');
+        }
     }
     //nontrade;
     //trade;

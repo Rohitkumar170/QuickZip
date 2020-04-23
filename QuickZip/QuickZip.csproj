@@ -759,6 +759,7 @@
     <Compile Include="Models\OldEmandate\BankBind.cs" />
     <Compile Include="Models\OldEmandate\Downloadoldemandateaccesslayer.cs" />
     <Compile Include="Models\OldEmandate\Searchdata.cs" />
+    <Compile Include="Models\OldMandate\downloadOldMandateTableAttibute.cs" />
     <Compile Include="Models\OldMandate\OldMandateAttribute.cs" />
     <Compile Include="Models\OldMandate\OldMandateClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -883,6 +884,7 @@
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateClass1.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateTable.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\Bankbind.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\SearchData.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
