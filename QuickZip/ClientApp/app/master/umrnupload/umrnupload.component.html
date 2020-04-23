@@ -14,13 +14,32 @@
                             <ul class="toolbar-content">
 
 
-                                <li>
+                                <li id="btnNew" (click)="btnNew_click($event)">
                                     <i class="fa fa-download" aria-hidden="true" title="Export"></i>
                                     <label>
                                         New
                                     </label>
                                 </li>
-                                <li (click)="btnBack_click($event)">
+
+
+                               
+                                <li id="btndownload" style="display:none;">
+                                    <a style="color: #393939" id="AResponse" href="../../../../ExcelFiles/UMRN.xlsx"
+                                       download>
+                                        <i class="fa fa-download" aria-hidden="true" title="Export"></i>
+                                        <label>
+                                            Download Templet
+                                        </label>
+                                    </a>
+                                </li>
+                                <li id="btnupload" style="display:none;">
+                                    <!--<i class="fa fa-upload" aria-hidden="true" title="Export"></i>-->
+                                    <input class="" type="file" #fileInput />
+                                    <label>
+                                        <button class="btn btn-primary" (click)="uploadUMRN();">Upload</button>
+                                    </label>
+                                </li>
+                                <li (click)="btnBack_click($event)" id="btnback">
                                     <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
                                     <label>
                                         Back
@@ -94,8 +113,12 @@
         </div>
 
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv1" style="margin-top:5%;">
+            
+            <label class="firstbtnongrid" (click)="downloadHeaderGrid()"><i class="fa fa-file-excel-o" style="padding-right: 5px!important;"></i>Export</label>
+
             <table id="tblfirstumrnupload">
                 <thead>
+                   
                     <tr>
                         <th style="width:150px; display:none;">Upload No</th>
                         <th style="width:150px;">Upload No</th>
@@ -127,11 +150,14 @@
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv4" style="margin-top:1%;display:none;" #tblgrddetails>
             <label style="font-size: 12px;font-weight: bold; color: #2fa9a8;" id="lblTotalCount"></label>
 
-            <span class="btnspa" id="btnspaone">
-               
-                <input type="button" class=" btn btn-success btnexcel"
-                       value="Download Excel" (click)="downloadMaingriddetails()" />
+            <span class="btnspa" id="">
+
+
+                <label class="btnexportumrn" (click)="downloadMaingriddetails()"><i class="fa fa-file-excel-o" style="padding-right: 5px!important;"></i>Export</label>
+                <!--<input type="button" class=" btn btn-success btnexcel"
+           value="Download Excel" (click)="downloadMaingriddetails()" />-->
             </span>
+
             <table id="tblgrddetails">
                 <thead>
                     <tr>
@@ -174,10 +200,12 @@
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv3" style="margin-top:1%;display:none;">
             <label style="font-size: 12px;font-weight: bold; color: #2fa9a8;" id="lblsuccessCount"></label>
-            <span class="btnspa" id="btnspatwo">
-               
-                <input type="button" class=" btn btn-success btnexcel"
-                       value="Download Excel" (click)="downloadgrdsuccess()" />
+            <span class="btnspa" id="">
+
+                <label class="btnexportumrn" (click)="downloadgrdsuccess()"><i class="fa fa-file-excel-o" style="padding-right: 5px!important;"></i>Export</label>
+
+                <!--<input type="button" class=" btn btn-success btnexcel"
+           value="Download Excel" (click)="downloadgrdsuccess()" />-->
             </span>
             <table id="tblsuccess">
                 <thead>
@@ -221,10 +249,12 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv2" style="margin-top:1%;display:none;">
             <label style="font-size: 12px;font-weight: bold; color: #2fa9a8;" id="lblUnsuccessCount"></label>
-            <span class="btnspa" id="btnspathree">
-             
-                <input type="button" class=" btn btn-success btnexcel"
-                       value="Download Excel" (click)="downloadgrdUnsuccess()" />
+            <span class="btnspa" id="">
+
+                <label class="btnexportumrn" (click)="downloadgrdUnsuccess()"><i class="fa fa-file-excel-o" style="padding-right: 5px!important;"></i>Export</label>
+
+                <!--<input type="button" class=" btn btn-success btnexcel"
+           value="Download Excel" (click)="downloadgrdUnsuccess()" />-->
             </span>
             <table id="tblunsuccess">
                 <thead>
