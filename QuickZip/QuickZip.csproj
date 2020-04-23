@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\AMYDEV02\Desktop\DLL\Encryption.dll</HintPath>
+      <HintPath>C:\Users\Neha\Desktop\Encryption.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -231,6 +231,7 @@
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UMRNHistoryController.cs" />
     <Compile Include="Entity\Common.cs" />
     <Compile Include="Entity\DbSecurity.cs" />
     <Compile Include="Entity\GetEntityID_Result.cs">
@@ -753,6 +754,8 @@
     <Compile Include="Models\Login\Login.cs" />
     <Compile Include="Models\Login\Logindetails.cs" />
     <Compile Include="Models\Login\SaveLoginSessionTrxn.cs" />
+    <Compile Include="Models\UMRN_History\UMRNHistoryClass.cs" />
+    <Compile Include="Models\UMRN_History\UMRNHistoryDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -862,6 +865,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\UMRN_History\umrn-history-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\UMRN_History\umrn-history-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
@@ -870,6 +875,7 @@
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\UMRN_HISTORY\umrn-history-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
     <TypeScriptCompile Include="ClientApp\test.ts" />
