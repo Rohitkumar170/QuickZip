@@ -28,8 +28,7 @@ export class DownloadEmandateComponent implements OnInit {
     checkFlag: number = 0;
     Ischecked: number = 0;
     IsMandateID: string;
-    // Isallcheck: string = 0;
-
+    //public errormsg: any;
     //BindGridData: BindGridData;
     constructor(private DEService: DownloadEmandateServiceService, fb: FormBuilder) {
         this.fromdate = new Date();
@@ -82,12 +81,13 @@ export class DownloadEmandateComponent implements OnInit {
             });
 
     }
+    //Removelabel() { this.errormsg = ''; }
 
     toggleSelect = function (event) {
         //toggleSelect(event) {
         // var SelectionStatusOfMutants = [];
         this.all = event.target.checked;
-        this.bindgrid.forEach(function (item) {
+        this.Databind.forEach(function (item) {
             // console.log(item);
             item.selected = event.target.checked;
             // this.onChange(event, item);
@@ -98,10 +98,12 @@ export class DownloadEmandateComponent implements OnInit {
 
         if (event.target.checked) {
             this.Ischecked = 1;
+            alert('Checked');
             //  this.Isallcheck = 1;
         }
         else {
             this.Ischecked = 0;
+            alert('Not Checked');
         }
 
 
@@ -184,7 +186,7 @@ export class DownloadEmandateComponent implements OnInit {
     }
     download() {
         alert(this.Ischecked);
-        if (this.Ischecked == 1) {
+        if (this.Ischecked == 1 || this.Databind.length > 0) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
             }

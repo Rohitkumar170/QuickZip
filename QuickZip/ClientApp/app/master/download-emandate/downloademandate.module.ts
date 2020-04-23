@@ -12,6 +12,9 @@ import { DownloadEmandateServiceService } from '../../services/downloademandate/
       ReactiveFormsModule,
       FormsModule
     ],
-    providers:[DownloadEmandateServiceService]
+    providers: [DownloadEmandateServiceService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
 })
 export class DownloademandateModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}

@@ -17,10 +17,13 @@ var DownloademandateModule = /** @class */ (function () {
                 ReactiveFormsModule,
                 FormsModule
             ],
-            providers: [DownloadEmandateServiceService]
+            providers: [DownloadEmandateServiceService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
         })
     ], DownloademandateModule);
     return DownloademandateModule;
 }());
 export { DownloademandateModule };
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
 //# sourceMappingURL=downloademandate.module.js.map
