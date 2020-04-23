@@ -174,7 +174,9 @@
     <Content Include="ClientApp\app\sidebar\sidebar.component.css" />
     <Content Include="ClientApp\app\sidebar\sidebar.component.html" />
     <Content Include="ClientApp\assets\css\ace.min.css" />
+    <Content Include="ClientApp\assets\css\bootstrap.min.css" />
     <Content Include="ClientApp\assets\css\font-awesome.min.css" />
+    <Content Include="ClientApp\assets\css\style.css" />
     <Content Include="ClientApp\assets\images\kotak-bank-logo.png" />
     <Content Include="ClientApp\assets\images\loader.gif" />
     <Content Include="ClientApp\assets\images\quickcheck.png" />
