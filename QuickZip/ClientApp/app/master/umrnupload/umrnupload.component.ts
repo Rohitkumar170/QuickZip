@@ -11,7 +11,7 @@ import { GridUnsuccess } from '../../../models/umrnupload/gridunsuccess';
 import { Location } from '@angular/common';
 
 import { count } from 'rxjs/operators';
-import * as xlsx from 'xlsx';
+
 
 @Component({
   selector: 'app-umrnupload',
