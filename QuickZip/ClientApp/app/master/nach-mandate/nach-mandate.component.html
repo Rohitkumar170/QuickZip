@@ -1,541 +1,559 @@
-<div class="main-content" id="maincontent">
-    <div class="content">
-        <div class="col-md-12 col-sm-6 col-xs-4 contnt-wrapper no-padding-right">
-            <div class="row">
-                <div class="col-sm-3 col-md-4 col-xs-5">
-                    <span class="legal">NACH Mandate</span>
-                </div>
-                <div class="col-md-8 col-sm-9 col-xs-12" style="float: right">
-                    <div class="toolbar pull-right">
-                        <ul class="toolbar-content">
-                            <li id="btnNew" disabled="disabled" style="display:none">
-                                <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
-                                <label>
-                                    New
-                                </label>
-                            </li>
-                            <li id="btnEdit" style="display: none" disabled="disabled">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>
-                                <label>
-                                    Edit
-                                </label>
-                            </li>
-                            <li style="display: none" id="btnScanPrint">
-                                <i class="fa fa-search" aria-hidden="true" title="Mandate Scanned"></i>
-                                <label>
-                                    Mandate Scanned
-                                </label>
-                            </li>
-
-                            <li style="display: none" id="btnMandatePrint">
-                                <i class="fa fa-print" aria-hidden="true" title="Mandate Printed"></i>
-                                <label>
-                                    Mandate Printed
-                                </label>
-                            </li>
-
-                            <li style="display: none" id="btnBlankMandateprint">
-                                <a href="" target="_blank">
-                                    <i class="fa fa-print" aria-hidden="true" title="Print on printed mandate"></i>
-                                    <label>
-                                        Over Print-Mandate
-                                    </label>
-                                </a>
-                            </li>
-                            <li style="display: none" id="btnOldOverPrintMandate">
-                                <a href="" target="_blank">
-                                    <i class="fa fa-print" aria-hidden="true" title="Old Print on printed mandate"></i>
-                                    <label>
-                                        Old Over Print-Mandate
-                                    </label>
-                                </a>
-                            </li>
-                            <li style="display: none" id="btnPrint">
-                                <i class="fa fa-print" aria-hidden="true" title="Print"></i>
-                                <label>
-                                    Print
-                                </label>
-                            </li>
-                            <li style="display: none" id="btnScanHalf">
-                                <i class="fa fa-search" aria-hidden="true" title="Scan Signed Mandate"></i>
-                                <label>
-                                    Scan and Upload Mandate
-                                </label>
-                            </li>
-                            <li style="display: none" id="btnScan">
-                                <i class="fa fa-upload" aria-hidden="true" title="Scan Signed Mandate"></i>
-                                <label>
-                                    Upload Mandate
-                                </label>
-                            </li>
-                            <li style="display: none" id="btnValidate">
-                                <i class="fa fa-check-circle" aria-hidden="true" title="Account &amp; Name validation"></i>
-                                <label>
-                                    Validate
-                                </label>
-                            </li>
-                            <li>
-                                <a id="ContentPlaceHolder1_AResponse" style="display: none" download="">
-                                    <i class="fa fa-download" aria-hidden="true" title=" Download Response XML"></i>
-                                    <label>
-                                        Download E-Mandate
-                                    </label>
-                                </a>
-                            </li>
-                            <li id="LiRegistrationFund" style="display: none; cursor: pointer">
-                                <i class="fa fa-credit-card"></i>Registration Fund
-                            </li>
-                            <li id="btnBack">
-                                <i class="fa fa-bars" aria-hidden="true" title="Back"></i>
-                                <label>
-                                    Previous Records
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div id="ContentPlaceHolder1_overlay" class="col-xs-12 col-md-12 col-sm-12 overlay">
-            </div>
-            <div id="preloader_1" style="display: none; z-index: 9999; position: absolute;">
-                <span></span><span></span><span></span><span></span><span></span>
-                <label>
-                    Loading...
-                </label>
-            </div>
-            <div id="grd" style="display: none;">
-            </div>
-        </div>
-        <span id="ContentPlaceHolder1_IsRefrence2Mandatory" style="display: none"></span>
-        <span id="ContentPlaceHolder1_lblmailmsg1" style="display: none"></span>
-        <span id="ContentPlaceHolder1_lblISSendEmailCustomer" style="display: none">false</span>
-        <span id="ContentPlaceHolder1_lblTodateMandataoryforEsign" style="display: none">false</span>
-        <span id="ContentPlaceHolder1_lblIsRefrenceEdit" style="display: none">True</span>
-        <span id="ContentPlaceHolder1_lblIsMandateEdit" style="display: none">True</span>
-        <span id="ContentPlaceHolder1_lblUserType" style="display: none">E</span>
-        <span id="ContentPlaceHolder1_lblBranchId" style="display: none">ArzBqYu631c=|9aGrJ6gMJEQ=</span>
-        <span id="ContentPlaceHolder1_lblEntityId" style="display: none">VxgEmrq2MuQ=|oIQ5k7rpPWI=</span>
-        <span id="ContentPlaceHolder1_lblRefId" style="display: none">FPNhL1CxmAY=|vuoN7ZQ0yJk=</span>
-        <span id="ContentPlaceHolder1_lblUserid" style="display: none">AGAnD2RKqfU=|mMIjyLyoOGA=</span>
-        <span id="ContentPlaceHolder1_lblOverMandate" style="display: none">False</span>
-        <span id="ContentPlaceHolder1_lblIsValidationCountEnable" style="display: none">1</span>
-        <span id="ContentPlaceHolder1_lblFinalBankValidationAdminCount" style="display: none">5</span>
-        <span id="ContentPlaceHolder1_lblFinalBankValidationUserCount" style="display: none">5</span>
-        <span id="ContentPlaceHolder1_lblFinalAcValidationAdminCount" style="display: none">5</span>
-        <span id="ContentPlaceHolder1_lblFinalAcValidationUserCount" style="display: none">5</span>
-        <span id="ContentPlaceHolder1_lblBankValidationAdminCount" style="display: none">1</span>
-        <span id="ContentPlaceHolder1_lblBankValidationUserCount" style="display: none">1</span>
-        <span id="ContentPlaceHolder1_lblAcValidationAdminCount" style="display: none">1</span>
-        <span id="ContentPlaceHolder1_lblAcValidationUserCount" style="display: none">1</span>
-        <span id="ContentPlaceHolder1_lblIsRefrenceCheck" style="display: none">False</span>
-        <span id="ContentPlaceHolder1_lblIsEMandate" style="display: none">True</span>
-        <span id="ContentPlaceHolder1_lblIsPhysicalMandate" style="display: none">True</span>
-        <span id="ContentPlaceHolder1_lblmandatecheck" style="display: none"></span>
-        <span id="ContentPlaceHolder1_lblrealamount" style="display: none"></span>
-        <div id="divform" class=" col-md-12 col-sm-12 col-xs-12 no-padding">
-            <div class="col-md-12 col-sm-12 col-xs-12 no-padding-right">
-                <div class="col-md-5 col-sm-5 col-xs-12 no-padding" style="display: none">
-                    <div class="form-group" style="margin-bottom: 5px;">
-                        <div class="col-sm-3 col-md-3 col-xs-3 no-padding modetypeform modeform" style="margin-top: 2px;">
-                            <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label">
-                                Mandate Mode:
-                            </label>
-                        </div>
-                        <div id="DivMandateType" class="col-sm-9 col-md-9 col-xs-9 no-padding radio modewidthform  ">
-                            <label class="lblradiobtnss col-md-2 col-sm-2 col-xs-2 no-padding">
-                                <input name="rdoMandatetype" id="rdnone" checked="checked" value="N" type="radio">
-                                <span>None</span>
-                            </label>
-                            <label id="lblphysical" class="lblradiobtnss col-md-3 col-sm-3 col-xs-3 no-padding-right physicalwidth">
-                                <input name="rdoMandatetype" id="rdphysical" value="P" type="radio">
-                                <span>Physical</span>
-                            </label>
-                            <label id="lblemandate" class="lblradiobtnss col-md-4 col-sm-4 col-xs-4 no-padding-right">
-                                <input name="rdoMandatetype" id="rdEmandate" value="E" type="radio">
-                                <span>E-Mandate</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+    <div class="main-content" id="maincontent">
+        <div class="content">
+
+
+
+
+
+
+
+
+            <div class="col-md-12 col-sm-6 col-xs-4 contnt-wrapper no-padding-right">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12 ">
-                        <span class="note sizenote">
-                            Note:*Customer signature must be done with only black gel
-                            pen on printed NACH
-                        </span>
+                    <div class="col-sm-3 col-md-4 col-xs-5">
+                        <span class="legal">NACH Mandate</span>
                     </div>
-                    <div class=" col-md-6 col-sm-7 col-xs-12  no-padding ">
-                        <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                            <div class="form-group pull-right col-md-8 col-sm-6 col-xs-8 no-padding catogeriebox">
-                                <div class="row">
-                                    <div class="col-sm-4 col-md-4 col-xs-5 no-padding">
-                                        <label class="col-sm-12 col-md-12  col-xs-12 control-label" style="font-size: 12px;">
-                                            Category Code:
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8 col-md-7 col-xs-7">
-                                        <select class="col-md-12 col-xs-12 col-sm-12">
-                                            <option>1</option>
-                                            <option>2</option>
+                    <div class="col-md-8 col-sm-9 col-xs-12" style="float: right">
+                        <div class="toolbar pull-right">
+                            <ul class="toolbar-content">
+                                <li id="btnNew" disabled="disabled" style="display:none">
+                                    <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
+                                    <label>
+                                        New
+                                    </label>
+                                </li>
+                                <li id="btnEdit" style="display: none" disabled="disabled">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>
+                                    <label>
+                                        Edit
+                                    </label>
+                                </li>
+                                <li style="display: none" id="btnScanPrint">
+                                    <i class="fa fa-search" aria-hidden="true" title="Mandate Scanned"></i>
+                                    <label>
+                                        Mandate Scanned
+                                    </label>
+                                </li>
 
-                                        </select>
+                                <li style="display: none" id="btnMandatePrint">
+                                    <i class="fa fa-print" aria-hidden="true" title="Mandate Printed"></i>
+                                    <label>
+                                        Mandate Printed
+                                    </label>
+                                </li>
+
+                                <li style="display: none" id="btnBlankMandateprint">
+                                    <a href="" target="_blank">
+                                        <i class="fa fa-print" aria-hidden="true" title="Print on printed mandate"></i>
+                                        <label>
+                                            Over Print-Mandate
+                                        </label>
+                                    </a>
+                                </li>
+                                <li style="display: none" id="btnOldOverPrintMandate">
+                                    <a href="" target="_blank">
+                                        <i class="fa fa-print" aria-hidden="true" title="Old Print on printed mandate"></i>
+                                        <label>
+                                            Old Over Print-Mandate
+                                        </label>
+                                    </a>
+                                </li>
+                                <li style="display: none" id="btnPrint">
+                                    <i class="fa fa-print" aria-hidden="true" title="Print"></i>
+                                    <label>
+                                        Print
+                                    </label>
+                                </li>
+                                <li style="display: none" id="btnScanHalf">
+                                    <i class="fa fa-search" aria-hidden="true" title="Scan Signed Mandate"></i>
+                                    <label>
+                                        Scan and Upload Mandate
+                                    </label>
+                                </li>
+                                <li style="display: none" id="btnScan">
+                                    <i class="fa fa-upload" aria-hidden="true" title="Scan Signed Mandate"></i>
+                                    <label>
+                                        Upload Mandate
+                                    </label>
+                                </li>
+                                <li style="display: none" id="btnValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true" title="Account &amp; Name validation"></i>
+                                    <label>
+                                        Validate
+                                    </label>
+                                </li>
+                                <li>
+                                    <a id="ContentPlaceHolder1_AResponse" style="display: none" download="">
+                                        <i class="fa fa-download" aria-hidden="true" title=" Download Response XML"></i>
+                                        <label>
+                                            Download E-Mandate
+                                        </label>
+                                    </a>
+                                </li>
+                                <li id="LiRegistrationFund" style="display: none; cursor: pointer">
+                                    <i class="fa fa-credit-card"></i>Registration Fund
+                                </li>
+                                <li id="btnBack">
+                                    <i class="fa fa-bars" aria-hidden="true" title="Back"></i>
+                                    <label>
+                                        Previous Records
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="ContentPlaceHolder1_overlay" class="col-xs-12 col-md-12 col-sm-12 overlay">
+                </div>
+                <div id="preloader_1" style="display: none; z-index: 9999; position: absolute;">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <label>
+                        Loading...
+                    </label>
+                </div>
+                <div id="grd" style="display: none;">
+                </div>
+            </div>
+            <span id="IsRefrence2Mandatory" style="display: none"></span>
+            <span id="lblmailmsg1" style="display: none"></span>
+            <span id="lblISSendEmailCustomer" style="display: none">false</span>
+            <span id="lblTodateMandataoryforEsign" style="display: none">false</span>
+            <span id="lblIsRefrenceEdit" style="display: none">True</span>
+            <span id="lblIsMandateEdit" style="display: none">True</span>
+            <span id="lblUserType" style="display: none">E</span>
+            <span id="lblBranchId" style="display: none">ArzBqYu631c=|9aGrJ6gMJEQ=</span>
+            <span id="lblEntityId" style="display: none">VxgEmrq2MuQ=|oIQ5k7rpPWI=</span>
+            <span id="lblRefId" style="display: none">FPNhL1CxmAY=|vuoN7ZQ0yJk=</span>
+            <span id="lblUserid" style="display: none">AGAnD2RKqfU=|mMIjyLyoOGA=</span>
+            <span id="lblOverMandate" style="display: none">False</span>
+            <span id="lblIsValidationCountEnable" style="display: none">1</span>
+            <span id="lblFinalBankValidationAdminCount" style="display: none">5</span>
+            <span id="lblFinalBankValidationUserCount" style="display: none">5</span>
+            <span id="lblFinalAcValidationAdminCount" style="display: none">5</span>
+            <span id="lblFinalAcValidationUserCount" style="display: none">5</span>
+            <span id="lblBankValidationAdminCount" style="display: none">1</span>
+            <span id="lblBankValidationUserCount" style="display: none">1</span>
+            <span id="lblAcValidationAdminCount" style="display: none">1</span>
+            <span id="lblAcValidationUserCount" style="display: none">1</span>
+            <span id="lblIsRefrenceCheck" style="display: none">False</span>
+            <span id="lblIsEMandate" style="display: none">True</span>
+            <span id="lblIsPhysicalMandate" style="display: none">True</span>
+            <span id="lblmandatecheck" style="display: none"></span>
+            <span id="lblrealamount" style="display: none"></span>
+
+
+
+
+
+
+
+
+
+            <div id="divform" class=" col-md-12 col-sm-12 col-xs-12 no-padding">
+                <div class="col-md-12 col-sm-12 col-xs-12 no-padding-right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 no-padding" style="display: none">
+                        <div class="form-group" style="margin-bottom: 5px;">
+                            <div class="col-sm-3 col-md-3 col-xs-3 no-padding modetypeform modeform" style="margin-top: 2px;">
+                                <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label">
+                                    Mandate Mode:
+                                </label>
+                            </div>
+                            <div id="DivMandateType" class="col-sm-9 col-md-9 col-xs-9 no-padding radio modewidthform  ">
+                                <label class="lblradiobtnss col-md-2 col-sm-2 col-xs-2 no-padding">
+                                    <input name="rdoMandatetype" id="rdnone" checked="checked" value="N" type="radio">
+                                    <span>None</span>
+                                </label>
+                                <label id="lblphysical" class="lblradiobtnss col-md-3 col-sm-3 col-xs-3 no-padding-right physicalwidth">
+                                    <input name="rdoMandatetype" id="rdphysical" value="P" type="radio">
+                                    <span>Physical</span>
+                                </label>
+                                <label id="lblemandate" class="lblradiobtnss col-md-4 col-sm-4 col-xs-4 no-padding-right">
+                                    <input name="rdoMandatetype" id="rdEmandate" value="E" type="radio">
+                                    <span>E-Mandate</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12 ">
+                            <span class="note sizenote">
+                                Note:*Customer signature must be done with only black gel
+                                pen on printed NACH
+                            </span>
+                        </div>
+                        <div class=" col-md-6 col-sm-7 col-xs-12  no-padding ">
+                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                <div class="form-group pull-right col-md-8 col-sm-6 col-xs-8 no-padding catogeriebox">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-4 col-xs-5 no-padding">
+                                            <label class="col-sm-12 col-md-12  col-xs-12 control-label" style="font-size: 12px;">
+                                               Category Code:
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8 col-md-7 col-xs-7">
+                                            <select  class="col-md-12 col-xs-12 col-sm-12">
+                                                <option value="0" selected>Select Catagory</option>
+                                                <!--<option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>-->
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class=" col-md-5 col-sm-7 col-xs-12 pull-right no-padding" id="DivModeType" style="display: none">
-                    <div class="form-group" style="margin-bottom: 5px;">
-                        <div class="col-sm-3 col-md-3 col-xs-3 no-padding modetypeform typetextalign" style="margin-top: 2px;">
-                            <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label">
-                                Mandate Type:
-                            </label>
-                        </div>
-                        <div id="Div13" class="col-sm-9 col-md-9 col-xs-9 no-padding  radio ">
-                            <label class="lblradiobtnss col-md-2 col-sm-2 col-xs-2 no-padding-right">
-                                <input name="rdoMandate" id="rdoNone" checked="checked" value="None" type="radio" class="padding">
-                                <span>None</span>
-                            </label>
-                            <label class="lblradiobtnss col-md-5 col-sm-5 col-xs-5 no-padding-right ">
-                                <input name="rdoMandate" id="rdoNACH" value="E" type="radio">
-                                <span>First EMI PDC + NACH</span>
-                            </label>
-                            <label class="lblradiobtnss col-md-2 col-sm-2 col-xs-2 no-padding-right">
-                                <input name="rdoMandate" id="rdoNPDC" value="N" type="radio">
-                                <span>NPDC</span>
-                            </label>
-                            <label class="lblradiobtnss col-md-3 col-sm-3 col-xs-3 no-padding-right">
-                                <input name="rdoMandate" id="rdoPDC" value="F" type="radio">
-                                <span>Full PDC</span>
-                            </label>
+                    <div class=" col-md-5 col-sm-7 col-xs-12 pull-right no-padding" id="DivModeType" style="display: none">
+                        <div class="form-group" style="margin-bottom: 5px;">
+                            <div class="col-sm-3 col-md-3 col-xs-3 no-padding modetypeform typetextalign" style="margin-top: 2px;">
+                                <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label">
+                                    Mandate Type:
+                                </label>
+                            </div>
+                            <div id="Div13" class="col-sm-9 col-md-9 col-xs-9 no-padding  radio ">
+                                <label class="lblradiobtnss col-md-2 col-sm-2 col-xs-2 no-padding-right">
+                                    <input name="rdoMandate" id="rdoNone" checked="checked" value="None" type="radio" class="padding">
+                                    <span>None</span>
+                                </label>
+                                <label class="lblradiobtnss col-md-5 col-sm-5 col-xs-5 no-padding-right ">
+                                    <input name="rdoMandate" id="rdoNACH" value="E" type="radio">
+                                    <span>First EMI PDC + NACH</span>
+                                </label>
+                                <label class="lblradiobtnss col-md-2 col-sm-2 col-xs-2 no-padding-right">
+                                    <input name="rdoMandate" id="rdoNPDC" value="N" type="radio">
+                                    <span>NPDC</span>
+                                </label>
+                                <label class="lblradiobtnss col-md-3 col-sm-3 col-xs-3 no-padding-right">
+                                    <input name="rdoMandate" id="rdoPDC" value="F" type="radio">
+                                    <span>Full PDC</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:1%;">
-                <div class="">
-                    <div class="scroll">
-                        <div id="accordion1" class="accordion-style1 panel-group">
-                            <div class="panel panel-default">
-                                <!--<div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#mandate" aria-expanded="false">
-                                            <i class="ace-icon fa fa-angle-down bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>&nbsp;Mandate Form Detail
-                                            <label id="lblmandateId" class="status-lbl pull-right" style="font-weight: normal;
-                                                display: none">
-                                            </label>
-                                            <label id="ContentPlaceHolder1_lblMandateShowid" class="pull-right" style="font-weight: normal;
-                                                font-size: 12px; color: #fff; margin-right: 1%!important;">
-                                            </label>
-                                            <label id="ContentPlaceHolder1_lblemandatetype" class="pull-right" style="font-weight: normal;
-                                                font-size: 12px; color: #1f497d; margin-right: 1%!important;">
-                                            </label>
-                                            <label class="pull-right" style="font-size: 12px; color: #fff; float:right;">
-                                                Mandate ID :
-                                            </label>
-                                        </a>
-                                    </h4>
-                                </div>-->
-                                <!--<div class="panel-collapse collapse" id="mandate" aria-expanded="false" style="height: 0px;">
-                                    <div class="panel-body" style="padding-bottom: 2px; overflow-y: auto; max-height: 477px;">-->
-                                <div class="scroll">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="row">
-                                            <div class="col-md-1 col-sm-1 col-xs-2" id="divqr">
-                                                <img id="ContentPlaceHolder1_imgLogo" style="width: 100%; height: 45px;" src="../Logo/kOrqps_logo.png">
-                                            </div>
-                                            <div class="col-md-11 col-sm-11 col-xs-10 no-padding">
-                                                <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-4 col-md-4 col-xs-3   labeldiv">
-                                                                        <label class="col-sm-12 col-md-12 col-xs-12 control-label">
-                                                                            UMRN
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-md-8 col-xs-9  mandatetextboxborder no-padding">
-                                                                        <input type="text" class="" id="Text1" disabled="disabled" style="width: 96%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-4 col-md-4 col-xs-5   labeldiv">
-                                                                        <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
-                                                                            Date on Mandate
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-md-8 col-xs-7  no-padding">
-                                                                        <input type="date" class="form-control date-picker hasDatepicker aa" id="txtperiodfrom" name="date-picker" data-date-format="dd-mm-yyyy" placeholder="Select Date" style="height: 22px;width: 92%;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-12 col-xs-12 ">
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-4 col-md-4 col-xs-6   labeldiv">
-                                                                        <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
-                                                                            Sponsor Bank Code
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-md-8 col-xs-6 mandatetextboxborder no-padding">
-                                                                        <select class="" style="width: 96%">
-
-                                                                            <option>Kotak Mahindra Bank</option>
-                                                                            <option>State Bank</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-4 col-md-4 col-xs-4   labeldiv">
-                                                                        <label class="col-sm-12 col-md-12 col-xs-12  control-label  ">
-                                                                            Utility Code
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-sm-8 col-md-8 col-xs-8 no-padding">
-                                                                        <input type="text" disabled="disabled" class="" id="txtutilityCode" style="width: 92%;" maxlength="18" placeholder="Enter Utility Code">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12  border no-padding-right">
-                                        <div class="row">
-                                            <div class="col-md-2  col-sm-2 col-xs-12 no-padding-right">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <div class="scroll">
+                            <div id="accordion1" class="accordion-style1 panel-group">
+                                <div class="panel panel-default">
+                                    <!--<div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#mandate" aria-expanded="false">
+                                                <i class="ace-icon fa fa-angle-down bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>&nbsp;Mandate Form Detail
+                                                <label id="lblmandateId" class="status-lbl pull-right" style="font-weight: normal;
+                                                    display: none">
+                                                </label>
+                                                <label id="ContentPlaceHolder1_lblMandateShowid" class="pull-right" style="font-weight: normal;
+                                                    font-size: 12px; color: #fff; margin-right: 1%!important;">
+                                                </label>
+                                                <label id="ContentPlaceHolder1_lblemandatetype" class="pull-right" style="font-weight: normal;
+                                                    font-size: 12px; color: #1f497d; margin-right: 1%!important;">
+                                                </label>
+                                                <label class="pull-right" style="font-size: 12px; color: #fff; float:right;">
+                                                    Mandate ID :
+                                                </label>
+                                            </a>
+                                        </h4>
+                                    </div>-->
+                                    <!--<div class="panel-collapse collapse" id="mandate" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body" style="padding-bottom: 2px; overflow-y: auto; max-height: 477px;">-->
+                                    <div class="scroll" style="overflow-y:scroll; max-height:460px;">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
                                                 <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-4 no-padding-right">
-                                                        <div class="row">
-                                                            <input type="checkbox" checked="checked" class="col-md-3 col-sm-3 col-xs-3" style="margin: 0px">
-                                                            <div class="col-md-9 col-sm-9 col-xs-9 no-padding">
-                                                                <label class=" col-md-12 col-xs-1 col-sm-1 control-label no-padding-left">
-                                                                    Create
-                                                                </label>
+                                                <div class="col-md-1 col-sm-1 col-xs-2" id="divqr">
+                                                    <img id="ContentPlaceHolder1_imgLogo" style="width: 100%; height: 45px;" src="../Logo/kOrqps_logo.png">
+                                                </div>
+                                                <div class="col-md-11 col-sm-11 col-xs-10 no-padding" style="border-left: 1px solid #989797;">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 " style="border-bottom: 1px solid #989797;">
+                                                      <div class="row">
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                <div class="col-sm-4 col-md-4 col-xs-3   labeldiv">
+                                                                    <label class="col-sm-12 col-md-12 col-xs-12 control-label">
+                                                                        UMRN
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-sm-8 col-md-8 col-xs-9  mandatetextboxborder">
+                                                                    <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="Text1" disabled="disabled">
+                                                                </div>
+                                                            </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                <div class="col-sm-4 col-md-4 col-xs-5   labeldiv">
+                                                                    <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
+                                                                        Date on Mandate
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-sm-8 col-md-8 col-xs-7  ">
+                                                                    <input type="date" class="col-sm-12 col-md-12 col-xs-12 form-control date-picker hasDatepicker aa" id="txtperiodfrom" name="date-picker" data-date-format="dd-mm-yyyy" placeholder="Select Date">
+                                                                </div>
+                                                                    </div>
                                                             </div>
                                                         </div>
+                                                          </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-12 col-xs-12 ">
+                                                        <div class="row">
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                <div class="col-sm-4 col-md-4 col-xs-6   labeldiv">
+                                                                    <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
+                                                                        Sponsor Bank Code
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-sm-8 col-md-8 col-xs-6 mandatetextboxborder ">
+                                                                   <select class=" col-sm-12 col-md-12 col-xs-12 " >
+
+                                                                       <option>Kotak Mahindra Bank</option>
+                                                                       <option>State Bank</option>
+                                                                   </select>
+                                                                </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                                            <div class="form-group">
+                                                                <div class="row"> 
+                                                                <div class="col-sm-4 col-md-4 col-xs-4   labeldiv">
+                                                                    <label class="col-sm-12 col-md-12 col-xs-12  control-label  ">
+                                                                        Utility Code
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-sm-8 col-md-8 col-xs-8 ">
+                                                                    <input type="text" disabled="disabled" class="col-sm-12 col-md-12 col-xs-12 " id="txtutilityCode" maxlength="18" placeholder="Enter Utility Code">
+                                                                </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12  border">
+                                                <div class="row">
+                                                <div class="col-md-2  col-sm-2 col-xs-12 " style="margin-top: 5px;">
+                                                    <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4 ">
+                                                        <div class="row">
+                                                        <input type="checkbox" checked="checked" class="col-md-3 col-sm-3 col-xs-3" disabled="disabled" style="margin: 0px">
+                                                        <div class="col-md-9 col-sm-9 col-xs-9 ">
+                                                            <label class=" col-md-12 col-xs-1 col-sm-1 control-label ">
+                                                                Create
+                                                            </label>
+                                                        </div>
+                                                            </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-xs-4 no-padding">
                                                         <div class="row">
-                                                            <input type="checkbox" class="col-md-3 col-sm-3 col-xs-3" style="margin: 0px">
+                                                            <input type="checkbox" class="col-md-3 col-sm-3 col-xs-3" disabled="disabled" style="margin: 0px">
                                                             <div class="col-md-9 col-sm-9 col-xs-9 no-padding">
                                                                 <label class=" col-md-12 col-xs-1 col-sm-1 control-label no-padding">
                                                                     Modify
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                        </div>
                                                     <div class="col-md-4 col-sm-4 col-xs-4 no-padding">
                                                         <div class="row">
-                                                            <input type="checkbox" class="col-md-3 col-sm-3 col-xs-3" style="margin: 0px">
+                                                            <input type="checkbox" class="col-md-3 col-sm-3 col-xs-3" disabled="disabled" style="margin: 0px">
                                                             <div class="col-md-9 col-sm-9 col-xs-9 no-padding">
-                                                                <label class=" col-md-12 col-xs-1 col-sm-1 control-label no-padding" style="margin-left: -5px;">
+                                                                <label class=" col-md-12 col-xs-1 col-sm-1 control-label no-padding">
                                                                     Cancel
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                        </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-10 col-sm-10 col-xs-12 no-padding">
-                                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                                    <div class="row">
+                                                <div class="col-md-10 col-sm-10 col-xs-12 no-padding">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                                        <div class="row">
                                                         <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
                                                             <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-5 col-md-5 col-xs-5  labeldiv">
-                                                                        <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
-                                                                            I/ We hereby Authorize
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-sm-7 col-md-7 col-xs-7 no-padding">
-                                                                        <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtEntityName" placeholder="Enter Entity Name" disabled="disabled">
-                                                                    </div>
+                                                                <div  class="row">
+                                                                <div class="col-sm-5 col-md-5 col-xs-5  labeldiv">
+                                                                    <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
+                                                                        I/ We hereby Authorize
+                                                                    </label>
                                                                 </div>
+                                                                <div class="col-sm-7 col-md-7 col-xs-7 ">
+                                                                    <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtEntityName" placeholder="Enter Entity Name" disabled="disabled">
+                                                                </div>
+                                                                    </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 col-sm6 col-xs-12 no-padding">
+                                                        <div class="col-md-6 col-sm6 col-xs-12 ">
                                                             <div class="form-group">
                                                                 <div class="row">
-                                                                    <div class="col-sm-2 col-md-2 col-xs-12 no-padding labeldiv">
-                                                                        <label class="col-sm-12 col-md-12 col-xs-12 control-label no-padding-right" style="margin-left: 10px;">
-                                                                            To Debit
-                                                                        </label>
-                                                                    </div>
-                                                                    <div id="debitto" class="col-sm-10 col-md-10 col-xs-12 no-padding-right radio">
-                                                                        <label title="savings Account" class="lblradiobtnss col-md-1 col-sm-1 col-xs-4 no-padding-right">
-                                                                            <input name="rdoNomGender" id="rdsb" value="sb" type="radio" disabled="disabled">
-                                                                            <span>SB</span>
-                                                                        </label>
-                                                                        <label title="Current Account" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
-                                                                            <input name="rdoNomGender" id="rdca" value="ca" type="radio" disabled="disabled">
-                                                                            <span>CA</span>
-                                                                        </label>
-                                                                        <label title="Cash Credit" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
-                                                                            <input name="rdoNomGender" id="rdcc" value="cc" type="radio" disabled="disabled">
-                                                                            <span>CC</span>
-                                                                        </label>
-                                                                        <label title="Saving-Non-Resident Rupee(NRE)" class="lblradiobtnss col-md-2 col-sm-3 col-xs-4 no-padding-right">
-                                                                            <input name="rdoNomGender" id="rdnbre" value="re" type="radio" disabled="disabled">
-                                                                            <span>SB-NRE</span>
-                                                                        </label>
-                                                                        <label title="Saving-Non-Resident Ordinary(NRO)" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
-                                                                            <input name="rdoNomGender" id="rdsbnrd" value="rd" type="radio" disabled="disabled">
-                                                                            <span>SB-NRO</span>
-                                                                        </label>
-                                                                        <label title="Other" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
-                                                                            <input name="rdoNomGender" id="rdother" value="ot" type="radio" disabled="disabled">
-                                                                            <span>Other</span>
-                                                                        </label>
-                                                                    </div>
+                                                                <div class="col-sm-2 col-md-2 col-xs-12 no-padding labeldiv">
+                                                                    <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label">
+                                                                        To Debit
+                                                                    </label>
                                                                 </div>
+                                                                <div id="debitto" class="col-sm-10 col-md-10 col-xs-12 no-padding-right radio">
+                                                                    <label title="savings Account" class="lblradiobtnss col-md-1 col-sm-1 col-xs-4 no-padding-right">
+                                                                        <input name="rdoNomGender" id="rdsb" value="sb" type="radio" disabled="disabled">
+                                                                        <span>SB</span>
+                                                                    </label>
+                                                                    <label title="Current Account" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
+                                                                        <input name="rdoNomGender" id="rdca" value="ca" type="radio" disabled="disabled">
+                                                                        <span>CA</span>
+                                                                    </label>
+                                                                    <label title="Cash Credit" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
+                                                                        <input name="rdoNomGender" id="rdcc" value="cc" type="radio" disabled="disabled">
+                                                                        <span>CC</span>
+                                                                    </label>
+                                                                    <label title="Saving-Non-Resident Rupee(NRE)" class="lblradiobtnss col-md-2 col-sm-3 col-xs-4 no-padding-right">
+                                                                        <input name="rdoNomGender" id="rdnbre" value="re" type="radio" disabled="disabled">
+                                                                        <span>SB-NRE</span>
+                                                                    </label>
+                                                                    <label title="Saving-Non-Resident Ordinary(NRO)" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
+                                                                        <input name="rdoNomGender" id="rdsbnrd" value="rd" type="radio" disabled="disabled">
+                                                                        <span>SB-NRO</span>
+                                                                    </label>
+                                                                    <label title="Other" class="lblradiobtnss col-md-2 col-sm-2 col-xs-4 no-padding-right">
+                                                                        <input name="rdoNomGender" id="rdother" value="ot" type="radio" disabled="disabled">
+                                                                        <span>Other</span>
+                                                                    </label>
+                                                                </div>
+                                                                    </div>
                                                             </div>
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
+                                                    </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-3 col-md-3 col-xs-4 no-padding labeldiv">
-                                                    <label class="col-sm-12 col-md-12 col-xs-12 no-padding control-label  " style="padding: 33px;
-                                                            text-align: center;">
-                                                        Bank a/c Number
-                                                    </label>
-                                                </div>
-                                                <input name="ctl00$ContentPlaceHolder1$lblSmandateId" type="text" id="ContentPlaceHolder1_lblSmandateId" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$lblmandatecheckdata" type="text" id="ContentPlaceHolder1_lblmandatecheckdata" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtmandatetype" type="text" id="ContentPlaceHolder1_txtmandatetype" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtaccountcheck" type="text" id="ContentPlaceHolder1_txtaccountcheck" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtcheckissecval" type="text" id="ContentPlaceHolder1_txtcheckissecval" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtcheckemailval" type="text" id="ContentPlaceHolder1_txtcheckemailval" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtcheckphoneval" type="text" id="ContentPlaceHolder1_txtcheckphoneval" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtNetValidateMail" type="text" id="ContentPlaceHolder1_txtNetValidateMail" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtNetManual" type="text" id="ContentPlaceHolder1_txtNetManual" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtNetSMS" type="text" id="ContentPlaceHolder1_txtNetSMS" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtDebitValidateMail" type="text" id="ContentPlaceHolder1_txtDebitValidateMail" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtDebitManual" type="text" id="ContentPlaceHolder1_txtDebitManual" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtDebitSMS" type="text" id="ContentPlaceHolder1_txtDebitSMS" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtAadharValidateMail" type="text" id="ContentPlaceHolder1_txtAadharValidateMail" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtAadharManual" type="text" id="ContentPlaceHolder1_txtAadharManual" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtAadharSMS" type="text" id="ContentPlaceHolder1_txtAadharSMS" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtphysical" type="text" id="ContentPlaceHolder1_txtphysical" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtemandate" type="text" id="ContentPlaceHolder1_txtemandate" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtevalidaion" type="text" id="ContentPlaceHolder1_txtevalidaion" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtcheckifscvalid" type="text" id="ContentPlaceHolder1_txtcheckifscvalid" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtnetbankinglive" type="text" id="ContentPlaceHolder1_txtnetbankinglive" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtdebitlive" type="text" id="ContentPlaceHolder1_txtdebitlive" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtaadharlive" type="text" id="ContentPlaceHolder1_txtaadharlive" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtcheckflag" type="text" id="ContentPlaceHolder1_txtcheckflag" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtentitymandatephysical" type="text" id="ContentPlaceHolder1_txtentitymandatephysical" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtentitymandateemandate" type="text" id="ContentPlaceHolder1_txtentitymandateemandate" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtentityaccountvalidationflag" type="text" id="ContentPlaceHolder1_txtentityaccountvalidationflag" class="status-lbl" style="display: none;">
-                                                <input name="ctl00$ContentPlaceHolder1$txtEmandatestatus" type="text" id="ContentPlaceHolder1_txtEmandatestatus" class="status-lbl" style="display: none;">
-                                                <label id="lblActivityId" class="status-lbl" style="display: none;">
-                                                </label>
-                                                <label id="lbltruebankvalidationcheck" class="status-lbl" style="display: none;">
-                                                </label>
-                                                <div class="col-sm-9 col-md-9 col-xs-8 no-padding">
-                                                    <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtAcNo" maxlength="26" placeholder="Enter Bank a/c Number">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="row">
-                                            <div class="col-md-8 col-sm-3 col-xs-12 mandatetextboxborder">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
                                                 <div class="form-group">
                                                     <div class="row">
+                                                    <div class="col-sm-3 col-md-3 col-xs-4 no-padding labeldiv">
+                                                        <label class="col-sm-12 col-md-12 col-xs-12 no-padding control-label  " style="padding: 33px;
+                                                            text-align: center;">
+                                                            Bank a/c Number
+                                                        </label>
+                                                    </div>
+                                                    <input name="ctl00$ContentPlaceHolder1$lblSmandateId" type="text" id="ContentPlaceHolder1_lblSmandateId" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$lblmandatecheckdata" type="text" id="ContentPlaceHolder1_lblmandatecheckdata" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtmandatetype" type="text" id="ContentPlaceHolder1_txtmandatetype" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtaccountcheck" type="text" id="ContentPlaceHolder1_txtaccountcheck" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtcheckissecval" type="text" id="ContentPlaceHolder1_txtcheckissecval" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtcheckemailval" type="text" id="ContentPlaceHolder1_txtcheckemailval" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtcheckphoneval" type="text" id="ContentPlaceHolder1_txtcheckphoneval" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtNetValidateMail" type="text" id="ContentPlaceHolder1_txtNetValidateMail" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtNetManual" type="text" id="ContentPlaceHolder1_txtNetManual" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtNetSMS" type="text" id="ContentPlaceHolder1_txtNetSMS" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtDebitValidateMail" type="text" id="ContentPlaceHolder1_txtDebitValidateMail" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtDebitManual" type="text" id="ContentPlaceHolder1_txtDebitManual" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtDebitSMS" type="text" id="ContentPlaceHolder1_txtDebitSMS" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtAadharValidateMail" type="text" id="ContentPlaceHolder1_txtAadharValidateMail" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtAadharManual" type="text" id="ContentPlaceHolder1_txtAadharManual" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtAadharSMS" type="text" id="ContentPlaceHolder1_txtAadharSMS" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtphysical" type="text" id="ContentPlaceHolder1_txtphysical" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtemandate" type="text" id="ContentPlaceHolder1_txtemandate" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtevalidaion" type="text" id="ContentPlaceHolder1_txtevalidaion" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtcheckifscvalid" type="text" id="ContentPlaceHolder1_txtcheckifscvalid" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtnetbankinglive" type="text" id="ContentPlaceHolder1_txtnetbankinglive" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtdebitlive" type="text" id="ContentPlaceHolder1_txtdebitlive" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtaadharlive" type="text" id="ContentPlaceHolder1_txtaadharlive" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtcheckflag" type="text" id="ContentPlaceHolder1_txtcheckflag" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtentitymandatephysical" type="text" id="ContentPlaceHolder1_txtentitymandatephysical" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtentitymandateemandate" type="text" id="ContentPlaceHolder1_txtentitymandateemandate" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtentityaccountvalidationflag" type="text" id="ContentPlaceHolder1_txtentityaccountvalidationflag" class="status-lbl" style="display: none;">
+                                                    <input name="ctl00$ContentPlaceHolder1$txtEmandatestatus" type="text" id="ContentPlaceHolder1_txtEmandatestatus" class="status-lbl" style="display: none;">
+                                                    <label id="lblActivityId" class="status-lbl" style="display: none;">
+                                                    </label>
+                                                    <label id="lbltruebankvalidationcheck" class="status-lbl" style="display: none;">
+                                                    </label>
+                                                    <div class="col-sm-9 col-md-9 col-xs-8 ">
+                                                        <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtAcNo" maxlength="26"  placeholder="Enter Bank a/c Number">
+                                                    </div>
+                                                </div>
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
+                                                <div class="row">
+                                                <div class="col-md-8 col-sm-3 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                    <div class="form-group">
+                                                        <div class="row">
                                                         <div class="col-sm-3 col-md-2 col-xs-3  labeldiv">
                                                             <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
                                                                 With Bank
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-9 col-md-10 col-xs-9 no-padding">
-                                                            <select class="" style="height:22px;width: 98%;">
-                                                                <option>Kotak Mahindra Bank</option>
-                                                                <option>State Bank Of India</option>
+                                                        <div class="col-sm-9 col-md-10 col-xs-9 ">
+                                                           <select class=" col-sm-12 col-md-12 col-xs-12 " >
+                                                               <option>Kotak Mahindra Bank</option>
+                                                               <option>State Bank Of India</option>
 
-                                                            </select>
+                                                           </select>
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-4 col-xs-12 mandatetextboxborder no-padding">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-3 col-md-3 col-xs-3  labeldiv no-padding">
-                                                            <label class="col-sm-12 col-md-12 col-xs-12   control-label  " style="margin-left: 7px;">
+                                                <div class="col-md-2 col-sm-4 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                        <div class="col-sm-3 col-md-3 col-xs-3  labeldiv">
+                                                            <label class="col-sm-12 col-md-12 col-xs-12   control-label  ">
                                                                 IFSC
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-9 col-md-9 col-xs-9 no-padding">
-                                                            <input type="text" maxlength="11" class="col-sm-12 col-md-11 col-xs-12" id="txtIFSC" placeholder="Enter IFSC">
+                                                        <div class="col-sm-9 col-md-9 col-xs-9 ">
+                                                            <input type="text" maxlength="11"  class="col-sm-12 col-md-12 col-xs-12"  id="txtIFSC" placeholder="Enter IFSC">
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-4 col-xs-12 no-padding">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-3 col-md-4   col-xs-3 labeldiv no-padding-right">
-                                                            <label class="col-sm-12 col-md-12  col-xs-12 control-label  no-padding-right">
+                                                <div class="col-md-2 col-sm-4 col-xs-12 ">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                        <div class="col-sm-3 col-md-4   col-xs-3 labeldiv">
+                                                            <label class="col-sm-12 col-md-12  col-xs-12 control-label  ">
                                                                 or MICR
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-9 col-md-8 col-xs-9 no-padding">
-                                                            <input type="text" maxlength="9" class="col-sm-12 col-md-9 col-xs-12" id="txtMICR" placeholder="Enter MICR">
+                                                        <div class="col-sm-9 col-md-8 col-xs-9 ">
+                                                            <input type="text" maxlength="9"  class="col-sm-12 col-md-12 col-xs-12" id="txtMICR" placeholder="Enter MICR">
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
+                                                    </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-2 col-md-2 col-xs-12 labeldiv">
-                                                    <label class="col-sm-12 col-md-12  col-xs-12 control-label">
-                                                        an amount of Rupees
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8 col-md-8 col-xs-12  no-padding">
-                                                    <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtAmount" disabled="disabled" placeholder="Amount in words">
-                                                </div>
-
-                                                <div class="col-sm-2 col-md-2 col-xs-12 ">
-                                                    <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtAmountRupees" placeholder="Enter Amount" maxlength="9">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="row">
-                                            <div class="col-md-8 col-sm-8 col-xs-12 mandatetextboxborder">
-                                                <div class="form-group" style="margin-bottom: 0;">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
+                                                <div class="form-group">
                                                     <div class="row">
+                                                    <div class="col-sm-2 col-md-2 col-xs-12 no-padding labeldiv">
+                                                        <label class="col-sm-12 col-md-12  col-xs-12 control-label">
+                                                            an amount of Rupees
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8 col-md-8 col-xs-12  ">
+                                                        <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtAmount" disabled="disabled" placeholder="Amount in words">
+                                                    </div>
+                                                        
+                                                    <div class="col-sm-2 col-md-2 col-xs-12 ">
+                                                        <input type="text" class="col-sm-12 col-md-12 col-xs-12"  id="txtAmountRupees" placeholder="Enter Amount" maxlength="9">
+                                                    </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
+                                                <div class="row">
+                                                <div class="col-md-8 col-sm-8 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                    <div class="form-group" style="margin-bottom: 0;">
+                                                        <div class="row">
                                                         <div class="col-sm-2  col-md-2 col-xs-12 labeldiv">
                                                             <label class="col-sm-12  col-md-12 col-xs-12 control-label ">
                                                                 Frequency
@@ -563,14 +581,14 @@
                                                                 <span>As &amp; When Presented</span>
                                                             </label>
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12 no-padding">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-3 col-md-3 col-xs-3 labeldiv">
-                                                            <label id="Label16" class="col-sm-12  col-md-12 col-xs-12 control-label no-padding-right">
+                                                <div class="col-md-4 col-sm-4 col-xs-12 no-padding">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                        <div class="col-sm-3 no-padding col-md-3 col-xs-3 labeldiv">
+                                                            <label id="Label16" class="col-sm-12  col-md-12 col-xs-12 control-label ">
                                                                 Debit Type
                                                             </label>
                                                         </div>
@@ -584,141 +602,141 @@
                                                                 <span>Maximum Amount</span>
                                                             </label>
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
+                                                    </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="row">
-                                            <div class="col-md-7 col-sm-7 col-xs-12 mandatetextboxborder no-padding-right">
-                                                <div class="form-group">
-                                                    <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
+                                                <div class="row">
+                                                <div class="col-md-7 col-sm-7 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                    <div class="form-group">
+                                                        <div class="row">
                                                         <div class="col-sm-2 col-md-2 s col-xs-3 labeldiv">
                                                             <label class="col-sm-12 col-md-12 no-padding-right col-xs-12 control-label  ">
                                                                 Reference 1
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-10 col-md-10 col-xs-9 no-padding">
-                                                            <input type="text" class="" style="width: 97%;" id="txtRefrence1" maxlength="20" placeholder="Enter Reference">
+                                                        <div class="col-sm-10 col-md-10 col-xs-9 ">
+                                                            <input type="text"  class="col-sm-12 col-md-12 col-xs-12" id="txtRefrence1" maxlength="20" placeholder="Enter Reference">
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
-                                                <div class="form-group">
-                                                    <div class="row">
+                                                <div class="col-md-5 col-sm-5 col-xs-12 ">
+                                                    <div class="form-group">
+                                                        <div class="row">
                                                         <div class="col-sm-3 col-md-3  col-xs-4 labeldiv">
-                                                            <label class="col-sm-12 col-md-12 no-padding-right col-xs-12 control-label  ">
+                                                            <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label  ">
                                                                 Phone Number
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-9 col-md-9 col-xs-8 no-padding">
-                                                            <input type="text" maxlength="10" class="col-sm-12 col-md-11 col-xs-12" id="txtPhNumber" placeholder="Enter Phone Number">
+                                                        <div class="col-sm-9 col-md-9 col-xs-8 ">
+                                                            <input type="text" maxlength="10"  class="col-sm-12 col-md-12 col-xs-12" id="txtPhNumber" placeholder="Enter Phone Number">
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
+                                                    </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                        <div class="row">
-                                            <div class="col-md-7 col-sm-7 col-xs-12 mandatetextboxborder no-padding-right">
-                                                <div class="form-group">
-                                                    <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
+                                                <div class="row">
+                                                <div class="col-md-7 col-sm-7 col-xs-12 no-padding-left no-padding-right mandatetextboxborder">
+                                                    <div class="form-group">
+                                                        <div class="row">
                                                         <div class="col-sm-2 col-md-2  col-xs-3 labeldiv">
                                                             <label class="col-sm-12 col-md-12 no-padding-right col-xs-12 control-label  ">
                                                                 Reference 2
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-10 col-md-10 col-xs-9 no-padding">
-                                                            <input type="text" class="" style="width: 97%;" id="txtRefrence2" disabled="disabled" onkeyup="RemoveClass();">
+                                                        <div class="col-sm-10 col-md-10 col-xs-9 ">
+                                                            <input type="text" class="col-sm-12 col-md-12 col-xs-12" id="txtRefrence2" disabled="disabled" onkeyup="RemoveClass();">
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
-                                                <div class="form-group">
-                                                    <div class="row">
+                                                <div class="col-md-5 col-sm-5 col-xs-12 ">
+                                                    <div class="form-group">
+                                                        <div class="row">
                                                         <div class="col-sm-3 col-md-3  col-xs-3 labeldiv">
-                                                            <label class="col-sm-12 col-md-12 no-padding-right col-xs-12 control-label  ">
+                                                            <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label  ">
                                                                 Email ID
                                                             </label>
                                                         </div>
-                                                        <div class="col-sm-9 col-md-9 col-xs-9 no-padding">
-                                                            <input type="text" class="col-sm-12 col-md-11 col-xs-12" onkeyup="RemoveClass();" id="txtEmailId" maxlength="35" placeholder="Enter Email ID">
+                                                        <div class="col-sm-9 col-md-9 col-xs-9 " style="border-bottom: 1px solid #928888;">
+                                                            <input type="text" class="col-sm-12 col-md-12 col-xs-12" onkeyup="RemoveClass();" id="txtEmailId" maxlength="35" placeholder="Enter Email ID">
                                                         </div>
+                                                            </div>
                                                     </div>
                                                 </div>
+                                                    </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                        <div class="col-sm-12 col-md-12 no-padding col-xs-12 labeldiv" style="background: none;
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                                <div class="col-sm-12 col-md-12 no-padding col-xs-12 labeldiv" style="background: none;
                                                     border: none">
-                                            <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label " style="background: none;">
-                                                I agree for the debit of mandate processing charges by the bank whom I am authorizing
-                                                to debit my account as per latest schedule of charges of bank.
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12  period" style="bottom: 2px;">
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 col-xs-12 no-padding ">
-                                                <div class="border labeldiv" style="width: 88px;">
-                                                    <label class="col-sm-3 col-md-3 col-xs-3 control-label">
-                                                        Period
+                                                    <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label " style="background: none;">
+                                                        I agree for the debit of mandate processing charges by the bank whom I am authorizing
+                                                        to debit my account as per latest schedule of charges of bank.
                                                     </label>
                                                 </div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12  border no-padding">
-                                                    <div class="form-group">
-                                                        <div class="row">
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12  period" style="bottom: 2px;">
+                                                <div class="row">
+                                                <div class="col-md-4 col-sm-4 col-xs-12 no-padding ">
+                                                    <div class="col-sm-3 col-md-3  col-xs-3 border labeldiv">
+                                                        <label class="col-sm-3 col-md-3 no-padding col-xs-3 control-label">
+                                                            Period
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12  border">
+                                                        <div class="form-group">
+                                                            <div class="row">
                                                             <div class="col-sm-3 col-md-3   col-xs-3 labeldiv">
-                                                                <label class="col-sm-3 col-md-3 col-xs-3 control-label  ">
+                                                                <label class="col-sm-3 col-md-3 no-padding col-xs-3 control-label  ">
                                                                     From
                                                                 </label>
                                                             </div>
                                                             <div class="col-sm-9 col-md-9 col-xs-9 no-padding">
-                                                                <input type="date" id="txtFrom" style="height:22px;width: 95%;" class="form-control date-picker" name="date-picker" data-date-format="dd-mm-yyyy" placeholder="Select Date" tabindex="-1">
+                                                                <input type="date" id="txtFrom" class="col-sm-12 col-md-12 col-xs-12 form-control date-picker" name="date-picker" data-date-format="dd-mm-yyyy" placeholder="Select Date" tabindex="-1">
                                                             </div>
+                                                                </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12  border no-padding">
-                                                    <div class="form-group">
-                                                        <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12  border">
+                                                        <div class="form-group">
+                                                            <div class="row">
                                                             <div class="col-sm-3 col-xs-3 col-md-3    labeldiv">
-                                                                <label class="col-sm-3 col-xs-3 col-md-3 control-label  ">
+                                                                <label class="col-sm-3 col-xs-3 col-md-3 no-padding control-label  ">
                                                                     To
                                                                 </label>
                                                             </div>
                                                             <div class="col-sm-9 col-md-9 col-xs-9 no-padding">
-                                                                <input type="date" style="height:22px;width: 95%;" onchange="RemoveClass();" id="txtTo" class="form-control date-picker" name="date-picker" data-date-format="dd-mm-yyyy" tabindex="-1" disabled="disabled">
+                                                                <input type="date" onchange="RemoveClass();" id="txtTo" class="col-sm-12 col-md-12 col-xs-12 form-control date-picker" name="date-picker" data-date-format="dd-mm-yyyy" tabindex="-1" disabled="disabled">
                                                             </div>
+                                                                </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-sm-3 col-md-3 col-xs-3 col-xs-3 labeldiv">
-                                                                <label class="col-sm-3 col-md-3 col-xs-3 col-xs-3 control-label  ">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding border">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                            <div class="col-sm-3 col-md-3 col-xs-3 no-padding col-xs-3 labeldiv">
+                                                                <label class="col-sm-3 col-md-3 col-xs-3 no-padding col-xs-3 control-label  ">
                                                                     Or
                                                                 </label>
                                                             </div>
-                                                            <div class="col-sm-9 col-md-9 col-xs-9 chkbox">
+                                                            <div class="col-sm-9 col-md-9 col-xs-9 chkbox" style="padding-top: 3px">
                                                                 <input id="chkUntil" type="checkbox" class="pull-left" checked="checked" disabled="disabled">
-                                                                <label class="col-sm-10 col-md-10 col-xs-10 control-label ">
+                                                                <label class="col-sm-10 col-md-10 col-xs-10 control-label " style="padding-top: 4px;">
                                                                     Until Cancelled
                                                                 </label>
                                                             </div>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-12  signblock " style="margin-top: 4%;">
-                                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                                    <div class="row">
+                                                <div class="col-md-8 col-sm-8 col-xs-12  signblock " style="margin-top: 4%;">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                                        <div class="row">
                                                         <div class="col-md-4 col-sm-4 col-xs-4 no-padding-right">
                                                             <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
                                                                 Sign. Primary Acc. Holder
@@ -734,68 +752,68 @@
                                                                 Sign. Acc. Holder
                                                             </label>
                                                         </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding cust-name" style="margin-top: 2px;">
+                                                        <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                <input type="text" class="col-sm-10 col-md-10 col-xs-12" onkeyup="RemoveClass();" id="txtCust1" placeholder="Enter Name" maxlength="40">
+                                                                <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
+                                                                    1. Name as in Bank Records
+                                                                </label>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                <input type="text" class="col-sm-10 col-md-10 col-xs-12" id="txtCust2" disabled="disabled" maxlength="40">
+                                                                <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
+                                                                    2. Name as in Bank Records
+                                                                </label>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                <input type="text" class="col-sm-12 col-md-10 col-xs-12" id="txtCust3" disabled="disabled" maxlength="40">
+                                                                <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
+                                                                    3. Name as in Bank Records
+                                                                </label>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                            </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12 cust-name" style="margin-top: 2px;">
-                                                    <div class="row">
-                                                        <div class="col-md-4 col-sm-4 col-xs-4 no-padding">
-                                                            <div class="form-group">
-                                                                <div class="">
-                                                                    <input type="text" class="col-sm-10 col-md-10 col-xs-12" onkeyup="RemoveClass();" id="txtCust1" placeholder="Enter Name" maxlength="40">
-                                                                    <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
-                                                                        1. Name as in Bank Records
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 col-sm-4 col-xs-4 no-padding">
-                                                            <div class="form-group">
-                                                                <div class="">
-                                                                    <input type="text" class="col-sm-10 col-md-10 col-xs-12" id="txtCust2" disabled="disabled" maxlength="40">
-                                                                    <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
-                                                                        2. Name as in Bank Records
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 col-sm-4 col-xs-4 no-padding">
-                                                            <div class="form-group">
-                                                                <div class="">
-                                                                    <input type="text" class="col-sm-12 col-md-10 col-xs-12" id="txtCust3" disabled="disabled" maxlength="40">
-                                                                    <label class="col-md-12 col-sm-12 col-xs-12 no-padding" style="background: none;">
-                                                                        3. Name as in Bank Records
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
-                                        <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label " style="text-align: left;
+                                            <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+                                                <label class="col-sm-12 col-md-12 no-padding col-xs-12 control-label " style="text-align: left;
                                                     background: none; top: 2px;">
-                                            This is to confirm that declaration has been carefully read, understood and made
-                                            by me/us. I'm authorizing the user Entity/Corporate to debit my account based on
-                                            the instruction as agreed and signed by me. I've understood that I am authorized
-                                            to cancel/amend this mandate by appropriately communicating the cancellation/amendment
-                                            request to the User/Entity/Corporate or the bank where I've authorized the debit.
-                                        </label>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 btnDiv">
-                                        <input type="button" class="btn btn-success pull-right" id="btnCancel" value="Cancel" style="display: none;" disabled="disabled">
-                                        <input type="button" class="btn btn-success pull-right" id="btnSecVal" value="Account Validation" style="display: none">
-                                        <input type="button" class="btn btn-success pull-right" id="btnFirstVal" value="Bank Validation" style="display: none">
-                                        <input type="button" class="btn btn-success pull-right" id="btnSave" value="Save">
-                                        <input type="button" class="btn btn-success pull-right" id="btnEditDisable" value="Edit" style="display: none">
-                                        <input type="button" class="btn btn-success pull-right" id="btnPhysicalMandate" value="Physical Mandate" style="display: none">
-                                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnEemandate" value="E-Mandate" id="ContentPlaceHolder1_btnEemandate" class="btn btn-success pull-right TestEmandate" style="display: none">
-                                        <input type="button" class="btn btn-success pull-right" style="margin-right: 4px;
+                                                    This is to confirm that declaration has been carefully read, understood and made
+                                                    by me/us. I'm authorizing the user Entity/Corporate to debit my account based on
+                                                    the instruction as agreed and signed by me. I've understood that I am authorized
+                                                    to cancel/amend this mandate by appropriately communicating the cancellation/amendment
+                                                    request to the User/Entity/Corporate or the bank where I've authorized the debit.
+                                                </label>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 btnDiv">
+                                                <input type="button" class="btn btn-success pull-right" id="btnCancel" value="Cancel" style="display: none;" disabled="disabled">
+                                                <input type="button" class="btn btn-success pull-right" id="btnSecVal" value="Account Validation" style="display: none">
+                                                <input type="button" class="btn btn-success pull-right" id="btnFirstVal" value="Bank Validation" style="display: none">
+                                                <input type="button" class="btn btn-success pull-right" id="btnSave" value="Save">
+                                                <input type="button" class="btn btn-success pull-right" id="btnEditDisable" value="Edit" style="display: none">
+                                                <input type="button" class="btn btn-success pull-right" id="btnPhysicalMandate" value="Physical Mandate" style="display: none">
+                                                <input type="submit" name="ctl00$ContentPlaceHolder1$btnEemandate" value="E-Mandate" id="ContentPlaceHolder1_btnEemandate" class="btn btn-success pull-right TestEmandate" style="display: none">
+                                                <input type="button" class="btn btn-success pull-right" style="margin-right: 4px;
                                                     display: none" id="btnenach" value="Validate ENACH">
+                                            </div>
                                     </div>
-                                </div>
-                                <!--</div>
+                                        <!--</div>
                                     </div>
                                 </div>-->
                                 <div class="panel panel-default" id="pnl2" style="display: none">
@@ -1282,7 +1300,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel panel-default" style="display:none;">
+                                <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#branch" aria-expanded="false">
@@ -1305,6 +1323,19 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div id="MsgDiv" style="display: none" class="popupmandate">
             <div class="col-md-12 col-sm-12 col-xs-12 no-padding bgcolor" style="text-align: center">
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -2039,5 +2070,21 @@
             </div>
         </div>
     </div>
-</div>
+        </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
