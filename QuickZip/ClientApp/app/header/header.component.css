@@ -15,7 +15,10 @@ body {
     top: 10px;
     cursor: pointer;
 }
-
+h5.logout {
+    font-size: 13px !important;
+    padding-top: 10px;
+}
 .blue {
     color: #003974 !important;
 }
@@ -527,7 +530,7 @@ input[type=submit] {
 
 .navbar {
     background: #ee1c25;
-    height: 52px
+    height: 48px
 }
 
 input[type=text]:hover,
