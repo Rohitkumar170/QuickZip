@@ -4,7 +4,6 @@ import { DownloadEmandateServiceService } from '../../services/downloademandate/
 import { FormBuilder } from '@angular/forms';
 import { formatDate } from '@angular/common';
 var DownloadEmandateComponent = /** @class */ (function () {
-    // Isallcheck: string = 0;
     //BindGridData: BindGridData;
     function DownloadEmandateComponent(DEService, fb) {
         this.DEService = DEService;
@@ -15,7 +14,7 @@ var DownloadEmandateComponent = /** @class */ (function () {
             //toggleSelect(event) {
             // var SelectionStatusOfMutants = [];
             this.all = event.target.checked;
-            this.bindgrid.forEach(function (item) {
+            this.Databind.forEach(function (item) {
                 // console.log(item);
                 item.selected = event.target.checked;
                 // this.onChange(event, item);
@@ -73,6 +72,7 @@ var DownloadEmandateComponent = /** @class */ (function () {
             console.log(_this.Databind);
         });
     };
+    DownloadEmandateComponent.prototype.Removelabel = function () { this.errormsg = ''; };
     DownloadEmandateComponent.prototype.onChange = function (event, item) {
         //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
         //var isChecked = element.checked;
@@ -141,6 +141,13 @@ var DownloadEmandateComponent = /** @class */ (function () {
     };
     DownloadEmandateComponent.prototype.download = function () {
         alert(this.Ischecked);
+        if (this.Ischecked == 1 && this.Databind.length != 0) {
+            alert("Selecetd");
+        }
+        else {
+            alert("Not selected any checkbox");
+            this.errormsg = "Checkbox is not Selected";
+        }
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
