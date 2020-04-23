@@ -7,12 +7,10 @@ var HistoricalMandateComponent = /** @class */ (function () {
         this.HMService = HMService;
         this.formBuilder = formBuilder;
         this.dataArray = [];
-        this.CurrentDate = new Date();
     }
+    // CurrentDate = new Date();
     HistoricalMandateComponent.prototype.ngOnInit = function () {
-        console.log(this.CurrentDate);
     };
-    // currentDate = new Date();
     HistoricalMandateComponent.prototype.SearchFunction = function (FromDate, ToDate) {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));

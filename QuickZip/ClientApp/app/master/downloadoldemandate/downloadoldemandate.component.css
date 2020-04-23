@@ -1,3 +1,19 @@
+
+#btnexcel {
+    background: none !important;
+    color: #212529 !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#btnspa {
+    position: absolute;
+    top: -66px;
+    left: 254px;
+    width: 100%;
+}
+
+
 .card-header {
     padding: 0px;
 }
@@ -15,12 +31,17 @@
     height: 22px;
     padding: 0px 0px 0px 0px;
 }
-
-
-#tbldowneoldemandate tbody {
-    overflow: auto;
-    display: block;
-    max-height: 26vh;
+table {
+    border:1px solid #cdcdcd;
+}
+#tbldowneoldemandate tbody td {
+    white-space:nowrap;
+}
+    #tbldowneoldemandate tbody {
+   overflow-y:scroll;
+   overflow-x:hidden;
+    display: inline-block;
+    max-height: 50vh;
 }
 
     #tbldowneoldemandate tbody tr {
@@ -44,10 +65,7 @@
     display: inline-block;
 }
 
-    #tbldowneoldemandate tbody {
-        width: 2011px;
-    }
-
+   
 
 #maincontent {
     position: absolute;

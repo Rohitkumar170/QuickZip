@@ -33,6 +33,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        { provide: 'BASE_URL', useFactory: getBaseUrl }
+    ],
 })
 export class LayOutRoutingModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}

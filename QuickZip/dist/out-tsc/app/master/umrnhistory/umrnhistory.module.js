@@ -1,8 +1,10 @@
 import * as tslib_1 from "tslib";
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UmrnhistoryComponent } from './umrnhistory.component';
 import { CommonModule } from '@angular/common';
 import { UmrnhistoryRoutingModule } from './umrnhistory-routing.module';
+import { UMRNHISTORYSERVICEService } from '../../services/umrn_history/umrn-history-service.service';
 var UmrnhistoryModule = /** @class */ (function () {
     function UmrnhistoryModule() {
     }
@@ -11,8 +13,9 @@ var UmrnhistoryModule = /** @class */ (function () {
             declarations: [UmrnhistoryComponent],
             imports: [
                 CommonModule,
-                UmrnhistoryRoutingModule
-            ]
+                UmrnhistoryRoutingModule, FormsModule, ReactiveFormsModule
+            ],
+            providers: [UMRNHISTORYSERVICEService]
         })
     ], UmrnhistoryModule);
     return UmrnhistoryModule;

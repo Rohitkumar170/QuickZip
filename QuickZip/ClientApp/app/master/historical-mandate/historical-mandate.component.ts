@@ -7,32 +7,30 @@ import { count } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-historical-mandate',
-  templateUrl: './historical-mandate.component.html',
-  styleUrls: ['./historical-mandate.component.css']
+    selector: 'app-historical-mandate',
+    templateUrl: './historical-mandate.component.html',
+    styleUrls: ['./historical-mandate.component.css']
 })
 export class HistoricalMandateComponent implements OnInit {
     HistoricalMandateForm: FormGroup; HeaderArray;
     BindAllData: HistoricalMandateClass; TotalCount; dataArray: Array<HistoricalMandateClass> = [];
 
     constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) {
-     
-    }
-    CurrentDate = new Date();
-    ngOnInit() {
-        console.log(this.CurrentDate);
-    }
 
-   // currentDate = new Date();
+    }
+    // CurrentDate = new Date();
+    ngOnInit() {
+
+    }
 
     SearchFunction(FromDate, ToDate) {
-        let item = JSON.parse(sessionStorage.getItem('User'));      
-       // alert(FromDate + " " + ToDate + " " + item.UserId);
-        if (FromDate != "" && ToDate !="") {
+        let item = JSON.parse(sessionStorage.getItem('User'));
+        // alert(FromDate + " " + ToDate + " " + item.UserId);
+        if (FromDate != "" && ToDate != "") {
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(
                 (data) => {
-                    this.BindAllData = data;               
-                    let json = JSON.stringify(this.BindAllData);  
+                    this.BindAllData = data;
+                    let json = JSON.stringify(this.BindAllData);
                     var CountRecordArray = typeof json != 'object' ? JSON.parse(json) : json;
                     this.TotalCount = CountRecordArray.length;
                     //alert(CountRecordArray.length);
@@ -41,27 +39,28 @@ export class HistoricalMandateComponent implements OnInit {
         }
     }
     doubleClick(data: any) {
-       // this.dataArray = this.dataArray + data;
+        // this.dataArray = this.dataArray + data;
         this.dataArray.push(data);
         let json = JSON.stringify(data);
         alert(json);
         console.log(data.MandateFreshId);
-        
+
     }
-  
+
 
 
     ConvertToCSV(objArray) {
         this.HeaderArray = {
             MandateStatus: "Mandate Status", SendToBankDate: "Send To Bank Date", MandateFreshId: "Mandate ID", mandateMode: "mandate Mode",
             AutoRejectReason: "AutoRejectReason", updatedon: "updatedon", username: "username", UpdateBy: "UpdateBy", Enach: "Enach",
-        IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
+            IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
             IsScan: "IsScan", JPGPath: "JPGPath", TIPPath: "TIPPath", IsPrint: "IsPrint", mandateid: "mandateid", status: "status", Amount: "Amount",
             Code: "Code", BankName: "BankName", DateOnMandate: "DateOnMandate", AcNo: "AcNo", Refrence1: "Refrence1", AcceptRefNo: "AcceptRefNo",
             NPCIErrorDesc: "NPCIErrorDesc", FromDate: "FromDate", Customer1: "Customer1", debittype: "debittype", Frequency: "Frequency", Monthly: "Monthly",
             ToDebit: "ToDebit", NPCIMsgId: "NPCIMsgId", MSGId: "MSGId", UMRN: "UMRN", AggregatorValue: "AggregatorValue", Amount_Numeric: "Amount_Numeric",
             SponsorBankCode: "SponsorBankCode", PhoneNumber: "PhoneNumber", EmailId: "EmailId", EmandateType: "EmandateType", ActivityId: "ActivityId",
-            Refrence2:"Refrence2"}
+            Refrence2: "Refrence2"
+        }
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = '';
         var row = "";

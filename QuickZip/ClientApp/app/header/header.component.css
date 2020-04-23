@@ -8,12 +8,18 @@ body {
     width: 190px;
     float: left;
 }
+
 .logout {
     color: #ffffff !important;
     position: absolute;
     right: 7px;
     top: 10px;
     cursor: pointer;
+}
+
+h5.logout {
+    font-size: 13px !important;
+    padding-top: 10px;
 }
 
 .blue {
@@ -527,7 +533,7 @@ input[type=submit] {
 
 .navbar {
     background: #ee1c25;
-    height: 52px
+    height: 48px
 }
 
 input[type=text]:hover,

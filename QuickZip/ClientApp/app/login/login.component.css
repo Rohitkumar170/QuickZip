@@ -295,7 +295,7 @@ span.phoneNumber {
 form {
     display: block;
     overflow: hidden;
-    padding: 0 !important;
+    padding: 1px 0px 20px !important;
     height: 72% !important;
 }
 
@@ -339,7 +339,7 @@ body {
         border: 1px solid #dcdee0;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+        box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.2);
     }
 
     .quickCheckLogin #forgot-box {
@@ -350,7 +350,7 @@ body {
         border: 1px solid #dcdee0;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+        box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.2);
     }
 
 .idfcLogin {
@@ -520,7 +520,7 @@ input[type=submit] {
 
 .navbar {
     background: #ee1c25;
-    height: 52px
+    height: 48px
 }
 
 input[type=text]:hover,
@@ -766,4 +766,3 @@ a.headerRightIcon i {
     float: right;
     margin-left: 3px;
 }
-

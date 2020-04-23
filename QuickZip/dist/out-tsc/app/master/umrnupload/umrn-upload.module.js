@@ -1,4 +1,5 @@
 import * as tslib_1 from "tslib";
+/// <reference path="../../services/umrnupload/umrn-upload.service.ts" />
 import { NgModule } from '@angular/core';
 import { UmrnuploadComponent } from './umrnupload.component';
 import { CommonModule } from '@angular/common';

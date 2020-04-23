@@ -1,5 +1,6 @@
 <div class="main-content" id="maincontent">
     <div class="content">
+        <!--<label id="lblName">{{errormsg}}</label>-->
         <div class="col-md-12 col-sm-6 col-xs-4 contnt-wrapper">
             <div class="col-sm-6 col-md-6 col-xs-3 no-padding">
                 <span class="legal">Download E-Mandate</span>
@@ -10,12 +11,16 @@
 
 
                         <li>
-                            <i class="fa fa-download" aria-hidden="true" title="Export"></i>
-                            <label>
-                                Download E-Mandate Excel File
-                            </label>
+
+                          
+
+
+
+
+
+
                         </li>
-                        <li>
+                        <!--<li>
                             <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
                             <label>
                                 Download Scanned Mandate
@@ -32,7 +37,7 @@
                             <label>
                                 Submit
                             </label>
-                        </li>
+                        </li>-->
                         <li style="display: none">
                             <i class="fa fa-key" aria-hidden="true" title="Reset Password"></i>
                             <label>
@@ -65,8 +70,8 @@
                         <label class="col-sm-5 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                             From Date
                         </label>
-                        <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="date" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                        <div [formGroup]="dmandateForm" class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                            <input type="date" class="col-sm-12 col-md-12 col-xs-12" formControlName="fromdate" [ngModel]="fromdate | date:'yyyy-MM-dd'" style="height: 22px;" #FromDate />
                         </div>
                     </div>
                 </div>
@@ -75,8 +80,8 @@
                         <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                             To Date
                         </label>
-                        <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="date" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                        <div [formGroup]="dmandateForm" class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                            <input type="date" class="col-sm-12 col-md-12 col-xs-12" formControlName="todate" [ngModel]="todate | date:'yyyy-MM-dd'" style="height: 22px;" #ToDate (change)="SearchFunction(FromDate.value,ToDate.value,Bank.value)" />
                         </div>
                     </div>
                 </div>
@@ -86,9 +91,12 @@
                             Bank
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <select id="" class="alldropdown">
-                                <option value="volvo">Bank 1</option>
-                                <option value="saab">Bank 2</option>
+                            <select id="" class="alldropdown" #Bank (change)="SearchFunction(FromDate.value,ToDate.value,Bank.value)">
+                                <!--<option value="0">Select</option>-->
+                                <option *ngFor="let lang of bankbind"
+                                        value={{lang.sponsorbankcode}}>
+                                    {{lang.name}}
+                                </option>
 
                             </select>
                         </div>
@@ -97,26 +105,34 @@
             </div>
             <div class="row no-padding">
                 <div class="col-md-4 col-sm-4 col-xs-12">
-               
+
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
-                   
+
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
                     <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
-                           value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" />
+                           value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" (click)="SearchFunction(FromDate.value, ToDate.value, Bank.value)" />
+                    
+                    <span id="btnspa">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <input type="button" class=" btn btn-success" id="btnexcel"
+                               value="Download Excel" (click)="download()" />
+                    </span>
+
+
                 </div>
             </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv">
-            <table id="tbldownemandate">
+            <table id="tblEmandate">
                 <thead>
                     <tr>
-                        <th style="width:150px;"><input type="checkbox" name="all">All</th>
+                        <th style="width:150px;"><input type="checkbox" name="all" value="all" (click)="toggleSelect($event)">All</th>  <!--(change)="Removelabel()"-->
                         <th style="width:150px;">Debtor Name</th>
                         <th style="width:220px;">Instructed Agent Member Name</th>
                         <th style="width:220px;">Consumer Reference Number</th>
-                        <th style="width:220px;">Debtor Account Number</th>
+                        <th style="width:500px;">Debtor Account Number</th>
                         <th style="width:150px;">Debtor Agent ID</th>
                         <th style="width:150px;">Collection Amount</th>
                         <th style="width:150px;">Maximum Amount</th>
@@ -128,22 +144,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="width:150px;"><input type="checkbox" name="all"></td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        
-                    </tr>
+                    <tr *ngFor="let lang of Databind">
+                        <td style="width:150px;"><input type="checkbox" name="all" value="lang.selected" [checked]="lang.selected" (change)="onChange($event,lang); lang.selected = !(lang.selected)"></td>  <!--(click)="Removelabel()"-->
+                        <td style="width:150px;"> {{lang.DebtorName}}</td>
+                        <td style="width:220px;">{{lang.InstructedAgentMemberName}}</td>
+                        <td style="width:220px;">{{lang.ConsumerReferenceNumber}}</td>
+                        <td style="width:500px;">{{lang.DebtorAccountNumber}}</td>
+                        <td style="width:150px;">{{lang.DebtorAgentID}}</td>
+                        <td style="width:150px;">{{lang.Collection}}</td>
+                        <td style="width:150px;">{{lang.MaximumAmount}}</td>
+                        <td style="width:150px;">{{lang.ServiceProvider}}</td>
+                        <td style="width:150px;">{{lang.Frequency}}</td>
+                        <td style="width:150px;">{{lang.DebtorAccountType}}</td>
+                        <td style="width:150px;">{{lang.CreationDateTime}}</td>
 
+                    </tr>
+                    <tr *ngIf="Databind?.length == 0">
+                        <td colspan="3">No Record Found!</td>
+                    </tr>
                 </tbody>
 
             </table>
