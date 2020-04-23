@@ -36,8 +36,8 @@ var UmrnuploadComponent = /** @class */ (function () {
             var successCount = data.Table1.length;
             var UnsuccessCount = data.Table.length;
             document.getElementById('lblTotalCount').innerHTML = 'Total Records: ' + TotalCount;
-            document.getElementById('lblsuccessCount').innerHTML = 'Total Records: ' + successCount;
-            document.getElementById('lblUnsuccessCount').innerHTML = 'Total Records: ' + UnsuccessCount;
+            document.getElementById('lblsuccessCount').innerHTML = 'Validated Records : ' + successCount;
+            document.getElementById('lblUnsuccessCount').innerHTML = 'Rejected Records : ' + UnsuccessCount;
             var tbldiv2 = document.getElementById('tbldiv2');
             tbldiv2.style.display = 'block';
             var tbldiv3 = document.getElementById('tbldiv3');
@@ -140,7 +140,7 @@ var UmrnuploadComponent = /** @class */ (function () {
         a.click();
         return 'success';
     };
-    UmrnuploadComponent.prototype.onClick = function (e) {
+    UmrnuploadComponent.prototype.btnBack_click = function (e) {
         //   this.elementClicked = 'You clicked: ' + e.target.innerHTML;
         alert('k');
     };
