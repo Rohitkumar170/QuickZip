@@ -37,10 +37,16 @@ var LayOutRoutingModule = /** @class */ (function () {
     LayOutRoutingModule = tslib_1.__decorate([
         NgModule({
             imports: [RouterModule.forChild(routes)],
-            exports: [RouterModule]
+            exports: [RouterModule],
+            providers: [
+                { provide: 'BASE_URL', useFactory: getBaseUrl }
+            ],
         })
     ], LayOutRoutingModule);
     return LayOutRoutingModule;
 }());
 export { LayOutRoutingModule };
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
 //# sourceMappingURL=lay-out-routing.module.js.map

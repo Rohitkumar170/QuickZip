@@ -15,7 +15,7 @@ namespace QuickZip.Models.DownloadEmandate
         {
             try
             {
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<Downloademandatebank>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt(UserId)));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<Downloademandatebank>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%")))));
                 return Result;
             }
             catch (Exception ex)
@@ -31,7 +31,7 @@ namespace QuickZip.Models.DownloadEmandate
                 //var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_DownloadEMandate]").With<DownLoadEmandateBind>().Execute("@QueryType", "@SponsorBankCode", "@strFromDate", "@strToDate", "grdEMandateDateWise", "Bank", "FromDate", "ToDate"));
 
 
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_DownloadEMandate]").With<DownLoadEmandateBind>().Execute("@QueryType", "@SponsorBankCode", "@strFromDate", "@strToDate", "@UserId", "grdEMandateDateWise", Bank, FromDate, ToDate,DbSecurity.Decrypt(UserId));
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_DownloadEMandate]").With<DownLoadEmandateBind>().Execute("@QueryType", "@SponsorBankCode", "@strFromDate", "@strToDate", "@UserId", "grdEMandateDateWise", Bank, FromDate, ToDate, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))));
                 foreach (var DownLoadEmandateBind in Result)
                 {
                     dataList = DownLoadEmandateBind.Cast<DownLoadEmandateBind>().ToList();

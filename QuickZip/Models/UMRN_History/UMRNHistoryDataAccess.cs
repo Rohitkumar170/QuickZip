@@ -16,7 +16,7 @@ namespace QuickZip.Models.UMRN_History
         {
             try
             {
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_Presenment]").With<UMRNHistoryClass>().Execute("@QueryType", "@UMRN", "@customer1", "@Refrence1", "@UserID", "UMRNHistoryDetails", UMRNHistoryClass.UMRN, UMRNHistoryClass.customer1, UMRNHistoryClass.RefrNo,DbSecurity.Decrypt(UMRNHistoryClass.UserId));
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Presenment]").With<UMRNHistoryClass>().Execute("@QueryType", "@UMRN", "@customer1", "@Refrence1", "@UserID", "UMRNHistoryDetails", UMRNHistoryClass.UMRN, UMRNHistoryClass.customer1, UMRNHistoryClass.RefrNo, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UMRNHistoryClass.UserId.Replace("_", "%"))));
                 foreach (var Data in Result)
                 {
                     dataList = Data.Cast<UMRNHistoryClass>().ToList();
