@@ -5,6 +5,7 @@
     FromDate: string;
     Todate: string;
     bankdrop: string;
+    ManDateID: string;
     DebtorAccountType: string;
     ConsumerReferenceNumber: string;
     MaximumAmount: string;

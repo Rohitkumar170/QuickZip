@@ -13,6 +13,10 @@ import { DownloadoldemandateService } from '../../Services/downloadoldemandate/d
       ReactiveFormsModule,
       FormsModule
     ],
-    providers: [DownloadoldemandateService]
+    providers: [DownloadoldemandateService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
 })
 export class DownloadoledemandateModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
+

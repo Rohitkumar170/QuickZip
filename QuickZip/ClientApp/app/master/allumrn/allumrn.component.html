@@ -84,37 +84,37 @@
             </div>
         </form>
 
-        <form>
+        <form  autocomplete="off" >
             <div class="col-md-12 col-sm-12 col-xs-12 boxsetting" style="margin-top: 5% !important;">
                 <div class="col-md-12 col-sm-12 col-xs-12 boxhead">
                     <div class="row no-padding">
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12"  [ngClass]="displayFieldCss('UMRN')">
+                            <div class="form-group"  [ngClass]="displayFieldCss('UMRN')">
                                 <label class="col-sm-5 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                                     UMRN
                                 </label>
                                 <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                    <input type="text" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                                    <input type="text" required name="UMRN" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="UMRN" #UMRN />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
-                            <div class="form-group">
+                            <div class="form-group"  [ngClass]="displayFieldCss('CustomerName')">
                                 <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                                     Customer Name
                                 </label>
                                 <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                    <input type="text" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                                    <input type="text"   required name="CustomerName" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;"  formControlName="CustomerName" #CustomerName />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
-                            <div class="form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding "   [ngClass]="displayFieldCss('ReferenceNumber')">
+                            <div class="form-group"  [ngClass]="displayFieldCss('ReferenceNumber')">
                                 <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                                     Reference Number
                                 </label>
-                                <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                    <input type="text" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                                <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock"   [ngClass]="displayFieldCss('ReferenceNumber')">
+                                    <input type="text"  required name="ReferenceNumber" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="ReferenceNumber" #ReferenceNumber />
                                 </div>
                             </div>
                         </div>
@@ -127,8 +127,8 @@
 
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
-                            <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
-                                   value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" />
+                            <input type="submit" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
+                                   value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;"  (click)="SearchFunction()" />
                         </div>
                     </div>
                 </div>
