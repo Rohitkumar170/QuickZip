@@ -24,7 +24,7 @@ namespace QuickZip.Models.DownloadMandate
            // List<DownloadMandateDetails> dataList = new List<DownloadMandateDetails>();
             try
             {
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateDetails>().Execute("@QueryType", "@UserId", "UserBank",DbSecurity.Decrypt(userId));
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateDetails>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(userId.Replace("_", "%"))));
 
                 foreach (var employe in Result)
                 {
@@ -47,7 +47,7 @@ namespace QuickZip.Models.DownloadMandate
             try
             {
                 // var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateDetails>().Execute("@QueryType", "@UserId", "@strToDate", "@strFromDate", "@SponsorBankCode", "grdMandateRefrenceWise", userId, todate, fromdate, sponsorbankcode));
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateGridDetails>().Execute("@QueryType", "@UserId", "@strToDate", "@strFromDate", "@SponsorBankCode", "grdMandateDateWise", DbSecurity.Decrypt(userId), todate, fromdate, sponsorbankcode);
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateGridDetails>().Execute("@QueryType", "@UserId", "@strToDate", "@strFromDate", "@SponsorBankCode", "grdMandateDateWise", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(userId.Replace("_", "%"))), todate, fromdate, sponsorbankcode);
 
                 foreach (var bgrid in Result)
                 {

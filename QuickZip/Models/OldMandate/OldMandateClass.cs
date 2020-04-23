@@ -22,7 +22,7 @@ namespace QuickZip.Models.OldMandate
             try
             {
 
-                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt(UserId));
+                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))));
                 foreach(var dt in Data)
                 {
                     dataList = dt.Cast<OldMandateAttribute>().ToList();
@@ -42,7 +42,7 @@ namespace QuickZip.Models.OldMandate
         {
             try
             {
-                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@UserId", "@Refrence1", "grdOldMandateRefrenceise",DbSecurity.Decrypt(UserId),Refrence1);
+                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@UserId", "@Refrence1", "grdOldMandateRefrenceise", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), Refrence1);
                 foreach (var dt in Data)
                 {
                     dataList = dt.Cast<OldMandateAttribute>().ToList();
@@ -60,7 +60,7 @@ namespace QuickZip.Models.OldMandate
         {
             try
             {
-                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@UserId", "@strFromDate", "@strToDate", "@SponsorBankCode", "grdOldMandateDateWise", DbSecurity.Decrypt(UserId), strFromDate, strToDate, SponsorBankCode);
+                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@UserId", "@strFromDate", "@strToDate", "@SponsorBankCode", "grdOldMandateDateWise", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), strFromDate, strToDate, SponsorBankCode);
                 foreach (var dt in Data)
                 {
                     dataList = dt.Cast<OldMandateAttribute>().ToList();
@@ -116,7 +116,7 @@ namespace QuickZip.Models.OldMandate
 
             try
             {
-                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@strTable", "@strFromDate", "@strToDate", "@UserId", "@RejectedReason", "RejectdataDateWise", strTable1, strFromDate, strToDate, DbSecurity.Decrypt(UserId), RejectedReason );
+                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<OldMandateAttribute>().Execute("@QueryType", "@strTable", "@strFromDate", "@strToDate", "@UserId", "@RejectedReason", "RejectdataDateWise", strTable1, strFromDate, strToDate, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), RejectedReason );
                 foreach (var dt1 in Data)
                 {
                     dataList = dt1.Cast<OldMandateAttribute>().ToList();
