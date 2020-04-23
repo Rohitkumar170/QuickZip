@@ -169,6 +169,7 @@ export class UmrnuploadComponent implements OnInit {
             FromDate: "From Date", ToDate: "To Date", AccountType: "Account Type", AccountNo: "Account Number", IFSC: "IFSC"
 
         }
+
         var csvData = this.ConvertToCSV(JSON.stringify(this.grdsuccess));
         var a = document.createElement("a");
         a.setAttribute('style', 'display:none;');
