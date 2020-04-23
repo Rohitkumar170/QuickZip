@@ -1,9 +1,28 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
+import { UMRNHISTORYSERVICEService } from '../../services/umrn_history/umrn-history-service.service';
+import { Validators, FormBuilder } from '@angular/forms';
 var UmrnhistoryComponent = /** @class */ (function () {
-    function UmrnhistoryComponent() {
+    function UmrnhistoryComponent(UMRService, formBuilder) {
+        this.UMRService = UMRService;
+        this.formBuilder = formBuilder;
     }
     UmrnhistoryComponent.prototype.ngOnInit = function () {
+        this.SearchData = this.formBuilder.group({
+            UMRN: ['', Validators.required],
+            CustomerName: ['', Validators.required],
+            ReferenceNumber: ['', Validators.required]
+        });
+    };
+    UmrnhistoryComponent.prototype.isFieldValid = function (field) {
+        return !this.SearchData.get(field).valid && this.SearchData.get(field).touched;
+    };
+    UmrnhistoryComponent.prototype.SearchFunction = function (UMRN, CustomerName, RefrNo) {
+        var _this = this;
+        var item = JSON.parse(sessionStorage.getItem('User'));
+        this.UMRService.BindGridData(UMRN, CustomerName, RefrNo, item.UserId).subscribe(function (data) {
+            _this.AllData = data;
+        });
     };
     UmrnhistoryComponent = tslib_1.__decorate([
         Component({
@@ -11,7 +30,7 @@ var UmrnhistoryComponent = /** @class */ (function () {
             templateUrl: './umrnhistory.component.html',
             styleUrls: ['./umrnhistory.component.css']
         }),
-        tslib_1.__metadata("design:paramtypes", [])
+        tslib_1.__metadata("design:paramtypes", [UMRNHISTORYSERVICEService, FormBuilder])
     ], UmrnhistoryComponent);
     return UmrnhistoryComponent;
 }());
