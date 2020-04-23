@@ -229,6 +229,7 @@
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
+    <Compile Include="Controllers\BankFormController.cs" />
     <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\DownloadoldemandateController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
@@ -749,6 +750,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BankForm\BankFormData.cs" />
+    <Compile Include="Models\BankForm\BindBankNameDetails.cs" />
+    <Compile Include="Models\BankForm\BindBankPaymentMode.cs" />
+    <Compile Include="Models\BankForm\BindBankUtilityCode.cs" />
+    <Compile Include="Models\BankForm\BindDebitType.cs" />
+    <Compile Include="Models\BankForm\BindEntityCategorytype.cs" />
+    <Compile Include="Models\BankForm\BindEntitydebitcredit.cs" />
+    <Compile Include="Models\BankForm\BindEntityDetails.cs" />
+    <Compile Include="Models\BankForm\BindEntityDetailsdata.cs" />
+    <Compile Include="Models\BankForm\BindEntityPeriods.cs" />
+    <Compile Include="Models\BankForm\Bindfrequency.cs" />
+    <Compile Include="Models\BankForm\BindLogincheck.cs" />
+    <Compile Include="Models\BankForm\BindLogoImageDetails.cs" />
+    <Compile Include="Models\BankForm\BindSponserCode.cs" />
     <Compile Include="Models\CommonFlag.cs" />
     <Compile Include="Models\DownloadEmandate\DownloadEmandateaccesslayer.cs" />
     <Compile Include="Models\DownloadEmandate\Downloademandatebank.cs" />
@@ -785,7 +800,6 @@
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Models\User\UserData.cs" />
     <Compile Include="Models\User\UserEntity.cs" />
-    <Compile Include="Models\User\UserReport.cs" />
     <Compile Include="Models\User\Users.cs" />
     <Compile Include="Models\User\UtilityCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -893,6 +907,7 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\BankForm\bank-form.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.spec.ts" />
@@ -910,6 +925,22 @@
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankNameDetails.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankPaymentMode.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankUtilityCode.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindDebitType.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindEntityCategorytype.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindEntitydebitcredit.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindEntityDetails.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindEntityDetailsdata.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindEntityPeriods.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\Bindfrequency.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindGrid.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindLogincheck.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindLogoImageDetails.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\BindSponserCode.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\CheckReference.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BankForm\SaveData.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadEmandate\DownloadEmandate.ts" />
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
@@ -933,7 +964,6 @@
     <TypeScriptCompile Include="ClientApp\Models\User\sponsor-bank-code.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\temp-data.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\user.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\User\userdata.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\users.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />

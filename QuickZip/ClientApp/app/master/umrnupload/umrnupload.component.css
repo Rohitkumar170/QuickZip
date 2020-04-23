@@ -1,3 +1,64 @@
+.btnexcel {    background: none !important;    color: #212529 !important;    font-size: 12px;    font-weight: bold;}#btnspaone {    position: absolute;    top: -148px;   width: 100%;    left: 1056px;}#btnspathree {    position: absolute;    top: -148px;    width: 100%;    left: 1056px;}#btnspatwo {    position: absolute;    top: -148px;    width: 100%;    left: 1056px;}    #tblgrddetails tbody {        max-height: 75px;        display: inline-block;        overflow-y: scroll;        overflow-x: hidden;    }
+
+
+    #tblgrddetails tbody tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+
+#tblgrddetails thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+#tblsuccess tbody {
+    max-height: 75px;
+    display: inline-block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+    #tblsuccess tbody tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+
+#tblsuccess thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+#tblunsuccess tbody {
+    max-height: 75px;
+    display: inline-block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#tblunsuccess tbody tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+#tblunsuccess thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+
+
 .card-header {
     padding: 0px;
 }
@@ -19,9 +80,10 @@
 
 
 #tblfirstumrnupload tbody {
-    overflow: auto;
-    display: block;
     max-height: 26vh;
+    display: inline-block;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
     #tblfirstumrnupload tbody tr {
@@ -116,6 +178,7 @@ form {
 }
 
 
+
 #maincontent {
     position: absolute;
     top: 8%;
@@ -148,6 +211,8 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    display:block;
+    overflow-x:scroll;
 }
 
     table thead {
