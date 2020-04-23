@@ -22,5 +22,7 @@ export interface Users {
     chkPresentChecker: string;
     maker: string;
     chkEnableCancel: string;
-    Result: string;
+    chkbulkuploadlink: string;
+    chkvideolink: string;
+    Result: number;
 }

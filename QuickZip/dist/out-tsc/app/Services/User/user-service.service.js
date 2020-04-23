@@ -7,14 +7,14 @@ var UserServiceService = /** @class */ (function () {
         this.baseUrl = "";
         this.baseUrl = myAppUrl;
     }
-    UserServiceService.prototype.getUser = function (EntityId, PageCount) {
-        return this._http.get(this.baseUrl + 'api/User/getUserData/' + EntityId + '/' + PageCount);
+    UserServiceService.prototype.getUser = function (EntityId, PageCount, Search_Text) {
+        return this._http.get(this.baseUrl + 'api/USer/getUserData/' + EntityId + '/' + PageCount + '/' + Search_Text);
     };
     UserServiceService.prototype.getMakers = function (EntityId, UserId) {
-        return this._http.get(this.baseUrl + 'api/User/getMakers/' + EntityId + '/' + UserId);
+        return this._http.get(this.baseUrl + 'api/USer/getMakers/' + EntityId + '/' + UserId);
     };
     UserServiceService.prototype.CheckIsPresentmentChecker = function (EntityId) {
-        return this._http.get(this.baseUrl + 'api/User/CheckIsPresentmentChecker/' + EntityId);
+        return this._http.get(this.baseUrl + 'api/USer/CheckIsPresentmentChecker/' + EntityId);
     };
     UserServiceService.prototype.SaveUser = function (em, EntityId, UserId) {
         var body = em;
@@ -24,7 +24,7 @@ var UserServiceService = /** @class */ (function () {
         });
     };
     UserServiceService.prototype.EditData = function (UserId) {
-        return this._http.get(this.baseUrl + 'api/User/EditData/' + UserId);
+        return this._http.get(this.baseUrl + 'api/USer/EditData/' + UserId);
     };
     UserServiceService.prototype.UpdateUser = function (em, EntityId, UserId, Id) {
         var body = em;
@@ -32,6 +32,9 @@ var UserServiceService = /** @class */ (function () {
         return this._http.post(this.baseUrl + 'api/USer/UpdateData/' + EntityId + '/' + UserId + '/' + Id, body, {
             headers: headers
         });
+    };
+    UserServiceService.prototype.getUserReport = function (EntityId) {
+        return this._http.get(this.baseUrl + 'api/USer/getUserReport/' + EntityId);
     };
     UserServiceService = tslib_1.__decorate([
         Injectable({

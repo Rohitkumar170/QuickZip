@@ -10,6 +10,9 @@ import { UserServiceService } from 'ClientApp/app/Services/User/user-service.ser
       CommonModule,
       UserRoutingModule, ReactiveFormsModule, FormsModule
     ],
-    providers: [UserServiceService]
+    providers: [UserServiceService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
 })
 export class UserModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}

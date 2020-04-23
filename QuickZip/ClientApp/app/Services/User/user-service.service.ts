@@ -17,18 +17,18 @@ export class UserServiceService {
     constructor(private _http: HttpClient, @Inject('BASE_URL') myAppUrl: string) {
         this.baseUrl = myAppUrl;
     }
-    getUser(EntityId, PageCount): Observable<any> {
+    getUser(EntityId, PageCount, Search_Text): Observable<any> {
 
-        return this._http.get<any>(this.baseUrl + 'api/User/getUserData/' + EntityId + '/' + PageCount);
+        return this._http.get<any>(this.baseUrl + 'api/USer/getUserData/' + EntityId + '/' + PageCount + '/' + Search_Text);
     }
     getMakers(EntityId, UserId): Observable<any> {
 
-        return this._http.get<any>(this.baseUrl + 'api/User/getMakers/' + EntityId + '/' + UserId);
+        return this._http.get<any>(this.baseUrl + 'api/USer/getMakers/' + EntityId + '/' + UserId);
 
     }
     CheckIsPresentmentChecker(EntityId): Observable<any> {
 
-        return this._http.get<any>(this.baseUrl + 'api/User/CheckIsPresentmentChecker/' + EntityId);
+        return this._http.get<any>(this.baseUrl + 'api/USer/CheckIsPresentmentChecker/' + EntityId);
     }
 
     SaveUser(em: any, EntityId, UserId): Observable<Users> {
@@ -40,7 +40,7 @@ export class UserServiceService {
     }
     EditData(UserId): Observable<any> {
 
-        return this._http.get<any>(this.baseUrl + 'api/User/EditData/' + UserId);
+        return this._http.get<any>(this.baseUrl + 'api/USer/EditData/' + UserId);
     }
     UpdateUser(em: any, EntityId, UserId,Id): Observable<Users> {
         const body = em;
@@ -48,6 +48,10 @@ export class UserServiceService {
         return this._http.post<Users>(this.baseUrl + 'api/USer/UpdateData/' + EntityId + '/' + UserId + '/' + Id, body, {
             headers
         });
+    }
+    getUserReport(EntityId): Observable<any> {
+
+        return this._http.get<any>(this.baseUrl + 'api/USer/getUserReport/' + EntityId);
     }
 }
  

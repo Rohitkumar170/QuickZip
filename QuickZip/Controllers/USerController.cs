@@ -13,15 +13,18 @@ namespace QuickZip.Controllers
     {
         User objuser = new User();
         [HttpGet]
-        [Route("api/User/getUserData/{EntityId}/{PageCount}")]
-        public Dictionary<string, object> getUserData(string EntityId,string PageCount)
-        {
-            string Search_Text = "";
+        [Route("api/USer/getUserData/{EntityId}/{PageCount}/{Search_Text}")]
+        public Dictionary<string, object> getUserData(string EntityId,string PageCount,string Search_Text)
+       {
+            if (Search_Text == "0")
+            {
+                Search_Text = "";
+            }
             return objuser.GetAllUsers(EntityId, PageCount, Search_Text);
         }
 
         [HttpGet]
-        [Route("api/User/getMakers/{EntityId}/{UserId}")]
+        [Route("api/USer/getMakers/{EntityId}/{UserId}")]
         public Dictionary<string, object> getMakers(string EntityId, string UserId)
         {
             
@@ -29,7 +32,14 @@ namespace QuickZip.Controllers
         }
 
         [HttpGet]
-        [Route("api/User/CheckIsPresentmentChecker/{EntityId}")]
+        [Route("api/USer/getUserReport/{EntityId}")]
+        public Dictionary<string, object> getUserReport(string EntityId)
+        {
+
+            return objuser.getUserReportData(EntityId);
+        }
+        [HttpGet]
+        [Route("api/USer/CheckIsPresentmentChecker/{EntityId}")]
         public Dictionary<string, object> CheckIsPresentmentChecker(string EntityId)
         {
 
@@ -37,7 +47,7 @@ namespace QuickZip.Controllers
         }
 
         [HttpGet]
-        [Route("api/User/EditData/{UserId}")]
+        [Route("api/USer/EditData/{UserId}")]
         public Dictionary<string, object> EditData(string UserId)
         {
 
@@ -49,8 +59,8 @@ namespace QuickZip.Controllers
         public IEnumerable<Users> SaveData([FromBody] Users userdata,string EntityId,string UserId)
         {
             string dtPaymentMode = "<dtXml></dtXml>";
-            string dtUserRights_3 = "<dtXml></dtXml>";
-            string dtUserRights_4 = "<dtXml></dtXml>";
+            var dtUserRights_3 = "<dtXml>";
+            var dtUserRights_4 = "<dtXml>";
             int IsZipSure = 0;
             int IsAllowFundTransfer = 0;
             int IsMandateEdit = 0;
@@ -192,6 +202,27 @@ namespace QuickZip.Controllers
                 userdata.maker = "";
             }
 
+            dtUserRights_3 = "<dtXml>";
+
+            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
+            //{
+            dtUserRights_3 += "<dtXml ";
+            dtUserRights_3 += "LinkIDs=" + @"""" + userdata.chkbulkuploadlink + @"""";
+            dtUserRights_3 += " />";
+            // }
+            dtUserRights_3 += "</dtXml>";
+
+           
+
+            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
+            //{
+            dtUserRights_4 = "<dtXml>";
+            dtUserRights_4 += "<dtXml ";
+            dtUserRights_4 += "LinkIDs=" + @"""" + userdata.chkvideolink + @"""";
+            dtUserRights_4 += " />";
+            // }
+            dtUserRights_4 += "</dtXml>";
+
             return objuser.SaveUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd,dtPaymentMode,dtUserRights_3,dtUserRights_4, chkRefEdit);
         }
 
@@ -200,8 +231,8 @@ namespace QuickZip.Controllers
         public IEnumerable<Users> UpdateData([FromBody] Users userdata, string EntityId, string UserId,int Id)
         {
             string dtPaymentMode = "<dtXml></dtXml>";
-            string dtUserRights_3 = "<dtXml></dtXml>";
-            string dtUserRights_4 = "<dtXml></dtXml>";
+            var dtUserRights_3 = "<dtXml>";
+            var dtUserRights_4 = "<dtXml>";
             int IsZipSure = 0;
             int IsAllowFundTransfer = 0;
             int IsMandateEdit = 0;
@@ -354,6 +385,25 @@ namespace QuickZip.Controllers
             {
                 userdata.maker = "";
             }
+            dtUserRights_3 = "<dtXml>";
+
+            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
+            //{
+            dtUserRights_3 += "<dtXml ";
+            dtUserRights_3 += "LinkIDs=" + @"""" + userdata.chkbulkuploadlink + @"""";
+            dtUserRights_3 += " />";
+            // }
+            dtUserRights_3 += "</dtXml>";
+
+            dtUserRights_4 = "<dtXml>";
+
+            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
+            //{
+            dtUserRights_4 += "<dtXml ";
+            dtUserRights_4 += "LinkIDs=" + @"""" + userdata.chkvideolink + @"""";
+            dtUserRights_4 += " />";
+            // }
+            dtUserRights_4 += "</dtXml>";
 
             return objuser.UpdateUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd, dtPaymentMode, dtUserRights_3, dtUserRights_4, chkRefEdit,Id);
         }
