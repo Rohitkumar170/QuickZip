@@ -1,7 +1,6 @@
 ﻿export interface GridSuccess {
 
-
-   
+    
     UMRN: string;
     Amount: string;
     Refrence: string;

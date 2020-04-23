@@ -38,6 +38,19 @@ export class UmrnUploadService {
         return this._http.get<any>(this.baseUrl + 'api/UMRNUpload/BindOnRowdblClick/' + UploadHeaderId);
 
     } 
+
+
+    //UploadExcel(formData: FormData) {
+    //    let headers = new HttpHeaders();
+
+    //    headers.append('Content-Type', 'multipart/form-data');
+    //    headers.append('Accept', 'application/json');
+
+    //    const httpOptions = { headers: headers };
+
+    //    //return this.http.post(this.url + '/UploadExcel', formData, httpOptions)
+    //    return this._http.post<any>(this.baseUrl + 'api/UMRNUpload/UploadExcel', formData, httpOptions);
+    //}
     errorHandler(error: Response) {
         console.log(error);
         return Observable.throw(error);
