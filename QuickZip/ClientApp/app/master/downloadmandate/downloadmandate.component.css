@@ -18,26 +18,37 @@
     padding: 0px 0px 0px 0px;
 }
 
-
-#tbldownmandate tbody {
-  overflow-y:scroll;
-  overflow-x:hidden;
-    display: block;
-    max-height: 50vh;
-}
-
-#tbldownmandate tbody tr {
+#btngroup {
+    position: relative;
     width: 100%;
-    display: table;
-    table-layout: fixed;
+    top: -21px;
+    right: -322px;
 }
 
-
-#tbldownmandate thead tr {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
+#tbldownmandate {
+    border: 1px solid #cdcdcd;
 }
+
+    #tbldownmandate tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: inline-block;
+        max-height: 50vh;
+    }
+
+        #tbldownmandate tbody tr {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+        }
+
+
+    #tbldownmandate thead tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
 #btnreject {
     background: none !important;
     color: #212529 !important;
@@ -51,14 +62,12 @@
     font-size: 12px;
     font-weight: bold;
 }
+
 #btnp {
-   
     width: 100%;
 }
 
 #btnspa {
-   
- 
     width: 100%;
 }
 

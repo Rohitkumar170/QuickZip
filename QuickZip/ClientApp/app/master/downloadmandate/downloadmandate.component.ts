@@ -152,12 +152,12 @@ export class DownloadmandateComponent implements OnInit {
 
         if (event.target.checked) {
             this.Ischecked = 1;
-            alert('all checked')
+          //  alert('all checked')
             this.Isallcheck = 1;
         }
         else {
             this.Ischecked = 0;
-            alert('all not checked')
+           // alert('all not checked')
             this.Isallcheck = 1;
         }
        
@@ -180,13 +180,13 @@ export class DownloadmandateComponent implements OnInit {
 
 
                 console.log(this.SelectionStatusOfMutants);
-                alert('checked')
+               // alert('checked')
                 this.Ischecked = 1;
                 CheckedCount++;
 
             }
             else {
-                alert('not checked')
+              //  alert('not checked')
                 if (this.Isallcheck == 1) {
                     this.SelectionStatusOfMutants.push(this.bindgrid);
                     console.log(this.SelectionStatusOfMutants); 
@@ -279,7 +279,7 @@ export class DownloadmandateComponent implements OnInit {
     }
 
     RejectMandate(fromdate,todate,bank) {
-
+        this.Ischecked = 1
         let item = JSON.parse(sessionStorage.getItem('User'));
        // console.log(item.UserId);
         var rejectcomnt = 'test131';
@@ -335,7 +335,7 @@ export class DownloadmandateComponent implements OnInit {
         return str;
     }
     download() {
-        alert(this.Ischecked);
+      //  alert(this.Ischecked);
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {

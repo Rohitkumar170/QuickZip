@@ -45,12 +45,12 @@ var DownloadmandateComponent = /** @class */ (function () {
             this.checkFlag = 1;
             if (event.target.checked) {
                 this.Ischecked = 1;
-                alert('all checked');
+                //  alert('all checked')
                 this.Isallcheck = 1;
             }
             else {
                 this.Ischecked = 0;
-                alert('all not checked');
+                // alert('all not checked')
                 this.Isallcheck = 1;
             }
         };
@@ -117,12 +117,12 @@ var DownloadmandateComponent = /** @class */ (function () {
             this.SelectionStatusOfMutants.push(item);
             this.selectMandateId.push(item.mandateid);
             console.log(this.SelectionStatusOfMutants);
-            alert('checked');
+            // alert('checked')
             this.Ischecked = 1;
             CheckedCount++;
         }
         else {
-            alert('not checked');
+            //  alert('not checked')
             if (this.Isallcheck == 1) {
                 this.SelectionStatusOfMutants.push(this.bindgrid);
                 console.log(this.SelectionStatusOfMutants);
@@ -255,7 +255,7 @@ var DownloadmandateComponent = /** @class */ (function () {
         return str;
     };
     DownloadmandateComponent.prototype.download = function () {
-        alert(this.Ischecked);
+        //  alert(this.Ischecked);
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {

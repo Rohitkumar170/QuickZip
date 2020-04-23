@@ -70,7 +70,7 @@ namespace QuickZip.Models.DownloadMandate
             try
             {
                 // var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateDetails>().Execute("@QueryType", "@UserId", "@strToDate", "@strFromDate", "@SponsorBankCode", "grdMandateRefrenceWise", userId, todate, fromdate, sponsorbankcode));
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateGridDetails>().Execute("@QueryType", "@UserId", "@Refrence1", "grdMandateRefrenceWise", DbSecurity.Decrypt(userId), refNo);
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateGridDetails>().Execute("@QueryType", "@UserId", "@Refrence1", "grdMandateRefrenceWise", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(userId.Replace("_", "%"))), refNo);
 
                 foreach (var bgrid in Result)
                 {
@@ -159,7 +159,7 @@ namespace QuickZip.Models.DownloadMandate
 
             try
                 {
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateGridDetails>().Execute("@QueryType", "@UserId", "@strToDate", "@strFromDate", "@strTable", "@RejectedReason", "RejectdataDateWise", DbSecurity.Decrypt(userID) , todate, fromdate, strTable, rejectcomnt));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<DownloadMandateGridDetails>().Execute("@QueryType", "@UserId", "@strToDate", "@strFromDate", "@strTable", "@RejectedReason", "RejectdataDateWise", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(userID.Replace("_", "%"))), todate, fromdate, strTable, rejectcomnt));
                 return Result;
             }
             catch (Exception ex)

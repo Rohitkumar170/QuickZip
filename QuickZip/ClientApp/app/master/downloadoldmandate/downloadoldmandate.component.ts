@@ -140,7 +140,7 @@ export class DownloadoldmandateComponent implements OnInit {
         }
         else {
             //
-            alert('not checked')
+            alert('please select mandate ');
             this.SelectionStatusOfMutants.pop();
             UncheckedCount++;
             if (UncheckedCount == CheckedCount) {
@@ -303,7 +303,7 @@ export class DownloadoldmandateComponent implements OnInit {
     downloadExcel() {
        // alert("this method is working");
 
-        alert(this.Ischecked);
+       // alert(this.Ischecked);
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {

@@ -22,7 +22,7 @@ var DownloadmandateService = /** @class */ (function () {
         return this._http.get(this.baseUrl + 'api/DownloadMandate/getBindGridRef/' + userID + '/' + refNo);
     };
     DownloadmandateService.prototype.getRejectMandate = function (userID, fromdate, todate, selectMandateId, rejectcomnt) {
-        alert(selectMandateId);
+        // alert(selectMandateId);
         return this._http.get(this.baseUrl + 'api/DownloadMandate/getRejectMandate/' + userID + '/' + fromdate + '/' + todate + '/' + selectMandateId + '/' + rejectcomnt);
     };
     DownloadmandateService = tslib_1.__decorate([

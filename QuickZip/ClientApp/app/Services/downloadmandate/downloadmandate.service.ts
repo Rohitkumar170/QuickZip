@@ -36,7 +36,7 @@ export class DownloadmandateService {
     }
 
     getRejectMandate(userID, fromdate, todate, selectMandateId, rejectcomnt): Observable<any> {
-        alert(selectMandateId);
+       // alert(selectMandateId);
         return this._http.get<any>(this.baseUrl + 'api/DownloadMandate/getRejectMandate/' + userID + '/' + fromdate + '/' + todate + '/' + selectMandateId + '/' + rejectcomnt);
     }
 
