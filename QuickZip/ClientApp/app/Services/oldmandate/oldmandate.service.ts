@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { error } from 'util';
 import { OldMandateClass1 } from '../../../Models/Old-Mandate/OldMandateClass1';
+import { OldMandateTable } from '../../../Models/Old-Mandate/OldMandateTable';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class OldmandateService {
     }
 
     BankBind(UserId): Observable<OldMandateClass1> {
-      //  alert("service" +UserId);
+      // alert("service" +UserId);
         return this.http.get<OldMandateClass1>(this.baseUrl + 'api/OldMandate/GetDataByUID/' + UserId);
     }
 
@@ -26,13 +27,19 @@ export class OldmandateService {
     }
 
 
-    BindbyDate(UserId,FromDate, ToDate, SponsorBankCode, ): Observable<OldMandateClass1> {
+    BindbyDate(UserId, FromDate, ToDate, SponsorBankCode): Observable<OldMandateClass1> {
       //  alert("service" + FromDate + ToDate + SponsorBankCode + UserId);
         return this.http.get<OldMandateClass1>(this.baseUrl + 'api/OldMandate/GetDataByDate/' + UserId + '/' + FromDate + '/' + ToDate + '/' + SponsorBankCode);
     }
 
-    BindbyBank(UserId, FromDate, ToDate, SponsorBankCode, ): Observable<OldMandateClass1> {
+    BindbyBank(UserId, FromDate, ToDate, SponsorBankCode): Observable<OldMandateClass1> {
         //  alert("service" + FromDate + ToDate + SponsorBankCode + UserId);
         return this.http.get<OldMandateClass1>(this.baseUrl + 'api/OldMandate/GetDataByDate/' + UserId + '/' + FromDate + '/' + ToDate + '/' + SponsorBankCode);
+    }
+
+
+    RejectData(FromDate, ToDate, RejectedReason, UserId, selectMandateId): Observable<OldMandateClass1> {
+        //  alert("service" + FromDate + ToDate + SponsorBankCode + UserId);
+        return this.http.get<OldMandateClass1>(this.baseUrl + 'api/OldMandate/RejectDt/' + '/' + FromDate + '/' + ToDate + '/' + RejectedReason + '/' + UserId + '/' + selectMandateId);
     }
 }

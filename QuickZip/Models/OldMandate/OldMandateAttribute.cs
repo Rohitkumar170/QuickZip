@@ -21,7 +21,7 @@ namespace QuickZip.Models.OldMandate
         public string Amount { get; set; }
         public string IFSC { get; set; }
         public string Code { get; set; }
-       // public string BankName { get; set; }
+        // public string BankName { get; set; }
         public string DateOnMandate { get; set; }
         public string AcNo { get; set; }
         public string Refrence1 { get; set; }
