@@ -236,6 +236,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OldMandateController.cs" />
+    <Compile Include="Controllers\UMRNUploadController.cs" />
     <Compile Include="Controllers\USerController.cs" />
     <Compile Include="Entity\Common.cs" />
     <Compile Include="Entity\DbSecurity.cs" />
@@ -781,6 +782,11 @@
     <Compile Include="Models\OldEmandate\Searchdata.cs" />
     <Compile Include="Models\OldMandate\OldMandateAttribute.cs" />
     <Compile Include="Models\OldMandate\OldMandateClass.cs" />
+    <Compile Include="Models\UMRNUpload\GridSuccess.cs" />
+    <Compile Include="Models\UMRNUpload\GridUnsuccess.cs" />
+    <Compile Include="Models\UMRNUpload\MainGrid.cs" />
+    <Compile Include="Models\UMRNUpload\MainGridDetails.cs" />
+    <Compile Include="Models\UMRNUpload\UMRNUpload.cs" />
     <Compile Include="Models\User\AccessRights.cs" />
     <Compile Include="Models\User\CategoryCodes.cs" />
     <Compile Include="Models\User\Checker.cs" />
@@ -800,6 +806,7 @@
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Models\User\UserData.cs" />
     <Compile Include="Models\User\UserEntity.cs" />
+    <Compile Include="Models\User\UserReport.cs" />
     <Compile Include="Models\User\Users.cs" />
     <Compile Include="Models\User\UtilityCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -918,6 +925,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\UMRNUpload\umrn-upload.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\UMRNUpload\umrn-upload.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\User\user-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\User\user-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.spec.ts" />
@@ -948,6 +957,10 @@
     <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateClass1.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\Bankbind.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\SearchData.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\GridSuccess.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\GridUnsuccess.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\MainGrid.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\MainGridDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\access-rights.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\bankval.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\category-code.ts" />
@@ -964,6 +977,7 @@
     <TypeScriptCompile Include="ClientApp\Models\User\sponsor-bank-code.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\temp-data.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\user.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\User\userdata.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\users.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
