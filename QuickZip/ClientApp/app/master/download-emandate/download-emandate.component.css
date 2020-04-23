@@ -1,3 +1,16 @@
+#btnexcel {
+    background: none !important;
+    color: #212529 !important;
+    font-size: 12px;
+    font-weight: bold;
+
+}
+#btnspa {
+    position: absolute;
+    top: -66px;
+    left: 308px;
+    width: 100%;
+}
 .card-header {
     padding: 0px;
 }
@@ -15,7 +28,7 @@
     height: 22px;
     padding: 0px 0px 0px 0px;
 }
-
+#tblEmandate table{border: 1px solid #cdcdcd;}
 
 #tblEmandate tbody {
     display: block;
