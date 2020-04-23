@@ -236,6 +236,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OldMandateController.cs" />
+    <Compile Include="Controllers\UMRNHistoryController.cs" />
     <Compile Include="Controllers\UMRNUploadController.cs" />
     <Compile Include="Controllers\USerController.cs" />
     <Compile Include="Entity\Common.cs" />
@@ -787,6 +788,8 @@
     <Compile Include="Models\UMRNUpload\MainGrid.cs" />
     <Compile Include="Models\UMRNUpload\MainGridDetails.cs" />
     <Compile Include="Models\UMRNUpload\UMRNUpload.cs" />
+    <Compile Include="Models\UMRN_History\UMRNHistoryClass.cs" />
+    <Compile Include="Models\UMRN_History\UMRNHistoryDataAccess.cs" />
     <Compile Include="Models\User\AccessRights.cs" />
     <Compile Include="Models\User\CategoryCodes.cs" />
     <Compile Include="Models\User\Checker.cs" />
@@ -927,6 +930,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\UMRNUpload\umrn-upload.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\UMRNUpload\umrn-upload.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\UMRN_History\umrn-history-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\UMRN_History\umrn-history-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\User\user-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\User\user-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\sidebar\sidebar.component.spec.ts" />
@@ -961,6 +966,7 @@
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\GridUnsuccess.ts" />
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\MainGrid.ts" />
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\MainGridDetails.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\UMRN_HISTORY\umrn-history-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\access-rights.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\bankval.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\category-code.ts" />
