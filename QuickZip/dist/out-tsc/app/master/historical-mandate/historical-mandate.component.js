@@ -3,26 +3,20 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HistoricalMandateServiceService } from '../../services/historical-mandate/historical-mandate-service.service';
 var HistoricalMandateComponent = /** @class */ (function () {
-    // AddClass: string = "color:red";
-    //TotalCount = 0;
     function HistoricalMandateComponent(HMService, formBuilder) {
         this.HMService = HMService;
         this.formBuilder = formBuilder;
         this.dataArray = [];
+        this.CurrentDate = new Date();
     }
     HistoricalMandateComponent.prototype.ngOnInit = function () {
-        //this.currentdate = new Date();
-        //this.HistoricalMandateForm = this.formBuilder.group({
-        //    FromDate: ['', Validators.required],
-        //    ToDate: ['', Validators.required],
-        //    });
+        console.log(this.CurrentDate);
     };
+    // currentDate = new Date();
     HistoricalMandateComponent.prototype.SearchFunction = function (FromDate, ToDate) {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        //if (FromDate == "" || ToDate == "") {
-        //}
-        alert(FromDate + " " + ToDate + " " + item.UserId);
+        // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(function (data) {
                 _this.BindAllData = data;

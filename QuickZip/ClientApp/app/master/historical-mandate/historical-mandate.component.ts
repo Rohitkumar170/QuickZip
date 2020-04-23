@@ -5,35 +5,29 @@ import { HistoricalMandateClass } from '../../../models/historical-mandate/histo
 import { HistoricalMandateServiceService } from '../../services/historical-mandate/historical-mandate-service.service';
 import { count } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-historical-mandate',
   templateUrl: './historical-mandate.component.html',
   styleUrls: ['./historical-mandate.component.css']
 })
 export class HistoricalMandateComponent implements OnInit {
-    HistoricalMandateForm: FormGroup; HeaderArray; currentdate; 
-    //submitted = false;
+    HistoricalMandateForm: FormGroup; HeaderArray;
     BindAllData: HistoricalMandateClass; TotalCount; dataArray: Array<HistoricalMandateClass> = [];
 
-   // AddClass: string = "color:red";
-    //TotalCount = 0;
-    constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) { }
-
-    ngOnInit() {
-        //this.currentdate = new Date();
-        //this.HistoricalMandateForm = this.formBuilder.group({
-        //    FromDate: ['', Validators.required],
-        //    ToDate: ['', Validators.required],
-        //    });
-           
-      
+    constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) {
+     
     }
+    CurrentDate = new Date();
+    ngOnInit() {
+        console.log(this.CurrentDate);
+    }
+
+   // currentDate = new Date();
+
     SearchFunction(FromDate, ToDate) {
-        let item = JSON.parse(sessionStorage.getItem('User'));
-        //if (FromDate == "" || ToDate == "") {
-         
-        //}
-        alert(FromDate + " " + ToDate + " " + item.UserId);
+        let item = JSON.parse(sessionStorage.getItem('User'));      
+       // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate !="") {
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(
                 (data) => {
@@ -114,11 +108,5 @@ export class HistoricalMandateComponent implements OnInit {
         a.click();
         return 'success';
     }
-//    getDate() {
-//    var today = new Date();
 
-//        document.getElementById("date").nodeValue = today.getDate() + '/' + ('0' + (today.getMonth() + 1)).slice(-2) + '/' + ('0' + today.getFullYear()).slice(-2);
-
-//       // getFullYear()     getDate()   getMonth()
-//}
 }

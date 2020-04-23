@@ -12,7 +12,10 @@ import { HistoricalmandateRoutingModule } from './historicalmandate-routing.modu
     HistoricalmandateRoutingModule
     ],
     providers: [
-        HistoricalMandateServiceService
+        HistoricalMandateServiceService, { provide: 'BASE_URL', useFactory: getBaseUrl }
     ]
 })
 export class HistoricalmandateModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
