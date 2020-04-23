@@ -3,10 +3,10 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { DownloadoldemandateService } from '../../Services/downloadoldemandate/downloadoldemandate.service';
 import { Bankdetails } from '../../../Models/OldEmandate/Bankbind';
 import { Searchdetails } from '../../../Models/OldEmandate/SearchData';
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
+//import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { formatDate } from '@angular/common';
-import { Console } from '@angular/core/src/console';
-import { element } from '@angular/core/src/render3';
+//import { Console } from '@angular/core/src/console';
+//import { element } from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-downloadoldemandate',
@@ -14,22 +14,19 @@ import { element } from '@angular/core/src/render3';
     styleUrls: ['./downloadoldemandate.component.css']
 })
 export class DownloadoldemandateComponent implements OnInit {
-    // SearchForm: FormGroup;
+ 
     bankbind: Bankdetails;
     Databind: Searchdetails;
-
-    nameId: string;
-    obj: string = "";
-    Emplist: string;
-    correntDate: Date;
+    public errormsg: any;
+    //nameId: string;
     i: any;
-    public inEditMode = false;
-    selectedAll: any;
+   // public inEditMode = false;
+    //selectedAll: any;
     HeaderArray;
     SelectionStatusOfMutants = [];
     checkFlag: number = 0;
     Ischecked: number = 0;
-    IsMandateID: string;
+    //IsMandateID: string;
     constructor(public _downloadservice: DownloadoldemandateService) { }
 
     ngOnInit() {
@@ -41,10 +38,10 @@ export class DownloadoldemandateComponent implements OnInit {
 
                 var y = Object.entries(this.bankbind)[0][1];
 
-                alert(y.sponsorbankcode);
+               // alert(y.sponsorbankcode);
                 var u = y.sponsorbankcode;
-                // var k = formatDate(new Date(), "yyyy-MM-dd", "en");
-                this.PostData("2019-06-11", "2020-03-13", u);
+                 var k = formatDate(new Date(), "yyyy-MM-dd", "en");
+                this.PostData(k,k, u);
             });
 
         this.BankBind();
@@ -54,45 +51,22 @@ export class DownloadoldemandateComponent implements OnInit {
     }
     currentDate = new Date();
     PostData(FromDate, Todate, bankdrop) {
-        alert("Comp" + FromDate + " " + Todate + " " + bankdrop);
+       // alert("Comp" + FromDate + " " + Todate + " " + bankdrop);
         let item = JSON.parse(sessionStorage.getItem('User'));
         console.log(item.UserId)
         this._downloadservice.SearchData(FromDate, Todate, bankdrop, item.UserId).subscribe(
             (data) => {
                 this.Databind = data;
                 console.log(this.Databind);
+               
 
             });
 
 
 
     }
-    trackByMethod(index: number, el: any): void {
-        console.log(el);
-    }
-
-
-    selected() {
-
-
-        // for (let p = 0; p < this.arr.length; p++) {
-        var elements = (<HTMLInputElement[]><any>document.getElementsByName("allcheck"));
-        for (let i = 0; i < elements.length; i++) {
-            if (elements[i].type == "checkbox") {
-                if (elements[i].checked) {
-                    console.log("Checked", elements[i].checked);
-                    this.inEditMode = true;
-                    console.log(elements[i]);
-                    break;
-                }
-                else {
-                    console.log("Unchecked", elements[i].checked);
-                    this.inEditMode = false;
-                }
-            }
-        }
-
-    }
+    Removelabel() { this.errormsg = ''; }
+   
     BankBind() {
         let item = JSON.parse(sessionStorage.getItem('User'));
         console.log(item.UserId)
@@ -103,11 +77,9 @@ export class DownloadoldemandateComponent implements OnInit {
                 this.i = Object.entries(this.bankbind)[0][1];
 
                 // alert(this.i.sponsorbankcode);
-                // this.datahj(this.i.sponsorbankcode);
-
+           
                 console.log(this.bankbind);
 
-                // console.log(this.Emplist);
 
             });
 
@@ -117,7 +89,7 @@ export class DownloadoldemandateComponent implements OnInit {
         //toggleSelect(event) {
         // var SelectionStatusOfMutants = [];
         this.all = event.target.checked;
-        this.bindgrid.forEach(function (item) {
+        this.Databind.forEach(function (item) {
             // console.log(item);
             item.selected = event.target.checked;
             // this.onChange(event, item);
@@ -143,46 +115,46 @@ export class DownloadoldemandateComponent implements OnInit {
         //var isChecked = element.checked;
         //if (count == '') {
         this.checkFlag = 0;
-        this.IsMandateID = item.mandateid;
+       // this.IsMandateID = item.mandateid;
         var CheckedCount = 0, UncheckedCount = 0;
 
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
-
             console.log(this.SelectionStatusOfMutants);
-            alert('checked')
+           // alert('checked')
             this.Ischecked = 1;
             CheckedCount++;
+            //this.dataArray.push(item);
+            //console.log(this.dataArray)
 
         }
         else {
-            alert('not checked')
+          //  alert('not checked')
             this.SelectionStatusOfMutants.pop();
             UncheckedCount++;
             if (UncheckedCount == CheckedCount) {
                 this.Ischecked = 0;
             }
+            //if (this.dataArray.length > 0) {
+            //    for (var i = 0; i < this.dataArray.length; i++) {
+            //        if (this.dataArray[i].ManDateID == item.ManDateID) {
+            //            // this.dataArray.pop();
+            //            // delete [this.dataArray.indexOf()];
+            //            this.dataArray.splice(this.dataArray.indexOf(item), 1);
+            //            console.log(this.dataArray);
+            //        }
+            //        else {
+            //        }
+
+            //    }
+            //}
         }
-        //}
-        //else
-        //{
-        //    this.bindgrid.forEach(function (item) {
-        //        // console.log(item);
-        //        //item.selected = event.target.checked;
-        //        // this.onChange(event, item);
-        //        if (event.target.checked) {
-        //            this.SelectionStatusOfMutants.push(item);
-        //            alert('c')
-        //        }
-        //        else {
-        //            this.SelectionStatusOfMutants.pop();
-        //            alert('nc')
-        //        }
 
-        //    });
 
-        //}
-    }
+
+     }
+        
+    
 
 
     ConvertToCSV(objArray) {
@@ -229,6 +201,14 @@ export class DownloadoldemandateComponent implements OnInit {
     download() {
 
         alert(this.Ischecked);
+        if (this.Ischecked == 1) {
+          //  alert("Selecetd");
+
+        }
+        else {
+           // alert("Not selected any checkbox");
+            this.errormsg = "Checkbox is not Selected";
+        }
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
@@ -250,6 +230,8 @@ export class DownloadoldemandateComponent implements OnInit {
             return 'success';
         }
     }
+
+    
 
 
 }

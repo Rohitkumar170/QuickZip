@@ -11,24 +11,24 @@
 
 
                         <li>
-                            <i class="fa fa-download" aria-hidden="true" title="Export"></i>
+                            <!--<i class="fa fa-download" aria-hidden="true" title="Export"></i>
                             <label>
                                 Download old E-Mandate Excel File
-                            </label>
+                            </label>-->
                         </li>
                         <li>
-                            <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
-                            <label>
+                            <!--<i class="fa fa-file-text" aria-hidden="true" title="New"></i>
+                            <label  style="display: none">
                                 Download Scanned Mandate
-                            </label>
+                            </label>-->
                         </li>
-                        <li>
+                        <li  style="display: none">
                             <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>
                             <label>
                                 Reject Mandate
                             </label>
                         </li>
-                        <li>
+                        <li  style="display: none">
                             <i class="fa fa-floppy-o" aria-hidden="true" title="Save"></i>
                             <label>
                                 Submit
@@ -118,9 +118,13 @@
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
                     <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
                            value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" (click)="PostData(FromDate.value,Todate.value,bankdrop.value)" />
+                    <label id="lblName">{{errormsg}}</label>
 
-                    <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id=""
-                           value="Download Excel" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" (click)="download()" />
+                    <span id="btnspa">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <input type="button" class=" btn btn-success" id="btnexcel"
+                               value="Download Excel" (click)="download()" />
+                    </span>
                 </div>
             </div>
         </div>
@@ -129,11 +133,11 @@
             <table id="tbldowneoldemandate">
                 <thead>
                     <tr>
-                        <th style="width:150px;"><input type="checkbox" name="all">All</th>
+                        <th style="width:150px;"><input type="checkbox" name="all" value="all" (change)="Removelabel()" (click)="toggleSelect($event)">All</th>
                         <th style="width:150px;">Debtor Name</th>
                         <th style="width:220px;">Instructed Agent Member Name</th>
                         <th style="width:220px;">Consumer Reference Number</th>
-                        <th style="width:220px;">Debtor Account Number</th>
+                        <th style="width:400px;">Debtor Account Number</th>
                         <th style="width:150px;">Debtor Agent ID</th>
                         <th style="width:150px;">Collection Amount</th>
                         <th style="width:150px;">Maximum Amount</th>
@@ -146,11 +150,13 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let lang of Databind ">
-                        <td style="width:150px;"><input type="checkbox" name="allcheck" ></td>
+                        
+                        <td style="width:150px;"><input type="checkbox" name="all" value="lang.selected" [checked]="lang.selected" (click)="Removelabel()" (change)="onChange($event,lang); lang.selected = !(lang.selected)"></td>
+                      
                         <td style="width:150px;"> {{lang.DebtorName}}</td>
                         <td style="width:220px;">{{lang.InstructedAgentMemberName}}</td>
                         <td style="width:220px;">{{lang.ConsumerReferenceNumber}}</td>
-                        <td style="width:220px;">{{lang.DebtorAccountNumber}}</td>
+                        <td style="width:400px;">{{lang.DebtorAccountNumber}}</td>
                         <td style="width:150px;">{{lang.DebtorAgentID}}</td>
                         <td style="width:150px;">{{lang.Collection}}</td>
                         <td style="width:150px;">{{lang.MaximumAmount}}</td>
@@ -160,11 +166,14 @@
                         <td style="width:150px;">{{lang.CreationDateTime}}</td>
 
                     </tr>
+                    <tr *ngIf="Databind?.length == 0">
+                        <td colspan="3" >No data!</td>
+                    </tr>
 
                 </tbody>
 
             </table>
-
+           
         </div>
 
     </div>

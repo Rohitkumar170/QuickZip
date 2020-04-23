@@ -6,7 +6,7 @@ using System.Web;
 namespace QuickZip.Models.OldEmandate
 {
     public class Searchdata
-    {
+    {  
         public string DebtorName { get; set; }
         public string InstructedAgentMemberName { get; set; }
         public string ConsumerReferenceNumber { get; set; }
@@ -15,11 +15,13 @@ namespace QuickZip.Models.OldEmandate
         public string Collection { get; set; }
         public string MaximumAmount { get; set; }
         public string ServiceProvider { get; set; }
+        public string Frequency { get; set; }
         public string DebtorAccountType { get; set; }
         public string CreationDateTime { get; set; }
-        public string FromDate { get; set; }
-        public string Todate { get; set; }
-        public string bankdrop { get; set; }
+        //public string ManDateID { get; set; }
+        //public string FromDate { get; set; }
+        //public string Todate { get; set; }
+        //public string bankdrop { get; set; }
 
 
     }

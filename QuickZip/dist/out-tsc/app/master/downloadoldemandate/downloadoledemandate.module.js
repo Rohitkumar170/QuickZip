@@ -17,10 +17,13 @@ var DownloadoledemandateModule = /** @class */ (function () {
                 ReactiveFormsModule,
                 FormsModule
             ],
-            providers: [DownloadoldemandateService]
+            providers: [DownloadoldemandateService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
         })
     ], DownloadoledemandateModule);
     return DownloadoledemandateModule;
 }());
 export { DownloadoledemandateModule };
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
 //# sourceMappingURL=downloadoledemandate.module.js.map
