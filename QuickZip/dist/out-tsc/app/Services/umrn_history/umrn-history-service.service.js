@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 var UMRNHISTORYSERVICEService = /** @class */ (function () {
     function UMRNHISTORYSERVICEService(_http, myAppUrl) {
@@ -12,8 +12,14 @@ var UMRNHISTORYSERVICEService = /** @class */ (function () {
     //    alert("Service" + UMRN + " " + CustomerName + RefrNo);
     //    return this._http.get<UMRNHISTORYCLASS>(this.baseUrl + 'api/BindData/' + UMRN + '/' + CustomerName + '/' + RefrNo);
     //}
-    UMRNHISTORYSERVICEService.prototype.BindGridData = function (UMRN, CustomerName, RefrNo, UserId) {
-        return this._http.post(this.baseUrl + 'api/BindData', +UMRN + '/' + CustomerName + '/' + RefrNo + '/' + UserId);
+    UMRNHISTORYSERVICEService.prototype.BindGridData = function (em) {
+        var body = em;
+        // alert(body);
+        var headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post(this.baseUrl + 'api/BindData', body, {
+            headers: headers
+        });
+        // return this._http.post<UMRNHISTORYCLASS>(this.baseUrl + 'api/BindData', +UMRN + '/' + CustomerName + '/' + RefrNo + '/' + UserId);
     };
     UMRNHISTORYSERVICEService.prototype.errorHandler = function (error) {
         console.log(error);
