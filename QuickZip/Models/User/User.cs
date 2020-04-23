@@ -5,12 +5,11 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-
 using BusinessLibrary;
-
 using System.Threading.Tasks;
 using QuickZip.Entity;
 using System.Xml.Linq;
+using System.Net.Http;
 
 namespace QuickZip.Models.User
 {
@@ -22,7 +21,9 @@ namespace QuickZip.Models.User
         {
             try
             {
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_user]").With<UserData>().With<UtilityCodes>().With<SponsorBankCode>().With<EntityPaymentMode>().With<UserEntity>().With<EntityMandateMode>().With<TempData>().With<CategoryCodes>().Execute("@QueryType","@EntityId", "@PageCount", "@Search_Text", "BindUser",EntityId, PageCount,Search_Text));
+                
+                
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_user]").With<UserData>().With<UtilityCodes>().With<SponsorBankCode>().With<EntityPaymentMode>().With<UserEntity>().With<EntityMandateMode>().With<TempData>().With<CategoryCodes>().Execute("@QueryType","@EntityId", "@PageCount", "@Search_Text", "BindUser", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%"))), PageCount,Search_Text));
                 return Result;
             }
             catch (Exception ex)
@@ -35,7 +36,7 @@ namespace QuickZip.Models.User
         {
             try
             {
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_user]").With<Maker>().With<NachUser>().Execute("@QueryType", "@EntityId", "@UserId", "BindPresentmentMaker", EntityId, UserId));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_user]").With<Maker>().With<NachUser>().Execute("@QueryType", "@EntityId", "@UserId", "BindPresentmentMaker", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%"))), DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%")))));
                 return Result;
             }
             catch (Exception ex)
@@ -48,7 +49,20 @@ namespace QuickZip.Models.User
         {
             try
             {
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Entity]").With<Checker>().With<AccessRights>().Execute("@QueryType", "@EntityId", "CheckIsPresentmentChecker", EntityId));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Entity]").With<Checker>().With<AccessRights>().With<AccessRights>().Execute("@QueryType", "@EntityId", "CheckIsPresentmentChecker", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
+                return Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Dictionary<string, object> getUserReportData(string EntityId)
+        {
+            try
+            {
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_user]").With<UserReport>().Execute("@QueryType", "@EntityId", "ExportExcel_UserGrid", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
                 return Result;
             }
             catch (Exception ex)
@@ -80,38 +94,17 @@ namespace QuickZip.Models.User
                 if (Defaultpwd.Trim() != "")
                 {
                     Defaultpwd = Convert.ToString(ConfigurationManager.AppSettings["DefaultPswdUser"]);
-                    //  password = DbSecurity.Encrypt(PassW, ref passwordKey);
-                   password = Defaultpwd;
+                    password = DbSecurity.Encrypt(Defaultpwd, ref passwordKey);
+                  
                    
                 }
-                //                var xdoc = new System.Xml.Linq.XDocument(
-                //    new XElement("data",
-                //        UserData.Select(w =>
-                //            new XElement("worker",
-                //                new XAttribute("id", w.INN),
-                //                new XElement("start", w.StartDay),
-                //                new XElement("pause", w.StartPause),
-                //                new XElement("continue", w.EndPause),
-                //                new XElement("end", w.EndDay)
-                //            )
-                //        )
-
-                //    )
-                //);
-                //string xlmns = "urn:iso:std:iso:20022:tech:xsd:pain.009.001.04";
-                //string Version = "1.0";
-                //string Encodng = "UTF-8";
-                //string xml = "";
-                //xml = @"<?xml version=" + @"""" + Version + @""" encoding=" + @"""" + Encodng + @"""?><Document xmlns=" + @"""" + xlmns + @"""><MndtInitnReq><GrpHdr><sponsorbankcode>" + user.sponsorbankcode + "</sponsorbankcode></Document>";
-
-
-
+                
 
                 var Result = dbcontext.MultipleResults("[dbo].[sp_user]").With<Users>().Execute("@QueryType", "@XmlSponsorBankCode", "@EntityId", "@Type"
                 , "@UserId", "@ContactNo", "@EmailId", "@userNameId",
          "@password", "@passwordKey", "@XmlPaymentMode", "@IsBulkMandate", "@IsMandate", "@IsMandateEdit", "@IsRefrenceEdit",
          "@EmailSendTo", "@IsAllowFundTransfer", "@IsZipSure", "@APPId", "@PresentmentMaker", "@PresentmentChecker", "@XmlPresentmentMaker", "@XmlUserRightsA", "@XmlUserRightsB", "@XmlUserRightsC", "@XmlUserRightsD", "@NachViewUserID", "@IsDashBoard", "@IsEnableCancel", "@BankValidationUserCount", "@AcValidationUserCount", "@IsViewAll", "@XmlCategoryCode", "SaveData"
-                       , dtSponsorBankCode, DbSecurity.Decrypt(EntityId), userdata.Type, DbSecurity.Decrypt(UserId), userdata.PhoneNo, userdata.EmailId, userdata.UserName,
+                       , dtSponsorBankCode, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%"))), userdata.Type, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), userdata.PhoneNo, userdata.EmailId, userdata.UserName,
              password, passwordKey, dtPaymentMode, IsBulk.ToString(), Ismandate.ToString(), IsMandateEdit.ToString(), chkRefEdit.ToString(), userdata.emailsent, IsAllowFundTransfer.ToString(), IsZipSure.ToString(), Convert.ToString(ConfigurationManager.AppSettings["APPId"]), chkPresentMaker.ToString(), chkPresentChecker.ToString(),dtPresentmentMaker, dtUserRights_1, dtUserRights_2, dtUserRights_3, dtUserRights_4, userdata.nachuser, iSDashboard.ToString(), IsEnableCancel.ToString(), Convert.ToString(userdata.bankval), Convert.ToString(userdata.accountval), IsViewall.ToString(), dtCategoryCode);
 
                 foreach (var usrdata in Result)
@@ -138,38 +131,17 @@ namespace QuickZip.Models.User
                 if (Defaultpwd.Trim() != "")
                 {
                     Defaultpwd = Convert.ToString(ConfigurationManager.AppSettings["DefaultPswdUser"]);
-                    //  password = DbSecurity.Encrypt(PassW, ref passwordKey);
-                    password = Defaultpwd;
+                   password = DbSecurity.Encrypt(Defaultpwd, ref passwordKey);
+                   
 
                 }
-                //                var xdoc = new System.Xml.Linq.XDocument(
-                //    new XElement("data",
-                //        UserData.Select(w =>
-                //            new XElement("worker",
-                //                new XAttribute("id", w.INN),
-                //                new XElement("start", w.StartDay),
-                //                new XElement("pause", w.StartPause),
-                //                new XElement("continue", w.EndPause),
-                //                new XElement("end", w.EndDay)
-                //            )
-                //        )
-
-                //    )
-                //);
-                //string xlmns = "urn:iso:std:iso:20022:tech:xsd:pain.009.001.04";
-                //string Version = "1.0";
-                //string Encodng = "UTF-8";
-                //string xml = "";
-                //xml = @"<?xml version=" + @"""" + Version + @""" encoding=" + @"""" + Encodng + @"""?><Document xmlns=" + @"""" + xlmns + @"""><MndtInitnReq><GrpHdr><sponsorbankcode>" + user.sponsorbankcode + "</sponsorbankcode></Document>";
-
-
-
+                
 
                 var Result = dbcontext.MultipleResults("[dbo].[sp_user]").With<Users>().Execute("@QueryType", "@XmlSponsorBankCode", "@EntityId", "@Type"
                 , "@UserId", "@ContactNo", "@EmailId", "@userNameId",
          "@password", "@passwordKey", "@XmlPaymentMode", "@IsBulkMandate", "@IsMandate", "@IsMandateEdit", "@IsRefrenceEdit",
          "@EmailSendTo", "@IsAllowFundTransfer", "@IsZipSure", "@APPId", "@PresentmentMaker", "@PresentmentChecker", "@XmlPresentmentMaker", "@XmlUserRightsA", "@XmlUserRightsB", "@XmlUserRightsC", "@XmlUserRightsD", "@NachViewUserID", "@IsDashBoard", "@IsEnableCancel", "@BankValidationUserCount", "@AcValidationUserCount", "@IsViewAll", "@XmlCategoryCode","@User", "UpdateData"
-                       , dtSponsorBankCode, DbSecurity.Decrypt(EntityId), userdata.Type, DbSecurity.Decrypt(UserId), userdata.PhoneNo, userdata.EmailId, userdata.UserName,
+                       , dtSponsorBankCode, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%"))), userdata.Type, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), userdata.PhoneNo, userdata.EmailId, userdata.UserName,
              password, passwordKey, dtPaymentMode, IsBulk.ToString(), Ismandate.ToString(), IsMandateEdit.ToString(), chkRefEdit.ToString(), userdata.emailsent, IsAllowFundTransfer.ToString(), IsZipSure.ToString(), Convert.ToString(ConfigurationManager.AppSettings["APPId"]), chkPresentMaker.ToString(), chkPresentChecker.ToString(), dtPresentmentMaker, dtUserRights_1, dtUserRights_2, dtUserRights_3, dtUserRights_4, userdata.nachuser, iSDashboard.ToString(), IsEnableCancel.ToString(), Convert.ToString(userdata.bankval), Convert.ToString(userdata.accountval), IsViewall.ToString(), dtCategoryCode,Id.ToString());
 
                 foreach (var usrdata in Result)

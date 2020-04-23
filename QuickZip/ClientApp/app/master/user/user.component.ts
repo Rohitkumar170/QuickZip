@@ -15,6 +15,8 @@ import { Getsponsorcode } from 'ClientApp/Models/User/getsponsorcode';
 import { GetMaker } from 'ClientApp/Models/User/get-maker';
 import { GetAccessRights } from 'ClientApp/Models/User/get-access-rights';
 import { GetCategoryCode } from 'ClientApp/Models/User/get-category-code';
+import { Userdata } from 'ClientApp/Models/User/userdata';
+//import { Directive, HostListener } from '@angular/core';
 //import { UserServiceService } from 'ClientApp/app/Services/user/user-service.service';
 
 
@@ -23,11 +25,14 @@ import { GetCategoryCode } from 'ClientApp/Models/User/get-category-code';
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
 
-    UserForm: FormGroup;
+    UserForm: FormGroup; HeaderArray; DetailArray=[];
+
     user: Users;
     userdata: User;
+    userreport: Userdata;
     categorycode: CategoryCode; sponsorbankid: Getsponsorcode; getmaker: GetMaker; getAccessRight1: GetAccessRights; getcatcode: GetCategoryCode; getAccessRight2: GetAccessRights;
     bankacc: Bankval;
     tempdata: TempData;
@@ -58,11 +63,14 @@ export class UserComponent implements OnInit {
     public dvVideos: boolean = false;
     public dvtxtBankValidationcount: boolean = false;
     public dvtxtAccountValidationcount: boolean = false;
+    
     message: string;
+    linkid: number = 0;
     public AcvalUsercount: string = "";
     public bankvalUsercount: string = "";
     public dvEnableCancel: boolean = false;
-    setClickedRow: Function;
+    TotalCount;
+    
     Userid: number = 0;
 
     constructor(private formBuilder: FormBuilder, private userservice: UserServiceService) { }
@@ -91,15 +99,14 @@ export class UserComponent implements OnInit {
             maker: new FormControl(),
             bankval: new FormControl(),
             accountval: new FormControl(),
-            chkEnableCancel: new FormControl()
-
+            chkEnableCancel: new FormControl(),
+            chkbulkuploadlink: new FormControl(),
+            chkvideolink: new FormControl()
 
 
         });
 
-        this.setClickedRow = function (index) {
-            this.selectedRow = index;
-        }
+        
         this.tableid = true;
         this.formid = false;
         this.divaccessright = false;
@@ -112,7 +119,8 @@ export class UserComponent implements OnInit {
         this.dvtxtBankValidationcount = false;
         this.dvtxtAccountValidationcount = false;
         this.dvEnableCancel = false;
-        //this.divuserlist = false;
+        
+           
 
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
@@ -138,15 +146,21 @@ export class UserComponent implements OnInit {
         document.getElementById("btnBack").removeAttribute("disabled");
         this.tableid = false;
         this.formid = true;
+        document.getElementById('divSearch').hidden = true;
+        document.getElementById('btnExport').hidden = true;
     }
 
     bindUser() {
 
-
+        this.Search_Text = ((document.getElementById("txtSearch") as HTMLInputElement).value);
+        if (this.Search_Text == "") {
+            this.Search_Text = "0";
+        }
         let item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.getUser(item.ReferenceId, this.Page_Count).subscribe((data) => {
+        this.userservice.getUser(item.ReferenceId, this.Page_Count, this.Search_Text).subscribe((data) => {
 
             this.userdata = data.Table;
+            
 
             this.sponsorbankcode = data.Table2;
             console.log(this.sponsorbankcode);
@@ -160,14 +174,14 @@ export class UserComponent implements OnInit {
             this.bankacc = data.Table5;
             this.UserForm.controls['bankval'].setValue("");
             this.UserForm.controls['accountval'].setValue("");
-            if (this.bankacc.EnableUserWise == true) {
-                this.UserForm.controls['bankval'].setValue(this.bankacc.BankValidationUserCount);
-                this.UserForm.controls['accountval'].setValue(this.bankacc.AcValidationUserCount);
+            if (this.bankacc[0].EnableUserWise == true) {
+                this.UserForm.controls['bankval'].setValue(this.bankacc[0].BankValidationUserCount);
+                this.UserForm.controls['accountval'].setValue(this.bankacc[0].AcValidationUserCount);
                 this.dvtxtAccountValidationcount = true;
                 this.dvtxtBankValidationcount = true;
 
-                this.AcvalUsercount = this.bankacc.AcValidationUserCount;
-                this.bankvalUsercount = this.bankacc.BankValidationUserCount;
+                this.AcvalUsercount = this.bankacc[0].AcValidationUserCount;
+                this.bankvalUsercount = this.bankacc[0].BankValidationUserCount;
 
             }
             else {
@@ -175,7 +189,7 @@ export class UserComponent implements OnInit {
                 this.dvtxtAccountValidationcount = false;
             }
 
-            if (this.bankacc.EnableCancelUserWise == true) {
+            if (this.bankacc[0].EnableCancelUserWise == true) {
                 this.dvEnableCancel = true;
             }
             else {
@@ -183,13 +197,6 @@ export class UserComponent implements OnInit {
             }
 
             this.tempdata = data.Table6;
-
-
-
-
-
-
-
 
 
         });
@@ -209,17 +216,42 @@ export class UserComponent implements OnInit {
         let item = JSON.parse(sessionStorage.getItem('User'));
         this.userservice.CheckIsPresentmentChecker(item.ReferenceId).subscribe((data) => {
             this.checker = data.Table;
-            if (data.Table1.Count > 0) {
+            var html = "";
+            var html1 = "";
+            if (data.Table1.length > 0) {
+                this.bulkupload = data.Table1;
                 this.dvBulkUpload = true;
+
+                //html = "<div class='col-md-11 col-sm-12 col-xs-12 no-padding' ><div class='form-group'><label class='col-sm-2 col-md-2 col-xs-4 control-label no-padding ' for='form-field-1'>Bulk Upload</label><div class='col-sm-10 col-md-10 col-xs-7 no-padding' id='divbulkupload'>"
+                //for (var i = 0; i < data.Table1.length; i++) {
+                //    html += "<div class='col-md-2 col-sm-3 col-xs-12 no-padding' ><input type='checkbox' name='chkbulkupload' id='chkbx_" + this.bulkupload[i].LinkID + "' class='bulkvideo pull-left' value='" + this.bulkupload[i].LinkID + "'/><label class='col-md-10 col-xs-10 col-sm-10 no-padding-right control-label'>" + this.bulkupload[i].LinkName + "</label></div>"
+
+                   
+                //}
+                //html += "</div></div></div>"
+
+                //var d1 = document.getElementById('dvBulkUpload');
+                //d1.insertAdjacentHTML('beforeend', html);
             }
-            if (data.Table2.Count > 0) {
+            if (data.Table2.length > 0) {
+                this.bulkvideo = data.Table1;
                 this.dvVideos = true;
+
+                //html1 = "<div class='col-md-11 col-sm-12 col-xs-12 no-padding' ><div class='form-group'><label class='col-sm-2 col-md-2 col-xs-4 control-label no-padding ' for='form-field-1'>Bulk Upload</label><div class='col-sm-10 col-md-10 col-xs-7 no-padding' id='divbulkupload'>"
+                //for (var i = 0; i < data.Table2.length; i++) {
+                //    html1 += "<div class='col-md-2 col-sm-3 col-xs-12 no-padding' ><input type='checkbox' name='chkbulkupload' id='chkbx_" + this.bulkvideo[i].LinkID + "' class='bulkvideo pull-left' value='" + this.bulkvideo[i].LinkID + "'/><label class='col-md-10 col-xs-10 col-sm-10 no-padding-right control-label'>" + this.bulkvideo[i].LinkName + "</label></div>"
+
+                    
+                //}
+                //html += "</div></div></div>"
+
+                //var d2 = document.getElementById('dvVideos');
+                //d2.insertAdjacentHTML('beforeend', html);
             }
-            this.bulkupload = data.Table1;
-            console.log(this.bulkupload);
-            this.bulkvideo = data.Table2;
-            console.log(this.bulkvideo);
+
+
         });
+           
     }
 
 
@@ -270,7 +302,9 @@ export class UserComponent implements OnInit {
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnNew").removeAttribute("disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
-
+        this.UserForm.reset();
+        document.getElementById('divSearch').hidden = false;
+        document.getElementById('btnExport').hidden = false;
     }
 
     isNumber(evt): boolean {
@@ -331,7 +365,7 @@ export class UserComponent implements OnInit {
         this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId).subscribe(
             (data) => {
                 this.user = data;
-                if (this.user.Result == "-1") {
+                if (this.user[0].Result == -1) {
 
                     this.message = 'User already exists';
                     alert(this.message);
@@ -366,7 +400,7 @@ export class UserComponent implements OnInit {
         this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid).subscribe(
             (data) => {
                 this.user = data;
-                if (this.user.Result == "1") {
+                if (this.user[0].Result == 1) {
 
                     this.message = 'User updated Successfully';
                     alert(this.message);
@@ -396,7 +430,7 @@ export class UserComponent implements OnInit {
     isChklength() {
         let phnumber = ((document.getElementById("txtphnumber") as HTMLInputElement).value);
         if (phnumber.length > 0 && phnumber.length < 10) {
-            ((document.getElementById("txtphnumber") as HTMLInputElement).value) == "";
+            this.UserForm.controls['PhoneNo'].setValue("");
             document.getElementById("txtphnumber").classList.add('validate');
             document.getElementById("txtphnumber").setAttribute("placeholder", "Please enter 10 - digit");
         }
@@ -415,7 +449,7 @@ export class UserComponent implements OnInit {
         let email = ((document.getElementById("txtEmailId") as HTMLInputElement).value);
         let regex = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/;
         if (regex.test(email) != true) {
-
+            this.UserForm.controls['EmailId'].setValue("");
             document.getElementById("txtEmailId").classList.add('validate');
             document.getElementById("txtEmailId").setAttribute("placeholder", "Invalid-Email");
         }
@@ -428,7 +462,7 @@ export class UserComponent implements OnInit {
         let email = ((document.getElementById("txtemailsent") as HTMLInputElement).value);
         let regex = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/;
         if (regex.test(email) != true) {
-
+            this.UserForm.controls['emailsent'].setValue("");
             document.getElementById("txtemailsent").classList.add('validate');
             document.getElementById("txtemailsent").setAttribute("placeholder", "Invalid-Email");
         }
@@ -441,19 +475,19 @@ export class UserComponent implements OnInit {
         const Currentrowid = this.UserForm.value;
         this.Userid = User.UserId;
 
-        this.editData(this.Userid);
-        document.getElementById("btnSave").removeAttribute("disabled");
-        document.getElementById("btnEdit").setAttribute("disabled", "disabled");
-        document.getElementById("btnNew").setAttribute("disabled", "disabled");
-        document.getElementById("btnBack").removeAttribute("disabled");
-        this.tableid = false;
-        this.formid = true;
+        this.editData();
+        //document.getElementById("btnSave").removeAttribute("disabled");
+        //document.getElementById("btnEdit").setAttribute("disabled", "disabled");
+        //document.getElementById("btnNew").setAttribute("disabled", "disabled");
+        //document.getElementById("btnBack").removeAttribute("disabled");
+        //this.tableid = false;
+        //this.formid = true;
         this.Temp = 2;
 
     }
 
-    editData(Id) {
-        this.userservice.EditData(Id).subscribe((data) => {
+    editData() {
+        this.userservice.EditData(this.Userid).subscribe((data) => {
 
             this.userdata = data.Table;
             this.sponsorbankid = data.Table1;
@@ -542,11 +576,157 @@ export class UserComponent implements OnInit {
                 if (this.getAccessRight2[i].LinkID == 22) {
                     this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
+                
             }
 
         });
 
+        document.getElementById("btnSave").removeAttribute("disabled");
+        document.getElementById("btnEdit").setAttribute("disabled", "disabled");
+        document.getElementById("btnNew").setAttribute("disabled", "disabled");
+        document.getElementById("btnBack").removeAttribute("disabled");
+        this.tableid = false;
+        this.formid = true;
+
+
 
     }
 
-}
+
+    bankValidationChange() {
+
+        if (this.UserForm.controls['bankval'].value == 0) {
+            this.UserForm.controls['bankval'].setValue(this.bankvalUsercount);
+            alert('Value should Be Greater Than 0');
+
+        }
+        else {
+
+            if ((this.UserForm.controls['bankval'].value) > (this.bankvalUsercount)) {
+                this.UserForm.controls['bankval'].setValue("");
+
+
+                alert("Max Bank Validation count for Corporate Is :  " + this.bankvalUsercount)
+
+                this.UserForm.controls['bankval'].setValue(this.bankvalUsercount);
+            }
+        }
+    }
+
+
+    accountValidationChange() {
+        if (this.UserForm.controls['accountval'].value == 0) {
+            this.UserForm.controls['accountval'].setValue(this.AcvalUsercount);
+            alert('Value should Be Greater Than 0');
+
+        }
+        else {
+
+            if ((this.UserForm.controls['accountval'].value) > (this.AcvalUsercount)) {
+                this.UserForm.controls['accountval'].setValue("");
+
+
+                alert("Max Bank Validation count for Corporate Is :  " + this.AcvalUsercount)
+
+                this.UserForm.controls['accountval'].setValue(this.AcvalUsercount);
+            }
+        }
+    }
+
+    setClickedRow(User: any) {
+        const Currentrowid = this.UserForm.value;
+        this.Userid = User.UserId;
+         this.Temp = 2;
+    
+    document.getElementById("btnEdit").removeAttribute("disabled");
+
+
+    }
+
+    checkLinks(data:any) {
+        let inputs = document.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++)
+            var ids = data.LinkID;
+        if (ids[i].checked == true) {
+            this.UserForm.controls['chkbulkuploadlink'].setValue(ids[i]);
+        }
+    }
+
+    checkVideoLinks(data: any) {
+        let inputs = document.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++)
+            var ids = data.LinkID;
+        if (ids[i].checked == true) {
+            this.UserForm.controls['chkvideolink'].setValue(ids[i]);
+        }
+    }
+
+    download() {
+        let item = JSON.parse(sessionStorage.getItem('User'));
+        this.userservice.getUserReport(item.ReferenceId).subscribe((data) => {
+            this.userreport = data.Table;
+            var csvData = this.ConvertToCSV(JSON.stringify(this.userreport));
+            var a = document.createElement("a");
+            a.setAttribute('style', 'display:none;');
+            document.body.appendChild(a);
+            var blob = new Blob([csvData], { type: 'text/csv' });
+            var url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = 'User_Results.csv';/* your file name*/
+            a.click();
+            return 'success';
+        });
+    }
+
+    ConvertToCSV(objArray) {
+        this.HeaderArray = {
+            Srno: "Sr No.", UserName: "User Name", EmailId: "Email ID", PhoneNo: "Phone Number",
+            Type: "Type",Status:"Status"
+        }
+        var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+        var str = '';
+        var row = "";
+
+        for (var index in objArray[0]) {
+            //Now convert each value to string and comma-separated
+            row += index + ',';
+        }
+        row = row.slice(0, -1);
+        //append Label row with line break
+        str += row + '\r\n';
+
+        for (var i = 0; i < array.length; i++) {
+            var line = '';
+
+            if (i == 0) {
+                for (var index in this.HeaderArray) {
+                    if (line != '') line += ','
+
+                    line += this.HeaderArray[index];
+                }
+                str += line + '\r\n';
+            }
+
+            var line = '';
+            for (var index in array[i]) {
+                if (line != '') line += ','
+
+                line += array[i][index];
+            }
+            str += line + '\r\n';
+        }
+        return str;
+    }
+    //@HostListener('paste', ['$event']) blockPaste(e: KeyboardEvent) {
+    //    e.preventDefault();
+    //}
+
+   // @HostListener('copy', ['$event']) blockCopy(e: KeyboardEvent) {
+   //     e.preventDefault();
+   // }
+
+   // @HostListener('cut', ['$event']) blockCut(e: KeyboardEvent) {
+   //     e.preventDefault();
+   //}
+ }
+

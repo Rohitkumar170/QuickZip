@@ -15,10 +15,13 @@ var UserModule = /** @class */ (function () {
                 CommonModule,
                 UserRoutingModule, ReactiveFormsModule, FormsModule
             ],
-            providers: [UserServiceService]
+            providers: [UserServiceService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
         })
     ], UserModule);
     return UserModule;
 }());
 export { UserModule };
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
 //# sourceMappingURL=user.module.js.map

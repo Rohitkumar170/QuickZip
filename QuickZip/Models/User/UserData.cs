@@ -30,6 +30,7 @@ namespace QuickZip.Models.User
         public Boolean IsEnableCancel { get; set; }
         public Boolean IsViewAll { get; set; }
         
+        
        
 
     } 
