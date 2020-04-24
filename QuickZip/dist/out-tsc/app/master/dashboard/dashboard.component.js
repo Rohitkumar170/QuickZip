@@ -10,6 +10,12 @@ var DashboardComponent = /** @class */ (function () {
         //    this.isLoggedin = true; this.isChangePassword = true;
         //}  
     }
+    DashboardComponent.prototype.onClick = function (event) {
+        this.showModal = true;
+    };
+    DashboardComponent.prototype.hide = function () {
+        this.showModal = false;
+    };
     DashboardComponent.prototype.ngOnInit = function () {
     };
     DashboardComponent = tslib_1.__decorate([

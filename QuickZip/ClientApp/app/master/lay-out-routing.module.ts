@@ -26,13 +26,23 @@ const routes: Routes = [
             { path: 'Demophysical', loadChildren: './demophysical/demophysical.module#DemophysicalModule', canActivate: [AuthGuardService] },
             { path: 'Demoemandate', loadChildren: './demoemandate/demoemandate.module#DemoemandateModule', canActivate: [AuthGuardService] },
             { path: 'Allumrn', loadChildren: './allumrn/all-umrn.module#AllUmrnModule', canActivate: [AuthGuardService] },
-            { path: 'Nachtransactionpresentation', loadChildren: './nachtransactionpresentation/nachtransactionpresentation.module#NachtransactionpresentationModule', canActivate: [AuthGuardService] }
+            { path: 'Nachtransactionpresentation', loadChildren: './nachtransactionpresentation/nachtransactionpresentation.module#NachtransactionpresentationModule', canActivate: [AuthGuardService] },
+            { path: 'AccessRights', loadChildren: './access-rights/access-rights.module#AccessRightsModule', canActivate: [AuthGuardService] },
+            { path: 'EntityBankSetup', loadChildren: './entity-bank-setup/entity-bank-setup.module#EntityBankSetupModule', canActivate: [AuthGuardService] },
+            { path: 'LinkSetup', loadChildren: './link-setup/link-setup.module#LinkSetupModule', canActivate: [AuthGuardService] }
+
         ]
     }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        { provide: 'BASE_URL', useFactory: getBaseUrl }
+    ],
 })
 export class LayOutRoutingModule { }
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}

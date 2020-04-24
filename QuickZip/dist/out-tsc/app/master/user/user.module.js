@@ -1,10 +1,8 @@
 import * as tslib_1 from "tslib";
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { CommonModule } from '@angular/common';
-import { UserServiceService } from 'ClientApp/app/Services/User/user-service.service';
 var UserModule = /** @class */ (function () {
     function UserModule() {
     }
@@ -13,9 +11,8 @@ var UserModule = /** @class */ (function () {
             declarations: [UserComponent],
             imports: [
                 CommonModule,
-                UserRoutingModule, ReactiveFormsModule, FormsModule
-            ],
-            providers: [UserServiceService]
+                UserRoutingModule
+            ]
         })
     ], UserModule);
     return UserModule;

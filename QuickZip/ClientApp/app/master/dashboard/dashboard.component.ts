@@ -5,7 +5,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    
+
+    showModal: boolean;
+    onClick(event) {
+        this.showModal = true;
+
+
+    }
+
+    hide() {
+        this.showModal = false;
+    }
+
+
+
     constructor(
         //private router: Router
     ) {

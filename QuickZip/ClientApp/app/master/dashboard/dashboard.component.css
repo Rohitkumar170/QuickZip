@@ -2,6 +2,59 @@
     width: 99%;
 }
 
+.bgcolor {
+    background: #e2e4e6;
+    
+}
+
+.close {
+    position: absolute;
+    right: 23px;
+    border: 1px solid #929292;
+    padding: 0px 4px 0px 4px;
+    top: 22px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #3670ab;
+    opacity: 1;
+    font-size: 28px !important;
+}
+
+
+#Fund .bankbg {
+    margin: 1% 0 1% 0;
+}
+
+.modal-header {
+    padding:0px !important;
+}
+
+#Fund .bankbg label {
+    text-align: left;
+}
+.amarlabel {
+    color: #0b4f70;
+}
+
+.imginlineblock {
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #dvLinks {
     width: 14%;
     border-right: 1px solid #cdcdcd;

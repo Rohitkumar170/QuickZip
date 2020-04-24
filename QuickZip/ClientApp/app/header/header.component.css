@@ -8,6 +8,46 @@ body {
     width: 190px;
     float: left;
 }
+
+#guidelines {
+    color: black;
+    position: absolute;
+    top: 103%;
+    right: 1%;
+    background: #fff;
+    z-index: 9999;
+    border: 1px solid #cdcdcd;
+    box-shadow: 2px 2px 2px #cdcdcd;
+    padding: 1%;
+    width: 18%;
+    display: block;
+}
+.kotakDiv {
+    position: absolute;
+    right: 12%;
+    top: 2px;
+}
+
+
+
+.guidlicolor {
+    color: #ffffff !important;
+    position: absolute;
+    right: 6%;
+    top: 9px;
+    cursor: pointer;
+}
+
+h5.guidlicolor{
+    font-size: 13px !important;
+    padding-top: 10px;
+}
+
+.guideDiv {
+    float: right;
+    margin-right: 5%;
+}
+
 .logout {
     color: #ffffff !important;
     position: absolute;

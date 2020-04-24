@@ -1,7 +1,116 @@
 <div class="main-content" id="maincontent">
     <div class="content">
-        <span class="legal">Dashboard</span>
-       
+        <span class="legal" (click)="onClick($event)">Dashboard</span>
 
+
+    </div>
+   
+
+    <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header bgcolor">
+                    <h4 class="modal-title" style="text-align: center;">
+                        <span class="col-md-12 col-sm-12 col-xs-12 no-padding " style="text-align: center">
+                            <span class="col-md-12 col-sm-12 col-xs-12">
+                                <img id="img7" src="../../ClientApp/assets/images/caution2.png" class="SavedTick" style="width: 12%;margin-left: 43%;"
+                                     alt="" />
+                                <label class="  lblPopup col-md-12 col-sm-12 col-xs-12 no-padding-left  " id="Label8"
+                                       style="color: #0c862c;display:none;">
+                                    ENACH is not possible for this mandate
+                                </label>
+                            </span>
+
+                        </span>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                        <div class="form-group bankbg">
+                            <label class="col-sm-11 col-xs-11 col-md-11 amarlabel imginlineblock">
+                                Sponsor Bank Code :
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding imginlineblock">
+                                <img id="tickImgSponsor" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="crossImgSponsor" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                        <div class="form-group bankbg">
+                            <label class="col-sm-11 col-xs-11 col-md-11 amarlabel imginlineblock">
+                                Utility Code :
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding imginlineblock">
+                                <img id="tickImgUtility" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="CrossImgUtility" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                        <div class="form-group bankbg">
+                            <label class="col-sm-11 col-xs-11 col-md-11 amarlabel imginlineblock">
+                                Bank live on NACH :
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding imginlineblock">
+                                <img id="Img4" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="Img5" style="display: none" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                        <div class="form-group bankbg">
+                            <label class="col-sm-11 col-xs-11 col-md-11 amarlabel imginlineblock">
+                                Bank live on ENACH :
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding imginlineblock">
+                                <img id="Img9" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="Img10" style="display: none" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                        <div class="form-group bankbg">
+                            <label class="col-sm-11 col-xs-11 col-md-11 amarlabel imginlineblock">
+                                Amount < = ENACH max. trx value :
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding imginlineblock">
+                                <img id="imgAounttick" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="imgAmountCross" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                        <div class="form-group bankbg">
+                            <label class="col-sm-9 col-xs-8 col-md-9  amarlabel imginlineblock">
+                                "To Date" mandatory for ENACH:
+                            </label>
+                            <label class="col-sm-2 col-xs-3 col-md-2 no-padding-left  control-label"
+                                   for="form-field-2" id="blbtoDate" style="margin-top: 2px!important; margin-bottom: 0;
+                        display: none">
+                                <span class="pull-right">Edit</span><i class="fa fa-edit pull-right" style="margin-right: 5px;
+                            margin-top: 2px;"></i>
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding pull-right imginlineblock">
+                                <img id="imgTodatetick" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="ingtodatecross" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                        <div class="form-group bankbg">
+                            <label class="col-sm-11 col-xs-11 col-md-11 amarlabel imginlineblock">
+                                Single Signatory :
+                            </label>
+                            <div class="col-sm-1 col-xs-1 col-md-1 no-padding imginlineblock">
+                                <img id="imgtickjoint" src="../../ClientApp/assets/images/tick-icon.png" />
+                                <img id="imgcrossjoint" src="../../ClientApp/assets/images/Cross-icon.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="hide()" style="float: right;">Physical Mandate</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="hide()" style="float: right;margin-right: 3px;">OK</button>
+                    <label class="col-md-12 col-sm-12 col-xs-12  no-padding-right" style="color: #f52020;
+                text-align: left; font-size: 13px!important; margin: 2% 0 2% 0!important; display: none"
+                           id="Label15">
+                        Note:Mandate process mode can't be changed, once selected.
+                    </label>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
