@@ -22,7 +22,6 @@ export class UmrnUploadService {
         this.UserId = item.UserId;
         this.EntityId = item.ReferenceId;
        
-
         return this._http.get<any>(this.baseUrl + 'api/UMRNUpload/BindGrid/' + this.EntityId);
 
     } 

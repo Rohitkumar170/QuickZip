@@ -1,39 +1,154 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { OldmandateService } from '../../Services/oldmandate/oldmandate.service';
+import { formatDate } from '@angular/common';
 var DownloadoldmandateComponent = /** @class */ (function () {
     function DownloadoldmandateComponent(myservice) {
         this.myservice = myservice;
+        this.loading = false;
+        this.checkFlag = 0;
+        this.Ischecked = 0;
+        this.Isallcheck = 0;
+        this.SelectionStatusOfMutants = [];
+        this.selectMandateId = [];
+        this.ZipDownloadArray = [];
         this.CurrentDate = new Date();
-        this.list = [];
+        this.toggleSelect = function (event) {
+            //toggleSelect(event) {
+            // var SelectionStatusOfMutants = [];
+            this.all = event.target.checked;
+            this.tabledata.forEach(function (item) {
+                // console.log(item);
+                item.selected = event.target.checked;
+                // this.onChange(event, item);
+            });
+            this.checkFlag = 1;
+            if (event.target.checked) {
+                this.Ischecked = 1;
+                //  this.Isallcheck = 1;
+            }
+            else {
+                this.Ischecked = 0;
+            }
+        };
     }
+    DownloadoldmandateComponent.prototype.show = function () {
+        this.showModal = true;
+    };
+    DownloadoldmandateComponent.prototype.hide = function () {
+        this.showModal = false;
+    };
     DownloadoldmandateComponent.prototype.ngOnInit = function () {
-        //let item = JSON.parse(sessionStorage.getItem('User'));
+        //  let item = JSON.parse(sessionStorage.getItem('User'));
         //                console.log(item.UserId);
         //  this.currentdate;
+        var _this = this;
         this.BankdataBind();
+        // this.mydate(this.FromDate, thius,ToDate, selected);
+        var item = JSON.parse(sessionStorage.getItem('User'));
+        // console.log(item.UserId);
+        this.myservice.BankBind(item.UserId).subscribe(function (res) {
+            // console.log(res);
+            _this.bankdrop = res;
+            _this.i = Object.entries(_this.bankdrop)[0][1];
+            _this.SponserBankCode = _this.i.sponsorbankcode;
+            //  alert(this.SponserBankCode)
+            var u = _this.SponserBankCode;
+            var k = formatDate(new Date(), "yyyy-MM-dd", "en");
+            _this.mydate(k, k, u);
+            //  mydate(FromDate, ToDate, selected)
+        });
     };
-    DownloadoldmandateComponent.prototype.ifchecked = function (mandateid, Customer1, DateOnMandate, IsPrint, IsScan, Refrence1, Amount, AcNo, Code, BankName, Frequency, debittype, ToDebit, createdon) {
-        //  console.log(mandateid);
-        var aa = {
-            'mandateid': mandateid,
-            'Customer1': Customer1,
-            'DateOnMandate': DateOnMandate,
-            'IsPrint': IsPrint,
-            'IsScan': IsScan,
-            'Refrence1': Refrence1,
-            'Amount': Amount,
-            'AcNo': AcNo,
-            'Code': Code,
-            'BankName': BankName,
-            'Frequency': Frequency,
-            'debittype': debittype,
-            'ToDebit': ToDebit,
-            'createdon': createdon
-        };
-        this.list.push(aa);
-        console.log(this.list);
+    //  list = [];
+    //reject mandate
+    DownloadoldmandateComponent.prototype.RejectData = function (FromDate, ToDate, RejectedReason, selected) {
+        var _this = this;
+        //  alert(FromDate + " " + ToDate + " " + RejectedReason);
+        //   alert(this.selectMandateId);
+        //var modal = <HTMLElement>document.getElementById('myModal');
+        //modal.style.display = 'block';
+        //   var dta = <HTMLElement>document.getElementById('myform');
+        this.showModal = false;
+        var dta = document.getElementById('myform');
+        dta.value = "";
+        var item = JSON.parse(sessionStorage.getItem('User'));
+        // alert(item.UserId);
+        if (RejectedReason != null) {
+            this.myservice.RejectData(FromDate, ToDate, RejectedReason, item.UserId, this.selectMandateId).subscribe(function (res) {
+                console.log(res);
+                // this.tabledata = res;
+                _this.mydate(FromDate, ToDate, selected);
+                alert('Mandate Rejected');
+            });
+        }
+        else {
+            alert("please checked the mandate and fill the Reason");
+        }
     };
+    DownloadoldmandateComponent.prototype.onChange = function (event, item) {
+        //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
+        //var isChecked = element.checked;
+        //if (count == '') {
+        this.checkFlag = 0;
+        // this.IsMandateID = item.mandateid;
+        var CheckedCount = 0, UncheckedCount = 0;
+        if (event.target.checked) {
+            this.SelectionStatusOfMutants.push(item);
+            this.selectMandateId.push(item.mandateid);
+            console.log(this.SelectionStatusOfMutants);
+            //  alert('checked')
+            this.Ischecked = 1;
+            CheckedCount++;
+        }
+        else {
+            //
+            alert('please select mandate ');
+            this.SelectionStatusOfMutants.pop();
+            UncheckedCount++;
+            if (UncheckedCount == CheckedCount) {
+                this.Ischecked = 0;
+            }
+        }
+        //}
+        //else
+        //{
+        //    this.bindgrid.forEach(function (item) {
+        //        // console.log(item);
+        //        //item.selected = event.target.checked;
+        //        // this.onChange(event, item);
+        //        if (event.target.checked) {
+        //            this.SelectionStatusOfMutants.push(item);
+        //            alert('c')
+        //        }
+        //        else {
+        //            this.SelectionStatusOfMutants.pop();
+        //            alert('nc')
+        //        }
+        //    });
+        //}
+    };
+    //ifchecked(mandateid, Customer1, DateOnMandate, IsPrint, IsScan, Refrence1, Amount, AcNo, Code, BankName, Frequency, debittype, ToDebit, createdon) {
+    //    //  console.log(mandateid);
+    //    var aa =
+    //    {
+    //        'mandateid': mandateid,
+    //        'Customer1': Customer1,
+    //        'DateOnMandate': DateOnMandate,
+    //        'IsPrint': IsPrint,
+    //        'IsScan': IsScan,
+    //        'Refrence1': Refrence1,
+    //        'Amount': Amount,
+    //        'AcNo': AcNo,
+    //        'Code': Code,
+    //        'BankName': BankName,
+    //        'Frequency': Frequency,
+    //        'debittype': debittype,
+    //        'ToDebit': ToDebit,
+    //        'createdon': createdon
+    //    }
+    //    this.list.push(aa);
+    //    console.log(this.list);
+    //}
     DownloadoldmandateComponent.prototype.BankdataBind = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
@@ -44,6 +159,8 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         });
     };
     DownloadoldmandateComponent.prototype.SearchByReference = function (Reference) {
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        //formElement.style.display = 'block';
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
         // console.log(item.UserId);
@@ -59,11 +176,16 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         this.myservice.Bindbyrefrence(item.UserId, Reference).subscribe(function (res) {
             // console.log(res);
             _this.tabledata = res;
+            //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            //formElement.style.display = 'none';
         });
     };
     DownloadoldmandateComponent.prototype.mydate = function (FromDate, ToDate, selected) {
-        //   alert(FromDate + "  " + ToDate + " " + selected);
         var _this = this;
+        //   alert(FromDate + "  " + ToDate + " " + selected);
+        this.loading = true;
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
+        //formElement.style.display = 'block';
         if (FromDate != null && ToDate != null) {
             var item = JSON.parse(sessionStorage.getItem('User'));
             //  console.log(item.UserId);
@@ -71,14 +193,18 @@ var DownloadoldmandateComponent = /** @class */ (function () {
             //var b = ToDate;
             //var c = selected;
             this.myservice.BindbyDate(item.UserId, FromDate, ToDate, selected).subscribe(function (res) {
-                //   console.log(res);
+                console.log(res);
                 _this.tabledata = res;
             });
+            // this.loading = false;
         }
         else {
             alert("please choose the Date");
         }
-        console.log(this.list);
+        //  console.log(this.list);
+        //var formloder = <HTMLElement>document.getElementById('divLoarder2');
+        //formloder.style.display = 'none';
+        this.loading = false;
     };
     DownloadoldmandateComponent.prototype.SelectBank = function (FromDate, ToDate, selected) {
         var _this = this;
@@ -91,15 +217,6 @@ var DownloadoldmandateComponent = /** @class */ (function () {
     };
     DownloadoldmandateComponent.prototype.ConvertToCSV = function (objArray) {
         //this.HeaderArray = {
-        //    MandateStatus: "Mandate Status", SendToBankDate: "Send To Bank Date", MandateFreshId: "Mandate ID", mandateMode: "mandate Mode",
-        //    AutoRejectReason: "AutoRejectReason", updatedon: "updatedon", username: "username", UpdateBy: "UpdateBy", Enach: "Enach",
-        //    IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
-        //    IsScan: "IsScan", JPGPath: "JPGPath", TIPPath: "TIPPath", IsPrint: "IsPrint", mandateid: "mandateid", status: "status", Amount: "Amount",
-        //    Code: "Code", BankName: "BankName", DateOnMandate: "DateOnMandate", AcNo: "AcNo", Refrence1: "Refrence1", AcceptRefNo: "AcceptRefNo",
-        //    NPCIErrorDesc: "NPCIErrorDesc", FromDate: "FromDate", Customer1: "Customer1", debittype: "debittype", Frequency: "Frequency", Monthly: "Monthly",
-        //    ToDebit: "ToDebit", NPCIMsgId: "NPCIMsgId", MSGId: "MSGId", UMRN: "UMRN", AggregatorValue: "AggregatorValue", Amount_Numeric: "Amount_Numeric",
-        //    SponsorBankCode: "SponsorBankCode", PhoneNumber: "PhoneNumber", EmailId: "EmailId", EmandateType: "EmandateType", ActivityId: "ActivityId",
-        //    Refrence2: "Refrence2"
         //}
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = '';
@@ -131,17 +248,75 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         return str;
     };
     DownloadoldmandateComponent.prototype.downloadExcel = function () {
-        alert("this method is working");
-        var csvData = this.ConvertToCSV(JSON.stringify(this.list));
+        // alert("this method is working");
+        // alert(this.Ischecked);
+        //console.log(this.checkFlag);
+        if (this.Ischecked == 1) {
+            if (this.checkFlag == 0) {
+                var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
+            }
+            else {
+                var csvData = this.ConvertToCSV(JSON.stringify(this.tabledata));
+            }
+            // var csvData = this.ConvertToCSV(JSON.stringify(this.list));
+            var a = document.createElement("a");
+            a.setAttribute('style', 'display:none;');
+            document.body.appendChild(a);
+            var blob = new Blob([csvData], { type: 'text/csv' });
+            var url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = 'User_Results.csv'; /* your file name*/
+            a.click();
+            return 'success';
+        }
+        else {
+            alert('checkbox not selected');
+        }
+    };
+    //nontrade;
+    //trade;
+    //allNonTrades(event) {
+    //    const checked = event.target.checked;
+    //    this.nontrade.forEach(item => item.selected = checked);
+    //}
+    //allTrades(event) {
+    //    const checked = event.target.checked;
+    //    this.trade.forEach(item => item.selected = checked);
+    //}
+    //checkedDemo(abc) {
+    //    console.log(abc);
+    //}
+    //downloadfileComponent(filePath: string) {
+    //        this.appService.downloadfile(filePath)
+    //        .subscribe(data => this.getZipFile(data)),
+    //        error => console.log("Error downloading the file."),
+    //        () => console.log('Completed file download.');
+    //}
+    DownloadoldmandateComponent.prototype.downloadScannedMandate = function () {
+        this.ZipDownloadArray = [];
+        if (this.checkFlag == 0) {
+            this.ZipDownloadArray = this.SelectionStatusOfMutants;
+        }
+        else {
+            this.ZipDownloadArray = this.tabledata;
+        }
+        if (this.ZipDownloadArray.length == 0) {
+            alert("please select mandate");
+        }
+        else {
+            this.getZipFile(JSON.stringify(this.ZipDownloadArray));
+        }
+    };
+    DownloadoldmandateComponent.prototype.getZipFile = function (data) {
         var a = document.createElement("a");
-        a.setAttribute('style', 'display:none;');
         document.body.appendChild(a);
-        var blob = new Blob([csvData], { type: 'text/csv' });
+        a.style = "display: none";
+        var blob = new Blob([data], { type: 'application/zip' });
         var url = window.URL.createObjectURL(blob);
         a.href = url;
-        a.download = 'User_Results.csv'; /* your file name*/
+        a.download = "test.zip";
         a.click();
-        return 'success';
+        window.URL.revokeObjectURL(url);
     };
     DownloadoldmandateComponent = tslib_1.__decorate([
         Component({

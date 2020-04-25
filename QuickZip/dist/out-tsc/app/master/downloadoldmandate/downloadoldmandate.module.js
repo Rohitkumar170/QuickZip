@@ -17,10 +17,13 @@ var DownloadoldmandateModule = /** @class */ (function () {
                 ReactiveFormsModule,
                 FormsModule
             ],
-            providers: [OldmandateService]
+            providers: [OldmandateService, { provide: 'BASE_URL', useFactory: getBaseUrl }]
         })
     ], DownloadoldmandateModule);
     return DownloadoldmandateModule;
 }());
 export { DownloadoldmandateModule };
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
 //# sourceMappingURL=downloadoldmandate.module.js.map

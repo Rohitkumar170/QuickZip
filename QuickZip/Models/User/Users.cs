@@ -31,6 +31,8 @@ namespace QuickZip.Models.User
         public Int64 bankval { get; set; }
         public Int64 accountval { get; set; }
         public Boolean chkEnableCancel { get; set; }
+        public string chkbulkuploadlink { get; set; }
+        public string chkvideolink { get; set; }
         public int Result { get; set; }
         
 

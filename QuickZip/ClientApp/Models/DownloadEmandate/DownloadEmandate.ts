@@ -18,5 +18,6 @@ export interface DownloadEmandateclass {
     Frequency: string;
     DebtorAccountType: string;
     CreationDateTime: string;
+    length: any;
 
 }

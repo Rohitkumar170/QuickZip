@@ -4,18 +4,19 @@ import { DownloadEmandateServiceService } from '../../services/downloademandate/
 import { FormBuilder } from '@angular/forms';
 import { formatDate } from '@angular/common';
 var DownloadEmandateComponent = /** @class */ (function () {
-    // Isallcheck: string = 0;
+    //public errormsg: any;
     //BindGridData: BindGridData;
     function DownloadEmandateComponent(DEService, fb) {
         this.DEService = DEService;
         this.SelectionStatusOfMutants = [];
         this.checkFlag = 0;
         this.Ischecked = 0;
+        //Removelabel() { this.errormsg = ''; }
         this.toggleSelect = function (event) {
             //toggleSelect(event) {
             // var SelectionStatusOfMutants = [];
             this.all = event.target.checked;
-            this.bindgrid.forEach(function (item) {
+            this.Databind.forEach(function (item) {
                 // console.log(item);
                 item.selected = event.target.checked;
                 // this.onChange(event, item);
@@ -23,10 +24,12 @@ var DownloadEmandateComponent = /** @class */ (function () {
             this.checkFlag = 1;
             if (event.target.checked) {
                 this.Ischecked = 1;
+                alert('Checked');
                 //  this.Isallcheck = 1;
             }
             else {
                 this.Ischecked = 0;
+                alert('Not Checked');
             }
         };
         this.fromdate = new Date();
@@ -141,7 +144,7 @@ var DownloadEmandateComponent = /** @class */ (function () {
     };
     DownloadEmandateComponent.prototype.download = function () {
         alert(this.Ischecked);
-        if (this.Ischecked == 1) {
+        if (this.Ischecked == 1 || this.Databind.length > 0) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
             }

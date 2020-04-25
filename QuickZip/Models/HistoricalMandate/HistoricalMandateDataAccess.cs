@@ -15,7 +15,7 @@ namespace QuickZip.Models.HistoricalMandate
         {          
             try
             {
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<HistoricalMandateClass>().Execute("@QueryType", "@ToDate", "@FromDate", "@UserId", "grdMandateDataDateWise", ToDate, FromDate, DbSecurity.Decrypt(UserId)); 
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<HistoricalMandateClass>().Execute("@QueryType", "@ToDate", "@FromDate", "@UserId", "grdMandateDataDateWise", ToDate, FromDate, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%")))); 
                 foreach (var HistoricalMandateData in Result)
                 {
                     dataList = HistoricalMandateData.Cast<HistoricalMandateClass>().ToList();
