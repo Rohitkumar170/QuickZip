@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\ABSK\Desktop\Encryption.dll</HintPath>
+      <HintPath>..\..\RBL_New\BusinessLibrary\bin\Debug\Encryption.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -144,6 +144,8 @@
     <Content Include="ClientApp\app\login\login.component.html" />
     <Content Include="ClientApp\app\main-layout\main-layout.component.css" />
     <Content Include="ClientApp\app\main-layout\main-layout.component.html" />
+    <Content Include="ClientApp\app\master\access-rights\access-rights.component.css" />
+    <Content Include="ClientApp\app\master\access-rights\access-rights.component.html" />
     <Content Include="ClientApp\app\master\allumrn\allumrn.component.css" />
     <Content Include="ClientApp\app\master\allumrn\allumrn.component.html" />
     <Content Include="ClientApp\app\master\dashboard\dashboard.component.css" />
@@ -160,8 +162,12 @@
     <Content Include="ClientApp\app\master\downloadoldemandate\downloadoldemandate.component.html" />
     <Content Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.css" />
     <Content Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.html" />
+    <Content Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.css" />
+    <Content Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.html" />
     <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.css" />
     <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.html" />
+    <Content Include="ClientApp\app\master\link-setup\link-setup.component.css" />
+    <Content Include="ClientApp\app\master\link-setup\link-setup.component.html" />
     <Content Include="ClientApp\app\master\nach-mandate\nach-mandate.component.css" />
     <Content Include="ClientApp\app\master\nach-mandate\nach-mandate.component.html" />
     <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.css" />
@@ -864,6 +870,10 @@
     <TypeScriptCompile Include="ClientApp\app\login\login.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\main-layout\main-layout.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\main-layout\main-layout.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\access-rights\access-rights-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\access-rights\access-rights.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\access-rights\access-rights.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\access-rights\access-rights.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\all-umrn-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\all-umrn.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.spec.ts" />
@@ -896,12 +906,21 @@
     <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\lay-out-module.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\lay-out-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\link-setup\link-setup-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\link-setup\link-setup.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\link-setup\link-setup.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\link-setup\link-setup.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nach-mandate.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nach-mandate.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nachmandate-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nachmandate.module.ts" />
@@ -969,6 +988,7 @@
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateClass1.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateTable.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\Bankbind.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\SearchData.ts" />
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\GridSuccess.ts" />
@@ -992,6 +1012,7 @@
     <TypeScriptCompile Include="ClientApp\Models\User\sponsor-bank-code.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\temp-data.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\user.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\User\userdata.ts" />
     <TypeScriptCompile Include="ClientApp\Models\User\users.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Validations\validation.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
