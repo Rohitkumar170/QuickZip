@@ -27,7 +27,10 @@ var routes = [
             { path: 'Demophysical', loadChildren: './demophysical/demophysical.module#DemophysicalModule', canActivate: [AuthGuardService] },
             { path: 'Demoemandate', loadChildren: './demoemandate/demoemandate.module#DemoemandateModule', canActivate: [AuthGuardService] },
             { path: 'Allumrn', loadChildren: './allumrn/all-umrn.module#AllUmrnModule', canActivate: [AuthGuardService] },
-            { path: 'Nachtransactionpresentation', loadChildren: './nachtransactionpresentation/nachtransactionpresentation.module#NachtransactionpresentationModule', canActivate: [AuthGuardService] }
+            { path: 'Nachtransactionpresentation', loadChildren: './nachtransactionpresentation/nachtransactionpresentation.module#NachtransactionpresentationModule', canActivate: [AuthGuardService] },
+            { path: 'AccessRights', loadChildren: './access-rights/access-rights.module#AccessRightsModule', canActivate: [AuthGuardService] },
+            { path: 'EntityBankSetup', loadChildren: './entity-bank-setup/entity-bank-setup.module#EntityBankSetupModule', canActivate: [AuthGuardService] },
+            { path: 'LinkSetup', loadChildren: './link-setup/link-setup.module#LinkSetupModule', canActivate: [AuthGuardService] }
         ]
     }
 ];
