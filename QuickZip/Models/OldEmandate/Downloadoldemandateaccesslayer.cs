@@ -14,7 +14,7 @@ namespace QuickZip.Models.OldEmandate
         {
             try
             {
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<BankBind>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt( userid)));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<BankBind>().Execute("@QueryType", "@UserId", "UserBank", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(userid.Replace("_", "%")))));
                 return Result;
             }
             catch (Exception ex)
@@ -27,7 +27,7 @@ namespace QuickZip.Models.OldEmandate
         {
             try
             {
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_DownloadEMandate]").With<Searchdata>().Execute("@QueryType", "@strToDate", "@strFromDate", "@UserId", "@SponsorBankCode", "grdEMandateDateWise", ToDate, FromDate, DbSecurity.Decrypt(userid), Bank);
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_DownloadEMandate]").With<Searchdata>().Execute("@QueryType", "@strToDate", "@strFromDate", "@UserId", "@SponsorBankCode", "grdEMandateDateWise", ToDate, FromDate, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(userid.Replace("_", "%"))), Bank);
                 foreach (var employe in Result)
                 {
                    

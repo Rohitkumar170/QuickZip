@@ -1,6 +1,6 @@
 <div class="main-content" id="maincontent">
     <div class="content">
-        <div class="col-md-12 col-sm-6 col-xs-4 contnt-wrapper">
+        <div class="col-md-12 col-sm-6 col-xs-4">
             <div class="col-sm-6 col-md-6 col-xs-3 no-padding">
                 <span class="legal">Download Old Mandate</span>
             </div>
@@ -11,9 +11,10 @@
 
                         <li>
                             <i class="fa fa-download" aria-hidden="true" title="Export"></i>
-                            <label>
+                            <!--<button type="button" class="btn btn-success" (click)="downloadExcel()">Download Mandate Excel File</button>-->
+                            <!--<label (click)="download()">
                                 Download Mandate Excel File
-                            </label>
+                            </label>-->
                         </li>
                         <li>
                             <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
@@ -21,12 +22,12 @@
                                 Download Scanned Mandate
                             </label>
                         </li>
-                        <li>
+                        <!--<li>
                             <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i>
-                            <label>
+                            <label data-toggle="modal" data-target="#myModal" (click)="show()">
                                 Reject Mandate
                             </label>
-                        </li>
+                        </li>-->
                         <li>
                             <i class="fa fa-floppy-o" aria-hidden="true" title="Save"></i>
                             <label>
@@ -66,7 +67,7 @@
                             From Date
                         </label>
                         <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="date" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                            <input type="date" name="FromDate" #FromDate value="{{CurrentDate | date:'yyyy-MM-dd'}}" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
                             To Date
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="date" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                            <input type="date" name="ToDate" #ToDate (change)="mydate(FromDate.value,ToDate.value,selected.value)" value="{{CurrentDate | date:'yyyy-MM-dd'}}" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
                         </div>
                     </div>
                 </div>
@@ -86,7 +87,7 @@
                             Reference No.
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <input type="text" value="1" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
+                            <input type="text" name="Reference" #Reference class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" />
                         </div>
                     </div>
                 </div>
@@ -98,9 +99,11 @@
                             Bank
                         </label>
                         <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                            <select id="" class="alldropdown">
-                                <option value="volvo">Bank 1</option>
-                                <option value="saab">Bank 2</option>
+                            <select id="" class="alldropdown" name="selected" #selected (change)="SelectBank(FromDate.value,ToDate.value,selected.value)">
+
+                                <option *ngFor="let td of bankdrop" [value]="td.sponsorbankcode">{{td.name}}</option>
+
+
 
                             </select>
                         </div>
@@ -108,18 +111,28 @@
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
                     <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
-                           value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;" />
+                           value="Search" (click)="SearchByReference(Reference.value)" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;" />
+                    <button type="button" class="btn btn-success" (click)="downloadExcel()">Download Mandate Excel File</button> &nbsp;
+                    <label data-toggle="modal" data-target="#myModal" (click)="show()">
+                        Reject Mandate
+                    </label>
+
+                    <button type="button" class="btn btn-success" (click)="downloadScannedMandate()">Download Scanned mandate</button>
+                    <!--<button type="button" class="btn btn-success" (click)="checkedDemo()"> Excel File DEmo</button>-->
+
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
 
                 </div>
             </div>
         </div>
+
+
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv">
             <table id="tbldownoldmandate">
                 <thead>
                     <tr>
-                        <th style="width:150px;"><input type="checkbox" name="all">All</th>
+                        <th style="width:150px;"><input type="checkbox" name="all" vaule="all" (click)="toggleSelect($event)">All</th>
                         <th style="width:150px;">Mandate ID</th>
                         <th style="width:150px;">Name</th>
                         <th style="width:150px;">Date On Mandate</th>
@@ -137,29 +150,73 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="width:150px;"><input type="checkbox" name="all"></td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:150px;">Demo</td>
+                    <tr *ngFor="let td of tabledata; let i=index;">
+                        <td style="width:150px;"><input type="checkbox" value="td.selected" [checked]="td.selected" (change)="onChange($event,td); td.selected = !(td.selected)" name="all"></td>
+                        <td style="width:150px;">{{td.mandateid}}</td>
+                        <td style="width:150px;">{{td.Customer1}}</td>
+                        <td style="width:150px;">{{td.DateOnMandate}}</td>
+                        <td style="width:150px;">{{td.IsPrint}}</td>
+                        <td style="width:150px;">{{td.IsScan}}</td>
+                        <td style="width:150px;">{{td.Refrence1}}</td>
+                        <td style="width:150px;">{{td.Amount}}</td>
+                        <td style="width:150px;">{{td.AcNo}}</td>
+                        <td style="width:150px;">{{td.Code}}</td>
+                        <td style="width:150px;">{{td.BankName}}</td>
+                        <td style="width:150px;">{{td.Frequency}}</td>
+                        <td style="width:150px;">{{td.debittype}}</td>
+                        <td style="width:150px;">{{td.ToDebit}}</td>
+                        <td style="width:150px;">{{td.createdon}}</td>
                     </tr>
+                    <tr *ngIf="tabledata?.length == 0">
+                        <td colspan="3">No Record Found!</td>
+                    </tr>
+                    <!--<tr *ngIf="tabledata?.length != 0">
+                        <td [ngClass]="['loadernone']"></td>
+                    </tr>-->
 
                 </tbody>
 
             </table>
 
         </div>
+    </div>
+</div>
+<div class="container">
+    <!-- Modal -->
+    <div class="modal" id="myModal" role="dialog" [style.display]="showModal ? 'block':'none'">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title" style="text-align:center">Are you Sure to Reject Mandate</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Reason</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="myform" #RejectedReason placeholder="Enter The Reason"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="text-align:center">
+
+                    <button type="button" class="btn btn-primary" (click)="RejectData(FromDate.value,ToDate.value,RejectedReason.value,selected.value)">Reject</button> &nbsp;
+                    <button type="button" class="btn btn-default" (click)="hide()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12 loaderposition" id="divLoarder2" *ngIf="loading" >      <!--*ngIf="loading"-->       <!--  ngHide="loading"  -->    <!--style="display: none;"-->
+        <img src="../../ClientApp/assets/images/loader.gif" style="margin-left: 45%;margin-top: 19%;" />
     </div>
 </div>

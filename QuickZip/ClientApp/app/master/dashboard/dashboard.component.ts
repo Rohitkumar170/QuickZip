@@ -5,17 +5,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    
-    constructor(
-        //private router: Router
-    ) {
-    //if (this.router.url === "/Login" || this.router.url === "/ChangePassword/:Id") {
-    //    this.isLoggedin = false; this.isChangePassword = false;
-    //} else {
-    //    this.isLoggedin = true; this.isChangePassword = true;
-    //}  
-    }
+  
+    showModal: boolean;
+    onClick(event) {
+        this.showModal = true; 
+       
 
+    }
+    //Bootstrap Modal Close event
+    hide() {
+        this.showModal = false;
+    }
   ngOnInit() {
   }
 

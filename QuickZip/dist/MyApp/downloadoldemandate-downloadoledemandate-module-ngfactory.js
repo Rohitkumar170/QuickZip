@@ -293,7 +293,7 @@ var DownloadoldemandateComponent = /** @class */ (function () {
         return str;
     };
     DownloadoldemandateComponent.prototype.download = function () {
-        alert(this.Ischecked);
+        // alert(this.Ischecked);
         if (this.Ischecked == 1) {
             //  alert("Selecetd");
         }

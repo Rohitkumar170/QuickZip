@@ -8,9 +8,10 @@ var HistoricalMandateServiceService = /** @class */ (function () {
         this.baseUrl = "";
         this.baseUrl = myAppUrl;
     }
-    HistoricalMandateServiceService.prototype.BindGridData = function (FromDate, ToDate) {
-        alert("Service" + FromDate + " " + ToDate);
-        return this._http.get(this.baseUrl + 'api/BindData/DatesWise/' + FromDate + '/' + ToDate);
+    HistoricalMandateServiceService.prototype.BindGridData = function (FromDate, ToDate, UserId) {
+        // alert(FromDate + " " + ToDate + " " + UserId);
+        //alert("Service" + FromDate + " " + ToDate);
+        return this._http.get(this.baseUrl + 'api/BindData/DatesWise/' + FromDate + '/' + ToDate + '/' + UserId);
     };
     HistoricalMandateServiceService.prototype.errorHandler = function (error) {
         console.log(error);

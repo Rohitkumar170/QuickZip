@@ -1,3 +1,5 @@
+
+
 .card-header {
     padding: 0px;
 }
@@ -16,27 +18,58 @@
     padding: 0px 0px 0px 0px;
 }
 
-
-#tbldownmandate tbody {
-    overflow: auto;
-    display: block;
-    max-height: 26vh;
+#btngroup {
+    position: relative;
+    width: 100%;
+    top: -21px;
+    right: -322px;
 }
 
-#tbldownmandate tbody tr {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
+#tbldownmandate {
+    border: 1px solid #cdcdcd;
 }
 
+    #tbldownmandate tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: inline-block;
+        max-height: 50vh;
+    }
 
-#tbldownmandate thead tr {
+        #tbldownmandate tbody tr {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+        }
+
+
+    #tbldownmandate thead tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+#btnreject {
+    background: none !important;
+    color: #212529 !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#btnexcel {
+    background: none !important;
+    color: #212529 !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#btnp {
     width: 100%;
-    display: table;
-    table-layout: fixed;
-}     
-  
+}
 
+#btnspa {
+    width: 100%;
+}
 
 
 #tbldownmandate {
@@ -44,9 +77,6 @@
     display: inline-block;
 }
 
-    #tbldownmandate tbody {
-        width: 2251px;
-    }
 
 
 #maincontent {

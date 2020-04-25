@@ -200,7 +200,7 @@ export class DownloadoldemandateComponent implements OnInit {
     }
     download() {
 
-        alert(this.Ischecked);
+      // alert(this.Ischecked);
         if (this.Ischecked == 1) {
           //  alert("Selecetd");
 

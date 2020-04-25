@@ -11,11 +11,11 @@ namespace QuickZip.Models.HistoricalMandate
     {
         QuickCheckEmandate_AngularEntities dbcontext = new QuickCheckEmandate_AngularEntities();
         List<HistoricalMandateClass> dataList = new List<HistoricalMandateClass>();
-        public IEnumerable<HistoricalMandateClass> GetDataFromDB(string FromDate, string ToDate)
+        public IEnumerable<HistoricalMandateClass> GetDataFromDB(string FromDate, string ToDate,string UserId)
         {          
             try
             {
-                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<HistoricalMandateClass>().Execute("@QueryType", "@ToDate", "@FromDate", "@UserId", "grdMandateDataDateWise", ToDate, FromDate,"94"); 
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<HistoricalMandateClass>().Execute("@QueryType", "@ToDate", "@FromDate", "@UserId", "grdMandateDataDateWise", ToDate, FromDate, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%")))); 
                 foreach (var HistoricalMandateData in Result)
                 {
                     dataList = HistoricalMandateData.Cast<HistoricalMandateClass>().ToList();

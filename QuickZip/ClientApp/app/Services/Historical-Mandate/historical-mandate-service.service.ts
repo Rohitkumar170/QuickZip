@@ -15,9 +15,10 @@ export class HistoricalMandateServiceService {
     constructor(private _http: HttpClient, @Inject('BASE_URL') myAppUrl: string) {
         this.baseUrl = myAppUrl;
     }
-    BindGridData(FromDate, ToDate): Observable<HistoricalMandateClass> {
-        alert("Service" + FromDate + " " + ToDate);
-        return this._http.get<HistoricalMandateClass>(this.baseUrl + 'api/BindData/DatesWise/' + FromDate + '/' + ToDate);
+    BindGridData(FromDate, ToDate, UserId): Observable<HistoricalMandateClass> {
+       // alert(FromDate + " " + ToDate + " " + UserId);
+        //alert("Service" + FromDate + " " + ToDate);
+        return this._http.get<HistoricalMandateClass>(this.baseUrl + 'api/BindData/DatesWise/' + FromDate + '/' + ToDate + '/' + UserId);
     }
     errorHandler(error: Response) {
         console.log(error);

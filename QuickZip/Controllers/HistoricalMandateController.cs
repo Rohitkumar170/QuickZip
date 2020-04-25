@@ -13,11 +13,10 @@ namespace QuickZip.Controllers
     {
         HistoricalMandateDataAccess objHMDA = new HistoricalMandateDataAccess();
         [HttpGet]
-        [Route("api/BindData/DatesWise/{FromDate}/{ToDate}")]
-        public IEnumerable<HistoricalMandateClass> GetDataApi(string FromDate, string ToDate)
+        [Route("api/BindData/DatesWise/{FromDate}/{ToDate}/{UserId}")]
+        public IEnumerable<HistoricalMandateClass> GetDataApi(string FromDate, string ToDate,string UserId)
         {
-
-            return objHMDA.GetDataFromDB(FromDate, ToDate);
+            return objHMDA.GetDataFromDB(FromDate, ToDate, UserId);
         }
     }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NachMandateComponent } from './nach-mandate.component';
+import { AccessRightsComponent } from './access-rights.component';
 
-describe('NachMandateComponent', () => {
-  let component: NachMandateComponent;
-  let fixture: ComponentFixture<NachMandateComponent>;
+describe('AccessRightsComponent', () => {
+  let component: AccessRightsComponent;
+  let fixture: ComponentFixture<AccessRightsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NachMandateComponent ]
+      declarations: [ AccessRightsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NachMandateComponent);
+    fixture = TestBed.createComponent(AccessRightsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
