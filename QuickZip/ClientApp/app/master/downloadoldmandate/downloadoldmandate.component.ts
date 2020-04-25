@@ -11,7 +11,7 @@ import { formatDate } from '@angular/common';
     styleUrls: ['./downloadoldmandate.component.css']
 })
 export class DownloadoldmandateComponent implements OnInit {
-
+    loading: boolean = false;
     checkFlag: number = 0;
     Ischecked: number = 0;
     IsMandateID: string;
@@ -21,8 +21,7 @@ export class DownloadoldmandateComponent implements OnInit {
     i: any;
     SponserBankCode: any;
     length: any;
-
-
+    ZipDownloadArray: Array<OldMandateClass1> = [];
 
     constructor(public myservice: OldmandateService) { }
     showModal: boolean;
@@ -129,9 +128,7 @@ export class DownloadoldmandateComponent implements OnInit {
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
             this.selectMandateId.push(item.mandateid);
-
-
-
+ 
             console.log(this.SelectionStatusOfMutants);
           //  alert('checked')
             this.Ischecked = 1;
@@ -204,6 +201,9 @@ export class DownloadoldmandateComponent implements OnInit {
     }
     tabledata;
     SearchByReference(Reference) {
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        //formElement.style.display = 'block';
+
         let item = JSON.parse(sessionStorage.getItem('User'));
         // console.log(item.UserId);
         //var c = Reference;
@@ -218,12 +218,18 @@ export class DownloadoldmandateComponent implements OnInit {
         this.myservice.Bindbyrefrence(item.UserId, Reference).subscribe((res) => {
             // console.log(res);
             this.tabledata = res;
+
+            //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            //formElement.style.display = 'none';
         });
     }
 
 
     mydate(FromDate, ToDate, selected) {
         //   alert(FromDate + "  " + ToDate + " " + selected);
+        this.loading = true;
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
+        //formElement.style.display = 'block';
 
         if (FromDate != null && ToDate != null) {
             let item = JSON.parse(sessionStorage.getItem('User'));
@@ -236,13 +242,15 @@ export class DownloadoldmandateComponent implements OnInit {
                    console.log(res);
                 this.tabledata = res;
             });
+           // this.loading = false;
         }
         else {
             alert("please choose the Date");
         }
-      //  console.log(this.list);
-
-
+        //  console.log(this.list);
+        //var formloder = <HTMLElement>document.getElementById('divLoarder2');
+        //formloder.style.display = 'none';
+        this.loading = false;
     }
 
     SelectBank(FromDate, ToDate, selected) {
@@ -256,15 +264,7 @@ export class DownloadoldmandateComponent implements OnInit {
 
     ConvertToCSV(objArray) {
         //this.HeaderArray = {
-        //    MandateStatus: "Mandate Status", SendToBankDate: "Send To Bank Date", MandateFreshId: "Mandate ID", mandateMode: "mandate Mode",
-        //    AutoRejectReason: "AutoRejectReason", updatedon: "updatedon", username: "username", UpdateBy: "UpdateBy", Enach: "Enach",
-        //    IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
-        //    IsScan: "IsScan", JPGPath: "JPGPath", TIPPath: "TIPPath", IsPrint: "IsPrint", mandateid: "mandateid", status: "status", Amount: "Amount",
-        //    Code: "Code", BankName: "BankName", DateOnMandate: "DateOnMandate", AcNo: "AcNo", Refrence1: "Refrence1", AcceptRefNo: "AcceptRefNo",
-        //    NPCIErrorDesc: "NPCIErrorDesc", FromDate: "FromDate", Customer1: "Customer1", debittype: "debittype", Frequency: "Frequency", Monthly: "Monthly",
-        //    ToDebit: "ToDebit", NPCIMsgId: "NPCIMsgId", MSGId: "MSGId", UMRN: "UMRN", AggregatorValue: "AggregatorValue", Amount_Numeric: "Amount_Numeric",
-        //    SponsorBankCode: "SponsorBankCode", PhoneNumber: "PhoneNumber", EmailId: "EmailId", EmandateType: "EmandateType", ActivityId: "ActivityId",
-        //    Refrence2: "Refrence2"
+        
         //}
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = '';
@@ -343,6 +343,52 @@ export class DownloadoldmandateComponent implements OnInit {
     //checkedDemo(abc) {
     //    console.log(abc);
     //}
+
+
+    //downloadfileComponent(filePath: string) {
+    //        this.appService.downloadfile(filePath)
+    //        .subscribe(data => this.getZipFile(data)),
+    //        error => console.log("Error downloading the file."),
+    //        () => console.log('Completed file download.');
+    //}
+    downloadScannedMandate() {
+        this.ZipDownloadArray = [];
+        if (this.checkFlag == 0) {
+           
+            this.ZipDownloadArray = this.SelectionStatusOfMutants;
+        }
+        else {
+            this.ZipDownloadArray = this.tabledata
+        }
+        if (this.ZipDownloadArray.length == 0) {
+            alert("please select mandate");
+        }
+        else {
+            this.getZipFile(JSON.stringify(this.ZipDownloadArray));
+        }
+    }
+
+
+    getZipFile(data: any) {
+        var a: any = document.createElement("a");
+        document.body.appendChild(a);
+
+        a.style = "display: none";
+        var blob = new Blob([data], { type: 'application/zip' });
+
+        var url = window.URL.createObjectURL(blob);
+
+        a.href = url;
+        a.download = "test.zip";
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+    }
+
+
+
+
+
 
 
 }
