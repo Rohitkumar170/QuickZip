@@ -46,8 +46,9 @@ var UmrnuploadComponent = /** @class */ (function () {
             tbldiv4.style.display = 'block';
             var btndownload = document.getElementById('btndownload');
             btndownload.style.display = 'block';
+            var divsave = document.getElementById('divsave');
+            divsave.style.display = 'none';
         });
-        console.log(this.umrnupload);
     };
     //btnback() {
     //    this.BindGrid();
@@ -186,19 +187,57 @@ var UmrnuploadComponent = /** @class */ (function () {
         btnupload.style.display = 'block';
         var btnback = document.getElementById('btnback');
         btnback.style.display = 'block';
+        var btnNew = document.getElementById('btnNew');
+        btnNew.style.display = 'none';
     };
     UmrnuploadComponent.prototype.uploadUMRN = function () {
-        //    let formData = new FormData();
-        //    formData.append('upload', this.fileInput.nativeElement.files[0])
-        alert('k');
-        //    //this.service.UploadExcel(formData).subscribe(result => {
-        //    //    this.message = result.toString();
-        //    //    this.loadAllUser();
-        //    //});
-        //    this._UmrnUploadService.UploadExcel(formData).
-        //        subscribe((data) => {
-        //            this.umrnupload = data.Table;
-        //        });
+        var _this = this;
+        var formData = new FormData();
+        formData.append('upload', this.fileInput.nativeElement.files[0]);
+        //  alert('k')
+        //this.service.UploadExcel(formData).subscribe(result => {
+        //    this.message = result.toString();
+        //    this.loadAllUser();
+        //});
+        this._UmrnUploadService.UploadExcel(formData).
+            subscribe(function (data) {
+            _this.grdunsuccess = data.Table;
+            _this.grdsuccess = data.Table1;
+            _this.maingriddetails = data.Table2;
+            var TotalCount = data.Table2.length;
+            var successCount = data.Table1.length;
+            var UnsuccessCount = data.Table.length;
+            document.getElementById('lblTotalCount').innerHTML = 'Total Records: ' + TotalCount;
+            document.getElementById('lblsuccessCount').innerHTML = 'Validated Records : ' + successCount;
+            document.getElementById('lblUnsuccessCount').innerHTML = 'Rejected Records : ' + UnsuccessCount;
+            var tbldiv2 = document.getElementById('tbldiv2');
+            tbldiv2.style.display = 'block';
+            var tbldiv3 = document.getElementById('tbldiv3');
+            tbldiv3.style.display = 'block';
+            var tbldiv4 = document.getElementById('tbldiv4');
+            tbldiv4.style.display = 'block';
+            var btndownload = document.getElementById('btndownload');
+            btndownload.style.display = 'block';
+            var divsave = document.getElementById('divsave');
+            divsave.style.display = 'block';
+            var btnNew = document.getElementById('btnNew');
+            btnNew.style.display = 'none';
+            document.getElementById('lbltotalrecordcount').innerHTML = TotalCount;
+            document.getElementById('lblvalidatedcount').innerHTML = successCount;
+            document.getElementById('lblUploaderID').innerHTML = _this.maingriddetails[0].legacyUploadedID;
+            document.getElementById('lblfilename').innerHTML = data.FileName;
+        });
+    };
+    UmrnuploadComponent.prototype.btnsave_click = function (e) {
+        var _this = this;
+        var UploadHeaderId = document.getElementById('lblUploaderID').innerHTML;
+        var TotalCount = document.getElementById('lblUploaderID').innerHTML;
+        var validatedcount = document.getElementById('lblUploaderID').innerHTML;
+        var FileName = document.getElementById('lblfilename').innerHTML;
+        this._UmrnUploadService.btnSave_Click(UploadHeaderId, TotalCount, validatedcount, FileName).
+            subscribe(function (data) {
+            _this.umrnupload = data.Table;
+        });
     };
     tslib_1.__decorate([
         ViewChild('fileInput'),

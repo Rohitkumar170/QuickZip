@@ -55,5 +55,39 @@ namespace QuickZip.Models.UMRNUpload
                 throw ex;
             }
         }
+
+        public Dictionary<string, object> UploadExcel(string xml,string UserId, string EntityId,string FileName)
+        {
+
+            try
+            {
+
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Uploaddata]").With<GridUnsuccess>().With<GridSuccess>().With<MainGridDetails>().Execute("@QueryType", "@XmlDimension", "@EntityID", "@UserID", "Legacy_UploadExcel", xml, DbSecurity.Decrypt(UserId),DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
+                Result.Add("FileName", FileName);
+                return Result;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Dictionary<string, object> btnSave_Click(string EntityId, string UserId, string UploadHeaderId, string TotalCount, string validatedcount, string FileName)
+        {
+
+            try
+            {
+
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Uploaddata]").With<MainGrid>().Execute("@QueryType", "@UploadHeaderId", "@UserID", "@FileName", "@TotalCount", "@SuccessCunt", "@LegacyId", "@EntityId", "Legacy_InsertBulkData", UploadHeaderId, DbSecurity.Decrypt(UserId), FileName, TotalCount, validatedcount, UploadHeaderId, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
+                return Result;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
