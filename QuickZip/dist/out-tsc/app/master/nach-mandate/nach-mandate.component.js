@@ -8,6 +8,8 @@ var NachMandateComponent = /** @class */ (function () {
         this.router = router;
         this.formBuilder = formBuilder;
         this._bankformService = _bankformService;
+        this.btnCancelDisabled = true;
+        this.IsCancel = false;
     }
     NachMandateComponent.prototype.ngOnInit = function () {
         var Sessionvalue = JSON.parse(sessionStorage.getItem('User'));
@@ -22,9 +24,22 @@ var NachMandateComponent = /** @class */ (function () {
         this.lblBranchId = Sessionvalue.BranchId;
         this.lblUserType = Sessionvalue.UserType;
         this.lblRefId = Sessionvalue.ReferenceId;
-        this.BankForm = this.formBuilder.group({
-            ddlcategory: ['']
-        });
+        //this.BankForm = this.formBuilder.group({
+        //    MandateMode: [''],
+        //    AcNo: ['', Validators.required], MandateType: [''], DateOnMandate: ['', Validators.required],
+        //    UtilityCode: [''], EntityName: [''],
+        //    ToDebit: [''], BankName: [''], DebitType: [''], FrequencyType: [''], Sponsorbankcode: [''], Catagorycode: [''],
+        //    IFSC: ['', Validators.required], MICR: [''],
+        //    AmountRupees: ['', Validators.required],
+        //    Amountinword: [''],
+        //    EmailId: ['', [Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        //    PhNumber: [''],
+        //    Refrence1: ['', Validators.required], Refrence2: [''],
+        //    FromDate: ['', Validators.required], ToDate: [''], chkUntil: [''],
+        //    CustomerName1: ['', Validators.required],
+        //    CustomerName2: [''], CustomerName3: [''],
+        //    txtUMRN: ['']
+        //});
         this.BinddataonPageLoad();
     };
     Object.defineProperty(NachMandateComponent.prototype, "AllFields", {
@@ -35,8 +50,33 @@ var NachMandateComponent = /** @class */ (function () {
     NachMandateComponent.prototype.BinddataonPageLoad = function () {
         var _this = this;
         this._bankformService.GetCategory().subscribe(function (data) {
-            _this.Table12 = data.Table12;
+            _this.Table11 = data.Table11;
+            _this.Table3 = data.Table3;
+            _this.Table2 = data.Table2;
+            //if (this.Table12[0].IsEnableCancel == false) {
+            //    this.btnCancelDisabled = true;    
+            //    this.IsCancel = false;
+            //}
+            //else {
+            //    this.btnCancelDisabled = false;    
+            //    this.IsCancel = false;
+            //}
         });
+    };
+    NachMandateComponent.prototype.numberOnly = function (event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+    NachMandateComponent.prototype.Decimal = function (event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        // e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)
+        if (charCode != 8 && (charCode != 0 && charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
     };
     NachMandateComponent = tslib_1.__decorate([
         Component({
