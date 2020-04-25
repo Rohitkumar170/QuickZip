@@ -30283,3 +30283,9 @@ i#sideicon {
 .AddClass {
     color: red;
 }
+.loaderposition {
+    position: absolute;
+    left: 0% !important;
+    z-index: 9999 !important;
+    top: 0% !important;
+}

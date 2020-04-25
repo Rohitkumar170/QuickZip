@@ -208,6 +208,7 @@ var DownloadmandateComponent = /** @class */ (function () {
     };
     DownloadmandateComponent.prototype.RejectMandate = function (fromdate, todate, bank) {
         var _this = this;
+        this.Ischecked = 1;
         var item = JSON.parse(sessionStorage.getItem('User'));
         // console.log(item.UserId);
         var rejectcomnt = 'test131';

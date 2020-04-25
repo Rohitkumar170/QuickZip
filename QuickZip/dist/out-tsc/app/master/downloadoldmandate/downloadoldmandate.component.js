@@ -5,11 +5,13 @@ import { formatDate } from '@angular/common';
 var DownloadoldmandateComponent = /** @class */ (function () {
     function DownloadoldmandateComponent(myservice) {
         this.myservice = myservice;
+        this.loading = false;
         this.checkFlag = 0;
         this.Ischecked = 0;
         this.Isallcheck = 0;
         this.SelectionStatusOfMutants = [];
         this.selectMandateId = [];
+        this.ZipDownloadArray = [];
         this.CurrentDate = new Date();
         this.toggleSelect = function (event) {
             //toggleSelect(event) {
@@ -100,7 +102,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         }
         else {
             //
-            alert('not checked');
+            alert('please select mandate ');
             this.SelectionStatusOfMutants.pop();
             UncheckedCount++;
             if (UncheckedCount == CheckedCount) {
@@ -157,6 +159,8 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         });
     };
     DownloadoldmandateComponent.prototype.SearchByReference = function (Reference) {
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        //formElement.style.display = 'block';
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
         // console.log(item.UserId);
@@ -172,11 +176,16 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         this.myservice.Bindbyrefrence(item.UserId, Reference).subscribe(function (res) {
             // console.log(res);
             _this.tabledata = res;
+            //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            //formElement.style.display = 'none';
         });
     };
     DownloadoldmandateComponent.prototype.mydate = function (FromDate, ToDate, selected) {
-        //   alert(FromDate + "  " + ToDate + " " + selected);
         var _this = this;
+        //   alert(FromDate + "  " + ToDate + " " + selected);
+        this.loading = true;
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
+        //formElement.style.display = 'block';
         if (FromDate != null && ToDate != null) {
             var item = JSON.parse(sessionStorage.getItem('User'));
             //  console.log(item.UserId);
@@ -187,11 +196,15 @@ var DownloadoldmandateComponent = /** @class */ (function () {
                 console.log(res);
                 _this.tabledata = res;
             });
+            // this.loading = false;
         }
         else {
             alert("please choose the Date");
         }
         //  console.log(this.list);
+        //var formloder = <HTMLElement>document.getElementById('divLoarder2');
+        //formloder.style.display = 'none';
+        this.loading = false;
     };
     DownloadoldmandateComponent.prototype.SelectBank = function (FromDate, ToDate, selected) {
         var _this = this;
@@ -204,15 +217,6 @@ var DownloadoldmandateComponent = /** @class */ (function () {
     };
     DownloadoldmandateComponent.prototype.ConvertToCSV = function (objArray) {
         //this.HeaderArray = {
-        //    MandateStatus: "Mandate Status", SendToBankDate: "Send To Bank Date", MandateFreshId: "Mandate ID", mandateMode: "mandate Mode",
-        //    AutoRejectReason: "AutoRejectReason", updatedon: "updatedon", username: "username", UpdateBy: "UpdateBy", Enach: "Enach",
-        //    IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
-        //    IsScan: "IsScan", JPGPath: "JPGPath", TIPPath: "TIPPath", IsPrint: "IsPrint", mandateid: "mandateid", status: "status", Amount: "Amount",
-        //    Code: "Code", BankName: "BankName", DateOnMandate: "DateOnMandate", AcNo: "AcNo", Refrence1: "Refrence1", AcceptRefNo: "AcceptRefNo",
-        //    NPCIErrorDesc: "NPCIErrorDesc", FromDate: "FromDate", Customer1: "Customer1", debittype: "debittype", Frequency: "Frequency", Monthly: "Monthly",
-        //    ToDebit: "ToDebit", NPCIMsgId: "NPCIMsgId", MSGId: "MSGId", UMRN: "UMRN", AggregatorValue: "AggregatorValue", Amount_Numeric: "Amount_Numeric",
-        //    SponsorBankCode: "SponsorBankCode", PhoneNumber: "PhoneNumber", EmailId: "EmailId", EmandateType: "EmandateType", ActivityId: "ActivityId",
-        //    Refrence2: "Refrence2"
         //}
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = '';
@@ -245,7 +249,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
     };
     DownloadoldmandateComponent.prototype.downloadExcel = function () {
         // alert("this method is working");
-        alert(this.Ischecked);
+        // alert(this.Ischecked);
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
@@ -268,6 +272,51 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         else {
             alert('checkbox not selected');
         }
+    };
+    //nontrade;
+    //trade;
+    //allNonTrades(event) {
+    //    const checked = event.target.checked;
+    //    this.nontrade.forEach(item => item.selected = checked);
+    //}
+    //allTrades(event) {
+    //    const checked = event.target.checked;
+    //    this.trade.forEach(item => item.selected = checked);
+    //}
+    //checkedDemo(abc) {
+    //    console.log(abc);
+    //}
+    //downloadfileComponent(filePath: string) {
+    //        this.appService.downloadfile(filePath)
+    //        .subscribe(data => this.getZipFile(data)),
+    //        error => console.log("Error downloading the file."),
+    //        () => console.log('Completed file download.');
+    //}
+    DownloadoldmandateComponent.prototype.downloadScannedMandate = function () {
+        this.ZipDownloadArray = [];
+        if (this.checkFlag == 0) {
+            this.ZipDownloadArray = this.SelectionStatusOfMutants;
+        }
+        else {
+            this.ZipDownloadArray = this.tabledata;
+        }
+        if (this.ZipDownloadArray.length == 0) {
+            alert("please select mandate");
+        }
+        else {
+            this.getZipFile(JSON.stringify(this.ZipDownloadArray));
+        }
+    };
+    DownloadoldmandateComponent.prototype.getZipFile = function (data) {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        var blob = new Blob([data], { type: 'application/zip' });
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = "test.zip";
+        a.click();
+        window.URL.revokeObjectURL(url);
     };
     DownloadoldmandateComponent = tslib_1.__decorate([
         Component({

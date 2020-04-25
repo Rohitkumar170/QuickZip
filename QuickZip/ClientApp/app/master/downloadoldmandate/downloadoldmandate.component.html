@@ -13,8 +13,8 @@
                             <i class="fa fa-download" aria-hidden="true" title="Export"></i>
                             <!--<button type="button" class="btn btn-success" (click)="downloadExcel()">Download Mandate Excel File</button>-->
                             <!--<label (click)="download()">
-                            Download Mandate Excel File
-                        </label>-->
+                                Download Mandate Excel File
+                            </label>-->
                         </li>
                         <li>
                             <i class="fa fa-file-text" aria-hidden="true" title="New"></i>
@@ -116,6 +116,8 @@
                     <label data-toggle="modal" data-target="#myModal" (click)="show()">
                         Reject Mandate
                     </label>
+
+                    <button type="button" class="btn btn-success" (click)="downloadScannedMandate()">Download Scanned mandate</button>
                     <!--<button type="button" class="btn btn-success" (click)="checkedDemo()"> Excel File DEmo</button>-->
 
                 </div>
@@ -124,6 +126,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv">
             <table id="tbldownoldmandate">
                 <thead>
@@ -166,6 +170,9 @@
                     <tr *ngIf="tabledata?.length == 0">
                         <td colspan="3">No Record Found!</td>
                     </tr>
+                    <!--<tr *ngIf="tabledata?.length != 0">
+                        <td [ngClass]="['loadernone']"></td>
+                    </tr>-->
 
                 </tbody>
 
@@ -182,7 +189,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                  
+
                     <h5 class="modal-title" style="text-align:center">Are you Sure to Reject Mandate</h5>
                 </div>
                 <div class="modal-body">
@@ -197,7 +204,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="text-align:center">
-                    
+
                     <button type="button" class="btn btn-primary" (click)="RejectData(FromDate.value,ToDate.value,RejectedReason.value,selected.value)">Reject</button> &nbsp;
                     <button type="button" class="btn btn-default" (click)="hide()" data-dismiss="modal">Close</button>
                 </div>
@@ -206,4 +213,10 @@
         </div>
     </div>
 
+</div>
+
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12 loaderposition" id="divLoarder2" [style.display]="loading ? 'block':'none'">      <!--*ngIf="loading"-->       <!--  ngHide="loading"  -->    <!--style="display: none;"-->
+        <img src="../../ClientApp/assets/images/loader.gif" style="margin-left: 45%;margin-top: 19%;" />
+    </div>
 </div>
