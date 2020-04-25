@@ -148,6 +148,10 @@
     <Content Include="ClientApp\app\master\access-rights\access-rights.component.html" />
     <Content Include="ClientApp\app\master\allumrn\allumrn.component.css" />
     <Content Include="ClientApp\app\master\allumrn\allumrn.component.html" />
+    <Content Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.css" />
+    <Content Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.html" />
+    <Content Include="ClientApp\app\master\bulk-upload\bulk-upload.component.css" />
+    <Content Include="ClientApp\app\master\bulk-upload\bulk-upload.component.html" />
     <Content Include="ClientApp\app\master\dashboard\dashboard.component.css" />
     <Content Include="ClientApp\app\master\dashboard\dashboard.component.html" />
     <Content Include="ClientApp\app\master\demoemandate\demoemandate.component.css" />
@@ -164,6 +168,8 @@
     <Content Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.html" />
     <Content Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.css" />
     <Content Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.html" />
+    <Content Include="ClientApp\app\master\entity-setup\entity-setup.component.css" />
+    <Content Include="ClientApp\app\master\entity-setup\entity-setup.component.html" />
     <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.css" />
     <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.html" />
     <Content Include="ClientApp\app\master\link-setup\link-setup.component.css" />
@@ -172,6 +178,8 @@
     <Content Include="ClientApp\app\master\nach-mandate\nach-mandate.component.html" />
     <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.css" />
     <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.html" />
+    <Content Include="ClientApp\app\master\report-view\report-view.component.css" />
+    <Content Include="ClientApp\app\master\report-view\report-view.component.html" />
     <Content Include="ClientApp\app\master\umrnhistory\umrnhistory.component.css" />
     <Content Include="ClientApp\app\master\umrnhistory\umrnhistory.component.html" />
     <Content Include="ClientApp\app\master\umrnupload\umrnupload.component.css" />
@@ -181,7 +189,9 @@
     <Content Include="ClientApp\app\sidebar\sidebar.component.css" />
     <Content Include="ClientApp\app\sidebar\sidebar.component.html" />
     <Content Include="ClientApp\assets\css\ace.min.css" />
+    <Content Include="ClientApp\assets\css\bootstrap.min.css" />
     <Content Include="ClientApp\assets\css\font-awesome.min.css" />
+    <Content Include="ClientApp\assets\css\style.css" />
     <Content Include="ClientApp\assets\images\kotak-bank-logo.png" />
     <Content Include="ClientApp\assets\images\loader.gif" />
     <Content Include="ClientApp\assets\images\quickcheck.png" />
@@ -878,6 +888,14 @@
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\all-umrn.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard-routing.module.ts" />
@@ -910,6 +928,10 @@
     <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate-routing.module.ts" />
@@ -928,6 +950,10 @@
     <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory-routing.module.ts" />

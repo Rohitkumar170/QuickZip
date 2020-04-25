@@ -13,32 +13,35 @@
         </div>
     </div>
     <div class="quickrightDiv">
-        <!--<div class="navbar-buttons navbar-header pull-right adminddl" role="navigation">
-            <ul class="nav ace-nav">
-                <li class="light-blue dropdown-modal">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle no-padding">
-                        <span class="user-info">Welcome User</span>
-                    </a>
-                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li class="logouthover">
-                            <i class="logoutdiv ace-icon fa fa-key"
-                               aria-hidden="true"></i><span class="logoutcolor">Change Password</span>
-                        </li>
-                        <li class="logouthover">
-                            <i class="logoutdiv ace-icon fa fa-power-off">
-                            </i><span class="logoutcolor">Log Out</span>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>-->
+
+        <div class="pull-right kotakDiv">
+            <img src="../../ClientApp/assets/images/kotak-bank-logo.png" style="width: 75%; float: right;">
+        </div>
+        <div class="guideDiv guidetext">
+            <h5 class="guidlicolor"><i class="fa fa-file-text" aria-hidden="true" title="New"></i> Guidelines</h5>
+        </div>
         <div>
             <h5 class="logout" (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</h5>
             <!--<img src="../../ClientApp/assets/images/kotak-bank-logo.png" />-->
         </div>
+        <div class="navbar-buttons navbar-header pull-right adminddl" role="navigation">
+        </div>
 
+    </div>
 
-
+    <div id="guidelines" style="display: none;">
+        <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+            <h5 style="text-align: center; display: none; /* padding: 3%; */">
+                Guidelines
+            </h5>
+            <ul style="margin-left: 15px;">
+                <li>
+                    For Physical Mandate Registration, upload file format should be JPEG, should not
+                    be more than 3MB and resolution must be equal to or greater than 300dpi.
+                </li>
+                <li>Mandate form has to be filled by black gel pen only.</li>
+            </ul>
+        </div>
 
     </div>
 </div>

@@ -18,13 +18,14 @@
         color: #0c335a;
         font-weight: bold;
     }
-
-
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+#dvLinks .nav-list {
+    max-height: 555px !important
+} 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
 
 
