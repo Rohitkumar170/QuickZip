@@ -283,7 +283,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         }
         else {
             //
-            alert('please select mandate ');
+            alert('not checked');
             this.SelectionStatusOfMutants.pop();
             UncheckedCount++;
             if (UncheckedCount == CheckedCount) {
@@ -428,7 +428,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
     };
     DownloadoldmandateComponent.prototype.downloadExcel = function () {
         // alert("this method is working");
-        // alert(this.Ischecked);
+        alert(this.Ischecked);
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
