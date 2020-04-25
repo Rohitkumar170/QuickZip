@@ -4,28 +4,28 @@ import { DownloadEmandateServiceService } from '../../services/downloademandate/
 import { FormBuilder } from '@angular/forms';
 import { formatDate } from '@angular/common';
 var DownloadEmandateComponent = /** @class */ (function () {
+    //public errormsg: any;
     //BindGridData: BindGridData;
     function DownloadEmandateComponent(DEService, fb) {
         this.DEService = DEService;
         this.SelectionStatusOfMutants = [];
         this.checkFlag = 0;
         this.Ischecked = 0;
+        this.CheckedCount = 0;
+        this.UncheckedCount = 0;
         this.toggleSelect = function (event) {
-            //toggleSelect(event) {
-            // var SelectionStatusOfMutants = [];
             this.all = event.target.checked;
             this.Databind.forEach(function (item) {
-                // console.log(item);
                 item.selected = event.target.checked;
-                // this.onChange(event, item);
             });
             this.checkFlag = 1;
             if (event.target.checked) {
                 this.Ischecked = 1;
-                //  this.Isallcheck = 1;
+                alert('Checked');
             }
             else {
                 this.Ischecked = 0;
+                alert('Not Checked');
             }
         };
         this.fromdate = new Date();
@@ -39,7 +39,6 @@ var DownloadEmandateComponent = /** @class */ (function () {
     DownloadEmandateComponent.prototype.ngOnInit = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         this.DEService.BankBind(item.UserId).
             subscribe(function (data) {
             _this.bankbind = data.Table;
@@ -54,44 +53,33 @@ var DownloadEmandateComponent = /** @class */ (function () {
     DownloadEmandateComponent.prototype.BankBind = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         this.DEService.BankBind(item.UserId).
             subscribe(function (data) {
             _this.bankbind = data.Table;
             _this.i = Object.entries(_this.bankbind)[0][1];
-            _this.SponserBankCode = _this.i.sponsorbankcode;
-            console.log(_this.bankbind);
         });
     };
     DownloadEmandateComponent.prototype.SearchFunction = function (FromDate, ToDate, Bank) {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         this.DEService.BindGridData(FromDate, ToDate, Bank, item.UserId).subscribe(function (data) {
             _this.Databind = data;
-            console.log(_this.Databind);
         });
     };
-    DownloadEmandateComponent.prototype.Removelabel = function () { this.errormsg = ''; };
     DownloadEmandateComponent.prototype.onChange = function (event, item) {
-        //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
-        //var isChecked = element.checked;
-        //if (count == '') {
         this.checkFlag = 0;
         this.IsMandateID = item.mandateid;
-        var CheckedCount = 0, UncheckedCount = 0;
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
-            console.log(this.SelectionStatusOfMutants);
             alert('checked');
             this.Ischecked = 1;
-            CheckedCount++;
+            this.CheckedCount++;
         }
         else {
             alert('not checked');
             this.SelectionStatusOfMutants.pop();
-            UncheckedCount++;
-            if (UncheckedCount == CheckedCount) {
+            this.UncheckedCount++;
+            if (this.UncheckedCount == this.CheckedCount) {
                 this.Ischecked = 0;
             }
         }
@@ -140,14 +128,6 @@ var DownloadEmandateComponent = /** @class */ (function () {
         return str;
     };
     DownloadEmandateComponent.prototype.download = function () {
-        alert(this.Ischecked);
-        if (this.Ischecked == 1 && this.Databind.length != 0) {
-            alert("Selecetd");
-        }
-        else {
-            alert("Not selected any checkbox");
-            this.errormsg = "Checkbox is not Selected";
-        }
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
