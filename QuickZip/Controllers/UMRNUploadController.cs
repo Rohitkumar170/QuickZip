@@ -214,7 +214,7 @@ namespace QuickZip.Controllers
         }
 
 
-
+        [HttpGet]
         [Route("api/UMRNUpload/btnSave_Click/{EntityId}/{UserId}/{UploadHeaderId}/{TotalCount}/{validatedcount}/{FileName}")]
         public Dictionary<string, object> btnSave_Click(string EntityId, string UserId, string UploadHeaderId, string TotalCount, string validatedcount, string FileName)
         {

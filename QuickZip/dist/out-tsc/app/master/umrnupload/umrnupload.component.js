@@ -231,12 +231,24 @@ var UmrnuploadComponent = /** @class */ (function () {
     UmrnuploadComponent.prototype.btnsave_click = function (e) {
         var _this = this;
         var UploadHeaderId = document.getElementById('lblUploaderID').innerHTML;
-        var TotalCount = document.getElementById('lblUploaderID').innerHTML;
-        var validatedcount = document.getElementById('lblUploaderID').innerHTML;
+        var TotalCount = document.getElementById('lbltotalrecordcount').innerHTML;
+        var validatedcount = document.getElementById('lblvalidatedcount').innerHTML;
         var FileName = document.getElementById('lblfilename').innerHTML;
-        this._UmrnUploadService.btnSave_Click(UploadHeaderId, TotalCount, validatedcount, FileName).
-            subscribe(function (data) {
+        this._UmrnUploadService.btnSave_Click(UploadHeaderId, TotalCount, validatedcount, FileName).subscribe(function (data) {
             _this.umrnupload = data.Table;
+            if (data.Table.length != 0) {
+                alert('Uploaded SuccessFully');
+            }
+            _this.BindGrid();
+            var tbldiv1 = document.getElementById('tbldiv1');
+            tbldiv1.style.display = 'block';
+            var tbldiv2 = document.getElementById('tbldiv2');
+            tbldiv2.style.display = 'none';
+            var tbldiv3 = document.getElementById('tbldiv3');
+            tbldiv3.style.display = 'none';
+            var tbldiv4 = document.getElementById('tbldiv4');
+            tbldiv4.style.display = 'none';
+            window.location.reload();
         });
     };
     tslib_1.__decorate([
