@@ -902,7 +902,6 @@
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\lay-out-module.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\lay-out-routing.module.ts" />
-    <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nach-mandate.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nach-mandate.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nachmandate-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nach-mandate\nachmandate.module.ts" />
