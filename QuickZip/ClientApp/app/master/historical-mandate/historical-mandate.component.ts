@@ -14,7 +14,7 @@ import { count } from 'rxjs/operators';
 export class HistoricalMandateComponent implements OnInit {
     HistoricalMandateForm: FormGroup; HeaderArray;
     BindAllData: HistoricalMandateClass; TotalCount; dataArray: Array<HistoricalMandateClass> = [];
-
+    Preloader:boolean = true;
     constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) {
 
     }
@@ -24,8 +24,8 @@ export class HistoricalMandateComponent implements OnInit {
     }
 
     SearchFunction(FromDate, ToDate) {
-        var formElement = <HTMLFormElement>document.getElementById('divLoarder');
-        formElement.style.display = 'block';
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        //formElement.style.display = 'block';
         
 
         let item = JSON.parse(sessionStorage.getItem('User'));
@@ -40,8 +40,8 @@ export class HistoricalMandateComponent implements OnInit {
                     //alert(CountRecordArray.length);
                     //alert(json);
                 });
-            formElement = <HTMLFormElement>document.getElementById('divLoarder');
-            formElement.style.display = 'none';
+            //formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            //formElement.style.display = 'none';
         }
     }
     doubleClick(data: any) {

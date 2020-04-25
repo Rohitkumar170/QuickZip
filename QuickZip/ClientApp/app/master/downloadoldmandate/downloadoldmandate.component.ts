@@ -11,7 +11,7 @@ import { formatDate } from '@angular/common';
     styleUrls: ['./downloadoldmandate.component.css']
 })
 export class DownloadoldmandateComponent implements OnInit {
-    loading: boolean = false;
+    loading = false;
     checkFlag: number = 0;
     Ischecked: number = 0;
     IsMandateID: string;
@@ -227,7 +227,7 @@ export class DownloadoldmandateComponent implements OnInit {
 
     mydate(FromDate, ToDate, selected) {
         //   alert(FromDate + "  " + ToDate + " " + selected);
-        this.loading = true;
+       
         //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
         //formElement.style.display = 'block';
 
@@ -237,7 +237,7 @@ export class DownloadoldmandateComponent implements OnInit {
             //var a = FromDate;
             //var b = ToDate;
             //var c = selected;
-
+            this.loading = true;
             this.myservice.BindbyDate(item.UserId, FromDate, ToDate, selected).subscribe((res) => {
                    console.log(res);
                 this.tabledata = res;

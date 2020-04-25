@@ -15,6 +15,7 @@ var DownloadmandateComponent = /** @class */ (function () {
     function DownloadmandateComponent(_downloadMandateService, fb) {
         this._downloadMandateService = _downloadMandateService;
         this.fb = fb;
+        this.ZipDownloadArray = [];
         this.HeaderArray = {};
         // SelectionStatusOfMutants: any = {};
         this.SelectionStatusOfMutants = [];
@@ -278,6 +279,26 @@ var DownloadmandateComponent = /** @class */ (function () {
         else {
             alert('checkbox not selected');
         }
+    };
+    DownloadmandateComponent.prototype.downloadScannedMandate = function () {
+        this.ZipDownloadArray = [];
+        if (this.checkFlag == 0) {
+            this.getZipFile(JSON.stringify(this.SelectionStatusOfMutants));
+        }
+        else {
+            this.getZipFile(JSON.stringify(this.bindgrid));
+        }
+    };
+    DownloadmandateComponent.prototype.getZipFile = function (data) {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        var blob = new Blob([data], { type: 'application/zip' });
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = "test.zip";
+        a.click();
+        window.URL.revokeObjectURL(url);
     };
     DownloadmandateComponent = tslib_1.__decorate([
         Component({
