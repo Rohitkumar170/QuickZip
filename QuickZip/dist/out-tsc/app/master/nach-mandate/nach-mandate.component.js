@@ -1,35 +1,17 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BankFormService } from '../../Services/BankForm/bank-form.service';
 import { FormBuilder } from '@angular/forms';
+import { BankFormService } from '../../Services/BankForm/bank-form.service';
 var NachMandateComponent = /** @class */ (function () {
     function NachMandateComponent(router, formBuilder, _bankformService) {
         this.router = router;
         this.formBuilder = formBuilder;
         this._bankformService = _bankformService;
-        // Work on Header button work
-        this.btnedit = false;
-        this.btnscanprint = false;
-        this.btnmandateprint = false;
-        this.btnblackmandateprint = false;
-        this.btnoldoverprintmandate = false;
-        this.btnprint = false;
-        this.btnscanhalf = false;
-        this.btnscan = false;
-        this.btnvalidate = false;
-        this.AEresponse = false;
-        this.btnregisfund = false;
-        this.isDisabled = false;
-        this.isDisabledback = false;
-        //end header button work
         this.btnCancelDisabled = true;
         this.IsCancel = false;
     }
     NachMandateComponent.prototype.ngOnInit = function () {
-        this.NachMandate = this.formBuilder.group({
-            Catagorycode: ['']
-        });
         var Sessionvalue = JSON.parse(sessionStorage.getItem('User'));
         this.lblIsRefrenceCheck = Sessionvalue.IsRefrenceCheck;
         this.lblIsMandateEdit = Sessionvalue.IsMandateEdit;
@@ -42,11 +24,26 @@ var NachMandateComponent = /** @class */ (function () {
         this.lblBranchId = Sessionvalue.BranchId;
         this.lblUserType = Sessionvalue.UserType;
         this.lblRefId = Sessionvalue.ReferenceId;
+        //this.BankForm = this.formBuilder.group({
+        //    MandateMode: [''],
+        //    AcNo: ['', Validators.required], MandateType: [''], DateOnMandate: ['', Validators.required],
+        //    UtilityCode: [''], EntityName: [''],
+        //    ToDebit: [''], BankName: [''], DebitType: [''], FrequencyType: [''], Sponsorbankcode: [''], Catagorycode: [''],
+        //    IFSC: ['', Validators.required], MICR: [''],
+        //    AmountRupees: ['', Validators.required],
+        //    Amountinword: [''],
+        //    EmailId: ['', [Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        //    PhNumber: [''],
+        //    Refrence1: ['', Validators.required], Refrence2: [''],
+        //    FromDate: ['', Validators.required], ToDate: [''], chkUntil: [''],
+        //    CustomerName1: ['', Validators.required],
+        //    CustomerName2: [''], CustomerName3: [''],
+        //    txtUMRN: ['']
+        //});
         this.BinddataonPageLoad();
     };
-    NachMandateComponent.prototype.show = function () { alert('hii'); };
     Object.defineProperty(NachMandateComponent.prototype, "AllFields", {
-        get: function () { return this.NachMandate.controls; },
+        get: function () { return this.BankForm.controls; },
         enumerable: true,
         configurable: true
     });
@@ -65,6 +62,21 @@ var NachMandateComponent = /** @class */ (function () {
             //    this.IsCancel = false;
             //}
         });
+    };
+    NachMandateComponent.prototype.numberOnly = function (event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+    NachMandateComponent.prototype.Decimal = function (event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        // e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)
+        if (charCode != 8 && (charCode != 0 && charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
     };
     NachMandateComponent = tslib_1.__decorate([
         Component({
