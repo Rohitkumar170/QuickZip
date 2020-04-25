@@ -5,69 +5,68 @@ import { HistoricalMandateClass } from '../../../models/historical-mandate/histo
 import { HistoricalMandateServiceService } from '../../services/historical-mandate/historical-mandate-service.service';
 import { count } from 'rxjs/operators';
 
+
 @Component({
-  selector: 'app-historical-mandate',
-  templateUrl: './historical-mandate.component.html',
-  styleUrls: ['./historical-mandate.component.css']
+    selector: 'app-historical-mandate',
+    templateUrl: './historical-mandate.component.html',
+    styleUrls: ['./historical-mandate.component.css']
 })
 export class HistoricalMandateComponent implements OnInit {
-    HistoricalMandateForm: FormGroup; HeaderArray; currentdate; 
-    //submitted = false;
+    HistoricalMandateForm: FormGroup; HeaderArray;
     BindAllData: HistoricalMandateClass; TotalCount; dataArray: Array<HistoricalMandateClass> = [];
+    Preloader:boolean = true;
+    constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) {
 
-   // AddClass: string = "color:red";
-    //TotalCount = 0;
-    constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) { }
-
-    ngOnInit() {
-        //this.currentdate = new Date();
-        //this.HistoricalMandateForm = this.formBuilder.group({
-        //    FromDate: ['', Validators.required],
-        //    ToDate: ['', Validators.required],
-        //    });
-           
-      
     }
+    // CurrentDate = new Date();
+    ngOnInit() {
+
+    }
+
     SearchFunction(FromDate, ToDate) {
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        //formElement.style.display = 'block';
+        
+
         let item = JSON.parse(sessionStorage.getItem('User'));
-        //if (FromDate == "" || ToDate == "") {
-         
-        //}
-        alert(FromDate + " " + ToDate + " " + item.UserId);
-        if (FromDate != "" && ToDate !="") {
+        // alert(FromDate + " " + ToDate + " " + item.UserId);
+        if (FromDate != "" && ToDate != "") {
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(
                 (data) => {
-                    this.BindAllData = data;               
-                    let json = JSON.stringify(this.BindAllData);  
+                    this.BindAllData = data;
+                    let json = JSON.stringify(this.BindAllData);
                     var CountRecordArray = typeof json != 'object' ? JSON.parse(json) : json;
                     this.TotalCount = CountRecordArray.length;
                     //alert(CountRecordArray.length);
                     //alert(json);
                 });
+            //formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            //formElement.style.display = 'none';
         }
     }
     doubleClick(data: any) {
-       // this.dataArray = this.dataArray + data;
+        // this.dataArray = this.dataArray + data;
         this.dataArray.push(data);
         let json = JSON.stringify(data);
         alert(json);
         console.log(data.MandateFreshId);
-        
+
     }
-  
+
 
 
     ConvertToCSV(objArray) {
         this.HeaderArray = {
             MandateStatus: "Mandate Status", SendToBankDate: "Send To Bank Date", MandateFreshId: "Mandate ID", mandateMode: "mandate Mode",
             AutoRejectReason: "AutoRejectReason", updatedon: "updatedon", username: "username", UpdateBy: "UpdateBy", Enach: "Enach",
-        IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
+            IsMobileData: "IsMobileData", RejectedReason: "RejectedReason", REJECTED: "REJECTED", CreatedOn: "CreatedOn", is_enach_live: "is_enach_live",
             IsScan: "IsScan", JPGPath: "JPGPath", TIPPath: "TIPPath", IsPrint: "IsPrint", mandateid: "mandateid", status: "status", Amount: "Amount",
             Code: "Code", BankName: "BankName", DateOnMandate: "DateOnMandate", AcNo: "AcNo", Refrence1: "Refrence1", AcceptRefNo: "AcceptRefNo",
             NPCIErrorDesc: "NPCIErrorDesc", FromDate: "FromDate", Customer1: "Customer1", debittype: "debittype", Frequency: "Frequency", Monthly: "Monthly",
             ToDebit: "ToDebit", NPCIMsgId: "NPCIMsgId", MSGId: "MSGId", UMRN: "UMRN", AggregatorValue: "AggregatorValue", Amount_Numeric: "Amount_Numeric",
             SponsorBankCode: "SponsorBankCode", PhoneNumber: "PhoneNumber", EmailId: "EmailId", EmandateType: "EmandateType", ActivityId: "ActivityId",
-            Refrence2:"Refrence2"}
+            Refrence2: "Refrence2"
+        }
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = '';
         var row = "";
@@ -114,11 +113,5 @@ export class HistoricalMandateComponent implements OnInit {
         a.click();
         return 'success';
     }
-//    getDate() {
-//    var today = new Date();
 
-//        document.getElementById("date").nodeValue = today.getDate() + '/' + ('0' + (today.getMonth() + 1)).slice(-2) + '/' + ('0' + today.getFullYear()).slice(-2);
-
-//       // getFullYear()     getDate()   getMonth()
-//}
 }

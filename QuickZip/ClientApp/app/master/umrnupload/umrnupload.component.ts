@@ -11,7 +11,7 @@ import { GridUnsuccess } from '../../../models/umrnupload/gridunsuccess';
 import { Location } from '@angular/common';
 
 import { count } from 'rxjs/operators';
-import * as xlsx from 'xlsx';
+
 
 @Component({
   selector: 'app-umrnupload',
@@ -21,6 +21,7 @@ import * as xlsx from 'xlsx';
 export class UmrnuploadComponent implements OnInit {
  
     HeaderArray; UMRNUploadform: FormGroup;
+    @ViewChild('fileInput') fileInput;  
     umrnupload: UMRNUpload; dataArray: Array<UMRNUpload> = []; UploadHeaderId; maingriddetails: MainGridDetails; grdsuccess: GridSuccess; grdunsuccess: GridUnsuccess;
    
     constructor(private _UmrnUploadService: UmrnUploadService) { }
@@ -75,28 +76,30 @@ export class UmrnuploadComponent implements OnInit {
 
                 var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
                 tbldiv4.style.display = 'block';
-
-               
+                var btndownload = <HTMLFormElement>document.getElementById('btndownload');
+                btndownload.style.display = 'block';
+                var divsave = <HTMLFormElement>document.getElementById('divsave');
+                divsave.style.display = 'none';
             });
-        console.log(this.umrnupload);
+        
 
     }
 
-    btnback() {
+    //btnback() {
       
-        this.BindGrid();
-        var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
-        tbldiv2.style.display = 'none';
+    //    this.BindGrid();
+    //    var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
+    //    tbldiv2.style.display = 'none';
 
-        var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
-        tbldiv3.style.display = 'none';
+    //    var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
+    //    tbldiv3.style.display = 'none';
 
-        var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
-        tbldiv4.style.display = 'none';
+    //    var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
+    //    tbldiv4.style.display = 'none';
        
-        var tbldiv1 = <HTMLFormElement>document.getElementById('tbldiv1');
-        tbldiv1.style.display = 'block';
-    }
+    //    var tbldiv1 = <HTMLFormElement>document.getElementById('tbldiv1');
+    //    tbldiv1.style.display = 'block';
+    //}
 
     ConvertToCSV(objArray) {
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
@@ -167,6 +170,7 @@ export class UmrnuploadComponent implements OnInit {
             FromDate: "From Date", ToDate: "To Date", AccountType: "Account Type", AccountNo: "Account Number", IFSC: "IFSC"
 
         }
+
         var csvData = this.ConvertToCSV(JSON.stringify(this.grdsuccess));
         var a = document.createElement("a");
         a.setAttribute('style', 'display:none;');
@@ -198,7 +202,142 @@ export class UmrnuploadComponent implements OnInit {
         return 'success';
     }
     btnBack_click(e) {
-     //   this.elementClicked = 'You clicked: ' + e.target.innerHTML;
-        alert('k')
+       
+        //var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
+        //tbldiv2.style.display = 'none';
+
+        //var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
+        //tbldiv3.style.display = 'none';
+
+        //var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
+        //tbldiv4.style.display = 'none';
+        //this.BindGrid();
+        //var tbldiv1 = <HTMLFormElement>document.getElementById('tbldiv1');
+        //tbldiv1.style.display = 'block';
+        window.location.reload();
     }
+
+    downloadHeaderGrid() {
+        this.HeaderArray = [];
+        this.HeaderArray = {
+            UploadNo: "Upload No", CreatedOn: "Created On", UserName: "User Name", TotalCount: "Total Count",
+            SuccessCount: "Success Count"
+
+        }
+        var csvData = this.ConvertToCSV(JSON.stringify(this.umrnupload));
+        var a = document.createElement("a");
+        a.setAttribute('style', 'display:none;');
+        document.body.appendChild(a);
+        var blob = new Blob([csvData], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'UMRN_Upload_List.csv';
+        a.click();
+        return 'success';
+    }
+
+    btnNew_click(e) {
+
+        var tbldiv1 = <HTMLFormElement>document.getElementById('tbldiv1');
+        tbldiv1.style.display = 'none';
+
+        var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
+        tbldiv2.style.display = 'none';
+
+        var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
+        tbldiv3.style.display = 'none';
+
+        var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
+        tbldiv4.style.display = 'none';
+
+        var btndownload = <HTMLFormElement>document.getElementById('btndownload');
+        btndownload.style.display = 'block';
+
+        var btnupload = <HTMLFormElement>document.getElementById('btnupload');
+        btnupload.style.display = 'block';
+
+        var btnback = <HTMLFormElement>document.getElementById('btnback');
+        btnback.style.display = 'block';
+        var btnNew = <HTMLFormElement>document.getElementById('btnNew');
+        btnNew.style.display = 'none';
+    }
+    uploadUMRN() {
+        let formData = new FormData();
+        formData.append('upload', this.fileInput.nativeElement.files[0])
+      //  alert('k')
+        //this.service.UploadExcel(formData).subscribe(result => {
+        //    this.message = result.toString();
+        //    this.loadAllUser();
+        //});
+        this._UmrnUploadService.UploadExcel(formData).
+            subscribe((data) => {
+                this.grdunsuccess = data.Table;
+                this.grdsuccess = data.Table1;
+                this.maingriddetails = data.Table2;
+                var TotalCount = data.Table2.length;
+                var successCount = data.Table1.length;
+                var UnsuccessCount = data.Table.length;
+                document.getElementById('lblTotalCount').innerHTML = 'Total Records: ' + TotalCount;
+                document.getElementById('lblsuccessCount').innerHTML = 'Validated Records : ' + successCount;
+                document.getElementById('lblUnsuccessCount').innerHTML = 'Rejected Records : ' + UnsuccessCount;
+                var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
+                tbldiv2.style.display = 'block';
+
+                var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
+                tbldiv3.style.display = 'block';
+
+                var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
+                tbldiv4.style.display = 'block';
+                var btndownload = <HTMLFormElement>document.getElementById('btndownload');
+                btndownload.style.display = 'block';
+
+                var divsave = <HTMLFormElement>document.getElementById('divsave');
+                divsave.style.display = 'block';
+                var btnNew = <HTMLFormElement>document.getElementById('btnNew');
+                btnNew.style.display = 'none';
+                document.getElementById('lbltotalrecordcount').innerHTML =  TotalCount;
+                document.getElementById('lblvalidatedcount').innerHTML =   successCount;
+                document.getElementById('lblUploaderID').innerHTML = this.maingriddetails[0].legacyUploadedID;
+                document.getElementById('lblfilename').innerHTML = data.FileName;
+
+            });
+    }  
+
+    btnsave_click(e) {
+        
+
+        var UploadHeaderId = document.getElementById('lblUploaderID').innerHTML;
+        var TotalCount = document.getElementById('lbltotalrecordcount').innerHTML;
+        var validatedcount = document.getElementById('lblvalidatedcount').innerHTML;
+        var FileName = document.getElementById('lblfilename').innerHTML;
+       
+
+        this._UmrnUploadService.btnSave_Click(UploadHeaderId, TotalCount, validatedcount, FileName).subscribe((data) => {
+
+              
+            this.umrnupload = data.Table;
+            if (data.Table.length != 0) {
+                alert('Uploaded SuccessFully');
+            }
+            this.BindGrid();
+            var tbldiv1 = <HTMLFormElement>document.getElementById('tbldiv1');
+            tbldiv1.style.display = 'block';
+
+            var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
+            tbldiv2.style.display = 'none';
+
+            var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
+            tbldiv3.style.display = 'none';
+
+            var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
+            tbldiv4.style.display = 'none';
+            window.location.reload();
+        });
+
+
+    }
+
+
+
+    
 }

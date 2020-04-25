@@ -16,11 +16,14 @@ var HistoricalmandateModule = /** @class */ (function () {
                 HistoricalmandateRoutingModule
             ],
             providers: [
-                HistoricalMandateServiceService
+                HistoricalMandateServiceService, { provide: 'BASE_URL', useFactory: getBaseUrl }
             ]
         })
     ], HistoricalmandateModule);
     return HistoricalmandateModule;
 }());
 export { HistoricalmandateModule };
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}
 //# sourceMappingURL=historicalmandate.module.js.map

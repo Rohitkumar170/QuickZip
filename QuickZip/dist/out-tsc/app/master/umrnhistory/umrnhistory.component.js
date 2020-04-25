@@ -20,7 +20,14 @@ var UmrnhistoryComponent = /** @class */ (function () {
     UmrnhistoryComponent.prototype.SearchFunction = function (UMRN, CustomerName, RefrNo) {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.UMRService.BindGridData(UMRN, CustomerName, RefrNo, item.UserId).subscribe(function (data) {
+        // alert(UMRN + " " + CustomerName + " " + RefrNo + " " + item.UserId);
+        var jasondata = {
+            "UMRN": UMRN,
+            "customer1": CustomerName,
+            "RefrNo": RefrNo,
+            "UserId": item.UserId
+        };
+        this.UMRService.BindGridData(jasondata).subscribe(function (data) {
             _this.AllData = data;
         });
     };

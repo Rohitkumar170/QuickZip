@@ -16,7 +16,7 @@ export class HistoricalMandateServiceService {
         this.baseUrl = myAppUrl;
     }
     BindGridData(FromDate, ToDate, UserId): Observable<HistoricalMandateClass> {
-        alert(FromDate + " " + ToDate + " " + UserId);
+       // alert(FromDate + " " + ToDate + " " + UserId);
         //alert("Service" + FromDate + " " + ToDate);
         return this._http.get<HistoricalMandateClass>(this.baseUrl + 'api/BindData/DatesWise/' + FromDate + '/' + ToDate + '/' + UserId);
     }

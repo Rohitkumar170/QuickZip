@@ -8,7 +8,7 @@ var OldmandateService = /** @class */ (function () {
         this.baseUrl = myAppUrl;
     }
     OldmandateService.prototype.BankBind = function (UserId) {
-        //  alert("service" +UserId);
+        // alert("service" +UserId);
         return this.http.get(this.baseUrl + 'api/OldMandate/GetDataByUID/' + UserId);
     };
     OldmandateService.prototype.Bindbyrefrence = function (UserId, Refrence1) {
@@ -22,6 +22,10 @@ var OldmandateService = /** @class */ (function () {
     OldmandateService.prototype.BindbyBank = function (UserId, FromDate, ToDate, SponsorBankCode) {
         //  alert("service" + FromDate + ToDate + SponsorBankCode + UserId);
         return this.http.get(this.baseUrl + 'api/OldMandate/GetDataByDate/' + UserId + '/' + FromDate + '/' + ToDate + '/' + SponsorBankCode);
+    };
+    OldmandateService.prototype.RejectData = function (FromDate, ToDate, RejectedReason, UserId, selectMandateId) {
+        //  alert("service" + FromDate + ToDate + SponsorBankCode + UserId);
+        return this.http.get(this.baseUrl + 'api/OldMandate/RejectDt/' + '/' + FromDate + '/' + ToDate + '/' + RejectedReason + '/' + UserId + '/' + selectMandateId);
     };
     OldmandateService = tslib_1.__decorate([
         Injectable({

@@ -281,13 +281,6 @@ var DownloadEmandateComponent = /** @class */ (function () {
     };
     DownloadEmandateComponent.prototype.download = function () {
         alert(this.Ischecked);
-        //if (this.Ischecked == 1 ) {
-        //    alert("Selecetd");
-        //}
-        //else {
-        //    alert("Not selected any checkbox");
-        //    this.errormsg = "Checkbox is not Selected";
-        //}
         if (this.Ischecked == 1 || this.Databind.length > 0) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));

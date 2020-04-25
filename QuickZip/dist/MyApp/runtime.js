@@ -63,7 +63,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"allumrn-all-umrn-module-ngfactory":"allumrn-all-umrn-module-ngfactory","dashboard-dashboard-module-ngfactory":"dashboard-dashboard-module-ngfactory","demoemandate-demoemandate-module-ngfactory":"demoemandate-demoemandate-module-ngfactory","demophysical-demophysical-module-ngfactory":"demophysical-demophysical-module-ngfactory","download-emandate-downloademandate-module-ngfactory":"download-emandate-downloademandate-module-ngfactory","downloadmandate-downloadmandate-module-ngfactory":"downloadmandate-downloadmandate-module-ngfactory","downloadoldemandate-downloadoledemandate-module-ngfactory":"downloadoldemandate-downloadoledemandate-module-ngfactory","downloadoldmandate-downloadoldmandate-module-ngfactory":"downloadoldmandate-downloadoldmandate-module-ngfactory","historical-mandate-historicalmandate-module-ngfactory":"historical-mandate-historicalmandate-module-ngfactory","nach-mandate-nachmandate-module-ngfactory":"nach-mandate-nachmandate-module-ngfactory","nachtransactionpresentation-nachtransactionpresentation-module-ngfactory":"nachtransactionpresentation-nachtransactionpresentation-module-ngfactory","umrnhistory-umrnhistory-module-ngfactory":"umrnhistory-umrnhistory-module-ngfactory","umrnupload-umrn-upload-module-ngfactory":"umrnupload-umrn-upload-module-ngfactory","user-user-module-ngfactory":"user-user-module-ngfactory"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"access-rights-access-rights-module-ngfactory":"access-rights-access-rights-module-ngfactory","allumrn-all-umrn-module-ngfactory":"allumrn-all-umrn-module-ngfactory","dashboard-dashboard-module-ngfactory":"dashboard-dashboard-module-ngfactory","demoemandate-demoemandate-module-ngfactory":"demoemandate-demoemandate-module-ngfactory","demophysical-demophysical-module-ngfactory":"demophysical-demophysical-module-ngfactory","download-emandate-downloademandate-module-ngfactory":"download-emandate-downloademandate-module-ngfactory","downloadmandate-downloadmandate-module-ngfactory":"downloadmandate-downloadmandate-module-ngfactory","downloadoldemandate-downloadoledemandate-module-ngfactory":"downloadoldemandate-downloadoledemandate-module-ngfactory","downloadoldmandate-downloadoldmandate-module-ngfactory":"downloadoldmandate-downloadoldmandate-module-ngfactory","entity-bank-setup-entity-bank-setup-module-ngfactory":"entity-bank-setup-entity-bank-setup-module-ngfactory","historical-mandate-historicalmandate-module-ngfactory":"historical-mandate-historicalmandate-module-ngfactory","link-setup-link-setup-module-ngfactory":"link-setup-link-setup-module-ngfactory","nach-mandate-nachmandate-module-ngfactory":"nach-mandate-nachmandate-module-ngfactory","nachtransactionpresentation-nachtransactionpresentation-module-ngfactory":"nachtransactionpresentation-nachtransactionpresentation-module-ngfactory","umrnhistory-umrnhistory-module-ngfactory":"umrnhistory-umrnhistory-module-ngfactory","umrnupload-umrn-upload-module-ngfactory":"umrnupload-umrn-upload-module-ngfactory","user-user-module-ngfactory":"user-user-module-ngfactory"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -112,6 +112,7 @@
 /******/ 				promises.push(installedChunkData[2] = promise);
 /******/
 /******/ 				// start chunk loading
+/******/ 				var head = document.getElementsByTagName('head')[0];
 /******/ 				var script = document.createElement('script');
 /******/ 				var onScriptComplete;
 /******/
@@ -143,7 +144,7 @@
 /******/ 					onScriptComplete({ type: 'timeout', target: script });
 /******/ 				}, 120000);
 /******/ 				script.onerror = script.onload = onScriptComplete;
-/******/ 				document.head.appendChild(script);
+/******/ 				head.appendChild(script);
 /******/ 			}
 /******/ 		}
 /******/ 		return Promise.all(promises);
