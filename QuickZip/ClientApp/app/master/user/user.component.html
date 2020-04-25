@@ -437,7 +437,7 @@
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                        <label class="col-md-10 col-sm-10 col-xs-12 " style=" color: #e72d2d; font-size: 12px; display:none">All users selected</label>
+                                                        <label class="col-md-10 col-sm-10 col-xs-12 " style=" color: #e72d2d; font-size: 12px" *ngIf="lblalluser">All users selected</label>
                                                     </div>
 
                                                     <div id="divplusicon" *ngIf="divplusicon">
@@ -655,7 +655,7 @@
                             <table id="tbluserlist">
                                 <thead>
                                     <tr>
-                                        <th style="width:150px;"><input type="checkbox" name="all" id="chkalluserlist" (change)="isSelected = !isSelected">All</th>
+                                        <th style="width:150px;"><input type="checkbox" name="all" id="chkalluserlist" (click)="chkAllUser($event)" (change)="isSelected = !isSelected">All</th>
                                         <th style="width:300px;">Email Id</th>
                                         <th style="width:300px;">User Name</th>
 
@@ -663,7 +663,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let data of nachuser; index as i" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
-                                        <td style="width:150px;"><input type="checkbox" class="chk" name="singlechk" [checked]="isSelected" (change)="checkSingleUser($event)" id={{data.UserId}}></td>
+                                        <td style="width:150px;"><input type="checkbox" class="chk" name="singlechk" [checked]="isSelected" (change)="checkSingleUser(data)" id={{data.UserId}}></td>
                                         <td style="display:none">{{data.UserId}}</td>
                                         <td style="width:300px;">{{data.EmailId}}</td>
                                         <td style="width:300px;">{{data.UserName}}</td>
@@ -675,7 +675,7 @@
 
                             </table>
                         </div>
-                        <button type="button" class="btn btn-success pull-right" style="margin-top:8px;" data-dismiss="modal" (click)="hide()">Submit</button>
+                        <button type="button" class="btn btn-success pull-right" style="margin-top:8px;" data-dismiss="modal" (click)="getUserlist()">Submit</button>
 
 
                     </div>
