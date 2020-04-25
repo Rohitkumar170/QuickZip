@@ -243,6 +243,7 @@
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
+    <Compile Include="Controllers\AllUMRNController.cs" />
     <Compile Include="Controllers\BankFormController.cs" />
     <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\DownloadMandateController.cs" />
@@ -767,6 +768,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Allumrn\Allumrnaccesslayer.cs" />
+    <Compile Include="Models\Allumrn\GridData.cs" />
     <Compile Include="Models\BankForm\BankFormData.cs" />
     <Compile Include="Models\BankForm\BindBankNameDetails.cs" />
     <Compile Include="Models\BankForm\BindBankPaymentMode.cs" />
@@ -947,6 +950,8 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\BankForm\bank-form.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
@@ -972,6 +977,8 @@
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridData.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Allumrn\Umrn_Class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankNameDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankPaymentMode.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankUtilityCode.ts" />

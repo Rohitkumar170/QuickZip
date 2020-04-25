@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 var AllumrnService = /** @class */ (function () {
     function AllumrnService(_http, myAppUrl) {
@@ -8,14 +8,18 @@ var AllumrnService = /** @class */ (function () {
         this.baseUrl = "";
         this.baseUrl = myAppUrl;
     }
-    AllumrnService.prototype.BindGrid = function (Entityid, Pageno) {
+    AllumrnService.prototype.GridBind = function (Entityid, Pageno) {
         alert("Service" + Entityid + " " + Pageno);
-        return this._http.get(this.baseUrl + 'api/Allumrn/BindGrid/' + Entityid + '/' + Pageno);
+        return this._http.get(this.baseUrl + 'api/AllUMRN/GridBind/' + Entityid + '/' + Pageno);
     };
-    //SearchData(UMRN, CustomerName, ReferenceNumber, entityid): Observable<Searchdetails> {
-    //    alert("Service" + UMRN + " " + CustomerName + ReferenceNumber + entityid);
-    //    return this._http.get<Searchdetails>(this.baseUrl + 'api/Allumrn/SearchData/' + UMRN + '/' + CustomerName + '/' + ReferenceNumber + '/' + entityid);
-    //}
+    AllumrnService.prototype.SearchData = function (em) {
+        var body = em;
+        alert(body);
+        var headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post(this.baseUrl + 'api/AllUMRN/SearchData', body, {
+            headers: headers
+        });
+    };
     AllumrnService.prototype.errorHandler = function (error) {
         console.log(error);
         return Observable.throw(error);
