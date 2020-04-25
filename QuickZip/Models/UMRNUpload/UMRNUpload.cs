@@ -62,7 +62,7 @@ namespace QuickZip.Models.UMRNUpload
             try
             {
 
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Uploaddata]").With<GridUnsuccess>().With<GridSuccess>().With<MainGridDetails>().Execute("@QueryType", "@XmlDimension", "@EntityID", "@UserID", "Legacy_UploadExcel", xml, DbSecurity.Decrypt(UserId),DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Uploaddata]").With<GridUnsuccess>().With<GridSuccess>().With<MainGridDetails>().Execute("@QueryType", "@XmlDimension", "@EntityID", "@UserID", "Legacy_UploadExcel", xml, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
                 Result.Add("FileName", FileName);
                 return Result;
             }
@@ -79,7 +79,7 @@ namespace QuickZip.Models.UMRNUpload
             try
             {
 
-                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Uploaddata]").With<MainGrid>().Execute("@QueryType", "@UploadHeaderId", "@UserID", "@FileName", "@TotalCount", "@SuccessCunt", "@LegacyId", "@EntityId", "Legacy_InsertBulkData", UploadHeaderId, DbSecurity.Decrypt(UserId), FileName, TotalCount, validatedcount, UploadHeaderId, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
+                var Result = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Uploaddata]").With<MainGrid>().Execute("@QueryType", "@UploadHeaderId", "@UserID", "@FileName", "@TotalCount", "@SuccessCunt", "@LegacyId", "@EntityId", "Legacy_InsertBulkData", UploadHeaderId, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), FileName, TotalCount, validatedcount, UploadHeaderId, DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%")))));
                 return Result;
             }
 
