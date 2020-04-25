@@ -16,10 +16,10 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.CheckIsPresentmentChecker = function (EntityId) {
         return this._http.get(this.baseUrl + 'api/USer/CheckIsPresentmentChecker/' + EntityId);
     };
-    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId) {
+    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId, checkbulkuploadlink, chkvideolink) {
         var body = em;
         var headers = new HttpHeaders().set('content-type', 'application/json');
-        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId, body, {
+        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
             headers: headers
         });
     };

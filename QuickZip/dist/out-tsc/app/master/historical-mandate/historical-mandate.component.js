@@ -7,14 +7,15 @@ var HistoricalMandateComponent = /** @class */ (function () {
         this.HMService = HMService;
         this.formBuilder = formBuilder;
         this.dataArray = [];
+        this.Preloader = true;
     }
     // CurrentDate = new Date();
     HistoricalMandateComponent.prototype.ngOnInit = function () {
     };
     HistoricalMandateComponent.prototype.SearchFunction = function (FromDate, ToDate) {
+        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        //formElement.style.display = 'block';
         var _this = this;
-        var formElement = document.getElementById('divLoarder');
-        formElement.style.display = 'block';
         var item = JSON.parse(sessionStorage.getItem('User'));
         // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
@@ -26,8 +27,8 @@ var HistoricalMandateComponent = /** @class */ (function () {
                 //alert(CountRecordArray.length);
                 //alert(json);
             });
-            formElement = document.getElementById('divLoarder');
-            formElement.style.display = 'none';
+            //formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            //formElement.style.display = 'none';
         }
     };
     HistoricalMandateComponent.prototype.doubleClick = function (data) {

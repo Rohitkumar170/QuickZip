@@ -391,7 +391,8 @@ export class UserComponent implements OnInit {
         let item = JSON.parse(sessionStorage.getItem('User'));
 
 
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId).subscribe(
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId,
+            this.checkbulkuploadlink, this.chkvideolink).subscribe(
             (data) => {
                 this.user = data;
                 if (this.user[0].Result == -1) {
@@ -695,8 +696,11 @@ export class UserComponent implements OnInit {
         
         var ids = data.LinkID;
 
-        if ((<HTMLInputElement>document.getElementById(ids)).checked  == true ) {
+        if ((<HTMLInputElement>document.getElementById(ids)).checked == true) {
             this.checkbulkuploadlink.push(ids);
+        }
+        else {
+            this.checkbulkuploadlink.pop();
         }
         //for (var i = 0; i < this.checkbulkuploadlink.length; i++) {
         //    //this.UserForm.controls['chkbulkuploadlink'].setValue(this.checkbulkuploadlink[i]);
@@ -714,6 +718,9 @@ export class UserComponent implements OnInit {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
         //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
         //}
+        else {
+            this.chkvideolink.pop();
+        }
         
     }
 
