@@ -13,6 +13,8 @@ var HistoricalMandateComponent = /** @class */ (function () {
     };
     HistoricalMandateComponent.prototype.SearchFunction = function (FromDate, ToDate) {
         var _this = this;
+        var formElement = document.getElementById('divLoarder');
+        formElement.style.display = 'block';
         var item = JSON.parse(sessionStorage.getItem('User'));
         // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
@@ -24,6 +26,8 @@ var HistoricalMandateComponent = /** @class */ (function () {
                 //alert(CountRecordArray.length);
                 //alert(json);
             });
+            formElement = document.getElementById('divLoarder');
+            formElement.style.display = 'none';
         }
     };
     HistoricalMandateComponent.prototype.doubleClick = function (data) {

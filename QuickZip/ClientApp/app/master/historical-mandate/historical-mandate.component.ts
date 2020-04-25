@@ -24,6 +24,10 @@ export class HistoricalMandateComponent implements OnInit {
     }
 
     SearchFunction(FromDate, ToDate) {
+        var formElement = <HTMLFormElement>document.getElementById('divLoarder');
+        formElement.style.display = 'block';
+        
+
         let item = JSON.parse(sessionStorage.getItem('User'));
         // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
@@ -36,6 +40,8 @@ export class HistoricalMandateComponent implements OnInit {
                     //alert(CountRecordArray.length);
                     //alert(json);
                 });
+            formElement = <HTMLFormElement>document.getElementById('divLoarder');
+            formElement.style.display = 'none';
         }
     }
     doubleClick(data: any) {

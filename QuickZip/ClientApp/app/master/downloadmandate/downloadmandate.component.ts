@@ -17,6 +17,7 @@ import { formatDate } from '@angular/common';
     providers: [DownloadmandateService]  
 })
 export class DownloadmandateComponent implements OnInit {
+    ZipDownloadArray: Array<DownloadMandateDetails> = [];
     errorMessage: string;
     HeaderArray = {};
    // SelectionStatusOfMutants: any = {};
@@ -359,4 +360,38 @@ export class DownloadmandateComponent implements OnInit {
             alert('checkbox not selected');
         }
     }
+
+
+    downloadScannedMandate() {
+        this.ZipDownloadArray = [];
+        if (this.checkFlag == 0) {
+            this.getZipFile(JSON.stringify(this.SelectionStatusOfMutants));
+        }
+        else {
+            this.getZipFile(JSON.stringify(this.bindgrid));
+        }
+    }
+
+
+    getZipFile(data: any) {
+        var a: any = document.createElement("a");
+        document.body.appendChild(a);
+
+        a.style = "display: none";
+        var blob = new Blob([data], { type: 'application/zip' });
+
+        var url = window.URL.createObjectURL(blob);
+
+        a.href = url;
+        a.download = "test.zip";
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+    }
+
+
+
+
+
+
 }
