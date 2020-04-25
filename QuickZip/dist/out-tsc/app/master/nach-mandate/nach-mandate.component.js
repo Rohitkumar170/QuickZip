@@ -9,7 +9,6 @@ var NachMandateComponent = /** @class */ (function () {
         this.formBuilder = formBuilder;
         this._bankformService = _bankformService;
         // Work on Header button work
-        this.btnnew = true;
         this.btnedit = false;
         this.btnscanprint = false;
         this.btnmandateprint = false;
@@ -19,9 +18,10 @@ var NachMandateComponent = /** @class */ (function () {
         this.btnscanhalf = false;
         this.btnscan = false;
         this.btnvalidate = false;
-        this.btndownloademandate = false;
+        this.AEresponse = false;
         this.btnregisfund = false;
-        this.btnprevrecord = true;
+        this.isDisabled = false;
+        this.isDisabledback = false;
         //end header button work
         this.btnCancelDisabled = true;
         this.IsCancel = false;
@@ -44,12 +44,12 @@ var NachMandateComponent = /** @class */ (function () {
         this.lblRefId = Sessionvalue.ReferenceId;
         this.BinddataonPageLoad();
     };
+    NachMandateComponent.prototype.show = function () { alert('hii'); };
     Object.defineProperty(NachMandateComponent.prototype, "AllFields", {
         get: function () { return this.NachMandate.controls; },
         enumerable: true,
         configurable: true
     });
-    NachMandateComponent.prototype.onclick = function () { alert('hii'); };
     NachMandateComponent.prototype.BinddataonPageLoad = function () {
         var _this = this;
         this._bankformService.GetCategory().subscribe(function (data) {
