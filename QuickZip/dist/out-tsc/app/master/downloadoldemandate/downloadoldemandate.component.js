@@ -9,6 +9,7 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     //IsMandateID: string;
     function DownloadoldemandateComponent(_downloadservice) {
         this._downloadservice = _downloadservice;
+        this.dataArray = [];
         this.Preloader = true;
         this.SelectionStatusOfMutants = [];
         this.checkFlag = 0;
@@ -37,6 +38,7 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     }
     DownloadoldemandateComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.showlabel = false;
         this.Preloader = false;
         var item = JSON.parse(sessionStorage.getItem('User'));
         // console.log(item.UserId)
@@ -60,8 +62,14 @@ var DownloadoldemandateComponent = /** @class */ (function () {
         this._downloadservice.SearchData(FromDate, Todate, bankdrop, item.UserId).subscribe(function (data) {
             _this.Preloader = false;
             _this.Databind = data;
+            _this.dataArray.push(_this.Databind);
+            // alert(this.dataArray.length);
             //console.log(this.Databind);
         });
+        if (this.dataArray.length > 0) {
+            // alert(this.dataArray.length);
+            this.showlabel = true;
+        }
     };
     DownloadoldemandateComponent.prototype.Removelabel = function () { this.errormsg = ''; };
     DownloadoldemandateComponent.prototype.BankBind = function () {
@@ -139,13 +147,13 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     };
     DownloadoldemandateComponent.prototype.download = function () {
         // alert(this.Ischecked);
-        if (this.Ischecked == 1) {
-            //  alert("Selecetd");
-        }
-        else {
-            // alert("Not selected any checkbox");
-            this.errormsg = "Please Select Mandate !!";
-        }
+        //if (this.Ischecked == 1) {
+        //  //  alert("Selecetd");
+        //}
+        //else {
+        //   // alert("Not selected any checkbox");
+        //    this.errormsg = "Please Select Mandate !!";
+        //}
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
@@ -164,6 +172,9 @@ var DownloadoldemandateComponent = /** @class */ (function () {
             a.download = 'User_Results.csv'; /* your file name*/
             a.click();
             return 'success';
+        }
+        else {
+            this.errormsg = "Please Select Mandate !!";
         }
     };
     DownloadoldemandateComponent = tslib_1.__decorate([

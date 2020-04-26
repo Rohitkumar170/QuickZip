@@ -5,6 +5,7 @@ import { formatDate } from '@angular/common';
 var DownloadoldmandateComponent = /** @class */ (function () {
     function DownloadoldmandateComponent(myservice) {
         this.myservice = myservice;
+        this.Preloader = true;
         this.loading = false;
         this.checkFlag = 0;
         this.Ischecked = 0;
@@ -65,6 +66,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
             _this.mydate(k, k, u);
             //  mydate(FromDate, ToDate, selected)
         });
+        this.Preloader = false;
     };
     //  list = [];
     //reject mandate
@@ -90,7 +92,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
             });
         }
         else {
-            alert("please checked the mandate and fill the Reason");
+            //  alert("please checked the mandate and fill the Reason");
         }
     };
     DownloadoldmandateComponent.prototype.onChange = function (event, item) {
@@ -193,6 +195,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         var _this = this;
         //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
         //formElement.style.display = 'block';
+        this.Preloader = true;
         if (FromDate != null && ToDate != null) {
             var item = JSON.parse(sessionStorage.getItem('User'));
             //  console.log(item.UserId);
@@ -201,7 +204,8 @@ var DownloadoldmandateComponent = /** @class */ (function () {
             //var c = selected;
             this.loading = true;
             this.myservice.BindbyDate(item.UserId, FromDate, ToDate, selected).subscribe(function (res) {
-                console.log(res);
+                _this.Preloader = false;
+                // console.log(res);
                 _this.tabledata = res;
             });
             // this.loading = false;

@@ -155,6 +155,10 @@
     <Content Include="ClientApp\app\master\access-rights\access-rights.component.html" />
     <Content Include="ClientApp\app\master\allumrn\allumrn.component.css" />
     <Content Include="ClientApp\app\master\allumrn\allumrn.component.html" />
+    <Content Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.css" />
+    <Content Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.html" />
+    <Content Include="ClientApp\app\master\bulk-upload\bulk-upload.component.css" />
+    <Content Include="ClientApp\app\master\bulk-upload\bulk-upload.component.html" />
     <Content Include="ClientApp\app\master\dashboard\dashboard.component.css" />
     <Content Include="ClientApp\app\master\dashboard\dashboard.component.html" />
     <Content Include="ClientApp\app\master\demoemandate\demoemandate.component.css" />
@@ -171,6 +175,8 @@
     <Content Include="ClientApp\app\master\downloadoldmandate\downloadoldmandate.component.html" />
     <Content Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.css" />
     <Content Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.html" />
+    <Content Include="ClientApp\app\master\entity-setup\entity-setup.component.css" />
+    <Content Include="ClientApp\app\master\entity-setup\entity-setup.component.html" />
     <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.css" />
     <Content Include="ClientApp\app\master\historical-mandate\historical-mandate.component.html" />
     <Content Include="ClientApp\app\master\link-setup\link-setup.component.css" />
@@ -179,6 +185,8 @@
     <Content Include="ClientApp\app\master\nach-mandate\nach-mandate.component.html" />
     <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.css" />
     <Content Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.html" />
+    <Content Include="ClientApp\app\master\report-view\report-view.component.css" />
+    <Content Include="ClientApp\app\master\report-view\report-view.component.html" />
     <Content Include="ClientApp\app\master\umrnhistory\umrnhistory.component.css" />
     <Content Include="ClientApp\app\master\umrnhistory\umrnhistory.component.html" />
     <Content Include="ClientApp\app\master\umrnupload\umrnupload.component.css" />
@@ -244,6 +252,7 @@
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
+    <Compile Include="Controllers\AllUMRNController.cs" />
     <Compile Include="Controllers\BankFormController.cs" />
     <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\DownloadMandateController.cs" />
@@ -768,6 +777,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Allumrn\Allumrnaccesslayer.cs" />
+    <Compile Include="Models\Allumrn\GridData.cs" />
     <Compile Include="Models\BankForm\BankFormData.cs" />
     <Compile Include="Models\BankForm\BindBankNameDetails.cs" />
     <Compile Include="Models\BankForm\BindBankPaymentMode.cs" />
@@ -886,6 +897,14 @@
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\all-umrn.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\allumrn\allumrn.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-emandate\bulk-emandate.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\bulk-upload\bulk-upload.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\dashboard\dashboard-routing.module.ts" />
@@ -918,6 +937,10 @@
     <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\entity-bank-setup\entity-bank-setup.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\entity-setup\entity-setup.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historical-mandate.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\historical-mandate\historicalmandate-routing.module.ts" />
@@ -936,6 +959,10 @@
     <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\nachtransactionpresentation\nachtransactionpresentation.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\master\report-view\report-view.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\umrnhistory\umrnhistory-routing.module.ts" />
@@ -948,6 +975,8 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\BankForm\bank-form.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
@@ -973,6 +1002,8 @@
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridData.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Allumrn\Umrn_Class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankNameDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankPaymentMode.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankUtilityCode.ts" />

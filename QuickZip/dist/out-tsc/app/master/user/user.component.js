@@ -536,6 +536,9 @@ var UserComponent = /** @class */ (function () {
         if (document.getElementById(ids).checked == true) {
             this.checkbulkuploadlink.push(ids);
         }
+        else {
+            this.checkbulkuploadlink.pop();
+        }
         //for (var i = 0; i < this.checkbulkuploadlink.length; i++) {
         //    //this.UserForm.controls['chkbulkuploadlink'].setValue(this.checkbulkuploadlink[i]);
         //   this.UserForm.setControl('chkbulkuploadlink', this.formBuilder.array(this.checkbulkuploadlink || []));
@@ -550,6 +553,9 @@ var UserComponent = /** @class */ (function () {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
         //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
         //}
+        else {
+            this.chkvideolink.pop();
+        }
     };
     UserComponent.prototype.download = function () {
         var _this = this;

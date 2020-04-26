@@ -15,7 +15,7 @@ var AllumrnComponent = /** @class */ (function () {
         var Pageno = 1;
         this._allumrn.GridBind(Entityid, Pageno).subscribe(function (data) {
             _this.Umrndta = data;
-            console.log(_this.Umrndta);
+            // console.log(this.Umrndta);
         });
         this.Allumrn = this.formBuilder.group({
             UMRN: ['', Validators.required],
@@ -23,21 +23,21 @@ var AllumrnComponent = /** @class */ (function () {
             ReferenceNumber: ['', Validators.required]
         });
     };
-    AllumrnComponent.prototype.SearchFunction = function (UMRN, CustomerName, ReferenceNumber) {
-        var _this = this;
-        var Entityid = 13;
-        var Pageno = 1;
-        var jasondata = {
-            "UMRN": UMRN,
-            "CustomerName": CustomerName,
-            "ReferenceNumber": ReferenceNumber,
-            "Entityid": Entityid,
-            "Pageno": Pageno
-        };
-        this._allumrn.SearchData(jasondata).subscribe(function (data) {
-            _this.Umrndta = data;
-        });
-    };
+    //SearchFunction(UMRN, CustomerName, ReferenceNumber) {
+    //    let Entityid = 13;
+    //    let Pageno = 1;
+    //    var jasondata = {
+    //        "UMRN": UMRN,
+    //        "CustomerName": CustomerName,
+    //        "ReferenceNumber": ReferenceNumber,
+    //        "Entityid": Entityid,
+    //        "Pageno": Pageno
+    //    }
+    //    this._allumrn.SearchData(jasondata).subscribe(
+    //        (data) => {
+    //            this.Umrndta = data;
+    //        });
+    //}
     AllumrnComponent.prototype.isFieldValid = function (field) {
         return !this.Allumrn.get(field).valid && this.Allumrn.get(field).touched;
     };
