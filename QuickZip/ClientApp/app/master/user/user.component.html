@@ -191,7 +191,7 @@
                                                 Email to be sent on
                                             </label>
                                             <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                                <input type="email" name="emailsent" class="col-sm-12 col-md-12 col-xs-12 " formControlName="emailsent" id="txtemailsent" (change)="chkEmailSent()" (keyup)="removeClass()"  style="height:22px"/>
+                                                <input type="email" name="emailsent" class="col-sm-12 col-md-12 col-xs-12 " formControlName="emailsent" id="txtemailsent" (change)="chkEmailSent()" (keyup)="removeClass()" style="height:22px" />
                                             </div>
                                         </div>
                                     </div>
@@ -532,29 +532,29 @@
                                                 <div class="col-md-11 col-sm-12 col-xs-12 no-padding">
                                                     <div class="form-group">
                                                         <div class="row">
-                                                        <label class="col-sm-2 col-md-2 col-xs-4 control-label " for="form-field-1">
-                                                            Bulk Upload
-                                                        </label>
-                                                        <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="divbulkupload">
-                                                         <div class="row">
-                                                            <div class="col-md-2 col-sm-2 col-xs-12 no-padding" *ngFor="let data of bulkupload">
-                                                                <input type="checkbox" name="chkbulkuploadlink" formControlName="chkbulkuploadlink" id={{data.LinkID}}
-                                                                       class="pull-left" value={{data.LinkID}} (click)="checkLinks(data)" />
-                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                                                                    {{data.LinkName}}
-                                                                </label>
-                                                           
-                                                            <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                                                                <input type="checkbox" id="bulkemandate" style="clear: both" class="pull-left" value="28" />
-                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                                                                    Emandate
-                                                                </label>
-                                                            </div>-->
-                                                              </div>
+                                                            <label class="col-sm-2 col-md-2 col-xs-4 control-label " for="form-field-1">
+                                                                Bulk Upload
+                                                            </label>
+                                                            <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="divbulkupload">
+                                                                <div class="row">
+                                                                    <div class="col-md-2 col-sm-2 col-xs-12 no-padding" *ngFor="let data of bulkupload">
+                                                                        <input type="checkbox" name="chkbulkuploadlink" formControlName="chkbulkuploadlink" id={{data.LinkID}}
+                                                                               class="pull-left" value={{data.LinkID}} (click)="checkLinks(data)" />
+                                                                        <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                            {{data.LinkName}}
+                                                                        </label>
+
+                                                                        <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
+                                                                            <input type="checkbox" id="bulkemandate" style="clear: both" class="pull-left" value="28" />
+                                                                            <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                                Emandate
+                                                                            </label>
+                                                                        </div>-->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                            </div>
-                                                           
+
                                                     </div>
                                                 </div>
                                                 <!--<div class="col-md-10 col-sm-10 col-xs-12 no-padding" style="display: none;" id="div2">
@@ -570,7 +570,7 @@
 
                                             <div id="dvVideos" *ngIf="dvVideos" class=" col-sm-12 col-xs-12 col-md-12 no-padding">
                                                 <div class="col-md-11 col-sm-12 col-xs-12 no-padding">
-                                                  
+
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <label class="col-sm-2 col-md-2 col-xs-4 control-label  " for="form-field-1">
@@ -587,24 +587,24 @@
                                                                     </div>
                                                                 </div>
                                                                 <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                <input type="checkbox" id="emandatedemo" style="clear: both" class="pull-left" value="26" />
-                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                    Emandate
-                </label>
-            </div>-->
+                                                                    <input type="checkbox" id="emandatedemo" style="clear: both" class="pull-left" value="26" />
+                                                                    <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                        Emandate
+                                                                    </label>
+                                                                </div>-->
                                                                 <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                <input onclick="RemoveClass();" type="checkbox" name="rdoAccess" id="bulkphysicaldemo"
-                       class="pull-left" value="1" />
-                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                    Bulk Physical
-                </label>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                <input type="checkbox" id="bulkemandatedemo" style="clear: both" class="pull-left" />
-                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                    Bulk Emandate
-                </label>
-            </div>-->
+                                                                    <input onclick="RemoveClass();" type="checkbox" name="rdoAccess" id="bulkphysicaldemo"
+                                                                           class="pull-left" value="1" />
+                                                                    <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                        Bulk Physical
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-2 col-sm-2 col-xs-12 no-padding">
+                                                                    <input type="checkbox" id="bulkemandatedemo" style="clear: both" class="pull-left" />
+                                                                    <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                        Bulk Emandate
+                                                                    </label>
+                                                                </div>-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -718,5 +718,32 @@
             </div>
         </div>
     </div>
+    <div class="modal alertpop" id="myModal" [style.display]="showModalalert ? 'block' : 'none'">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <img src="../../ClientApp/assets/images/caution2.png" style="height:62px"/>
+                    
+
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p> User already exists</p>
+                    <button type="button" class="btn btn-success pull-right" data-dismiss="modal" (click)="hide()">Close</button>
+                </div>
+
+                <!-- Modal footer -->
+               
+                    
+              
+
+            </div>
+        </div>
+    </div>
 </div>
