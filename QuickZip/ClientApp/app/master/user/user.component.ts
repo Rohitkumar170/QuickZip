@@ -64,6 +64,7 @@ export class UserComponent implements OnInit {
     public dvVideos: boolean = false;
     public dvtxtBankValidationcount: boolean = false;
     public dvtxtAccountValidationcount: boolean = false;
+    
     message: string;
     linkid: number = 0;
     public AcvalUsercount: string = "";
@@ -77,7 +78,6 @@ export class UserComponent implements OnInit {
     constructor(private formBuilder: FormBuilder, private userservice: UserServiceService) { }
     showModal: boolean;
     showModalsave: boolean;
-    showModalalert: boolean;
     IsViewAll: number = 0;
     lblalluser: boolean = false;
 
@@ -89,13 +89,11 @@ export class UserComponent implements OnInit {
 
     hide() {
         this.showModalsave = false;
-        this.showModal = false;
-        this.showModalalert = false;
+        
     }
-    
     ngOnInit() {
         this.UserForm = this.formBuilder.group({
-            UserName: [, Validators.required],
+            UserName: ['', Validators.required],
             sponsorbankcode: ['', Validators.required],
             categorycode: ['', Validators.required],
             Type: ['', Validators.required],
@@ -150,10 +148,6 @@ export class UserComponent implements OnInit {
         this.bindUser();
         this.bindPresentmentMaker();
         this.BindPresentmentChecker();
-        this.UserForm.controls['sponsorbankcode'].setValue(0);
-        this.UserForm.controls['categorycode'].setValue(0);
-        this.UserForm.controls['maker'].setValue(0);
-        this.UserForm.controls['nachuser'].setValue(0);
     }
 
     isFieldValid(field: string) {
@@ -397,12 +391,14 @@ export class UserComponent implements OnInit {
         let item = JSON.parse(sessionStorage.getItem('User'));
 
 
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId,
+            this.checkbulkuploadlink, this.chkvideolink).subscribe(
             (data) => {
                 this.user = data;
                 if (this.user[0].Result == -1) {
 
-                    this.showModalalert = true;
+                    this.message = 'User already exists';
+                    alert(this.message);
                 }
                 else {
                     this.showModalsave = true;
@@ -431,7 +427,7 @@ export class UserComponent implements OnInit {
         let item = JSON.parse(sessionStorage.getItem('User'));
 
 
-        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(
+        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid).subscribe(
             (data) => {
                 this.user = data;
                 if (this.user[0].Result == 1) {
@@ -612,20 +608,20 @@ export class UserComponent implements OnInit {
                     this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
                 //if (this.getAccessRight2[i].LinkID == 25) {
-                    
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked=true;
+                //    var ids = "25";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
                 //}
                 //if (this.getAccessRight2[i].LinkID == 26) {
-                    
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
+                //    var ids = "26";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
                 //}
                 //if (this.getAccessRight2[i].LinkID == 27) {
-                    
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
+                //    var ids = "27";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
                 //}
                 //if (this.getAccessRight2[i].LinkID == 28) {
-                    
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
+                //    var ids = "28";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
                 //}
                 
             }
@@ -700,7 +696,7 @@ export class UserComponent implements OnInit {
         
         var ids = data.LinkID;
 
-        if ((<HTMLInputElement>document.getElementById(ids)).checked  == true ) {
+        if ((<HTMLInputElement>document.getElementById(ids)).checked == true) {
             this.checkbulkuploadlink.push(ids);
         }
         else {
@@ -718,13 +714,13 @@ export class UserComponent implements OnInit {
         if ((<HTMLInputElement>document.getElementById(ids1)).checked == true) {
             this.chkvideolink.push(ids1);
         }
-        else {
-            this.chkvideolink.pop();
-        }
         //for (var i = 0; i < this.chkvideolink.length; i++) {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
         //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
         //}
+        else {
+            this.chkvideolink.pop();
+        }
         
     }
 
@@ -805,8 +801,6 @@ export class UserComponent implements OnInit {
         }
         this.UserForm.controls['nachuser'].setValue(userdata);
         this.showModal = false;
-        this.chkuserlist = [];
-        
     }
 
     chkAllUser(event) {

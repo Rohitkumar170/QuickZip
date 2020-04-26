@@ -122,18 +122,10 @@ namespace QuickZip.Models.DownloadMandate
             //}
             string[] mandatearr = IsMandateID.Split(',');
 
-            //int[] values = { 1, 2, 17, 8 };
+            
 
             XDocument doc = new XDocument();
             doc.Add(new XElement("dtXml", mandatearr.Select(x => new XElement("MandateId", x))));
-
-
-
-
-
-
-
-
 
 
             DataTable dt = new DataTable();

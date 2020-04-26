@@ -50,12 +50,10 @@ var UserComponent = /** @class */ (function () {
     };
     UserComponent.prototype.hide = function () {
         this.showModalsave = false;
-        this.showModal = false;
-        this.showModalalert = false;
     };
     UserComponent.prototype.ngOnInit = function () {
         this.UserForm = this.formBuilder.group({
-            UserName: [, Validators.required],
+            UserName: ['', Validators.required],
             sponsorbankcode: ['', Validators.required],
             categorycode: ['', Validators.required],
             Type: ['', Validators.required],
@@ -104,10 +102,6 @@ var UserComponent = /** @class */ (function () {
         this.bindUser();
         this.bindPresentmentMaker();
         this.BindPresentmentChecker();
-        this.UserForm.controls['sponsorbankcode'].setValue(0);
-        this.UserForm.controls['categorycode'].setValue(0);
-        this.UserForm.controls['maker'].setValue(0);
-        this.UserForm.controls['nachuser'].setValue(0);
     };
     UserComponent.prototype.isFieldValid = function (field) {
         return !this.UserForm.get(field).valid && this.UserForm.get(field).touched;
@@ -299,10 +293,11 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.SaveUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == -1) {
-                _this.showModalalert = true;
+                _this.message = 'User already exists';
+                alert(_this.message);
             }
             else {
                 _this.showModalsave = true;
@@ -322,7 +317,7 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.UpdateUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
+        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == 1) {
                 _this.showModalsave = true;
@@ -477,18 +472,22 @@ var UserComponent = /** @class */ (function () {
                 if (_this.getAccessRight2[i].LinkID == 22) {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
-                if (_this.getAccessRight2[i].LinkID == 25) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
-                if (_this.getAccessRight2[i].LinkID == 26) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
-                if (_this.getAccessRight2[i].LinkID == 27) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
-                if (_this.getAccessRight2[i].LinkID == 28) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
+                //if (this.getAccessRight2[i].LinkID == 25) {
+                //    var ids = "25";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 26) {
+                //    var ids = "26";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 27) {
+                //    var ids = "27";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 28) {
+                //    var ids = "28";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
             }
         });
         document.getElementById("btnSave").removeAttribute("disabled");
@@ -537,9 +536,6 @@ var UserComponent = /** @class */ (function () {
         if (document.getElementById(ids).checked == true) {
             this.checkbulkuploadlink.push(ids);
         }
-        else {
-            this.checkbulkuploadlink.pop();
-        }
         //for (var i = 0; i < this.checkbulkuploadlink.length; i++) {
         //    //this.UserForm.controls['chkbulkuploadlink'].setValue(this.checkbulkuploadlink[i]);
         //   this.UserForm.setControl('chkbulkuploadlink', this.formBuilder.array(this.checkbulkuploadlink || []));
@@ -549,9 +545,6 @@ var UserComponent = /** @class */ (function () {
         var ids1 = data.LinkID;
         if (document.getElementById(ids1).checked == true) {
             this.chkvideolink.push(ids1);
-        }
-        else {
-            this.chkvideolink.pop();
         }
         //for (var i = 0; i < this.chkvideolink.length; i++) {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
@@ -626,7 +619,6 @@ var UserComponent = /** @class */ (function () {
         }
         this.UserForm.controls['nachuser'].setValue(userdata);
         this.showModal = false;
-        this.chkuserlist = [];
     };
     UserComponent.prototype.chkAllUser = function (event) {
         if (event.target.checked == true) {
