@@ -7,6 +7,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FooterComponent } from '../footer/footer.component';
 import {LayOutRoutingModule } from './lay-out-routing.module';
 
+
 @NgModule({
     declarations: [MainLayoutComponent,HeaderComponent,SidebarComponent,FooterComponent],
   imports: [
