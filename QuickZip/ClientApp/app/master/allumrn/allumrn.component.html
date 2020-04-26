@@ -87,28 +87,28 @@
             <div class="col-md-12 col-sm-12 col-xs-12 boxsetting" style="margin-top: 5% !important;">
                 <div class="col-md-12 col-sm-12 col-xs-12 boxhead">
                     <div class="row no-padding">
-                        <div class="col-md-4 col-sm-4 col-xs-12"  [ngClass]="displayFieldCss('UMRN')">
-                            <div class="form-group"  [ngClass]="displayFieldCss('UMRN')">
+                        <div class="col-md-4 col-sm-4 col-xs-12" >
+                            <div class="form-group">
                                 <label class="col-sm-5 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                                     UMRN
                                 </label>
-                                <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                                <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock"  [ngClass]="displayFieldCss('UMRN')">
                                     <input type="text" required name="UMRN" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="UMRN" #UMRN />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
-                            <div class="form-group"  [ngClass]="displayFieldCss('CustomerName')">
+                            <div class="form-group" >
                                 <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                                     Customer Name
                                 </label>
-                                <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                                <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock"  [ngClass]="displayFieldCss('CustomerName')">
                                     <input type="text"   required name="CustomerName" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;"  formControlName="CustomerName" #CustomerName />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding "   [ngClass]="displayFieldCss('ReferenceNumber')">
-                            <div class="form-group"  [ngClass]="displayFieldCss('ReferenceNumber')">
+                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding " >
+                            <div class="form-group" >
                                 <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
                                     Reference Number
                                 </label>
@@ -126,35 +126,48 @@
 
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
-                            <input type="submit" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
-                                   value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;"  (click)="SearchFunction()" />
+                            <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
+                                   value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" />
                         </div>
                     </div>
                 </div>
             </div>
         </form>
 
-        <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv1" style="margin-top:7%;display:none;">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv1" style="margin-top:7%;">
             <table id="tblallumrn">
                 <thead>
                     <tr>
-                        <th style="width:150px;">Upload No</th>
-                        <th style="width:220px;">Created On</th>
-                        <th style="width:220px;">Created By</th>
-                        <th style="width:220px;">Total Count</th>
-                        <th style="width:220px;">Success Count</th>
+                        <th style="width:150px;"> Srno</th>
+                        <th style="width:220px;"> UMRN</th>
+                        <th style="width:220px;">CustomerName</th>
+                        <th style="width:220px;">Refrence</th>
+                        <th style="width:220px;">Amount</th>
+                        <th style="width:220px;">FromDate</th>
+                        <th style="width:220px;">ToDate</th>
+                        <th style="width:220px;">CreatedOn</th>
+                        <th style="width:220px;">RecordType</th>
+                        <th style="width:220px;"> MandateStatus</th>
+                        <th style="width:220px;"> ErrorCode</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let lang of Umrndta ">
 
-                        <td style="width:150px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
-                        <td style="width:220px;">Demo</td>
+                      <td style="width:150px;">{{lang.Srno}}</td>
+                      <td style="width:220px;">{{lang.UMRN}}</td>
+                      <td style="width:220px;">{{lang.CustomerName}}</td>
+                      <td style="width:220px;">{{lang.Refrence}}</td>
+                      <td style="width:220px;">{{lang.Amount}}</td>
+                      <td style="width:220px;">{{lang.FromDate}}</td>
+                      <td style="width:220px;">{{lang.ToDate}}</td>
+                      <td style="width:220px;">{{lang.CreatedOn}}</td>
+                      <td style="width:220px;">{{lang.RecordType}}</td>
+                      <td style="width:220px;">{{lang.MandateStatus}}</td>
+                      <td style="width:220px;">{{lang.ErrorCode}}</td>
+                      
 
 
                     </tr>

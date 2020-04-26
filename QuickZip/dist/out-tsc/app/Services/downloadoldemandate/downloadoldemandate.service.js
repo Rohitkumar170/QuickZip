@@ -9,11 +9,9 @@ var DownloadoldemandateService = /** @class */ (function () {
         this.baseUrl = myAppUrl;
     }
     DownloadoldemandateService.prototype.BankBind = function (userid) {
-        // alert(userid);
         return this._http.get(this.baseUrl + 'api/Downloadoldemandate/BankBind/' + userid);
     };
     DownloadoldemandateService.prototype.SearchData = function (FromDate, ToDate, Bank, userid) {
-        // alert("Service" + FromDate + " " + ToDate + Bank + userid);
         return this._http.get(this.baseUrl + 'api/Downloadoldemandate/SearchData/' + FromDate + '/' + ToDate + '/' + Bank + '/' + userid);
     };
     DownloadoldemandateService.prototype.errorHandler = function (error) {

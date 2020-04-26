@@ -14,10 +14,13 @@ import { formatDate } from '@angular/common';
     styleUrls: ['./downloadoldemandate.component.css']
 })
 export class DownloadoldemandateComponent implements OnInit {
- 
+    showlabel: boolean;
+    length: any;
+    dataArray: Array<Searchdetails> = [];
     bankbind: Bankdetails;
     Databind: Searchdetails;
     public errormsg: any;
+    Preloader: boolean = true;
     //nameId: string;
     i: any;
    // public inEditMode = false;
@@ -26,12 +29,16 @@ export class DownloadoldemandateComponent implements OnInit {
     SelectionStatusOfMutants = [];
     checkFlag: number = 0;
     Ischecked: number = 0;
+    CheckedCount: number = 0;
+    UncheckedCount: number = 0;
     //IsMandateID: string;
     constructor(public _downloadservice: DownloadoldemandateService) { }
 
     ngOnInit() {
+        this.showlabel = false;
+        this.Preloader = false;
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId)
+       // console.log(item.UserId)
         this._downloadservice.BankBind(item.UserId).
             subscribe((data) => {
                 this.bankbind = data.Table;
@@ -51,17 +58,24 @@ export class DownloadoldemandateComponent implements OnInit {
     }
     currentDate = new Date();
     PostData(FromDate, Todate, bankdrop) {
+        this.Preloader = true;
        // alert("Comp" + FromDate + " " + Todate + " " + bankdrop);
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId)
+       // console.log(item.UserId)
         this._downloadservice.SearchData(FromDate, Todate, bankdrop, item.UserId).subscribe(
             (data) => {
+                this.Preloader = false;
                 this.Databind = data;
-                console.log(this.Databind);
+                this.dataArray.push(this.Databind);
+               // alert(this.dataArray.length);
+                //console.log(this.Databind);
                
 
             });
-
+        if (this.dataArray.length > 0) {
+           // alert(this.dataArray.length);
+            this.showlabel = true;
+        }
 
 
     }
@@ -69,7 +83,7 @@ export class DownloadoldemandateComponent implements OnInit {
    
     BankBind() {
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId)
+        //console.log(item.UserId)
         this._downloadservice.BankBind(item.UserId).
             subscribe((data) => {
                 this.bankbind = data.Table;
@@ -78,7 +92,7 @@ export class DownloadoldemandateComponent implements OnInit {
 
                 // alert(this.i.sponsorbankcode);
            
-                console.log(this.bankbind);
+               // console.log(this.bankbind);
 
 
             });
@@ -116,14 +130,14 @@ export class DownloadoldemandateComponent implements OnInit {
         //if (count == '') {
         this.checkFlag = 0;
        // this.IsMandateID = item.mandateid;
-        var CheckedCount = 0, UncheckedCount = 0;
+        //var CheckedCount = 0, UncheckedCount = 0;
 
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
-            console.log(this.SelectionStatusOfMutants);
+           // console.log(this.SelectionStatusOfMutants);
            // alert('checked')
             this.Ischecked = 1;
-            CheckedCount++;
+            this.CheckedCount++;
             //this.dataArray.push(item);
             //console.log(this.dataArray)
 
@@ -131,23 +145,11 @@ export class DownloadoldemandateComponent implements OnInit {
         else {
           //  alert('not checked')
             this.SelectionStatusOfMutants.pop();
-            UncheckedCount++;
-            if (UncheckedCount == CheckedCount) {
+            this.UncheckedCount++;
+            if (this.UncheckedCount == this.CheckedCount) {
                 this.Ischecked = 0;
             }
-            //if (this.dataArray.length > 0) {
-            //    for (var i = 0; i < this.dataArray.length; i++) {
-            //        if (this.dataArray[i].ManDateID == item.ManDateID) {
-            //            // this.dataArray.pop();
-            //            // delete [this.dataArray.indexOf()];
-            //            this.dataArray.splice(this.dataArray.indexOf(item), 1);
-            //            console.log(this.dataArray);
-            //        }
-            //        else {
-            //        }
-
-            //    }
-            //}
+           
         }
 
 
@@ -201,14 +203,14 @@ export class DownloadoldemandateComponent implements OnInit {
     download() {
 
       // alert(this.Ischecked);
-        if (this.Ischecked == 1) {
-          //  alert("Selecetd");
+        //if (this.Ischecked == 1) {
+        //  //  alert("Selecetd");
 
-        }
-        else {
-           // alert("Not selected any checkbox");
-            this.errormsg = "Checkbox is not Selected";
-        }
+        //}
+        //else {
+        //   // alert("Not selected any checkbox");
+        //    this.errormsg = "Please Select Mandate !!";
+        //}
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
@@ -228,6 +230,10 @@ export class DownloadoldemandateComponent implements OnInit {
             a.download = 'User_Results.csv';/* your file name*/
             a.click();
             return 'success';
+        }
+
+        else {
+            this.errormsg = "Please Select Mandate !!";
         }
     }
 

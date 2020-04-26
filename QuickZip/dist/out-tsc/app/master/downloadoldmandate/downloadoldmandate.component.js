@@ -181,9 +181,8 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         });
     };
     DownloadoldmandateComponent.prototype.mydate = function (FromDate, ToDate, selected) {
-        var _this = this;
         //   alert(FromDate + "  " + ToDate + " " + selected);
-        this.loading = true;
+        var _this = this;
         //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
         //formElement.style.display = 'block';
         if (FromDate != null && ToDate != null) {
@@ -192,6 +191,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
             //var a = FromDate;
             //var b = ToDate;
             //var c = selected;
+            this.loading = true;
             this.myservice.BindbyDate(item.UserId, FromDate, ToDate, selected).subscribe(function (res) {
                 console.log(res);
                 _this.tabledata = res;
