@@ -5,7 +5,8 @@
        UMRN:string;
        Amount:string;
        Refrence:string;
-       CustomerName:string;
+    CustomerName: string;
+    length: any;
        FromDate:string;
        ToDate:string;
        AccountType:string;
