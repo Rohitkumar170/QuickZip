@@ -14,7 +14,7 @@ import { count } from 'rxjs/operators';
 export class HistoricalMandateComponent implements OnInit {
     HistoricalMandateForm: FormGroup; HeaderArray;
     BindAllData: HistoricalMandateClass; TotalCount; dataArray: Array<HistoricalMandateClass> = [];
-    Preloader:boolean = true;
+    Preloader:boolean = false;
     constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) {
 
     }
@@ -31,6 +31,7 @@ export class HistoricalMandateComponent implements OnInit {
         let item = JSON.parse(sessionStorage.getItem('User'));
         // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
+            this.Preloader = true;
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(
                 (data) => {
                     this.BindAllData = data;
@@ -42,6 +43,7 @@ export class HistoricalMandateComponent implements OnInit {
                 });
             //formElement = <HTMLFormElement>document.getElementById('divLoarder');
             //formElement.style.display = 'none';
+            this.Preloader = false;
         }
     }
     doubleClick(data: any) {

@@ -27,9 +27,9 @@ export class UmrnhistoryComponent implements OnInit {
     }
 
     SearchFunction(UMRN, CustomerName, RefrNo) {
-        
+
         let item = JSON.parse(sessionStorage.getItem('User'));
-       // alert(UMRN + " " + CustomerName + " " + RefrNo + " " + item.UserId);
+        // alert(UMRN + " " + CustomerName + " " + RefrNo + " " + item.UserId);
         var jasondata = {
             "UMRN": UMRN,
             "customer1": CustomerName,
