@@ -49,7 +49,7 @@ var UserComponent = /** @class */ (function () {
         this.showModal = true;
     };
     UserComponent.prototype.hide = function () {
-        this.showModal = false;
+        this.showModalsave = false;
     };
     UserComponent.prototype.ngOnInit = function () {
         this.UserForm = this.formBuilder.group({
@@ -608,6 +608,9 @@ var UserComponent = /** @class */ (function () {
         if (document.getElementById(id).checked == true) {
             this.chkuserlist.push(id);
         }
+        else {
+            this.chkuserlist.splice(id);
+        }
     };
     UserComponent.prototype.getUserlist = function () {
         var userdata = [];
@@ -615,6 +618,7 @@ var UserComponent = /** @class */ (function () {
             userdata.push(this.chkuserlist[i]);
         }
         this.UserForm.controls['nachuser'].setValue(userdata);
+        this.showModal = false;
     };
     UserComponent.prototype.chkAllUser = function (event) {
         if (event.target.checked == true) {
