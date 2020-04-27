@@ -9,6 +9,9 @@ var UserComponent = /** @class */ (function () {
         this.formBuilder = formBuilder;
         this.userservice = userservice;
         this.DetailArray = [];
+        this.checkbulkuploadlink = [];
+        this.chkvideolink = [];
+        this.chkuserlist = [];
         this.submitted = false;
         this.Temp = 1;
         this.tableid = false;
@@ -35,8 +38,19 @@ var UserComponent = /** @class */ (function () {
         this.AcvalUsercount = "";
         this.bankvalUsercount = "";
         this.dvEnableCancel = false;
+        this.isSelected = false;
+        this.isSingleChk = false;
         this.Userid = 0;
+        this.selected_checkbox = {};
+        this.IsViewAll = 0;
+        this.lblalluser = false;
     }
+    UserComponent.prototype.onClick = function (event) {
+        this.showModal = true;
+    };
+    UserComponent.prototype.hide = function () {
+        this.showModalsave = false;
+    };
     UserComponent.prototype.ngOnInit = function () {
         this.UserForm = this.formBuilder.group({
             UserName: ['', Validators.required],
@@ -65,6 +79,9 @@ var UserComponent = /** @class */ (function () {
             chkbulkuploadlink: new FormControl(),
             chkvideolink: new FormControl()
         });
+        this.setSelectedRow = function (index) {
+            this.selectedRow = index;
+        };
         this.tableid = true;
         this.formid = false;
         this.divaccessright = false;
@@ -77,6 +94,8 @@ var UserComponent = /** @class */ (function () {
         this.dvtxtBankValidationcount = false;
         this.dvtxtAccountValidationcount = false;
         this.dvEnableCancel = false;
+        this.isSelected = false;
+        this.lblalluser = false;
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
@@ -99,8 +118,16 @@ var UserComponent = /** @class */ (function () {
         document.getElementById("btnBack").removeAttribute("disabled");
         this.tableid = false;
         this.formid = true;
+        this.divMaker = false;
+        this.divPresentmentAccess = false;
+        this.divNachUser = false;
+        this.divaccessright = false;
         document.getElementById('divSearch').hidden = true;
         document.getElementById('btnExport').hidden = true;
+        this.Temp = 1;
+        this.Userid = 0;
+        this.checkbulkuploadlink = [];
+        this.chkvideolink = [];
     };
     UserComponent.prototype.bindUser = function () {
         var _this = this;
@@ -112,9 +139,7 @@ var UserComponent = /** @class */ (function () {
         this.userservice.getUser(item.ReferenceId, this.Page_Count, this.Search_Text).subscribe(function (data) {
             _this.userdata = data.Table;
             _this.sponsorbankcode = data.Table2;
-            console.log(_this.sponsorbankcode);
             _this.categorycode = data.Table7;
-            console.log(_this.categorycode);
             _this.bankacc = data.Table5;
             _this.UserForm.controls['bankval'].setValue("");
             _this.UserForm.controls['accountval'].setValue("");
@@ -166,7 +191,7 @@ var UserComponent = /** @class */ (function () {
                 //d1.insertAdjacentHTML('beforeend', html);
             }
             if (data.Table2.length > 0) {
-                _this.bulkvideo = data.Table1;
+                _this.bulkvideo = data.Table2;
                 _this.dvVideos = true;
                 //html1 = "<div class='col-md-11 col-sm-12 col-xs-12 no-padding' ><div class='form-group'><label class='col-sm-2 col-md-2 col-xs-4 control-label no-padding ' for='form-field-1'>Bulk Upload</label><div class='col-sm-10 col-md-10 col-xs-7 no-padding' id='divbulkupload'>"
                 //for (var i = 0; i < data.Table2.length; i++) {
@@ -216,13 +241,13 @@ var UserComponent = /** @class */ (function () {
         this.bindUser();
         this.tableid = true;
         this.formid = false;
+        document.getElementById('divSearch').hidden = false;
+        document.getElementById('btnExport').hidden = false;
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnNew").removeAttribute("disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
         this.UserForm.reset();
-        document.getElementById('divSearch').hidden = false;
-        document.getElementById('btnExport').hidden = false;
     };
     UserComponent.prototype.isNumber = function (evt) {
         evt = (evt) ? evt : window.event;
@@ -268,15 +293,14 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.SaveUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId).subscribe(function (data) {
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == -1) {
                 _this.message = 'User already exists';
                 alert(_this.message);
             }
             else {
-                _this.message = 'User saved Successfully';
-                alert(_this.message);
+                _this.showModalsave = true;
             }
             _this.UserForm.reset();
             _this.bindUser();
@@ -286,6 +310,8 @@ var UserComponent = /** @class */ (function () {
             document.getElementById("btnBack").setAttribute("disabled", "disabled");
             document.getElementById("btnSave").setAttribute("disabled", "disabled");
             document.getElementById("btnNew").removeAttribute("disabled");
+            document.getElementById('divSearch').hidden = false;
+            document.getElementById('btnExport').hidden = false;
         });
     };
     UserComponent.prototype.UpdateUser = function () {
@@ -294,8 +320,7 @@ var UserComponent = /** @class */ (function () {
         this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == 1) {
-                _this.message = 'User updated Successfully';
-                alert(_this.message);
+                _this.showModalsave = true;
             }
             //else {
             //    this.message = 'User updated Successfully';
@@ -309,6 +334,8 @@ var UserComponent = /** @class */ (function () {
             document.getElementById("btnBack").setAttribute("disabled", "disabled");
             document.getElementById("btnSave").setAttribute("disabled", "disabled");
             document.getElementById("btnNew").removeAttribute("disabled");
+            document.getElementById('divSearch').hidden = false;
+            document.getElementById('btnExport').hidden = false;
         });
     };
     UserComponent.prototype.isChklength = function () {
@@ -372,7 +399,6 @@ var UserComponent = /** @class */ (function () {
             _this.getmaker = data.Table4;
             _this.getAccessRight1 = data.Table5;
             _this.getAccessRight2 = data.Table6;
-            console.log(_this.userdata);
             _this.UserForm.controls['UserName'].setValue(_this.userdata[0].UserName);
             _this.UserForm.controls['EmailId'].setValue(_this.userdata[0].EmailId);
             _this.UserForm.controls['emailsent'].setValue(_this.userdata[0].EmailSendTo);
@@ -446,12 +472,30 @@ var UserComponent = /** @class */ (function () {
                 if (_this.getAccessRight2[i].LinkID == 22) {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
+                //if (this.getAccessRight2[i].LinkID == 25) {
+                //    var ids = "25";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 26) {
+                //    var ids = "26";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 27) {
+                //    var ids = "27";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 28) {
+                //    var ids = "28";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
             }
         });
         document.getElementById("btnSave").removeAttribute("disabled");
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnNew").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").removeAttribute("disabled");
+        document.getElementById('divSearch').hidden = true;
+        document.getElementById('btnExport').hidden = true;
         this.tableid = false;
         this.formid = true;
     };
@@ -488,19 +532,29 @@ var UserComponent = /** @class */ (function () {
         document.getElementById("btnEdit").removeAttribute("disabled");
     };
     UserComponent.prototype.checkLinks = function (data) {
-        var inputs = document.getElementsByTagName('input');
-        for (var i = 0; i < inputs.length; i++)
-            var ids = data.LinkID;
-        if (ids[i].checked == true) {
-            this.UserForm.controls['chkbulkuploadlink'].setValue(ids[i]);
+        var ids = data.LinkID;
+        if (document.getElementById(ids).checked == true) {
+            this.checkbulkuploadlink.push(ids);
         }
+        else {
+            this.checkbulkuploadlink.pop();
+        }
+        //for (var i = 0; i < this.checkbulkuploadlink.length; i++) {
+        //    //this.UserForm.controls['chkbulkuploadlink'].setValue(this.checkbulkuploadlink[i]);
+        //   this.UserForm.setControl('chkbulkuploadlink', this.formBuilder.array(this.checkbulkuploadlink || []));
+        //}
     };
     UserComponent.prototype.checkVideoLinks = function (data) {
-        var inputs = document.getElementsByTagName('input');
-        for (var i = 0; i < inputs.length; i++)
-            var ids = data.LinkID;
-        if (ids[i].checked == true) {
-            this.UserForm.controls['chkvideolink'].setValue(ids[i]);
+        var ids1 = data.LinkID;
+        if (document.getElementById(ids1).checked == true) {
+            this.chkvideolink.push(ids1);
+        }
+        //for (var i = 0; i < this.chkvideolink.length; i++) {
+        //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
+        //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
+        //}
+        else {
+            this.chkvideolink.pop();
         }
     };
     UserComponent.prototype.download = function () {
@@ -554,6 +608,33 @@ var UserComponent = /** @class */ (function () {
             str += line + '\r\n';
         }
         return str;
+    };
+    UserComponent.prototype.checkSingleUser = function (data) {
+        var id = data.UserId;
+        if (document.getElementById(id).checked == true) {
+            this.chkuserlist.push(id);
+        }
+        else {
+            this.chkuserlist.splice(id);
+        }
+    };
+    UserComponent.prototype.getUserlist = function () {
+        var userdata = [];
+        for (var i = 0; i < this.chkuserlist.length; i++) {
+            userdata.push(this.chkuserlist[i]);
+        }
+        this.UserForm.controls['nachuser'].setValue(userdata);
+        this.showModal = false;
+    };
+    UserComponent.prototype.chkAllUser = function (event) {
+        if (event.target.checked == true) {
+            this.IsViewAll = 1;
+            this.lblalluser = true;
+        }
+        else {
+            this.IsViewAll = 0;
+            this.lblalluser = false;
+        }
     };
     UserComponent = tslib_1.__decorate([
         Component({

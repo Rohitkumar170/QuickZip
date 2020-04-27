@@ -27,7 +27,14 @@ var routes = [
             { path: 'Demophysical', loadChildren: './demophysical/demophysical.module#DemophysicalModule', canActivate: [AuthGuardService] },
             { path: 'Demoemandate', loadChildren: './demoemandate/demoemandate.module#DemoemandateModule', canActivate: [AuthGuardService] },
             { path: 'Allumrn', loadChildren: './allumrn/all-umrn.module#AllUmrnModule', canActivate: [AuthGuardService] },
-            { path: 'Nachtransactionpresentation', loadChildren: './nachtransactionpresentation/nachtransactionpresentation.module#NachtransactionpresentationModule', canActivate: [AuthGuardService] }
+            { path: 'Nachtransactionpresentation', loadChildren: './nachtransactionpresentation/nachtransactionpresentation.module#NachtransactionpresentationModule', canActivate: [AuthGuardService] },
+            { path: 'AccessRights', loadChildren: './access-rights/access-rights.module#AccessRightsModule', canActivate: [AuthGuardService] },
+            { path: 'EntityBankSetup', loadChildren: './entity-bank-setup/entity-bank-setup.module#EntityBankSetupModule', canActivate: [AuthGuardService] },
+            { path: 'LinkSetup', loadChildren: './link-setup/link-setup.module#LinkSetupModule', canActivate: [AuthGuardService] },
+            { path: 'BulkEmandate', loadChildren: './bulk-emandate/bulk-emandate.module#BulkEmandateModule', canActivate: [AuthGuardService] },
+            { path: 'EntitySetup', loadChildren: './entity-setup/entity-setup.module#EntitySetupModule', canActivate: [AuthGuardService] },
+            { path: 'BulkUpload', loadChildren: './bulk-upload/bulk-upload.module#BulkUploadModule', canActivate: [AuthGuardService] },
+            { path: 'ReportView', loadChildren: './report-view/report-view.module#ReportViewModule', canActivate: [AuthGuardService] }
         ]
     }
 ];

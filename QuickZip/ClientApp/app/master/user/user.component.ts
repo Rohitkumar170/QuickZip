@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { UserServiceService } from 'ClientApp/app/Services/User/user-service.service';
 import { User } from 'ClientApp/Models/User/user';
 import { SponsorBankCode } from 'ClientApp/Models/User/sponsor-bank-code';
@@ -28,13 +28,14 @@ import { Userdata } from 'ClientApp/Models/User/userdata';
 
 export class UserComponent implements OnInit {
 
-    UserForm: FormGroup; HeaderArray; DetailArray=[];
+    UserForm: FormGroup; HeaderArray; DetailArray = []; checkbulkuploadlink = []; chkvideolink = []; chkuserlist = [];
 
     user: Users;
     userdata: User;
     userreport: Userdata;
     categorycode: CategoryCode; sponsorbankid: Getsponsorcode; getmaker: GetMaker; getAccessRight1: GetAccessRights; getcatcode: GetCategoryCode; getAccessRight2: GetAccessRights;
     bankacc: Bankval;
+    setSelectedRow: Function;
     tempdata: TempData;
     submitted = false; Temp: number = 1;
     public tableid: boolean = false;
@@ -70,11 +71,26 @@ export class UserComponent implements OnInit {
     public bankvalUsercount: string = "";
     public dvEnableCancel: boolean = false;
     TotalCount;
-    
+    isSelected:boolean= false;
+    isSingleChk: boolean = false;
     Userid: number = 0;
-
+    selected_checkbox = {};
     constructor(private formBuilder: FormBuilder, private userservice: UserServiceService) { }
+    showModal: boolean;
+    showModalsave: boolean;
+    IsViewAll: number = 0;
+    lblalluser: boolean = false;
 
+    onClick(event) {
+        this.showModal = true;
+
+
+    }
+
+    hide() {
+        this.showModalsave = false;
+        
+    }
     ngOnInit() {
         this.UserForm = this.formBuilder.group({
             UserName: ['', Validators.required],
@@ -102,10 +118,13 @@ export class UserComponent implements OnInit {
             chkEnableCancel: new FormControl(),
             chkbulkuploadlink: new FormControl(),
             chkvideolink: new FormControl()
+            
 
 
         });
-
+        this.setSelectedRow = function (index) {
+            this.selectedRow = index;
+        }
         
         this.tableid = true;
         this.formid = false;
@@ -119,7 +138,8 @@ export class UserComponent implements OnInit {
         this.dvtxtBankValidationcount = false;
         this.dvtxtAccountValidationcount = false;
         this.dvEnableCancel = false;
-        
+        this.isSelected = false;
+        this.lblalluser = false;
            
 
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
@@ -146,8 +166,16 @@ export class UserComponent implements OnInit {
         document.getElementById("btnBack").removeAttribute("disabled");
         this.tableid = false;
         this.formid = true;
+        this.divMaker = false;
+        this.divPresentmentAccess = false;
+        this.divNachUser = false;
+        this.divaccessright = false;
         document.getElementById('divSearch').hidden = true;
         document.getElementById('btnExport').hidden = true;
+        this.Temp = 1;
+        this.Userid = 0;
+        this.checkbulkuploadlink = [];
+        this.chkvideolink = [];
     }
 
     bindUser() {
@@ -163,11 +191,11 @@ export class UserComponent implements OnInit {
             
 
             this.sponsorbankcode = data.Table2;
-            console.log(this.sponsorbankcode);
+            
 
             this.categorycode = data.Table7;
 
-            console.log(this.categorycode);
+           
 
 
 
@@ -234,7 +262,7 @@ export class UserComponent implements OnInit {
                 //d1.insertAdjacentHTML('beforeend', html);
             }
             if (data.Table2.length > 0) {
-                this.bulkvideo = data.Table1;
+                this.bulkvideo = data.Table2;
                 this.dvVideos = true;
 
                 //html1 = "<div class='col-md-11 col-sm-12 col-xs-12 no-padding' ><div class='form-group'><label class='col-sm-2 col-md-2 col-xs-4 control-label no-padding ' for='form-field-1'>Bulk Upload</label><div class='col-sm-10 col-md-10 col-xs-7 no-padding' id='divbulkupload'>"
@@ -298,13 +326,14 @@ export class UserComponent implements OnInit {
         this.bindUser();
         this.tableid = true;
         this.formid = false;
+        document.getElementById('divSearch').hidden = false;
+        document.getElementById('btnExport').hidden = false;
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnNew").removeAttribute("disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
         this.UserForm.reset();
-        document.getElementById('divSearch').hidden = false;
-        document.getElementById('btnExport').hidden = false;
+        
     }
 
     isNumber(evt): boolean {
@@ -362,7 +391,8 @@ export class UserComponent implements OnInit {
         let item = JSON.parse(sessionStorage.getItem('User'));
 
 
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId).subscribe(
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId,
+            this.checkbulkuploadlink, this.chkvideolink).subscribe(
             (data) => {
                 this.user = data;
                 if (this.user[0].Result == -1) {
@@ -371,9 +401,7 @@ export class UserComponent implements OnInit {
                     alert(this.message);
                 }
                 else {
-                    this.message = 'User saved Successfully';
-
-                    alert(this.message);
+                    this.showModalsave = true;
                 }
                 this.UserForm.reset();
                 this.bindUser();
@@ -384,6 +412,8 @@ export class UserComponent implements OnInit {
                 document.getElementById("btnBack").setAttribute("disabled", "disabled");
                 document.getElementById("btnSave").setAttribute("disabled", "disabled");
                 document.getElementById("btnNew").removeAttribute("disabled");
+                document.getElementById('divSearch').hidden = false;
+                document.getElementById('btnExport').hidden = false;
 
 
             }
@@ -402,8 +432,7 @@ export class UserComponent implements OnInit {
                 this.user = data;
                 if (this.user[0].Result == 1) {
 
-                    this.message = 'User updated Successfully';
-                    alert(this.message);
+                    this.showModalsave = true;
                 }
                 //else {
                 //    this.message = 'User updated Successfully';
@@ -419,6 +448,8 @@ export class UserComponent implements OnInit {
                 document.getElementById("btnBack").setAttribute("disabled", "disabled");
                 document.getElementById("btnSave").setAttribute("disabled", "disabled");
                 document.getElementById("btnNew").removeAttribute("disabled");
+                document.getElementById('divSearch').hidden = false;
+                document.getElementById('btnExport').hidden = false;
 
 
             }
@@ -495,7 +526,7 @@ export class UserComponent implements OnInit {
             this.getmaker = data.Table4;
             this.getAccessRight1 = data.Table5;
             this.getAccessRight2 = data.Table6;
-            console.log(this.userdata);
+            
             this.UserForm.controls['UserName'].setValue(this.userdata[0].UserName);
             this.UserForm.controls['EmailId'].setValue(this.userdata[0].EmailId);
             this.UserForm.controls['emailsent'].setValue(this.userdata[0].EmailSendTo);
@@ -576,6 +607,22 @@ export class UserComponent implements OnInit {
                 if (this.getAccessRight2[i].LinkID == 22) {
                     this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
+                //if (this.getAccessRight2[i].LinkID == 25) {
+                //    var ids = "25";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 26) {
+                //    var ids = "26";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 27) {
+                //    var ids = "27";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 28) {
+                //    var ids = "28";
+                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //}
                 
             }
 
@@ -585,6 +632,8 @@ export class UserComponent implements OnInit {
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnNew").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").removeAttribute("disabled");
+        document.getElementById('divSearch').hidden = true;
+        document.getElementById('btnExport').hidden = true;
         this.tableid = false;
         this.formid = true;
 
@@ -644,21 +693,35 @@ export class UserComponent implements OnInit {
     }
 
     checkLinks(data:any) {
-        let inputs = document.getElementsByTagName('input');
-        for (var i = 0; i < inputs.length; i++)
-            var ids = data.LinkID;
-        if (ids[i].checked == true) {
-            this.UserForm.controls['chkbulkuploadlink'].setValue(ids[i]);
+        
+        var ids = data.LinkID;
+
+        if ((<HTMLInputElement>document.getElementById(ids)).checked == true) {
+            this.checkbulkuploadlink.push(ids);
         }
+        else {
+            this.checkbulkuploadlink.pop();
+        }
+        //for (var i = 0; i < this.checkbulkuploadlink.length; i++) {
+        //    //this.UserForm.controls['chkbulkuploadlink'].setValue(this.checkbulkuploadlink[i]);
+        //   this.UserForm.setControl('chkbulkuploadlink', this.formBuilder.array(this.checkbulkuploadlink || []));
+        //}
+        
     }
 
     checkVideoLinks(data: any) {
-        let inputs = document.getElementsByTagName('input');
-        for (var i = 0; i < inputs.length; i++)
-            var ids = data.LinkID;
-        if (ids[i].checked == true) {
-            this.UserForm.controls['chkvideolink'].setValue(ids[i]);
+        var ids1 = data.LinkID;
+        if ((<HTMLInputElement>document.getElementById(ids1)).checked == true) {
+            this.chkvideolink.push(ids1);
         }
+        //for (var i = 0; i < this.chkvideolink.length; i++) {
+        //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
+        //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
+        //}
+        else {
+            this.chkvideolink.pop();
+        }
+        
     }
 
     download() {
@@ -717,6 +780,43 @@ export class UserComponent implements OnInit {
         }
         return str;
     }
+
+    checkSingleUser(data) {
+        var id = data.UserId;
+
+        if ((<HTMLInputElement>document.getElementById(id)).checked == true) {
+            this.chkuserlist.push(id);
+        }
+        else {
+            this.chkuserlist.splice(id);
+        }
+        
+       
+    }
+
+    getUserlist() {
+        var userdata = [];
+        for (var i = 0; i < this.chkuserlist.length; i++) {
+            userdata.push(this.chkuserlist[i]);
+        }
+        this.UserForm.controls['nachuser'].setValue(userdata);
+        this.showModal = false;
+    }
+
+    chkAllUser(event) {
+        if (event.target.checked == true) {
+            this.IsViewAll = 1;
+            this.lblalluser = true;
+        }
+        else {
+            this.IsViewAll = 0;
+            this.lblalluser = false;
+        }
+    }
+
+
+
+   
     //@HostListener('paste', ['$event']) blockPaste(e: KeyboardEvent) {
     //    e.preventDefault();
     //}

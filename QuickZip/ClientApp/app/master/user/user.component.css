@@ -2,6 +2,45 @@
     padding: 0px;
     
 }
+
+
+.userlistpop, .modal-header {
+    
+    background-color: #f1f2f3;
+}
+
+#tbluserlist tbody {
+    display: inline-block;
+    max-height: 46vh;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+    #tbluserlist tbody td {
+        white-space: nowrap;
+    }
+
+    #tbluserlist tbody tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+
+#tbluserlist thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+
+
+#tbluserlist {
+    
+    display: inline-block;
+}
+
 .boxhead {
     margin-top: 10px;
     border: 2px solid #e6edf3;

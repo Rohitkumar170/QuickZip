@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HistoricalMandateServiceService } from '../../services/historical-mandate/historical-mandate-service.service';
 var HistoricalMandateComponent = /** @class */ (function () {
+    // length: any;
     function HistoricalMandateComponent(HMService, formBuilder) {
         this.HMService = HMService;
         this.formBuilder = formBuilder;
-        this.TotalCount = 0;
         this.dataArray = [];
         this.Preloader = true;
-        this.CurrentDate = new Date();
     }
+    // CurrentDate = new Date();
     HistoricalMandateComponent.prototype.ngOnInit = function () {
         this.HistoricalMandateForm = this.formBuilder.group({
             FromDate: [''],
@@ -81,19 +81,16 @@ var HistoricalMandateComponent = /** @class */ (function () {
         return str;
     };
     HistoricalMandateComponent.prototype.download = function () {
-        if (this.TotalCount > 0) {
-            var csvData = this.ConvertToCSV(JSON.stringify(this.BindAllData));
-            var a = document.createElement("a");
-            a.setAttribute('style', 'display:none;');
-            document.body.appendChild(a);
-            var blob = new Blob([csvData], { type: 'text/csv' });
-            var url = window.URL.createObjectURL(blob);
-            a.href = url;
-            a.download = 'User_Results.csv'; /* your file name*/
-            a.click();
-            return 'success';
-        }
-        else { }
+        var csvData = this.ConvertToCSV(JSON.stringify(this.BindAllData));
+        var a = document.createElement("a");
+        a.setAttribute('style', 'display:none;');
+        document.body.appendChild(a);
+        var blob = new Blob([csvData], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'User_Results.csv'; /* your file name*/
+        a.click();
+        return 'success';
     };
     HistoricalMandateComponent = tslib_1.__decorate([
         Component({

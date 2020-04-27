@@ -6,17 +6,12 @@ import { FormControl, FormBuilder } from '@angular/forms';
 import { DownloadmandateService } from '../../services/downloadmandate/downloadmandate.service';
 import { formatDate } from '@angular/common';
 var DownloadmandateComponent = /** @class */ (function () {
-    //     dmandateForm1 = new FormGroup({
-    //    scode: new FormControl(this.dmandate[0]),
-    //});
-    //selected: false;
-    //todate = new FormControl('');
-    //fromdate = new FormControl('');
     function DownloadmandateComponent(_downloadMandateService, fb) {
         this._downloadMandateService = _downloadMandateService;
         this.fb = fb;
         this.ZipDownloadArray = [];
         this.HeaderArray = {};
+        this.Preloader = true;
         // SelectionStatusOfMutants: any = {};
         this.SelectionStatusOfMutants = [];
         this.selectMandateId = [];
@@ -28,6 +23,8 @@ var DownloadmandateComponent = /** @class */ (function () {
         this.Isallcheck = 0;
         this.IsCHFlag = 0;
         this.sponsorbankcode = new FormControl('');
+        this.CheckedCount = 0;
+        this.UncheckedCount = 0;
         //selectAll() {
         //    this.selectedAll = !this.selectedAll;
         //    for (var i = 0; i < this.bindgrid.length; i++) {
@@ -52,7 +49,7 @@ var DownloadmandateComponent = /** @class */ (function () {
             else {
                 this.Ischecked = 0;
                 // alert('all not checked')
-                this.Isallcheck = 1;
+                //this.Isallcheck = 1;
             }
         };
         this.fromdate = new Date();
@@ -64,12 +61,30 @@ var DownloadmandateComponent = /** @class */ (function () {
             // will use the property in html page
         });
     }
+    DownloadmandateComponent.prototype.show = function () {
+        if (this.Ischecked == 1) {
+            this.showModal = true;
+        }
+        else {
+            alert('Please select checkbox');
+        }
+    };
+    DownloadmandateComponent.prototype.hide = function () {
+        this.showModal = false;
+    };
+    DownloadmandateComponent.prototype.hideSuccess = function () {
+        this.showModalSuccess = false;
+    };
+    DownloadmandateComponent.prototype.showSuccess = function () {
+        this.showModalSuccess = true;
+    };
     DownloadmandateComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getdmandate();
         // this.fromdate = parseDate(fromdate : string);
         // console.log(this.dmandateForm1.value);
         //  this.dmandate.sponsorbankcode
+        this.Preloader = false;
         var d = new Date(), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
         if (month.length < 2)
             month = '0' + month;
@@ -111,30 +126,38 @@ var DownloadmandateComponent = /** @class */ (function () {
         //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
         //var isChecked = element.checked;
         //if (count == '') {
+        this.Removelabel();
         this.checkFlag = 0;
         // this.IsMandateID = item.mandateid;
-        var CheckedCount = 0, UncheckedCount = 0;
+        //  if (this.Isallcheck == 0) {
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
             this.selectMandateId.push(item.mandateid);
             console.log(this.SelectionStatusOfMutants);
-            // alert('checked')
             this.Ischecked = 1;
-            CheckedCount++;
+            this.CheckedCount++;
         }
         else {
             //  alert('not checked')
-            if (this.Isallcheck == 1) {
-                this.SelectionStatusOfMutants.push(this.bindgrid);
-                console.log(this.SelectionStatusOfMutants);
-            }
+            //  if (this.Isallcheck == 1) {
+            //this.SelectionStatusOfMutants.push(this.bindgrid);
+            //console.log(this.SelectionStatusOfMutants);
+            //}
             this.SelectionStatusOfMutants.pop();
             console.log(this.SelectionStatusOfMutants);
-            UncheckedCount++;
-            if (UncheckedCount == CheckedCount) {
+            this.UncheckedCount++;
+            if (this.UncheckedCount == this.CheckedCount) {
                 this.Ischecked = 0;
+                // alert('in')
             }
         }
+        // }
+        //else {
+        //    this.SelectionStatusOfMutants.push(this.bindgrid);
+        //    console.log(this.SelectionStatusOfMutants);
+        //    this.onChange(event, item);
+        //    this.Isallcheck = 0;
+        //}
         //}
         //else
         //{
@@ -179,6 +202,7 @@ var DownloadmandateComponent = /** @class */ (function () {
     //    this._downloadMandateService.getbtnSearch(this.userID, this.AllFields.referenceNo.value).subscribe(
     //   res=>this.BindGrid())
     // }
+    DownloadmandateComponent.prototype.Removelabel = function () { this.errormsg = ''; };
     DownloadmandateComponent.prototype.BindGrid = function (FromDate, ToDate, Bank, refNo) {
         //alert(FromDate + ToDate + Bank);
         //this.fromdate = FromDate;
@@ -189,36 +213,48 @@ var DownloadmandateComponent = /** @class */ (function () {
         //console.log(item.UserId);
         // console.log(refNo);
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         if (refNo == '') {
+            this.Preloader = true;
             this._downloadMandateService.getBindGrid(item.UserId, ToDate, FromDate, Bank)
                 .subscribe(function (data) {
+                _this.Preloader = false;
                 _this.bindgrid = data;
             });
-            this.loading = false;
+            //  this.loading = false;
         }
         else {
             //console.log(refNo);
+            this.Preloader = true;
             this._downloadMandateService.getBindGridRef(item.UserId, refNo)
                 .subscribe(function (data) {
+                _this.Preloader = false;
                 _this.bindgrid = data;
                 refNo = '';
             });
             this.loading = false;
         }
     };
-    DownloadmandateComponent.prototype.RejectMandate = function (fromdate, todate, bank) {
+    DownloadmandateComponent.prototype.RejectMandate = function (fromdate, todate, bank, rejectcomnt) {
         var _this = this;
-        this.Ischecked = 1;
+        //  this.Ischecked = 1
+        // if (this.Ischecked == 1) {
         var item = JSON.parse(sessionStorage.getItem('User'));
         // console.log(item.UserId);
-        var rejectcomnt = 'test131';
+        this.showModal = false;
+        var dta = document.getElementById('myform');
+        dta.value = "";
+        //var rejectcomnt = 'test131';
         this._downloadMandateService.getRejectMandate(item.UserId, fromdate, todate, this.selectMandateId, rejectcomnt).subscribe(function (res) {
             console.log(res),
                 function (error) { return console.log(error); };
             _this.BindGrid(fromdate, todate, bank, '');
-            alert('Mandate Rejected');
+            //alert('Mandate Rejected');
+            _this.showSuccess();
         });
+        //}
+        //else {
+        //    alert('Please select checkbox');
+        //}
     };
     DownloadmandateComponent.prototype.ConvertToCSV = function (objArray) {
         this.HeaderArray = {
@@ -277,7 +313,7 @@ var DownloadmandateComponent = /** @class */ (function () {
             return 'success';
         }
         else {
-            alert('checkbox not selected');
+            this.errormsg = "Please select Mandate";
         }
     };
     DownloadmandateComponent.prototype.downloadScannedMandate = function () {

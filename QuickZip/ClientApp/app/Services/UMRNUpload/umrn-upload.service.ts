@@ -39,19 +39,33 @@ export class UmrnUploadService {
     } 
 
 
-    //UploadExcel(formData: FormData) {
-    //    let headers = new HttpHeaders();
+    UploadExcel(formData: FormData) {
+        let headers = new HttpHeaders();
 
-    //    headers.append('Content-Type', 'multipart/form-data');
-    //    headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+        let item = JSON.parse(sessionStorage.getItem('User'));
+        this.UserId = item.UserId;
+        this.EntityId = item.ReferenceId;
 
-    //    const httpOptions = { headers: headers };
+        const httpOptions = { headers: headers };
 
-    //    //return this.http.post(this.url + '/UploadExcel', formData, httpOptions)
-    //    return this._http.post<any>(this.baseUrl + 'api/UMRNUpload/UploadExcel', formData, httpOptions);
-    //}
+        //return this.http.post(this.url + '/UploadExcel', formData, httpOptions)
+        return this._http.post<any>(this.baseUrl + 'api/UMRNUpload/UploadExcel/'+ this.UserId + '/'  + this.EntityId, formData, httpOptions);
+    }
     errorHandler(error: Response) {
         console.log(error);
         return Observable.throw(error);
     }  
+
+    btnSave_Click(UploadHeaderId, TotalCount, validatedcount, FileName): Observable<any> {
+        let item = JSON.parse(sessionStorage.getItem('User'));
+        this.UserId = item.UserId;
+        this.EntityId = item.ReferenceId;
+
+
+        return this._http.get<any>(this.baseUrl + 'api/UMRNUpload/btnSave_Click/' + this.EntityId + '/' + this.UserId + '/' + UploadHeaderId + '/' + TotalCount +
+            '/' + validatedcount + '/' + FileName);
+
+    } 
 }

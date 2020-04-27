@@ -26,7 +26,7 @@ namespace QuickZip.Models.Login
             List<Logindetails> dataList = new List<Logindetails>();
             try
             {
-                var Result = dbcontext.MultipleResults("[dbo].[sp_UserLogin]").With<Logindetails>().Execute("@QueryType", "@UserName", "GetUser",Username);
+               var Result = dbcontext.MultipleResults("[dbo].[sp_UserLogin]").With<Logindetails>().Execute("@QueryType", "@UserName", "GetUser",Username);
                 foreach (var Logindata in Result)
                 {
                     dataList = Logindata.Cast<Logindetails>().ToList();
@@ -61,7 +61,7 @@ namespace QuickZip.Models.Login
                                      Flag.IsPhysical = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(Convert.ToString(dataList.Cast<Logindetails>().ToList().Select(x => x.IsPhysical).First().ToString()))).Replace("%", "_");
                                      Flag.IsZipShoreABPS = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(Convert.ToString(dataList.Cast<Logindetails>().ToList().Select(x => x.IsZipShoreABPS).First().ToString()))).Replace("%", "_");
                                      Flag.UserId = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(Convert.ToString(dataList.Cast<Logindetails>().ToList().Select(x => x.UserId).First().ToString()))).Replace("%", "_");
-                                     Flag.ReferenceId = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(dataList.Cast<Logindetails>().ToList().Select(x => x.ReferenceId).First().ToString())).Replace("%", "_");
+                                Flag.ReferenceId = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(dataList.Cast<Logindetails>().ToList().Select(x => x.ReferenceId).First().ToString())).Replace("%", "_");
                                      Flag.UserName  = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(Convert.ToString(dataList.Cast<Logindetails>().ToList().Select(x => x.UserName).First().ToString()))).Replace("%", "_");
                                      Flag.Password = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(Convert.ToString(dataList.Cast<Logindetails>().ToList().Select(x => x.Password).First().ToString()))).Replace("%", "_");
                                     Flag.PasswordKey = HttpContext.Current.Server.UrlEncode(DbSecurity.Encrypt(Convert.ToString(dataList.Cast<Logindetails>().ToList().Select(x => x.PasswordKey).First().ToString()))).Replace("%", "_");

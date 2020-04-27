@@ -55,12 +55,12 @@ namespace QuickZip.Controllers
         }
 
         [HttpPost]
-        [Route("api/USer/SaveData/{EntityId}/{UserId}")]
-        public IEnumerable<Users> SaveData([FromBody] Users userdata,string EntityId,string UserId)
+        [Route("api/USer/SaveData/{EntityId}/{UserId}/{checkbulkuploadlink}/{chkvideolink}")]
+        public IEnumerable<Users> SaveData([FromBody] Users userdata,string EntityId,string UserId,string checkbulkuploadlink,string chkvideolink)
         {
             string dtPaymentMode = "<dtXml></dtXml>";
-            var dtUserRights_3 = "<dtXml>";
-            var dtUserRights_4 = "<dtXml>";
+            var dtUserRights_3 = "<dtXml></dtXml>";
+            var dtUserRights_4 = "<dtXml></dtXml>";
             int IsZipSure = 0;
             int IsAllowFundTransfer = 0;
             int IsMandateEdit = 0;
@@ -202,28 +202,28 @@ namespace QuickZip.Controllers
                 userdata.maker = "";
             }
 
-            dtUserRights_3 = "<dtXml>";
+            //dtUserRights_3 = "<dtXml>";
 
-            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
-            //{
-            dtUserRights_3 += "<dtXml ";
-            dtUserRights_3 += "LinkIDs=" + @"""" + userdata.chkbulkuploadlink + @"""";
-            dtUserRights_3 += " />";
-            // }
-            dtUserRights_3 += "</dtXml>";
+            ////for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
+            ////{
+            //dtUserRights_3 += "<dtXml ";
+            //dtUserRights_3 += "LinkIDs=" + @"""" + userdata.chkbulkuploadlink + @"""";
+            //dtUserRights_3 += " />";
+            //// }
+            //dtUserRights_3 += "</dtXml>";
 
            
 
             //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
             //{
-            dtUserRights_4 = "<dtXml>";
-            dtUserRights_4 += "<dtXml ";
-            dtUserRights_4 += "LinkIDs=" + @"""" + userdata.chkvideolink + @"""";
-            dtUserRights_4 += " />";
-            // }
-            dtUserRights_4 += "</dtXml>";
+            //dtUserRights_4 = "<dtXml>";
+            //dtUserRights_4 += "<dtXml ";
+            //dtUserRights_4 += "LinkIDs=" + @"""" + userdata.chkvideolink + @"""";
+            //dtUserRights_4 += " />";
+            //// }
+            //dtUserRights_4 += "</dtXml>";
 
-            return objuser.SaveUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd,dtPaymentMode,dtUserRights_3,dtUserRights_4, chkRefEdit);
+            return objuser.SaveUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd,dtPaymentMode,dtUserRights_3,dtUserRights_4, chkRefEdit, checkbulkuploadlink,chkvideolink);
         }
 
         [HttpPost]
@@ -231,8 +231,8 @@ namespace QuickZip.Controllers
         public IEnumerable<Users> UpdateData([FromBody] Users userdata, string EntityId, string UserId,int Id)
         {
             string dtPaymentMode = "<dtXml></dtXml>";
-            var dtUserRights_3 = "<dtXml>";
-            var dtUserRights_4 = "<dtXml>";
+            var dtUserRights_3 = "<dtXml></dtXml>";
+            var dtUserRights_4 = "<dtXml></dtXml>";
             int IsZipSure = 0;
             int IsAllowFundTransfer = 0;
             int IsMandateEdit = 0;
@@ -385,25 +385,23 @@ namespace QuickZip.Controllers
             {
                 userdata.maker = "";
             }
-            dtUserRights_3 = "<dtXml>";
+            //dtUserRights_3 = "<dtXml>";
 
-            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
-            //{
-            dtUserRights_3 += "<dtXml ";
-            dtUserRights_3 += "LinkIDs=" + @"""" + userdata.chkbulkuploadlink + @"""";
-            dtUserRights_3 += " />";
-            // }
-            dtUserRights_3 += "</dtXml>";
+           
+            //dtUserRights_3 += "<dtXml ";
+            //dtUserRights_3 += "LinkIDs=" + @"""" + userdata.chkbulkuploadlink + @"""";
+            //dtUserRights_3 += " />";
+            
+            //dtUserRights_3 += "</dtXml>";
 
-            dtUserRights_4 = "<dtXml>";
+            //dtUserRights_4 = "<dtXml>";
 
-            //for (var i = 0; i < userdata.sponsorbankcode.Length; i++)
-            //{
-            dtUserRights_4 += "<dtXml ";
-            dtUserRights_4 += "LinkIDs=" + @"""" + userdata.chkvideolink + @"""";
-            dtUserRights_4 += " />";
-            // }
-            dtUserRights_4 += "</dtXml>";
+            
+            //dtUserRights_4 += "<dtXml ";
+            //dtUserRights_4 += "LinkIDs=" + @"""" + userdata.chkvideolink + @"""";
+            //dtUserRights_4 += " />";
+            
+            //dtUserRights_4 += "</dtXml>";
 
             return objuser.UpdateUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd, dtPaymentMode, dtUserRights_3, dtUserRights_4, chkRefEdit,Id);
         }

@@ -18,8 +18,8 @@ import { formatDate } from '@angular/common';
 })
 export class DownloadmandateComponent implements OnInit {
     ZipDownloadArray: Array<DownloadMandateDetails> = [];
-    errorMessage: string;
-    HeaderArray = {};
+    errorMessage: string; public errormsg: any;
+    HeaderArray = {}; Preloader: boolean = true;
    // SelectionStatusOfMutants: any = {};
     SelectionStatusOfMutants = []
     selectMandateId = [];
@@ -47,6 +47,9 @@ export class DownloadmandateComponent implements OnInit {
     selected: string;
     selectedAll: any;
     length: any;
+
+    CheckedCount : number = 0;
+    UncheckedCount: number = 0;
 //     dmandateForm1 = new FormGroup({
 //    scode: new FormControl(this.dmandate[0]),
 //});
@@ -55,9 +58,11 @@ export class DownloadmandateComponent implements OnInit {
     //todate = new FormControl('');
     //fromdate = new FormControl('');
 
-
+    showModal: boolean;
+    showModalSuccess: boolean;
     constructor(private _downloadMandateService: DownloadmandateService, private fb: FormBuilder) {
-      
+        
+
 
         this.fromdate = new Date();
         this.todate = new Date();
@@ -68,8 +73,29 @@ export class DownloadmandateComponent implements OnInit {
             'fromdate': [null]
             // will use the property in html page
         })  
-        
+       
     }
+
+    show() {
+        if (this.Ischecked == 1) {
+            this.showModal = true;
+        }
+        else {
+            alert('Please select checkbox');
+        }
+    }
+    hide() {
+        this.showModal = false;
+       
+    }
+    hideSuccess() {
+        this.showModalSuccess = false;
+    }
+
+    showSuccess() {
+        this.showModalSuccess = true;
+    }
+
    
     ngOnInit() {
         
@@ -78,7 +104,7 @@ export class DownloadmandateComponent implements OnInit {
        // console.log(this.dmandateForm1.value);
 
       //  this.dmandate.sponsorbankcode
-
+        this.Preloader = false;
         var d = new Date(),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
@@ -159,7 +185,7 @@ export class DownloadmandateComponent implements OnInit {
         else {
             this.Ischecked = 0;
            // alert('all not checked')
-            this.Isallcheck = 1;
+            //this.Isallcheck = 1;
         }
        
 
@@ -170,36 +196,48 @@ export class DownloadmandateComponent implements OnInit {
         //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
         //var isChecked = element.checked;
         //if (count == '') {
+       this.Removelabel();
         this.checkFlag = 0;
        // this.IsMandateID = item.mandateid;
-        var CheckedCount = 0, UncheckedCount=0;
+       
+
+      //  if (this.Isallcheck == 0) {
 
             if (event.target.checked) {
                 this.SelectionStatusOfMutants.push(item);
                 this.selectMandateId.push(item.mandateid);
 
-
-
                 console.log(this.SelectionStatusOfMutants);
-               // alert('checked')
+                
+                
                 this.Ischecked = 1;
-                CheckedCount++;
-
+               this. CheckedCount++;
+              
             }
             else {
-              //  alert('not checked')
-                if (this.Isallcheck == 1) {
-                    this.SelectionStatusOfMutants.push(this.bindgrid);
-                    console.log(this.SelectionStatusOfMutants); 
-                }
+                //  alert('not checked')
+              //  if (this.Isallcheck == 1) {
+                    //this.SelectionStatusOfMutants.push(this.bindgrid);
+                    //console.log(this.SelectionStatusOfMutants);
+                //}
 
                 this.SelectionStatusOfMutants.pop();
                 console.log(this.SelectionStatusOfMutants);
-                UncheckedCount++;
-                if (UncheckedCount == CheckedCount) {
+               this. UncheckedCount++;
+                
+                if (this.UncheckedCount ==this.CheckedCount) {
                     this.Ischecked = 0;
+                   // alert('in')
                 }
             }
+       // }
+        //else {
+        //    this.SelectionStatusOfMutants.push(this.bindgrid);
+        //    console.log(this.SelectionStatusOfMutants);
+        //    this.onChange(event, item);
+        //    this.Isallcheck = 0;
+
+        //}
         //}
         //else
         //{
@@ -247,6 +285,7 @@ export class DownloadmandateComponent implements OnInit {
     //    this._downloadMandateService.getbtnSearch(this.userID, this.AllFields.referenceNo.value).subscribe(
     //   res=>this.BindGrid())
    // }
+    Removelabel() { this.errormsg = ''; }
     BindGrid(FromDate, ToDate, Bank, refNo) {
         //alert(FromDate + ToDate + Bank);
         //this.fromdate = FromDate;
@@ -258,19 +297,22 @@ export class DownloadmandateComponent implements OnInit {
 
        // console.log(refNo);
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         if (refNo == '') {
+            this.Preloader = true;
             this._downloadMandateService.getBindGrid(item.UserId, ToDate, FromDate, Bank)
                 .subscribe((data) => {
+                    this.Preloader = false;
                     this.bindgrid = data;
                 });
-            this.loading = false;
+          //  this.loading = false;
 
         }
         else {
             //console.log(refNo);
+            this.Preloader = true;
             this._downloadMandateService.getBindGridRef(item.UserId, refNo)
                 .subscribe((data) => {
+                    this.Preloader = false;
                     this.bindgrid = data;
                     refNo = '';
                 });
@@ -279,16 +321,25 @@ export class DownloadmandateComponent implements OnInit {
         }
     }
 
-    RejectMandate(fromdate,todate,bank) {
-        this.Ischecked = 1
-        let item = JSON.parse(sessionStorage.getItem('User'));
-       // console.log(item.UserId);
-        var rejectcomnt = 'test131';
-        this._downloadMandateService.getRejectMandate(item.UserId, fromdate, todate, this.selectMandateId, rejectcomnt).subscribe((res) => {
-            console.log(res),
-                error => console.log(error); this.BindGrid(fromdate, todate, bank, '')
-            alert('Mandate Rejected');
-        })
+    RejectMandate(fromdate, todate, bank, rejectcomnt) {
+      //  this.Ischecked = 1
+       // if (this.Ischecked == 1) {
+            let item = JSON.parse(sessionStorage.getItem('User'));
+            // console.log(item.UserId);
+            this.showModal = false;
+            var dta = <HTMLInputElement>document.getElementById('myform');
+            dta.value = "";
+            //var rejectcomnt = 'test131';
+            this._downloadMandateService.getRejectMandate(item.UserId, fromdate, todate, this.selectMandateId, rejectcomnt).subscribe((res) => {
+                console.log(res),
+                    error => console.log(error); this.BindGrid(fromdate, todate, bank, '')
+                //alert('Mandate Rejected');
+                this.showSuccess();
+            })
+        //}
+        //else {
+        //    alert('Please select checkbox');
+        //}
 }
 
 
@@ -357,7 +408,8 @@ export class DownloadmandateComponent implements OnInit {
             return 'success';
         }
         else {
-            alert('checkbox not selected');
+            
+            this.errormsg = "Please select Mandate";
         }
     }
 
