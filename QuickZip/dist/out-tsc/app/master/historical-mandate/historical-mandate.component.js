@@ -6,32 +6,33 @@ var HistoricalMandateComponent = /** @class */ (function () {
     function HistoricalMandateComponent(HMService, formBuilder) {
         this.HMService = HMService;
         this.formBuilder = formBuilder;
+        this.TotalCount = 0;
         this.dataArray = [];
+        this.Preloader = true;
+        this.CurrentDate = new Date();
     }
-    // CurrentDate = new Date();
     HistoricalMandateComponent.prototype.ngOnInit = function () {
+        this.HistoricalMandateForm = this.formBuilder.group({
+            FromDate: [''],
+            ToDate: ['']
+        });
+        this.Preloader = false;
     };
     HistoricalMandateComponent.prototype.SearchFunction = function (FromDate, ToDate) {
         var _this = this;
-        var formElement = document.getElementById('divLoarder');
-        formElement.style.display = 'block';
+        this.Preloader = true;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(function (data) {
+                _this.Preloader = false;
                 _this.BindAllData = data;
                 var json = JSON.stringify(_this.BindAllData);
                 var CountRecordArray = typeof json != 'object' ? JSON.parse(json) : json;
                 _this.TotalCount = CountRecordArray.length;
-                //alert(CountRecordArray.length);
-                //alert(json);
             });
-            formElement = document.getElementById('divLoarder');
-            formElement.style.display = 'none';
         }
     };
     HistoricalMandateComponent.prototype.doubleClick = function (data) {
-        // this.dataArray = this.dataArray + data;
         this.dataArray.push(data);
         var json = JSON.stringify(data);
         alert(json);
@@ -80,16 +81,19 @@ var HistoricalMandateComponent = /** @class */ (function () {
         return str;
     };
     HistoricalMandateComponent.prototype.download = function () {
-        var csvData = this.ConvertToCSV(JSON.stringify(this.BindAllData));
-        var a = document.createElement("a");
-        a.setAttribute('style', 'display:none;');
-        document.body.appendChild(a);
-        var blob = new Blob([csvData], { type: 'text/csv' });
-        var url = window.URL.createObjectURL(blob);
-        a.href = url;
-        a.download = 'User_Results.csv'; /* your file name*/
-        a.click();
-        return 'success';
+        if (this.TotalCount > 0) {
+            var csvData = this.ConvertToCSV(JSON.stringify(this.BindAllData));
+            var a = document.createElement("a");
+            a.setAttribute('style', 'display:none;');
+            document.body.appendChild(a);
+            var blob = new Blob([csvData], { type: 'text/csv' });
+            var url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = 'User_Results.csv'; /* your file name*/
+            a.click();
+            return 'success';
+        }
+        else { }
     };
     HistoricalMandateComponent = tslib_1.__decorate([
         Component({
