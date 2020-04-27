@@ -3,6 +3,13 @@
 .card-header {
     padding: 0px;
 }
+.btfooter {
+    width:100%;
+}
+.rejectbtn {
+    width: 48%;
+    float: right;
+}
 
 .boxhead {
     margin-top: 10px;

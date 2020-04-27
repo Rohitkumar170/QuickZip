@@ -38,7 +38,9 @@ export class DownloadmandateComponent implements OnInit {
     IsMandateID: string;
     Isallcheck: number = 0;
     IsCHFlag: number = 0;
-   
+
+    dataArray:any;
+  //  showlabel: boolean;
     todate: Date;
     fromdate: Date;
     Bank: string;
@@ -52,18 +54,28 @@ export class DownloadmandateComponent implements OnInit {
     UncheckedCount: number = 0;
 //     dmandateForm1 = new FormGroup({
 //    scode: new FormControl(this.dmandate[0]),
-//});
+//});showModalrejectmandate
     
     //selected: false;
     //todate = new FormControl('');
     //fromdate = new FormControl('');
+    showModalrejectmandate: boolean;
+    onClick(event) {
+        this.showModalrejectmandate = true;
+
+
+    }
+
+    hide() {
+        this.showModalrejectmandate = false;
+    }
 
     showModal: boolean;
     showModalSuccess: boolean;
     constructor(private _downloadMandateService: DownloadmandateService, private fb: FormBuilder) {
         
 
-
+        
         this.fromdate = new Date();
         this.todate = new Date();
         this.dmandateForm = fb.group({
@@ -78,16 +90,18 @@ export class DownloadmandateComponent implements OnInit {
 
     show() {
         if (this.Ischecked == 1) {
-            this.showModal = true;
+            //this.showModal = true;
+            this.showModalrejectmandate = true;
+           // alert('in');
         }
-        else {
-            alert('Please select checkbox');
-        }
+        //else {
+        //    alert('Please select checkbox');
+        //}
     }
-    hide() {
-        this.showModal = false;
+    //hide() {
+    //    this.showModal = false;
        
-    }
+    //}
     hideSuccess() {
         this.showModalSuccess = false;
     }
@@ -95,6 +109,8 @@ export class DownloadmandateComponent implements OnInit {
     showSuccess() {
         this.showModalSuccess = true;
     }
+
+
 
    
     ngOnInit() {
@@ -201,63 +217,59 @@ export class DownloadmandateComponent implements OnInit {
        // this.IsMandateID = item.mandateid;
        
 
-      //  if (this.Isallcheck == 0) {
+        //if (this.Isallcheck == 0) {
 
             if (event.target.checked) {
                 this.SelectionStatusOfMutants.push(item);
                 this.selectMandateId.push(item.mandateid);
 
                 console.log(this.SelectionStatusOfMutants);
-                
-                
+
+
                 this.Ischecked = 1;
-               this. CheckedCount++;
-              
+                this.CheckedCount++;
+
             }
             else {
                 //  alert('not checked')
-              //  if (this.Isallcheck == 1) {
-                    //this.SelectionStatusOfMutants.push(this.bindgrid);
-                    //console.log(this.SelectionStatusOfMutants);
+                //  if (this.Isallcheck == 1) {
+                //this.SelectionStatusOfMutants.push(this.bindgrid);
+                //console.log(this.SelectionStatusOfMutants);
                 //}
 
-                this.SelectionStatusOfMutants.pop();
+               // this.SelectionStatusOfMutants.pop();
+                this.SelectionStatusOfMutants.splice(event.target);
                 console.log(this.SelectionStatusOfMutants);
-               this. UncheckedCount++;
-                
-                if (this.UncheckedCount ==this.CheckedCount) {
+                this.UncheckedCount++;
+
+                if (this.UncheckedCount == this.CheckedCount) {
                     this.Ischecked = 0;
-                   // alert('in')
+                    // alert('in')
                 }
+                //     }
             }
        // }
-        //else {
-        //    this.SelectionStatusOfMutants.push(this.bindgrid);
-        //    console.log(this.SelectionStatusOfMutants);
-        //    this.onChange(event, item);
-        //    this.Isallcheck = 0;
+                //else {
+                //    this.SelectionStatusOfMutants.push(this.bindgrid);
+                //    console.log(this.SelectionStatusOfMutants);
+                //    this.Isallcheck = 0;
+                //    this.onChange(event, item);
 
-        //}
-        //}
-        //else
-        //{
-        //    this.bindgrid.forEach(function (item) {
-        //        // console.log(item);
-        //        //item.selected = event.target.checked;
-        //        // this.onChange(event, item);
-        //        if (event.target.checked) {
-        //            this.SelectionStatusOfMutants.push(item);
-        //            alert('c')
-        //        }
-        //        else {
-        //            this.SelectionStatusOfMutants.pop();
-        //            alert('nc')
-        //        }
 
-        //    });
-           
-        //}
+                //}
+            //}
     }   
+
+    //onCheckdownload() {
+
+    //    this.bindgrid.forEach(function (item) {
+    //        // console.log(item);
+    //        item.target.checked;
+    //        // this.onChange(event, item);
+
+    //    });
+    //}
+
 
     SubmitToDate() {
 
@@ -303,8 +315,14 @@ export class DownloadmandateComponent implements OnInit {
                 .subscribe((data) => {
                     this.Preloader = false;
                     this.bindgrid = data;
+                   // this.dataArray = Object.entries(this.bindgrid)[0][1];
+                   // this.dataArray.push(this.bindgrid);
                 });
           //  this.loading = false;
+            //if (this.dataArray.length > 0) {
+
+            //    this.showlabel = true;
+            //}
 
         }
         else {
@@ -314,6 +332,7 @@ export class DownloadmandateComponent implements OnInit {
                 .subscribe((data) => {
                     this.Preloader = false;
                     this.bindgrid = data;
+                   // this.dataArray.push(this.bindgrid);
                     refNo = '';
                 });
             this.loading = false;
@@ -324,18 +343,22 @@ export class DownloadmandateComponent implements OnInit {
     RejectMandate(fromdate, todate, bank, rejectcomnt) {
       //  this.Ischecked = 1
        // if (this.Ischecked == 1) {
+        
             let item = JSON.parse(sessionStorage.getItem('User'));
             // console.log(item.UserId);
             this.showModal = false;
             var dta = <HTMLInputElement>document.getElementById('myform');
             dta.value = "";
             //var rejectcomnt = 'test131';
+       // alert(fromdate + '' + todate + '' + bank + '' + rejectcomnt + '' + item.UserId + '' + this.selectMandateId );
             this._downloadMandateService.getRejectMandate(item.UserId, fromdate, todate, this.selectMandateId, rejectcomnt).subscribe((res) => {
                 console.log(res),
                     error => console.log(error); this.BindGrid(fromdate, todate, bank, '')
+                this.showModalrejectmandate = false;
                 //alert('Mandate Rejected');
                 this.showSuccess();
-            })
+        })
+        
         //}
         //else {
         //    alert('Please select checkbox');
