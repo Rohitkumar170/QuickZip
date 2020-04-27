@@ -1,3 +1,68 @@
+#tblallumrn {
+    width:100%;
+}
+
+#tblallumrn tbody {
+    display: inline-block;
+    max-height: 48vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#tblallumrn tbody tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+#tblallumrn thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+
+
+#tblallumrn {
+    overflow-x: scroll;
+    display: inline-block;
+}
+
+  
+
+#umrnstatement tbody {
+    /*overflow: auto;*/
+    display: block;
+    max-height: 26vh;
+}
+
+    #umrnstatement tbody tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+
+#umrnstatement thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+
+
+
+#umrnstatement {
+    overflow-x: scroll;
+    display: inline-block;
+}
+
+  
+
+
+
 .card-header {
     padding: 0px;
 }
@@ -18,36 +83,10 @@
 }
 
 
-#tblallumrn tbody {
-    overflow: auto;
-    display: block;
-    max-height: 26vh;
-}
-
-    #tblallumrn tbody tr {
-        width: 100%;
-        display: table;
-        table-layout: fixed;
-    }
-
-
-#tblallumrn thead tr {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-}
 
 
 
-
-#tblsecondumrnupload {
-    overflow-x: scroll;
-    display: inline-block;
-}
-
-    #tblsecondumrnupload tbody {
-        width: 1321px;
-    }
+  
 
 
 

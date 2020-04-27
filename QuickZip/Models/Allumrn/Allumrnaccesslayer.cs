@@ -53,5 +53,28 @@ namespace QuickZip.Models.Allumrn
                 throw ex;
             }
         }
+
+
+        //DataSet dt = CommonManger.FillDatasetWithParam("Sp_Presenment", "@QueryType", "@EntityId", "@UMRN", "EachUMRNHistoryDetails", DbSecurity.Decrypt(EntityId), UMRN);BindGridDetails
+
+        public IEnumerable<GridData> BindGridDetails(string UMRN, string Entityid)
+        {
+            try
+            {
+
+                var Result = dbcontext.MultipleResults("[dbo].[Sp_Presenment]").With<GridDataDetails>().Execute("@QueryType", "@UMRN", "@EntityID", "EachUMRNHistoryDetails", UMRN, Entityid);
+                foreach (var employe in Result)
+                {
+
+                    dataList = employe.Cast<GridData>().ToList();
+                }
+                return dataList;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { error } from 'util';
 import { GridData } from '../../../Models/Allumrn/GridData';
 import { Umrn_Class } from '../../../Models/Allumrn/Umrn_Class';
+import { GridDataDetails } from '../../../Models/Allumrn/GridDataDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,19 @@ export class AllumrnService {
        // alert("Service" + Entityid + " " + Pageno );
         return this._http.get<GridData>(this.baseUrl + 'api/AllUMRN/GridBind/' + Entityid + '/' + Pageno);
     }
+    GridDataDetails(UMRN, Entityid): Observable<GridData> {
+        // alert("Service" + Entityid + " " + Pageno );
+        return this._http.get<GridData>(this.baseUrl + 'api/AllUMRN/GridDataDetails/' + UMRN + '/' + Entityid);
+    }
 
-    //SearchData(em: any): Observable<GridData> {
-    //    const body = em;
-    //   //  alert(body);
-    //    const headers = new HttpHeaders().set('content-type', 'application/json');
-    //    return this._http.post<Umrn_Class>(this.baseUrl + 'api/AllUMRN/SearchData', body, {
-    //        headers
-    //    });
-    //}
+    SearchData(em: any): Observable<GridData> {
+        const body = em;
+       //  alert(body);
+        const headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post<Umrn_Class>(this.baseUrl + 'api/AllUMRN/SearchData', body, {
+            headers
+        });
+    }
 
     errorHandler(error: Response) {
         console.log(error);

@@ -26,7 +26,13 @@ namespace QuickZip.Controllers
             return obj.Searchbtn(searchdata);
         }
 
-
+       
+        [HttpGet]
+        [Route("api/AllUMRN/GridDataDetails/{UMRN}/{Entityid}")]
+        public IEnumerable<GridData> GridDataDetails(string UMRN, string Entityid)
+        {
+            return obj.SearchData(UMRN, Entityid);
+        }
 
 
     }

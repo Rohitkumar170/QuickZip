@@ -9,12 +9,16 @@ var AllumrnService = /** @class */ (function () {
         this.baseUrl = myAppUrl;
     }
     AllumrnService.prototype.GridBind = function (Entityid, Pageno) {
-        alert("Service" + Entityid + " " + Pageno);
+        // alert("Service" + Entityid + " " + Pageno );
         return this._http.get(this.baseUrl + 'api/AllUMRN/GridBind/' + Entityid + '/' + Pageno);
+    };
+    AllumrnService.prototype.GridDataDetails = function (UMRN, Entityid) {
+        // alert("Service" + Entityid + " " + Pageno );
+        return this._http.get(this.baseUrl + 'api/AllUMRN/GridDataDetails/' + UMRN + '/' + Entityid);
     };
     AllumrnService.prototype.SearchData = function (em) {
         var body = em;
-        alert(body);
+        //  alert(body);
         var headers = new HttpHeaders().set('content-type', 'application/json');
         return this._http.post(this.baseUrl + 'api/AllUMRN/SearchData', body, {
             headers: headers

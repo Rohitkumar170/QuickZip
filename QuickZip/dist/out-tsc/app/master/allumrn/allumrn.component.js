@@ -7,36 +7,56 @@ var AllumrnComponent = /** @class */ (function () {
         this.formBuilder = formBuilder;
         this._allumrn = _allumrn;
         this.submitted = false;
+        this.Preloader = true;
+        this.dataArray = [];
     }
     AllumrnComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.Preloader = false;
         // let item = JSON.parse(sessionStorage.getItem('User'));
         var Entityid = 13;
         var Pageno = 1;
+        this.Preloader = true;
         this._allumrn.GridBind(Entityid, Pageno).subscribe(function (data) {
+            _this.Preloader = false;
             _this.Umrndta = data;
-            console.log(_this.Umrndta);
+            // console.log(this.Umrndta);
         });
         this.Allumrn = this.formBuilder.group({
-            UMRN: ['', Validators.required],
-            CustomerName: ['', Validators.required],
-            ReferenceNumber: ['', Validators.required]
+            Searchvalidation: ['', Validators.required]
         });
     };
-    AllumrnComponent.prototype.SearchFunction = function (UMRN, CustomerName, ReferenceNumber) {
+    AllumrnComponent.prototype.onClick = function (event) {
+        this.showModalcreateumrn = true;
+    };
+    AllumrnComponent.prototype.hide = function () {
+        this.showModalcreateumrn = false;
+    };
+    //showModalumrnstatement: boolean;
+    //onClick(event) {
+    //    this.showModalumrnstatement = true;
+    //}
+    //hide() {
+    //    this.showModalumrnstatement = false;
+    //}
+    AllumrnComponent.prototype.onRowClicked = function (data) {
+        //const Currentrowid = this.Allumrn.value;
         var _this = this;
+        this.dataArray.push(data);
+        var UMRN = data.UMRN;
         var Entityid = 13;
-        var Pageno = 1;
-        var jasondata = {
-            "UMRN": UMRN,
-            "CustomerName": CustomerName,
-            "ReferenceNumber": ReferenceNumber,
-            "Entityid": Entityid,
-            "Pageno": Pageno
-        };
-        this._allumrn.SearchData(jasondata).subscribe(function (data) {
-            _this.Umrndta = data;
+        this._allumrn.GridDataDetails(UMRN, Entityid).subscribe(function (data) {
+            // this.Preloader = false;
+            _this.griddatadetail = data;
+            // console.log(this.Umrndta);
         });
+        // this.dataArray = data;
+        //this.showModalumrnstatement = true;
+        //this.Login.controls['FullName'].setValue(data.FullName);
+        //this.Login.controls['Email'].setValue(data.Email);
+        //this.Login.controls['Password'].setValue(data.Password);
+        //this.buttonDisabled1 = false;
+        //this.Temp = 2;
     };
     AllumrnComponent.prototype.isFieldValid = function (field) {
         return !this.Allumrn.get(field).valid && this.Allumrn.get(field).touched;
@@ -46,15 +66,34 @@ var AllumrnComponent = /** @class */ (function () {
             'validate': this.isFieldValid(field),
         };
     };
-    //SearchFunction() {
-    //    this.submitted = true;
-    //    if (this.Allumrn.valid) {
-    //        alert("valid");
-    //    } else {
-    //        alert("Not valid");
-    //        this.validateAllFormFields(this.Allumrn);
-    //    }
-    //}
+    AllumrnComponent.prototype.SearchFunction = function (UMRN, CustomerName, ReferenceNumber) {
+        var _this = this;
+        //this.submitted = true;
+        if (this.Allumrn.valid) {
+            alert("valid");
+            var Entityid = 13;
+            var Pageno = 1;
+            var umrn1 = UMRN.replace('\t', '');
+            var CustomerName1 = CustomerName.replace('\t', '');
+            var ReferenceNumber1 = ReferenceNumber.replace('\t', '');
+            var jasondata = {
+                "UMRN": umrn1,
+                "CustomerName": CustomerName1,
+                "ReferenceNumber": ReferenceNumber1,
+                "Entityid": Entityid,
+                "Pageno": Pageno
+            };
+            this.Preloader = true;
+            this._allumrn.SearchData(jasondata).subscribe(function (data) {
+                _this.Preloader = false;
+                _this.Umrndta = data;
+            });
+        }
+        else {
+            alert("Not valid");
+            this.validateAllFormFields(this.Allumrn);
+        }
+    };
     AllumrnComponent.prototype.validateAllFormFields = function (formGroup) {
         var _this = this;
         Object.keys(formGroup.controls).forEach(function (field) {
