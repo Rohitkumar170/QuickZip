@@ -11,6 +11,7 @@ var UserComponent = /** @class */ (function () {
         this.DetailArray = [];
         this.checkbulkuploadlink = [];
         this.chkvideolink = [];
+        this.chkuserlist = [];
         this.submitted = false;
         this.Temp = 1;
         this.tableid = false;
@@ -41,13 +42,14 @@ var UserComponent = /** @class */ (function () {
         this.isSingleChk = false;
         this.Userid = 0;
         this.selected_checkbox = {};
+        this.IsViewAll = 0;
+        this.lblalluser = false;
     }
     UserComponent.prototype.onClick = function (event) {
         this.showModal = true;
     };
     UserComponent.prototype.hide = function () {
         this.showModal = false;
-        this.showModalsave = false;
     };
     UserComponent.prototype.ngOnInit = function () {
         this.UserForm = this.formBuilder.group({
@@ -93,6 +95,7 @@ var UserComponent = /** @class */ (function () {
         this.dvtxtAccountValidationcount = false;
         this.dvEnableCancel = false;
         this.isSelected = false;
+        this.lblalluser = false;
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
@@ -600,11 +603,28 @@ var UserComponent = /** @class */ (function () {
         }
         return str;
     };
-    UserComponent.prototype.checkSingleUser = function (event) {
-        //var count = 0;
-        //var oRows = document.getElementById('tbluserlist').getElementsByTagName('tr');
-        //var rowcount = oRows.length;
-        this.selected_checkbox[event.target.Id] = event.target.checked;
+    UserComponent.prototype.checkSingleUser = function (data) {
+        var id = data.UserId;
+        if (document.getElementById(id).checked == true) {
+            this.chkuserlist.push(id);
+        }
+    };
+    UserComponent.prototype.getUserlist = function () {
+        var userdata = [];
+        for (var i = 0; i < this.chkuserlist.length; i++) {
+            userdata.push(this.chkuserlist[i]);
+        }
+        this.UserForm.controls['nachuser'].setValue(userdata);
+    };
+    UserComponent.prototype.chkAllUser = function (event) {
+        if (event.target.checked == true) {
+            this.IsViewAll = 1;
+            this.lblalluser = true;
+        }
+        else {
+            this.IsViewAll = 0;
+            this.lblalluser = false;
+        }
     };
     UserComponent = tslib_1.__decorate([
         Component({

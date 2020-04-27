@@ -28,7 +28,7 @@ import { Userdata } from 'ClientApp/Models/User/userdata';
 
 export class UserComponent implements OnInit {
 
-    UserForm: FormGroup; HeaderArray; DetailArray = []; checkbulkuploadlink = []; chkvideolink= [];
+    UserForm: FormGroup; HeaderArray; DetailArray = []; checkbulkuploadlink = []; chkvideolink = []; chkuserlist = [];
 
     user: Users;
     userdata: User;
@@ -77,8 +77,10 @@ export class UserComponent implements OnInit {
     selected_checkbox = {};
     constructor(private formBuilder: FormBuilder, private userservice: UserServiceService) { }
     showModal: boolean;
-    showModalsave:boolean
-    
+    showModalsave: boolean;
+    IsViewAll: number = 0;
+    lblalluser: boolean = false;
+
     onClick(event) {
         this.showModal = true;
 
@@ -86,14 +88,14 @@ export class UserComponent implements OnInit {
     }
 
     hide() {
-        this.showModal = false;
         this.showModalsave = false;
+        
     }
     ngOnInit() {
         this.UserForm = this.formBuilder.group({
             UserName: ['', Validators.required],
-            sponsorbankcode: ['', Validators.required],
-            categorycode: ['', Validators.required],
+            sponsorbankcode: ['--Select--', Validators.required],
+            categorycode: ['--Select--', Validators.required],
             Type: ['', Validators.required],
             PhoneNo: new FormControl(),
             EmailId: new FormControl(),
@@ -116,6 +118,7 @@ export class UserComponent implements OnInit {
             chkEnableCancel: new FormControl(),
             chkbulkuploadlink: new FormControl(),
             chkvideolink: new FormControl()
+            
 
 
         });
@@ -135,7 +138,8 @@ export class UserComponent implements OnInit {
         this.dvtxtBankValidationcount = false;
         this.dvtxtAccountValidationcount = false;
         this.dvEnableCancel = false;
-        this.isSelected=false;
+        this.isSelected = false;
+        this.lblalluser = false;
            
 
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
@@ -144,6 +148,11 @@ export class UserComponent implements OnInit {
         this.bindUser();
         this.bindPresentmentMaker();
         this.BindPresentmentChecker();
+        this.UserForm.controls['sponsorbankcode'].setValue(0);
+        this.UserForm.controls['categorycode'].setValue(0);
+        
+        this.UserForm.controls['maker'].setValue(0);
+        this.UserForm.controls['nachuser'].setValue(0);
     }
 
     isFieldValid(field: string) {
@@ -770,17 +779,40 @@ export class UserComponent implements OnInit {
         return str;
     }
 
-    checkSingleUser(event) {
-        //var count = 0;
-        //var oRows = document.getElementById('tbluserlist').getElementsByTagName('tr');
-        //var rowcount = oRows.length;
+    checkSingleUser(data) {
+        var id = data.UserId;
 
-        
-        this.selected_checkbox[event.target.Id] = event.target.checked;
-        
+        if ((<HTMLInputElement>document.getElementById(id)).checked == true) {
+            this.chkuserlist.push(id);
+        }
+        else {
+            this.chkuserlist.splice(id);
+        }
         
        
     }
+
+    getUserlist() {
+        var userdata = [];
+        for (var i = 0; i < this.chkuserlist.length; i++) {
+            userdata.push(this.chkuserlist[i]);
+        }
+        this.UserForm.controls['nachuser'].setValue(userdata);
+        this.showModal = false;
+    }
+
+    chkAllUser(event) {
+        if (event.target.checked == true) {
+            this.IsViewAll = 1;
+            this.lblalluser = true;
+        }
+        else {
+            this.IsViewAll = 0;
+            this.lblalluser = false;
+        }
+    }
+
+
 
    
     //@HostListener('paste', ['$event']) blockPaste(e: KeyboardEvent) {

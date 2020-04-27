@@ -98,12 +98,12 @@ export class DownloadEmandateComponent implements OnInit {
 
         if (event.target.checked) {
             this.Ischecked = 1;
-            alert('Checked');
+          //  alert('Checked');
             //  this.Isallcheck = 1;
         }
         else {
             this.Ischecked = 0;
-            alert('Not Checked');
+           // alert('Not Checked');
         }
 
 
@@ -122,13 +122,13 @@ export class DownloadEmandateComponent implements OnInit {
             this.SelectionStatusOfMutants.push(item);
 
             console.log(this.SelectionStatusOfMutants);
-            alert('checked')
+            //alert('checked')
             this.Ischecked = 1;
             CheckedCount++;
 
         }
         else {
-            alert('not checked')
+            //alert('not checked')
             this.SelectionStatusOfMutants.pop();
             UncheckedCount++;
             if (UncheckedCount == CheckedCount) {
@@ -185,7 +185,7 @@ export class DownloadEmandateComponent implements OnInit {
         return str;
     }
     download() {
-        alert(this.Ischecked);
+       // alert(this.Ischecked);
         if (this.Ischecked == 1 || this.Databind.length > 0) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
