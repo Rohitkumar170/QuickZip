@@ -5,4 +5,5 @@ export class UMRNHISTORYCLASS {
     customer1: string;
     RefrNo: string;
     UserId: string;
+    length: any;
 }

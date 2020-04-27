@@ -55,8 +55,8 @@ namespace QuickZip.Controllers
         }
 
         [HttpPost]
-        [Route("api/USer/SaveData/{EntityId}/{UserId}")]
-        public IEnumerable<Users> SaveData([FromBody] Users userdata,string EntityId,string UserId)
+        [Route("api/USer/SaveData/{EntityId}/{UserId}/{checkbulkuploadlink}/{chkvideolink}")]
+        public IEnumerable<Users> SaveData([FromBody] Users userdata,string EntityId,string UserId,string checkbulkuploadlink,string chkvideolink)
         {
             string dtPaymentMode = "<dtXml></dtXml>";
             var dtUserRights_3 = "<dtXml></dtXml>";
@@ -223,7 +223,7 @@ namespace QuickZip.Controllers
             //// }
             //dtUserRights_4 += "</dtXml>";
 
-            return objuser.SaveUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd,dtPaymentMode,dtUserRights_3,dtUserRights_4, chkRefEdit);
+            return objuser.SaveUserData(userdata, EntityId, UserId, dtUserRights_1, dtUserRights_2, dtSponsorBankCode, dtCategoryCode, dtPresentmentMaker, chkPresentMaker, chkPresentChecker, IsZipSure, IsAllowFundTransfer, IsMandateEdit, Ismandate, IsBulk, iSDashboard, IsEnableCancel, IsViewall, Defaultpwd,dtPaymentMode,dtUserRights_3,dtUserRights_4, chkRefEdit, checkbulkuploadlink,chkvideolink);
         }
 
         [HttpPost]

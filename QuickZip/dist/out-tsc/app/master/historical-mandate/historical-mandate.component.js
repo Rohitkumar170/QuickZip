@@ -3,35 +3,36 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HistoricalMandateServiceService } from '../../services/historical-mandate/historical-mandate-service.service';
 var HistoricalMandateComponent = /** @class */ (function () {
+    // length: any;
     function HistoricalMandateComponent(HMService, formBuilder) {
         this.HMService = HMService;
         this.formBuilder = formBuilder;
         this.dataArray = [];
+        this.Preloader = true;
     }
     // CurrentDate = new Date();
     HistoricalMandateComponent.prototype.ngOnInit = function () {
+        this.HistoricalMandateForm = this.formBuilder.group({
+            FromDate: [''],
+            ToDate: ['']
+        });
+        this.Preloader = false;
     };
     HistoricalMandateComponent.prototype.SearchFunction = function (FromDate, ToDate) {
         var _this = this;
-        var formElement = document.getElementById('divLoarder');
-        formElement.style.display = 'block';
+        this.Preloader = true;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(function (data) {
+                _this.Preloader = false;
                 _this.BindAllData = data;
                 var json = JSON.stringify(_this.BindAllData);
                 var CountRecordArray = typeof json != 'object' ? JSON.parse(json) : json;
                 _this.TotalCount = CountRecordArray.length;
-                //alert(CountRecordArray.length);
-                //alert(json);
             });
-            formElement = document.getElementById('divLoarder');
-            formElement.style.display = 'none';
         }
     };
     HistoricalMandateComponent.prototype.doubleClick = function (data) {
-        // this.dataArray = this.dataArray + data;
         this.dataArray.push(data);
         var json = JSON.stringify(data);
         alert(json);

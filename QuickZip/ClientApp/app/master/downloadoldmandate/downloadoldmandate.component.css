@@ -1,5 +1,16 @@
 
 
+.loaderposition {
+    position: absolute;
+    left: 0% !important;
+    z-index: 9999 !important;
+    top: 0% !important;
+}
+
+
+
+
+
 .card-header {
     padding: 0px;
 }

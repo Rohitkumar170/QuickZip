@@ -21,12 +21,7 @@ namespace QuickZip.Controllers
         }
 
 
-        //[HttpPost]
-        //[Route("api/Downloadoldemandate/Searchdata")]
-        //public IEnumerable<Searchdata>Searchdata([FormData]Searchdata objsearch)
-        //{
-        //    return obj.SearchData(objsearch);
-        //}
+        
 
         [HttpGet]
         [Route("api/Downloadoldemandate/SearchData/{FromDate}/{ToDate}/{Bank}/{userid}")]

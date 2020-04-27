@@ -4,6 +4,7 @@
     
     UMRN: string;
     Amount: string;
+    length: any;
     Refrence: string;
     CustomerName: string;
     FromDate: string;

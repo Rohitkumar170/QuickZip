@@ -59,54 +59,60 @@
 
 
         <div class="col-md-12 col-sm-12 col-xs-12 boxsetting">
-            <div class="col-md-12 col-sm-12 col-xs-12 boxhead">
-                <div class="row no-padding">
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <label class="col-sm-5 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
-                                UMRN
+            <form [formGroup]="SearchData" autocomplete="off">
+                <div class="col-md-12 col-sm-12 col-xs-12 boxhead">
+                    <div class="row no-padding" [ngClass]="displayFieldCss('searchtext')">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-5 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
+                                    UMRN
 
-                            </label>
-                            <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                <input type="text" required name="UMRN" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="UMRN" #UMRN />
+                                </label>
+                                <div class="col-sm-7 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                                    <input type="text" required name="UMRN" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="searchtext" #UMRN />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
+                            <div class="form-group">
+                                <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
+                                    Customer Name
+                                </label>
+                                <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                                    <input type="text" required name="CustomerName" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="searchtext" #CustomerName />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
+                            <div class="form-group">
+                                <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
+                                    Reference Number
+                                </label>
+                                <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
+                                    <input type="text" required name="ReferenceNumber" class="col-sm-12 col-md-12 col-xs-12" style="height:  22px;" formControlName="searchtext" #RefrNo />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
-                        <div class="form-group">
-                            <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
-                                Customer Name
-                            </label>
-                            <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                <input type="text" required name="CustomerName" class="col-sm-12 col-md-12 col-xs-12" style="height: 22px;" formControlName="CustomerName" #CustomerName />
-                            </div>
+                    <div class="row no-padding">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12  no-padding ">
-                        <div class="form-group">
-                            <label class="col-sm-6 col-md-4 col-xs-4 control-label no-padding" for="form-field-1">
-                                Reference Number
-                            </label>
-                            <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                <input type="text" required name="ReferenceNumber" class="col-sm-12 col-md-12 col-xs-12" style="height:  22px;" formControlName="ReferenceNumber" #RefrNo />
-                            </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
+
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
+                            <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
+                                   value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" (click)="SearchFunction(UMRN.value,CustomerName.value,RefrNo.value)" />
                         </div>
                     </div>
                 </div>
-                <div class="row no-padding">
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
-
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-12  no-padding">
-                        <input type="button" class="col-md-2 col-sm-12 col-xs-12 btn btn-success" id="btnOk"
-                               value="Search" style="margin-right: 12%; margin-top: 2%; margin-bottom: 2%;float:right;" (click)="SearchFunction(UMRN.value,CustomerName.value,RefrNo.value)" />
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 loaderposition" id="divLoarder" *ngIf="Preloader">
+            <img src="../../ClientApp/assets/images/loader.gif" style="margin-left: 45%;margin-top: 19%;" />
+        </div>
+
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv" style="margin-top:1%;">
             <table id="tblUmrnhistory">
                 <thead>
@@ -128,10 +134,10 @@
                         <td style="width:220px;">{{data.customer1}}</td>
                         <td style="width:220px;">{{data.ReferenceNo}}</td>
                         <td style="width:220px;">{{data.Type}}</td>
-
-
                     </tr>
-
+                    <tr *ngIf="AllData?.length == 0">
+                        <td colspan="5">No Record Found!</td>
+                    </tr>
                 </tbody>
 
             </table>
@@ -139,5 +145,6 @@
         </div>
 
     </div>
+   
 </div>
 

@@ -14,48 +14,42 @@ import { count } from 'rxjs/operators';
 export class HistoricalMandateComponent implements OnInit {
     HistoricalMandateForm: FormGroup; HeaderArray;
     BindAllData: HistoricalMandateClass; TotalCount; dataArray: Array<HistoricalMandateClass> = [];
-    Preloader:boolean = false;
+    Preloader: boolean = true;
+   // length: any;
     constructor(private HMService: HistoricalMandateServiceService, private formBuilder: FormBuilder) {
 
     }
     // CurrentDate = new Date();
     ngOnInit() {
-
+        this.HistoricalMandateForm = this.formBuilder.group({
+            FromDate: [''],
+            ToDate: ['']
+        });
+        this.Preloader = false;
     }
 
     SearchFunction(FromDate, ToDate) {
-        //var formElement = <HTMLFormElement>document.getElementById('divLoarder');
-        //formElement.style.display = 'block';
-        
-
+        this.Preloader = true;
         let item = JSON.parse(sessionStorage.getItem('User'));
-        // alert(FromDate + " " + ToDate + " " + item.UserId);
         if (FromDate != "" && ToDate != "") {
-            this.Preloader = true;
             this.HMService.BindGridData(FromDate, ToDate, item.UserId).subscribe(
                 (data) => {
+                    this.Preloader = false;
                     this.BindAllData = data;
                     let json = JSON.stringify(this.BindAllData);
                     var CountRecordArray = typeof json != 'object' ? JSON.parse(json) : json;
                     this.TotalCount = CountRecordArray.length;
-                    //alert(CountRecordArray.length);
-                    //alert(json);
                 });
-            //formElement = <HTMLFormElement>document.getElementById('divLoarder');
-            //formElement.style.display = 'none';
-            this.Preloader = false;
+           
         }
     }
     doubleClick(data: any) {
-        // this.dataArray = this.dataArray + data;
         this.dataArray.push(data);
         let json = JSON.stringify(data);
         alert(json);
         console.log(data.MandateFreshId);
 
     }
-
-
 
     ConvertToCSV(objArray) {
         this.HeaderArray = {

@@ -30,10 +30,10 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.CheckIsPresentmentChecker = function (EntityId) {
         return this._http.get(this.baseUrl + 'api/USer/CheckIsPresentmentChecker/' + EntityId);
     };
-    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId) {
+    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId, checkbulkuploadlink, chkvideolink) {
         var body = em;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]().set('content-type', 'application/json');
-        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId, body, {
+        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
             headers: headers
         });
     };
@@ -796,7 +796,7 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.SaveUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId).subscribe(function (data) {
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == -1) {
                 _this.message = 'User already exists';
@@ -1039,6 +1039,9 @@ var UserComponent = /** @class */ (function () {
         if (document.getElementById(ids).checked == true) {
             this.checkbulkuploadlink.push(ids);
         }
+        else {
+            this.checkbulkuploadlink.pop();
+        }
         //for (var i = 0; i < this.checkbulkuploadlink.length; i++) {
         //    //this.UserForm.controls['chkbulkuploadlink'].setValue(this.checkbulkuploadlink[i]);
         //   this.UserForm.setControl('chkbulkuploadlink', this.formBuilder.array(this.checkbulkuploadlink || []));
@@ -1053,6 +1056,9 @@ var UserComponent = /** @class */ (function () {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
         //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
         //}
+        else {
+            this.chkvideolink.pop();
+        }
     };
     UserComponent.prototype.download = function () {
         var _this = this;
