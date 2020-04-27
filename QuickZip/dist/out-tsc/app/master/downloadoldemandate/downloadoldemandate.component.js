@@ -9,9 +9,13 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     //IsMandateID: string;
     function DownloadoldemandateComponent(_downloadservice) {
         this._downloadservice = _downloadservice;
+        this.dataArray = [];
+        this.Preloader = true;
         this.SelectionStatusOfMutants = [];
         this.checkFlag = 0;
         this.Ischecked = 0;
+        this.CheckedCount = 0;
+        this.UncheckedCount = 0;
         this.currentDate = new Date();
         this.toggleSelect = function (event) {
             //toggleSelect(event) {
@@ -34,8 +38,10 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     }
     DownloadoldemandateComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.showlabel = false;
+        this.Preloader = false;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
+        // console.log(item.UserId)
         this._downloadservice.BankBind(item.UserId).
             subscribe(function (data) {
             _this.bankbind = data.Table;
@@ -49,25 +55,33 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     };
     DownloadoldemandateComponent.prototype.PostData = function (FromDate, Todate, bankdrop) {
         var _this = this;
+        this.Preloader = true;
         // alert("Comp" + FromDate + " " + Todate + " " + bankdrop);
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
+        // console.log(item.UserId)
         this._downloadservice.SearchData(FromDate, Todate, bankdrop, item.UserId).subscribe(function (data) {
+            _this.Preloader = false;
             _this.Databind = data;
-            console.log(_this.Databind);
+            _this.dataArray.push(_this.Databind);
+            // alert(this.dataArray.length);
+            //console.log(this.Databind);
         });
+        if (this.dataArray.length > 0) {
+            // alert(this.dataArray.length);
+            this.showlabel = true;
+        }
     };
     DownloadoldemandateComponent.prototype.Removelabel = function () { this.errormsg = ''; };
     DownloadoldemandateComponent.prototype.BankBind = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
+        //console.log(item.UserId)
         this._downloadservice.BankBind(item.UserId).
             subscribe(function (data) {
             _this.bankbind = data.Table;
             _this.i = Object.entries(_this.bankbind)[0][1];
             // alert(this.i.sponsorbankcode);
-            console.log(_this.bankbind);
+            // console.log(this.bankbind);
         });
     };
     DownloadoldemandateComponent.prototype.onChange = function (event, item) {
@@ -76,35 +90,23 @@ var DownloadoldemandateComponent = /** @class */ (function () {
         //if (count == '') {
         this.checkFlag = 0;
         // this.IsMandateID = item.mandateid;
-        var CheckedCount = 0, UncheckedCount = 0;
+        //var CheckedCount = 0, UncheckedCount = 0;
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
-            console.log(this.SelectionStatusOfMutants);
+            // console.log(this.SelectionStatusOfMutants);
             // alert('checked')
             this.Ischecked = 1;
-            CheckedCount++;
+            this.CheckedCount++;
             //this.dataArray.push(item);
             //console.log(this.dataArray)
         }
         else {
             //  alert('not checked')
             this.SelectionStatusOfMutants.pop();
-            UncheckedCount++;
-            if (UncheckedCount == CheckedCount) {
+            this.UncheckedCount++;
+            if (this.UncheckedCount == this.CheckedCount) {
                 this.Ischecked = 0;
             }
-            //if (this.dataArray.length > 0) {
-            //    for (var i = 0; i < this.dataArray.length; i++) {
-            //        if (this.dataArray[i].ManDateID == item.ManDateID) {
-            //            // this.dataArray.pop();
-            //            // delete [this.dataArray.indexOf()];
-            //            this.dataArray.splice(this.dataArray.indexOf(item), 1);
-            //            console.log(this.dataArray);
-            //        }
-            //        else {
-            //        }
-            //    }
-            //}
         }
     };
     DownloadoldemandateComponent.prototype.ConvertToCSV = function (objArray) {
@@ -145,13 +147,13 @@ var DownloadoldemandateComponent = /** @class */ (function () {
     };
     DownloadoldemandateComponent.prototype.download = function () {
         // alert(this.Ischecked);
-        if (this.Ischecked == 1) {
-            //  alert("Selecetd");
-        }
-        else {
-            // alert("Not selected any checkbox");
-            this.errormsg = "Checkbox is not Selected";
-        }
+        //if (this.Ischecked == 1) {
+        //  //  alert("Selecetd");
+        //}
+        //else {
+        //   // alert("Not selected any checkbox");
+        //    this.errormsg = "Please Select Mandate !!";
+        //}
         //console.log(this.checkFlag);
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
@@ -170,6 +172,9 @@ var DownloadoldemandateComponent = /** @class */ (function () {
             a.download = 'User_Results.csv'; /* your file name*/
             a.click();
             return 'success';
+        }
+        else {
+            this.errormsg = "Please Select Mandate !!";
         }
     };
     DownloadoldemandateComponent = tslib_1.__decorate([

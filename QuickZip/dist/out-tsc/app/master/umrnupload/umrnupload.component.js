@@ -4,31 +4,43 @@ import { UmrnUploadService } from '../../services/umrnupload/umrn-upload.service
 var UmrnuploadComponent = /** @class */ (function () {
     function UmrnuploadComponent(_UmrnUploadService) {
         this._UmrnUploadService = _UmrnUploadService;
+        this.Preloader = true;
         this.dataArray = [];
     }
     UmrnuploadComponent.prototype.ngOnInit = function () {
         this.BindGrid();
     };
+    UmrnuploadComponent.prototype.hide = function () {
+        this.showModalsave = false;
+    };
     UmrnuploadComponent.prototype.BindGrid = function () {
         var _this = this;
+        //this.tbldiv1 = true;
+        //this.tbldiv2 = false;
+        //this.tbldiv3 = false;
+        //this.tbldiv4 = false;
         this._UmrnUploadService.BindGrid().
             subscribe(function (data) {
             _this.umrnupload = data.Table;
+            _this.Preloader = false;
         });
-        console.log(this.umrnupload);
     };
     UmrnuploadComponent.prototype.doubleClick = function (data) {
         this.dataArray.push(data);
         //  let UploadHeaderId = JSON.stringify(data.UploadHeaderId);
         this.UploadHeaderId = data.UploadHeaderId;
-        var tbldiv1 = document.getElementById('tbldiv1');
-        tbldiv1.style.display = 'none';
         this.BindOnRowdblClick();
     };
     UmrnuploadComponent.prototype.BindOnRowdblClick = function () {
         var _this = this;
+        this.Preloader = true;
         this._UmrnUploadService.BindOnRowdblClick(this.UploadHeaderId).
             subscribe(function (data) {
+            _this.Preloader = false;
+            //this.tbldiv1 = false;
+            //this.tbldiv2 = true;
+            //this.tbldiv3 = true;
+            //this.tbldiv4 = true;
             _this.grdunsuccess = data.Table;
             _this.grdsuccess = data.Table1;
             _this.maingriddetails = data.Table2;
@@ -38,6 +50,8 @@ var UmrnuploadComponent = /** @class */ (function () {
             document.getElementById('lblTotalCount').innerHTML = 'Total Records: ' + TotalCount;
             document.getElementById('lblsuccessCount').innerHTML = 'Validated Records : ' + successCount;
             document.getElementById('lblUnsuccessCount').innerHTML = 'Rejected Records : ' + UnsuccessCount;
+            var tbldiv1 = document.getElementById('tbldiv1');
+            tbldiv1.style.display = 'none';
             var tbldiv2 = document.getElementById('tbldiv2');
             tbldiv2.style.display = 'block';
             var tbldiv3 = document.getElementById('tbldiv3');
@@ -50,17 +64,6 @@ var UmrnuploadComponent = /** @class */ (function () {
             divsave.style.display = 'none';
         });
     };
-    //btnback() {
-    //    this.BindGrid();
-    //    var tbldiv2 = <HTMLFormElement>document.getElementById('tbldiv2');
-    //    tbldiv2.style.display = 'none';
-    //    var tbldiv3 = <HTMLFormElement>document.getElementById('tbldiv3');
-    //    tbldiv3.style.display = 'none';
-    //    var tbldiv4 = <HTMLFormElement>document.getElementById('tbldiv4');
-    //    tbldiv4.style.display = 'none';
-    //    var tbldiv1 = <HTMLFormElement>document.getElementById('tbldiv1');
-    //    tbldiv1.style.display = 'block';
-    //}
     UmrnuploadComponent.prototype.ConvertToCSV = function (objArray) {
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = '';
@@ -173,6 +176,10 @@ var UmrnuploadComponent = /** @class */ (function () {
         return 'success';
     };
     UmrnuploadComponent.prototype.btnNew_click = function (e) {
+        //this.tbldiv1 = false;
+        //this.tbldiv2 = false;
+        //this.tbldiv3 = false;
+        //this.tbldiv4 = false;
         var tbldiv1 = document.getElementById('tbldiv1');
         tbldiv1.style.display = 'none';
         var tbldiv2 = document.getElementById('tbldiv2');
@@ -199,8 +206,10 @@ var UmrnuploadComponent = /** @class */ (function () {
         //    this.message = result.toString();
         //    this.loadAllUser();
         //});
+        this.Preloader = true;
         this._UmrnUploadService.UploadExcel(formData).
             subscribe(function (data) {
+            _this.Preloader = false;
             _this.grdunsuccess = data.Table;
             _this.grdsuccess = data.Table1;
             _this.maingriddetails = data.Table2;
@@ -210,12 +219,17 @@ var UmrnuploadComponent = /** @class */ (function () {
             document.getElementById('lblTotalCount').innerHTML = 'Total Records: ' + TotalCount;
             document.getElementById('lblsuccessCount').innerHTML = 'Validated Records : ' + successCount;
             document.getElementById('lblUnsuccessCount').innerHTML = 'Rejected Records : ' + UnsuccessCount;
+            var tbldiv1 = document.getElementById('tbldiv1');
+            tbldiv1.style.display = 'none';
             var tbldiv2 = document.getElementById('tbldiv2');
             tbldiv2.style.display = 'block';
             var tbldiv3 = document.getElementById('tbldiv3');
             tbldiv3.style.display = 'block';
             var tbldiv4 = document.getElementById('tbldiv4');
             tbldiv4.style.display = 'block';
+            //this.tbldiv2 = true;
+            //this.tbldiv3 = true;
+            //this.tbldiv4 = true;
             var btndownload = document.getElementById('btndownload');
             btndownload.style.display = 'block';
             var divsave = document.getElementById('divsave');
@@ -234,10 +248,12 @@ var UmrnuploadComponent = /** @class */ (function () {
         var TotalCount = document.getElementById('lbltotalrecordcount').innerHTML;
         var validatedcount = document.getElementById('lblvalidatedcount').innerHTML;
         var FileName = document.getElementById('lblfilename').innerHTML;
+        this.Preloader = true;
         this._UmrnUploadService.btnSave_Click(UploadHeaderId, TotalCount, validatedcount, FileName).subscribe(function (data) {
+            _this.Preloader = false;
             _this.umrnupload = data.Table;
             if (data.Table.length != 0) {
-                alert('Uploaded SuccessFully');
+                _this.showModalsave = true;
             }
             _this.BindGrid();
             var tbldiv1 = document.getElementById('tbldiv1');
@@ -248,6 +264,10 @@ var UmrnuploadComponent = /** @class */ (function () {
             tbldiv3.style.display = 'none';
             var tbldiv4 = document.getElementById('tbldiv4');
             tbldiv4.style.display = 'none';
+            //this.tbldiv1 = true;
+            //this.tbldiv2 = false;
+            //this.tbldiv3 = false;
+            //this.tbldiv4 = false;
             window.location.reload();
         });
     };

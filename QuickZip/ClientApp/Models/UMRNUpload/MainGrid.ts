@@ -4,6 +4,7 @@
    
     UploadHeaderId: BigInteger;
     UploadNo: string;
+    length: any;
     CreatedOn: string;
     UserName: string;
     TotalCount: BigInteger;

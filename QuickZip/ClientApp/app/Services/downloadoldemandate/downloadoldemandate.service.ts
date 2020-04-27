@@ -17,12 +17,12 @@ export class DownloadoldemandateService {
         this.baseUrl = myAppUrl;
     }
     BankBind(userid): Observable<any> {
-       // alert(userid);
+      
         return this._http.get<any>(this.baseUrl + 'api/Downloadoldemandate/BankBind/' + userid);
     }
     
     SearchData(FromDate, ToDate, Bank, userid): Observable<Searchdetails> {
-      // alert("Service" + FromDate + " " + ToDate + Bank + userid);
+      
         return this._http.get<Searchdetails>(this.baseUrl + 'api/Downloadoldemandate/SearchData/' + FromDate + '/' + ToDate + '/' + Bank + '/' + userid);
     }
 
