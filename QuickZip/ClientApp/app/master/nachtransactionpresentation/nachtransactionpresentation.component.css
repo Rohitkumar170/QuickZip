@@ -1,3 +1,60 @@
+
+#tblnachmandate tbody {
+    overflow: auto;
+    display: block;
+    max-height: 26vh;
+}
+
+form {
+    display: block;
+    overflow: visible !important;
+    padding: 0 !important;
+    height: 0% !important;
+}
+
+#tblnachmandate tbody tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+.htmldateheight {
+    height: 24px;
+}
+
+.boxsetting {
+    margin-top: 3%;
+    margin-left: 1%;
+}
+
+#tblnachmandate thead tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+#tblnachmandate {
+    overflow-x: scroll;
+    display: inline-block;
+}
+
+    #tblnachmandate tbody {
+        width: 1741px;
+    }
+
+
+
+#maincontent {
+    position: absolute;
+    top: 8%;
+    left: 14%;
+    width: 86%;
+}
+
+#tblsecondgrd, #tblnachmandate {
+    border: 1px solid #cdcdcd;
+}
+
 .card-header {
     padding: 0px;
 }
