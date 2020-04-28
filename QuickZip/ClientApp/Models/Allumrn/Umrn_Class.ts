@@ -14,7 +14,9 @@
     RecordType: string;
     MandateStatus: string;
     ErrorCode: string;
-
+    
+    Userid: string;
+    CreatedBy: string;
     Reference1: string;
     //UMRN: string;
     //Amount: string;

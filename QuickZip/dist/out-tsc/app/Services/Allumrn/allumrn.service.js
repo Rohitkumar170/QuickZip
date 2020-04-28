@@ -24,6 +24,17 @@ var AllumrnService = /** @class */ (function () {
             headers: headers
         });
     };
+    AllumrnService.prototype.AddUmrn = function (em) {
+        var body = em;
+        //  alert(body);
+        var headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post(this.baseUrl + 'api/AllUMRN/AddUmrn', body, {
+            headers: headers
+        });
+    };
+    //AddUmrn(NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate, Entityid, Userid, CreatedBy): Observable<any> {
+    //    return this._http.get<any>(this.baseUrl + 'api/AllUMRN/AddUmrn/'+NEWUMRN+'/'+Customername+'/'+ReferenceNumber+'/'+Amount+'/'+FromDate+'/' +ToDate+'/'+Entityid+'/'+Userid+'/'+CreatedBy);
+    //}
     AllumrnService.prototype.errorHandler = function (error) {
         console.log(error);
         return Observable.throw(error);

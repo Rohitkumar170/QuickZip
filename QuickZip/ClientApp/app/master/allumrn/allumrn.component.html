@@ -54,6 +54,7 @@
 
         <form [formGroup]="Allumrn" autocomplete="off">
             <div class="col-md-12 col-sm-12 col-xs-12 boxsetting" style="display:none;">
+
                 <div class="col-md-12 col-sm-12 col-xs-12 boxhead">
                     <div class="row no-padding">
                         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -143,7 +144,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12 loaderposition" id="divLoarder" *ngIf="Preloader">
             <img src="../../ClientApp/assets/images/loader.gif" style="margin-left: 45%;margin-top: 19%;" />
         </div>
-        <button type="button" (click)="onClick($event)">Show Popup</button>
+
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv1" style="margin-top:7%;">
             <table id="tblallumrn">
                 <thead>
@@ -164,7 +165,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lang of Umrndta " (dblclick)="onRowClicked(lang)">
+                    <tr *ngFor="let lang of Umrndta" >
 
                         <td style="width:150px;">{{lang.Srno}}</td>
                         <td style="width:220px;">{{lang.UMRN}}</td>
@@ -189,188 +190,205 @@
 
             </table>
 
+
         </div>
 
 
 
-    </div>
+        <div class="modal" id="myModal" [style.display]="showModalumrnstatement ? 'block' : 'none'">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
 
+                    <div class="modal-header" style="background: #d7e4e6; color: #003974; font-weight: bold;">
+                        <h4 class="modal-title">
+                            UMRN Statement
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+                    </div>
 
-   <div class="modal" id="myModal" [style.display]="showModalumrnstatement ? 'block' : 'none'">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-               
-                <div class="modal-header"  style="background: #d7e4e6; color: #003974; font-weight: bold;">
-                    <h4 class="modal-title">
-                        UMRN Statement
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
-                </div>
-                
-                <div class="modal-body">
+                    <div class="modal-body">
 
-                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding" id="tbldiv1">
-                        <button type="button" class="btn btn-success" style="margin-bottom:3px;">Download Excel</button>
-                        <table id="umrnstatement">
-                            <thead>
-                                <tr>
-                                    <th style="width:150px;"> Srno</th>
-                                    <th style="width:220px;"> UMRN</th>
-                                    <th style="width:220px;">Amount</th>
-                                    <th style="width:220px;">Refrence No.</th>
+                        <div class="col-md-12 col-sm-12 col-xs-12 no-padding" id="tbldiv1">
+                            <button type="button" class="btn btn-success" style="margin-bottom:3px;">Download Excel</button>
+                            <table id="umrnstatement">
+                                <thead>
+                                    <tr>
+                                        <th style="width:150px;"> Srno</th>
+                                        <th style="width:220px;"> UMRN</th>
+                                        <th style="width:220px;">Amount</th>
+                                        <th style="width:220px;">Refrence No.</th>
 
-                                    <th style="width:220px;">From Date</th>
-                                    <th style="width:220px;">To Date</th>
-                                    <th style="width:220px;">Type</th>
+                                        <th style="width:220px;">From Date</th>
+                                        <th style="width:220px;">To Date</th>
+                                        <th style="width:220px;">Type</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let Data of Umrndta">
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
 
-                                    <td style="width:150px;">{{Data.Srno}}</td>
-                                    <td style="width:220px;">{{Data.UMRN}}</td>
-                                    <td style="width:220px;">{{Data.Amount}}</td>
-                                    <td style="width:220px;">{{Data.Refrence}}</td>
+                                        <td style="width:150px;">1</td>
+                                        <td style="width:220px;">1</td>
+                                        <td style="width:220px;">1</td>
 
-                                    <td style="width:220px;">{{Data.FromDate}}</td>
-                                    <td style="width:220px;">{{Data.ToDate}}</td>
-
-
-
-                                </tr>
+                                        <td style="width:220px;">1</td>
+                                        <td style="width:220px;">1</td>
+                                        <td style="width:220px;">1</td>
+                                        <td style="width:220px;">1</td>
 
 
 
-                            </tbody>
+                                    </tr>
 
-                        </table>
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
 
                     </div>
 
-                </div>
-                
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal" id="myModal" [style.display]="showmodalcreateumrn ? 'block' : 'none'">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header" style="background: #d7e4e6; color: #003974; font-weight: bold;">
-                    <h4 class="modal-title" >
-                        Create UMRN
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="col-md-12 col-sm-12 col-xs-12 " style="margin-top: 6%; margin-bottom: 3%;">
-                        <div class=" col-sm-12 col-xs-12 col-md-12">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-3 col-xs-12 no-padding">
-                                    <div class="form-group">
-                                        <div class="row">
-                                        <label class="col-sm-5 col-md-5 col-xs-5 control-label">
-                                          UMRN
-                                        </label>
-                                        <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
-                                            <input type="text" id="txtumrn" class="col-sm-12 col-md-12 col-xs-12">
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
-                                    <div class="form-group">
-                                        <div class="row">
-                                        <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
-                                            Customer Name
-                                        </label>
-                                        <div class="col-sm-7 col-md-6 col-xs-7  no-padding">
-                                            <input type="text" id="txtcustname" class="col-sm-12 col-md-12 col-xs-12">
-                                        </div>
+        <div class="modal" id="myModal" [style.display]="showmodalcreateumrn ? 'block' : 'none'">
+
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="background: #d7e4e6; color: #003974; font-weight: bold;">
+                        <h4 class="modal-title">
+                            Create UMRN
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="col-md-12 col-sm-12 col-xs-12 " style="margin-top: 6%; margin-bottom: 3%;">
+                            <div class=" col-sm-12 col-xs-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-3 col-xs-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-md-5 col-xs-5 control-label">
+                                                    UMRN
+                                                </label>
+                                                <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
+
+                                                    <input type="text" id="txtumrn" class="col-sm-12 col-md-12 col-xs-12" required name="NEWUMRN" formControlName="Newumrn" #NEWUMRN>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-sm-12 col-xs-12 col-md-12">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
-                                                Reference Number
-                                            </label>
-                                            <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
-                                                <input type="text" id="txtrefrence" class="col-sm-12 col-md-12 col-xs-12">
+                                    <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
+                                                    Customer Name
+                                                </label>
+                                                <div class="col-sm-7 col-md-6 col-xs-7  no-padding">
+
+                                                    <input type="text" id="txtcustname" class="col-sm-12 col-md-12 col-xs-12" required name="Customername" formControlName="CustomerName" #Customername>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
-                                    <div class="form-group">
-                                        <div class="row">
-                                        <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
-                                            Amount
-                                        </label>
-                                        <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
-                                            <input type="text" id="txtamount" class="col-sm-12 col-md-12 col-xs-12">
-                                        </div>
-                                            </div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        <div class=" col-sm-12 col-xs-12 col-md-12">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-3 col-xs-12 no-padding">
-                                    <div class="form-group">
-                                        <div class="row">
-                                        <label class="col-sm-5 col-md-5 col-xs-5 control-label ">
-                                            From Date
-                                        </label>
-                                        <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
-                                            <input type="date" id="txtfromdate" class="col-sm-12 col-md-12 col-xs-12 date-picker" data-date-format="yyyy-mm-dd" style="height:22px">
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
-                                    <div class="form-group">
-                                        <div class="row">
-                                        <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
-                                            To Date
-                                        </label>
-                                        <div class="col-sm-7 col-md-6 col-xs-7  no-padding">
-                                            <input type="date" id="txttodate" class="col-sm-12 col-md-12 col-xs-12 date-picker" data-date-format="yyyy-mm-dd" style="height:22px" >
-                                        </div>
-                                    </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-sm-12 col-xs-12 col-md-12">
+                            <div class=" col-sm-12 col-xs-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
+                                                    Reference Number
+                                                </label>
+                                                <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
 
-                            <div class="col-md-12 col-sm-3 col-xs-12 no-padding">
-                                <div class="form-group">
-                                    <label class="col-sm-5 col-md-5 col-xs-5 control-label no-padding">
-                                    </label>
-                                    <div class="col-sm-7 col-md-4 col-xs-7 no-padding pull-right">
-                                        <input type="button" class="btn btn-success pull-right gridbtn" id="btnsubmit" value="submit" style="margin-right: 0%; margin-top: 8%;">
+                                                    <input type="text" id="txtrefrence" class="col-sm-12 col-md-12 col-xs-12" required name="ReferenceNumber" formControlName="ReferenceNumber" #ReferenceNumber>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
+                                                    Amount
+                                                </label>
+                                                <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
+
+                                                    <input type="text" id="txtamount" class="col-sm-12 col-md-12 col-xs-12" required name="Amount" formControlName="Amount" #Amount>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-12 col-xs-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-3 col-xs-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-md-5 col-xs-5 control-label ">
+                                                    From Date
+                                                </label>
+                                                <div class="col-sm-7 col-md-6 col-xs-7 no-padding">
+
+                                                    <input type="date" id="txtfromdate" class="col-sm-12 col-md-12 col-xs-12 date-picker" data-date-format="yyyy-mm-dd" style="height:22px" required name="FromDate" formControlName="FromDate" #FromDate>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-4 col-xs-12 no-padding">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-5 col-md-5 col-xs-5 control-label " for="form-field-2">
+                                                    To Date
+                                                </label>
+                                                <div class="col-sm-7 col-md-6 col-xs-7  no-padding">
+
+                                                    <input type="date" id="txttodate" class="col-sm-12 col-md-12 col-xs-12 date-picker" data-date-format="yyyy-mm-dd" style="height:22px" required name="ToDate" formControlName="ToDate" #ToDate>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-12 col-xs-12 col-md-12">
+
+                                <div class="col-md-12 col-sm-3 col-xs-12 no-padding">
+                                    <div class="form-group">
+                                        <label class="col-sm-5 col-md-5 col-xs-5 control-label no-padding">
+                                        </label>
+                                        <div class="col-sm-7 col-md-4 col-xs-7 no-padding pull-right">
+                                            <input type="button" class="btn btn-success pull-right gridbtn" id="btnsubmit" value="submit" style="margin-right: 0%; margin-top: 8%;" (click)="Insertumrn(NEWUMRN.value,Customername.value,ReferenceNumber.value,Amount.value,FromDate.value,ToDate.value)" >
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
-    </div>
-    
 
+        </div>
+
+
+    </div>
+
+
+    <button type="button" (click)="onClick($event)">Show Popup</button>
 
 </div>

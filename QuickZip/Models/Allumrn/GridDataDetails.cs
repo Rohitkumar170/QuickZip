@@ -12,6 +12,11 @@ namespace QuickZip.Models.Allumrn
         public string Amount { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }
-        public string type { get; set; }
+   //     public string type { get; set; }
+        public string FileNo { get; set; }
+        public string customer1 { get; set; }
+        public string PresentmentDate { get; set; }
+        public string ReferenceNo { get; set; }
+        public string Status { get; set; }
     }
 }

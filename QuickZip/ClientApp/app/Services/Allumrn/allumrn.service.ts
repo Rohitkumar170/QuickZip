@@ -35,6 +35,21 @@ export class AllumrnService {
             headers
         });
     }
+    AddUmrn(em: any): Observable<any> {
+        const body = em;
+        //  alert(body);
+        const headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post<any>(this.baseUrl + 'api/AllUMRN/AddUmrn', body, {
+            headers
+        });
+    }
+   
+
+    //AddUmrn(NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate, Entityid, Userid, CreatedBy): Observable<any> {
+        
+    //    return this._http.get<any>(this.baseUrl + 'api/AllUMRN/AddUmrn/'+NEWUMRN+'/'+Customername+'/'+ReferenceNumber+'/'+Amount+'/'+FromDate+'/' +ToDate+'/'+Entityid+'/'+Userid+'/'+CreatedBy);
+        
+    //}
 
     errorHandler(error: Response) {
         console.log(error);

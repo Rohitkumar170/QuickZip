@@ -4,6 +4,8 @@ import { GridData } from '../../../Models/Allumrn/GridData';
 import { AllumrnService } from '../../Services/Allumrn/allumrn.service';
 import { Umrn_Class } from '../../../Models/Allumrn/Umrn_Class';
 import { GridDataDetails } from '../../../Models/Allumrn/GridDataDetails';
+//import { Umrn_Class } from '../../../Models/Allumrn/Umrn_Class';
+
 @Component({
   selector: 'app-allumrn',
   templateUrl: './allumrn.component.html',
@@ -11,83 +13,136 @@ import { GridDataDetails } from '../../../Models/Allumrn/GridDataDetails';
 })
 export class AllumrnComponent implements OnInit {
     Allumrn: FormGroup;
+    insert: Umrn_Class;
+   // Addumrn: FormGroup;
     submitted = false;
     Umrndta: GridData;
     griddatadetail: GridDataDetails;
     Preloader: boolean = true;
-    dataArray: Array<GridData> = [];
+   // dataArray: Array<GridData> = [];
+    showmodalcreateumrn: boolean;
+    showModalumrnstatement: boolean;
+     Entityid;
+     Pageno;
 
     constructor(private formBuilder: FormBuilder, private _allumrn: AllumrnService) { }
 
     ngOnInit() {
+        this.showmodalcreateumrn = false;
+        this.showModalumrnstatement = false;
         this.Preloader = false;
        // let item = JSON.parse(sessionStorage.getItem('User'));
-        let Entityid = 13;
-        let Pageno = 1;
-        this.Preloader = true;
-        this._allumrn.GridBind(Entityid, Pageno).subscribe(
-            (data) => {
-                this.Preloader = false;
-                this.Umrndta = data;
-               // console.log(this.Umrndta);
-
-
-            });
+        
+        this.GridBind();
+        
+      
 
         this.Allumrn = this.formBuilder.group({
            
             Searchvalidation: ['', Validators.required]
         });
+
+
+        //this.Addumrn = this.formBuilder.group({
+
+        //    Newumrn: ['', Validators.required],
+        //    CustomerName: ['', Validators.required],
+        //    ReferenceNumber: ['', Validators.required],
+        //    Amount: ['', Validators.required],
+        //    FromDate: ['', Validators.required],
+        //    ToDate: ['', Validators.required]
+        //});
+    }
+
+    GridBind() {
+        this.Entityid = 13;
+        this.Pageno = 1;
+        this.Preloader = true;
+        this._allumrn.GridBind(this.Entityid, this.Pageno).subscribe(
+            (data) => {
+                this.Preloader = false;
+                this.Umrndta = data;
+                console.log(this.Umrndta);
+
+
+            });
+
+    }
+     
+    onClick(event) {
+        this.showmodalcreateumrn = true;
+
+
+    }
+
+    hide() {
+        this.showmodalcreateumrn = false;
+        this.showModalumrnstatement = false;
     }
 
 
-    //SearchFunction(UMRN, CustomerName, ReferenceNumber) {
+    
+    //onClick(event) {
+    //    this.showModalumrnstatement = true;
 
-    //    let Entityid = 13;
-    //    let Pageno = 1;
-    //    var umrn1 = UMRN.replace('\t', '');
-    //    var CustomerName1 = CustomerName.replace('\t', '');
-    //    var ReferenceNumber1 = ReferenceNumber.replace('\t', '');
 
-    //    var jasondata = {
-    //        "UMRN": umrn1,
-    //        "CustomerName": CustomerName1,
-    //        "ReferenceNumber": ReferenceNumber1,
-    //        "Entityid": Entityid,
-    //        "Pageno": Pageno
-    //    }
-
-    //    this.Preloader = true;
-    //    this._allumrn.SearchData(jasondata).subscribe(
-    //        (data) => {
-    //            this.Preloader = false;
-    //            this.Umrndta = data;
-    //        });
     //}
 
-    showmodalcreateumrn: boolean;    onClick(event) {        this.showmodalcreateumrn = true;    }    hide() {        this.showmodalcreateumrn = false;        this.showModalumrnstatement = false;    }
-
-
-    showModalumrnstatement: boolean;    //onClick(event) {    //    this.showModalumrnstatement = true;    //}    //hide() {    //    this.showModalumrnstatement = false;    //}
+    //hide() {
+    //    this.showModalumrnstatement = false;
+    //}
     
+    Insertumrn(NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate) {
 
+
+        let Entityid = 13;
+        let Userid = 86;
+        let CreatedBy = 1;
+        var jasondata = {
+            "UMRN": NEWUMRN,
+            "CustomerName": Customername,
+            "ReferenceNumber": ReferenceNumber,
+            "Entityid": Entityid,
+            "Amount": Amount,
+            "FromDate": FromDate,
+            "ToDate": ToDate,
+            "Userid": Userid,
+            "CreatedBy": CreatedBy
+        }
+
+        
+        this._allumrn.AddUmrn(jasondata).subscribe(
+            (data) => {
+                this.insert = data;
+                alert("Data Save successfully");
+                this.showmodalcreateumrn = false;
+                
+            });
+
+
+       
+
+
+
+    }
 
 
     onRowClicked(data: any) {
+        alert("dlclick");
         //const Currentrowid = this.Allumrn.value;
         this.showModalumrnstatement = true;
        
-        this.dataArray.push(data);
-        //var UMRN = data.UMRN;
-        //var Entityid = 13;
-        //this._allumrn.GridDataDetails(UMRN, Entityid).subscribe(
-        //    (data) => {
-        //       // this.Preloader = false;
-        //        this.griddatadetail = data;
-        //        // console.log(this.Umrndta);
+       // this.dataArray.push(data);
+        var UMRN = data.UMRN;
+        var Entityid = 13;
+        this._allumrn.GridDataDetails(UMRN, Entityid).subscribe(
+           (data) => {
+                this.Preloader = false;
+                this.griddatadetail = data;
+               console.log(this.griddatadetail);
 
 
-        //    });
+          });
        // this.dataArray = data;
         //this.showModalumrnstatement = true;
        
@@ -109,6 +164,50 @@ export class AllumrnComponent implements OnInit {
             'validate': this.isFieldValid(field),
         };
     }
+    //isFieldValid1(field: string) {
+    //    return !this.Addumrn.get(field).valid && this.Addumrn.get(field).touched;
+    //}
+
+    //displayFieldCss1(field: string) {
+    //    return {
+    //        'validate': this.isFieldValid1(field),
+    //    };
+    //}
+
+    //Addumrn1() {
+
+    //    if (this.Addumrn.valid) {
+    //        alert("valid");
+    //        //let Entityid = 13;
+    //        //let Pageno = 1;
+    //        //var umrn1 = UMRN.replace('\t', '');
+    //        //var CustomerName1 = CustomerName.replace('\t', '');
+    //        //var ReferenceNumber1 = ReferenceNumber.replace('\t', '');
+
+    //        //var jasondata = {
+    //        //    "UMRN": umrn1,
+    //        //    "CustomerName": CustomerName1,
+    //        //    "ReferenceNumber": ReferenceNumber1,
+    //        //    "Entityid": Entityid,
+    //        //    "Pageno": Pageno
+    //        //}
+
+    //        //this.Preloader = true;
+    //        //this._allumrn.SearchData(jasondata).subscribe(
+    //        //    (data) => {
+    //        //        this.Preloader = false;
+    //        //        this.Umrndta = data;
+    //        //    });
+
+    //    } else {
+
+    //        alert("Not valid");
+    //        this.validateAllFormFields(this.Addumrn);
+    //    }
+
+
+    //}
+
     SearchFunction(UMRN, CustomerName, ReferenceNumber) {
         //this.submitted = true;
         if (this.Allumrn.valid) {

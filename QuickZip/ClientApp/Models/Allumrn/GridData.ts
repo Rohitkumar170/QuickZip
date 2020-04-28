@@ -19,4 +19,12 @@
     //ToDate: string;
     type: string;
 
+   
+    ReferenceNumber: string;
+    Entityid: string;
+  
+    Userid:string
+    CreatedBy: string;
+
+
 }
