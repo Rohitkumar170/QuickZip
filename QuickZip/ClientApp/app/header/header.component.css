@@ -1,6 +1,19 @@
 body {
     font-size: 12px !important;
 }
+.user-info {
+    min-width: 49px;
+    max-width: 172px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: top;
+    line-height: 32px;
+    position: relative;
+    top: 30%;
+}
 
 .quickLeftDiv {
     background: #003974;

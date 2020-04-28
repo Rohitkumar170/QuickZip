@@ -252,6 +252,7 @@
     <Compile Include="App_Start\ServerRouteConstraint.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
+    <Compile Include="Controllers\AccessRightsController.cs" />
     <Compile Include="Controllers\AllUMRNController.cs" />
     <Compile Include="Controllers\BankFormController.cs" />
     <Compile Include="Controllers\DownloadEmandateController.cs" />
@@ -777,6 +778,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccessRights\AccessRightDetails.cs" />
+    <Compile Include="Models\AccessRights\AccessRights.cs" />
+    <Compile Include="Models\AccessRights\AccessRightsEntityDetails.cs" />
     <Compile Include="Models\Allumrn\Allumrnaccesslayer.cs" />
     <Compile Include="Models\Allumrn\GridData.cs" />
     <Compile Include="Models\BankForm\BankFormData.cs" />
@@ -866,6 +870,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AccessRights\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -975,6 +980,8 @@
     <TypeScriptCompile Include="ClientApp\app\master\user\user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\master\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\AccessRights\access-rights.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\AccessRights\access-rights.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
@@ -1002,6 +1009,8 @@
     <TypeScriptCompile Include="ClientApp\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\AccessRights\access-rights-details.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\AccessRights\access-rights-entity-details.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridData.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Allumrn\Umrn_Class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankNameDetails.ts" />

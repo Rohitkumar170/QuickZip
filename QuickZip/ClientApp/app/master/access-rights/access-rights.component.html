@@ -10,7 +10,7 @@
                     <span id="btnspa">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i>
                         <input type="button" class=" btn btn-success" id="btnexcel"
-                               value="Save" />
+                             (click)="InsertData(user.value)"  value="Save" />
                     </span>
 
 
@@ -51,9 +51,12 @@
 
                                                         </label>
                                                         <div class="col-sm-8 col-md-8 col-xs-7 ">
-                                                            <select id="ddlUserType" class="col-sm-12 col-md-12 col-xs-12 no-padding alldropdown">
-                                                                <option>1</option>
-                                                                <option>2</option>
+                                                            <select id="ddlUserType" (change)="getLinksForUser(user.value)" #user class="col-sm-12 col-md-12 col-xs-12 no-padding alldropdown">
+                                                                <option value="0">Select</option>
+                                                                <option *ngFor="let lang of entitydDetails"
+                                                                        value={{lang.userid}}>
+                                                                    {{lang.username}}
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -66,16 +69,16 @@
                                                 <div class="col-md-12 col-sm-12  boxaccordian">
                                                     <div class="col-md-12 col-sm-12 AccessList">
                                                         <div class="row" style="margin-top:1%;">
-                                                            <div class="col-md-4 col-sm-4 col-xs-3">
+                                                            <div class="col-md-4 col-sm-4 col-xs-3" *ngFor="let data of AccessRightDetails">
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 accessborderbottom">
                                                                     <i class="fa fa-user "></i>
                                                                     <label class="col-md-8">
-                                                                        Access Rights
+                                                                        {{data.LinkName}}
                                                                     </label>
-                                                                    <input type="checkbox" class="col-md-2 chkboxlist pull-right" />
+                                                                    <input type="checkbox" class="col-md-2 chkboxlist pull-right" (click)="checkAccessRights(data)" [checked]="data.IsRead" value={{data.LinkID}} id={{data.LinkID}} />
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 col-sm-4 col-xs-3">
+                                                            <!--<div class="col-md-4 col-sm-4 col-xs-3">
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 accessborderbottom">
                                                                     <i class="fa fa-user "></i>
                                                                     <label class="col-md-8">
@@ -92,9 +95,9 @@
                                                                     </label>
                                                                     <input type="checkbox" class="col-md-2 chkboxlist pull-right" />
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
                                                         </div>
-                                                        <div class="row" style="margin-top:1%;">
+                                                        <!--<div class="row" style="margin-top:1%;">
                                                             <div class="col-md-4 col-sm-4 col-xs-3">
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 accessborderbottom">
                                                                     <i class="fa fa-user "></i>
@@ -142,7 +145,7 @@
                                                                     <input type="checkbox" class="col-md-2 chkboxlist pull-right" />
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>

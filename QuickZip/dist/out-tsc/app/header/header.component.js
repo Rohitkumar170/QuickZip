@@ -10,6 +10,12 @@ var HeaderComponent = /** @class */ (function () {
         sessionStorage.clear();
         this.router.navigate(['/Login']);
     };
+    HeaderComponent.prototype.onClick = function () {
+        this.showModalchangepass = true;
+    };
+    HeaderComponent.prototype.hide = function () {
+        this.showModalchangepass = false;
+    };
     HeaderComponent = tslib_1.__decorate([
         Component({
             selector: 'app-header',

@@ -12,6 +12,19 @@
             </div>
         </div>
     </div>
+
+    <div class="=welcomeuser">
+
+
+
+
+
+
+        <span class="user-info" (click)="onClick()">Welcome</span>
+        <span id="lblUserName" class="nameid">ankushtomar@gmail.com</span>
+     
+    </div>
+  
     <div class="quickrightDiv">
 
         <div class="pull-right kotakDiv">
@@ -44,4 +57,65 @@
         </div>
 
     </div>
+
+    
+
+    <div class="modal" id="myModal" [style.display]="showModalchangepass ? 'block' : 'none'">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <img src="../../ClientApp/assets/images/saveSuccessImg.png" />
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding" style="margin-top: 4%;">
+                        <div class="form-group">
+                            <label id="Label3" class="col-md-12 col-sm-12 col-xs-12 control-label no-padding-right">
+                                Old Password<span class="red">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                <input type="password" id="txtOldPassword" class="col-md-12 col-sm-12 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="Label4" class="col-md-12 col-sm-12 col-xs-12 control-label no-padding-right">
+                                New Password<span class="red">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="password" id="txtNewPassword" class="col-md-12 col-sm-12 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="Label5" class="col-md-12 col-sm-12 col-xs-12 control-label no-padding-right">
+                                Confirm Password<span class="red">*</span>
+                            </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="password" id="txtCnfmPassword" class="col-md-12 col-sm-12 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label id="lblChangePWmsg" style="color: Red">
+                            </label>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="hide()">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
