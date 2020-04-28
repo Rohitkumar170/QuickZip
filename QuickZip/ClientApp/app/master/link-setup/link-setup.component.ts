@@ -155,8 +155,9 @@ export class LinkSetupComponent implements OnInit {
     btnBack_Click() {
        
       
-        this.formid = false; this.BindGrid();
-        this.tbldiv = true;
+        this.formid = false;
+        this.BindGrid();
+       // this.tbldiv = true;
         //document.getElementById('divSearch').hidden = false;
         //document.getElementById('btnExport').hidden = false;
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
@@ -287,9 +288,9 @@ export class LinkSetupComponent implements OnInit {
 
     }
 
-    setClickedRow(linksetup: any) {
+    setClickedRow(Data: any) {
         const Currentrowid = this.Linksetup.value;
-        this.LinkId = linksetup.LinkId;
+        this.LinkId = Data.LinkID;
         this.Temp = 2;
 
         document.getElementById("btnEdit").removeAttribute("disabled");

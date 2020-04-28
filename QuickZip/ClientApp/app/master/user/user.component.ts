@@ -37,6 +37,7 @@ export class UserComponent implements OnInit {
     bankacc: Bankval;
     setSelectedRow: Function;
     tempdata: TempData;
+    Preloader: boolean = false;
     submitted = false; Temp: number = 1;
     public tableid: boolean = false;
     public formid: boolean = false;
@@ -122,7 +123,9 @@ export class UserComponent implements OnInit {
         this.setSelectedRow = function (index) {
             this.selectedRow = index;
         }
-        
+        this.bindPresentmentMaker();
+        this.BindPresentmentChecker();
+        this.bindUser();
         this.tableid = true;
         this.formid = false;
         this.divaccessright = false;
@@ -141,9 +144,8 @@ export class UserComponent implements OnInit {
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
-        this.bindUser();
-        this.bindPresentmentMaker();
-        this.BindPresentmentChecker();
+       
+       
     }
 
     isFieldValid(field: string) {
@@ -180,9 +182,10 @@ export class UserComponent implements OnInit {
         if (this.Search_Text == "") {
             this.Search_Text = "0";
         }
+        this.Preloader = true;
         let item = JSON.parse(sessionStorage.getItem('User'));
         this.userservice.getUser(item.ReferenceId, this.Page_Count, this.Search_Text).subscribe((data) => {
-
+            this.Preloader = false;
             this.userdata = data.Table;
             
 
@@ -514,7 +517,7 @@ export class UserComponent implements OnInit {
 
     editData() {
         this.userservice.EditData(this.Userid).subscribe((data) => {
-
+            debugger;
             this.userdata = data.Table;
             this.sponsorbankid = data.Table1;
             this.getcatcode = data.Table9;
@@ -529,8 +532,9 @@ export class UserComponent implements OnInit {
             this.UserForm.controls['sponsorbankcode'].setValue(this.sponsorbankid[0].SponsorBankCodeId);
             this.UserForm.controls['bankval'].setValue(this.userdata[0].BankValidationUserCount);
             this.UserForm.controls['accountval'].setValue(this.userdata[0].AcValidationUserCount);
-            this.UserForm.controls['categorycode'].setValue(this.getcatcode[0].CategoryCode);
+           
             if (this.userdata[0].PresentmentMaker == 1) {
+                this.divPresentmentAccess = true;
                 this.UserForm.controls['chkPresentMaker'].setValue(true);
             }
             if (this.userdata[0].PresentmentChecker == 1) {
@@ -542,6 +546,7 @@ export class UserComponent implements OnInit {
             if (this.getAccessRight1[0].IsCreate == true) {
                 this.UserForm.controls['chkCreate'].setValue(true);
             }
+           
             if (this.getAccessRight1[0].IsDownload == true) {
                 this.UserForm.controls['chkDownload'].setValue(true);
             }
@@ -554,6 +559,12 @@ export class UserComponent implements OnInit {
             else {
                 this.UserForm.controls['chkView'].setValue(false);
                 this.divNachUser = false;
+            }
+            if (this.getAccessRight1[0].IsMandateEdit == true) {
+                this.UserForm.controls['chkEdit'].setValue(true);
+            }
+            else {
+                this.UserForm.controls['chkEdit'].setValue(false);
             }
 
             this.getmaker = data.Table4;
@@ -574,6 +585,7 @@ export class UserComponent implements OnInit {
             else {
                 this.UserForm.controls['chkRefEdit'].setValue(false);
             }
+
             if (this.userdata[0].IsEnableCancel == true) {
                 this.UserForm.controls['chkEnableCancel'].setValue(true);
             }
@@ -588,7 +600,7 @@ export class UserComponent implements OnInit {
             else {
                 this.divaccessright = false;
             }
-
+           
             for (var i = 0; i < data.Table6.length; i++) {
                 if (this.getAccessRight2[i].LinkID == 17) {
                     this.UserForm.controls['chkUmrnHistory'].setValue(true);
@@ -602,23 +614,31 @@ export class UserComponent implements OnInit {
                 if (this.getAccessRight2[i].LinkID == 22) {
                     this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
-                //if (this.getAccessRight2[i].LinkID == 25) {
-                //    var ids = "25";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 26) {
-                //    var ids = "26";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 27) {
-                //    var ids = "27";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 28) {
-                //    var ids = "28";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
+
+                if (this.getAccessRight2[i].LinkID == 25) {
+                    //var ids = "25";
+                    var ids = this.getAccessRight2[i].LinkID;
+                    (<HTMLInputElement>document.getElementById(""+ ids +"")).checked=true;
+                }
+                if (this.getAccessRight2[i].LinkID == 26) {
+                  //  var ids = "26";
+                    var ids = this.getAccessRight2[i].LinkID;
+                    (<HTMLInputElement>document.getElementById("" + ids + "")).checked = true;
+                }
+                if (this.getAccessRight2[i].LinkID == 27) {
+                   // var ids = "27";
+                    var ids = this.getAccessRight2[i].LinkID;
+                    (<HTMLInputElement>document.getElementById("" + ids + "")).checked = true;
+                }
+                if (this.getAccessRight2[i].LinkID == 28) {
+                   // var ids = "28";
+                    var ids = this.getAccessRight2[i].LinkID;
+                    (<HTMLInputElement>document.getElementById("" + ids + "")).checked = true;
+                }
                 
+            }
+            if (this.getcatcode[0].CategoryCode != "" || this.getcatcode[0].CategoryCode != "undefined") {
+                this.UserForm.controls['categorycode'].setValue(this.getcatcode[0].CategoryCode);
             }
 
         });

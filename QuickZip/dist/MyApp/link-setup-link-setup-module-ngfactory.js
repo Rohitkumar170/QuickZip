@@ -334,9 +334,9 @@ var LinkSetupComponent = /** @class */ (function () {
         this.LinkId = 0;
     };
     LinkSetupComponent.prototype.btnBack_Click = function () {
-        this.tbldiv = true;
         this.formid = false;
         this.BindGrid();
+        // this.tbldiv = true;
         //document.getElementById('divSearch').hidden = false;
         //document.getElementById('btnExport').hidden = false;
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
@@ -440,9 +440,9 @@ var LinkSetupComponent = /** @class */ (function () {
         this.editData();
         this.Temp = 2;
     };
-    LinkSetupComponent.prototype.setClickedRow = function (linksetup) {
+    LinkSetupComponent.prototype.setClickedRow = function (Data) {
         var Currentrowid = this.Linksetup.value;
-        this.LinkId = linksetup.LinkId;
+        this.LinkId = Data.LinkID;
         this.Temp = 2;
         document.getElementById("btnEdit").removeAttribute("disabled");
     };

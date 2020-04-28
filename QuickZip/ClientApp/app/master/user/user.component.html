@@ -71,6 +71,10 @@
             </div>
 
         </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 loaderposition" id="divLoarder" *ngIf="Preloader">
+            <img src="../../ClientApp/assets/images/loader.gif" style="margin-left: 45%;margin-top: 19%;" />
+        </div>
         <div class="col-md-12 col-sm-12 col-xs-12" id="tbldiv" *ngIf="tableid">
             <table>
                 <thead>
@@ -120,11 +124,11 @@
                                             </label>
                                             <div id="User" class="col-sm-7 col-md-7 col-xs-7 no-padding-left radio displayinlineblock" [ngClass]="displayFieldCss('Type')">
                                                 <label class="lblradiobtnss col-md-5 col-sm-4 col-xs-6">
-                                                    <input name="Type" value="u" type="radio" formControlName="Type" (click)="userClick()" />
+                                                    <input name="Type" value="u" type="radio" formControlName="Type" (click)="userClick()" #Type />
                                                     <span>User</span>
                                                 </label>
                                                 <label class="lblradiobtnss col-md-6 col-sm-6 col-xs-6">
-                                                    <input name="Type" value="a" type="radio" formControlName="Type" (click)="adminClick()" />
+                                                    <input name="Type" value="a" type="radio" formControlName="Type" (click)="adminClick()" #Type />
                                                     <span>Administrator</span>
                                                 </label>
                                             </div>
@@ -191,7 +195,7 @@
                                                 Email to be sent on
                                             </label>
                                             <div class="col-sm-6 col-md-7 col-xs-7 no-padding-left displayinlineblock">
-                                                <input type="email" name="emailsent" class="col-sm-12 col-md-12 col-xs-12 " formControlName="emailsent" id="txtemailsent" (change)="chkEmailSent()" (keyup)="removeClass()"  style="height:22px"/>
+                                                <input type="email" name="emailsent" class="col-sm-12 col-md-12 col-xs-12 " formControlName="emailsent" id="txtemailsent" (change)="chkEmailSent()" (keyup)="removeClass()" style="height:22px" />
                                             </div>
                                         </div>
                                     </div>
@@ -228,12 +232,12 @@
                                             <div class="col-sm-10 col-md-10 col-xs-7 no-padding-left displayinlineblock">
                                                 <!--<input type="text" class="col-sm-12 col-md-12 col-xs-12 no-padding  spneser bankcodeposition" />-->
                                                 <!--<ng-multiselect-dropdown formControlName="sponsorbankcode"  [ngClass]="displayFieldCss('sponsorbankcode')" name="sponsorcode"
-                                                    [placeholder]="'Select'"
+                                                [placeholder]="'Select'"
 
-                                                    [data]="sponsorbankcode"
-                                                    [settings]="dropdownSettings">
+                                                [data]="sponsorbankcode"
+                                                [settings]="dropdownSettings">
 
-                                                </ng-multiselect-dropdown>-->
+                                            </ng-multiselect-dropdown>-->
                                                 <select class="col-sm-12 col-md-12 col-xs-12 no-padding  spneser bankcodeposition" formControlName="sponsorbankcode" [ngClass]="displayFieldCss('sponsorbankcode')" name="sponsorbankcode">
                                                     <option value="0">--Select--</option>
 
@@ -532,45 +536,45 @@
                                                 <div class="col-md-11 col-sm-12 col-xs-12 no-padding">
                                                     <div class="form-group">
                                                         <div class="row">
-                                                        <label class="col-sm-2 col-md-2 col-xs-4 control-label " for="form-field-1">
-                                                            Bulk Upload
-                                                        </label>
-                                                        <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="divbulkupload">
-                                                         <div class="row">
-                                                            <div class="col-md-2 col-sm-2 col-xs-12 no-padding" *ngFor="let data of bulkupload">
-                                                                <input type="checkbox" name="chkbulkuploadlink" formControlName="chkbulkuploadlink" id={{data.LinkID}}
-                                                                       class="pull-left" value={{data.LinkID}} (click)="checkLinks(data)" />
-                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                                                                    {{data.LinkName}}
-                                                                </label>
-                                                           
-                                                            <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                                                                <input type="checkbox" id="bulkemandate" style="clear: both" class="pull-left" value="28" />
-                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                                                                    Emandate
-                                                                </label>
-                                                            </div>-->
-                                                              </div>
+                                                            <label class="col-sm-2 col-md-2 col-xs-4 control-label " for="form-field-1">
+                                                                Bulk Upload
+                                                            </label>
+                                                            <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="divbulkupload">
+                                                                <div class="row">
+                                                                    <div class="col-md-2 col-sm-2 col-xs-12 no-padding" *ngFor="let data of bulkupload">
+                                                                        <input type="checkbox" name="chkbulkuploadlink" formControlName="chkbulkuploadlink" id={{data.LinkID}}
+                                                                               class="pull-left" value={{data.LinkID}} (click)="checkLinks(data)" />
+                                                                        <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                            {{data.LinkName}}
+                                                                        </label>
+
+                                                                        <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
+                                                                        <input type="checkbox" id="bulkemandate" style="clear: both" class="pull-left" value="28" />
+                                                                        <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                            Emandate
+                                                                        </label>
+                                                                    </div>-->
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                            </div>
-                                                           
+
                                                     </div>
                                                 </div>
                                                 <!--<div class="col-md-10 col-sm-10 col-xs-12 no-padding" style="display: none;" id="div2">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 col-md-2 col-xs-4 control-label no-padding " for="form-field-1">
-                                                        </label>
-                                                        <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="div3" style="display: none;">
-                                                            <input type="text" id="Text1" onchange="RemoveClass();" class="col-sm-12 col-md-12 col-xs-12 viewrowmargin no-padding" />
-                                                        </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 col-md-2 col-xs-4 control-label no-padding " for="form-field-1">
+                                                    </label>
+                                                    <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="div3" style="display: none;">
+                                                        <input type="text" id="Text1" onchange="RemoveClass();" class="col-sm-12 col-md-12 col-xs-12 viewrowmargin no-padding" />
                                                     </div>
-                                                </div>-->
+                                                </div>
+                                            </div>-->
                                             </div>
 
                                             <div id="dvVideos" *ngIf="dvVideos" class=" col-sm-12 col-xs-12 col-md-12 no-padding">
                                                 <div class="col-md-11 col-sm-12 col-xs-12 no-padding">
-                                                  
+
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <label class="col-sm-2 col-md-2 col-xs-4 control-label  " for="form-field-1">
@@ -587,37 +591,37 @@
                                                                     </div>
                                                                 </div>
                                                                 <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                <input type="checkbox" id="emandatedemo" style="clear: both" class="pull-left" value="26" />
-                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                    Emandate
-                </label>
-            </div>-->
+                                                                <input type="checkbox" id="emandatedemo" style="clear: both" class="pull-left" value="26" />
+                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                    Emandate
+                                                                </label>
+                                                            </div>-->
                                                                 <!--<div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                <input onclick="RemoveClass();" type="checkbox" name="rdoAccess" id="bulkphysicaldemo"
-                       class="pull-left" value="1" />
-                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                    Bulk Physical
-                </label>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-12 no-padding">
-                <input type="checkbox" id="bulkemandatedemo" style="clear: both" class="pull-left" />
-                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
-                    Bulk Emandate
-                </label>
-            </div>-->
+                                                                <input onclick="RemoveClass();" type="checkbox" name="rdoAccess" id="bulkphysicaldemo"
+                                                                       class="pull-left" value="1" />
+                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                    Bulk Physical
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-2 col-sm-2 col-xs-12 no-padding">
+                                                                <input type="checkbox" id="bulkemandatedemo" style="clear: both" class="pull-left" />
+                                                                <label class=" col-md-10 col-xs-10 col-sm-10 no-padding-right control-label">
+                                                                    Bulk Emandate
+                                                                </label>
+                                                            </div>-->
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!--<div class="col-md-10 col-sm-10 col-xs-12 no-padding" style="display: none;" id="div4">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 col-md-2 col-xs-4 control-label no-padding " for="form-field-1">
-                                                        </label>
-                                                        <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="div5" style="display: none;">
-                                                            <input type="text" id="Text2" onchange="RemoveClass();" class="col-sm-12 col-md-12 col-xs-12 viewrowmargin no-padding" />
-                                                        </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 col-md-2 col-xs-4 control-label no-padding " for="form-field-1">
+                                                    </label>
+                                                    <div class="col-sm-10 col-md-10 col-xs-7 no-padding" id="div5" style="display: none;">
+                                                        <input type="text" id="Text2" onchange="RemoveClass();" class="col-sm-12 col-md-12 col-xs-12 viewrowmargin no-padding" />
                                                     </div>
-                                                </div>-->
+                                                </div>
+                                            </div>-->
                                             </div>
 
                                         </div>

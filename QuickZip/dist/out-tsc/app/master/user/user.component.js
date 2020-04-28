@@ -11,6 +11,7 @@ var UserComponent = /** @class */ (function () {
         this.DetailArray = [];
         this.checkbulkuploadlink = [];
         this.chkvideolink = [];
+        this.Preloader = false;
         this.submitted = false;
         this.Temp = 1;
         this.tableid = false;
@@ -80,6 +81,9 @@ var UserComponent = /** @class */ (function () {
         this.setSelectedRow = function (index) {
             this.selectedRow = index;
         };
+        this.bindPresentmentMaker();
+        this.BindPresentmentChecker();
+        this.bindUser();
         this.tableid = true;
         this.formid = false;
         this.divaccessright = false;
@@ -96,9 +100,6 @@ var UserComponent = /** @class */ (function () {
         document.getElementById("btnEdit").setAttribute("disabled", "disabled");
         document.getElementById("btnBack").setAttribute("disabled", "disabled");
         document.getElementById("btnSave").setAttribute("disabled", "disabled");
-        this.bindUser();
-        this.bindPresentmentMaker();
-        this.BindPresentmentChecker();
     };
     UserComponent.prototype.isFieldValid = function (field) {
         return !this.UserForm.get(field).valid && this.UserForm.get(field).touched;
@@ -132,8 +133,10 @@ var UserComponent = /** @class */ (function () {
         if (this.Search_Text == "") {
             this.Search_Text = "0";
         }
+        this.Preloader = true;
         var item = JSON.parse(sessionStorage.getItem('User'));
         this.userservice.getUser(item.ReferenceId, this.Page_Count, this.Search_Text).subscribe(function (data) {
+            _this.Preloader = false;
             _this.userdata = data.Table;
             _this.sponsorbankcode = data.Table2;
             _this.categorycode = data.Table7;
@@ -390,6 +393,7 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.editData = function () {
         var _this = this;
         this.userservice.EditData(this.Userid).subscribe(function (data) {
+            debugger;
             _this.userdata = data.Table;
             _this.sponsorbankid = data.Table1;
             _this.getcatcode = data.Table9;
@@ -403,8 +407,8 @@ var UserComponent = /** @class */ (function () {
             _this.UserForm.controls['sponsorbankcode'].setValue(_this.sponsorbankid[0].SponsorBankCodeId);
             _this.UserForm.controls['bankval'].setValue(_this.userdata[0].BankValidationUserCount);
             _this.UserForm.controls['accountval'].setValue(_this.userdata[0].AcValidationUserCount);
-            _this.UserForm.controls['categorycode'].setValue(_this.getcatcode[0].CategoryCode);
             if (_this.userdata[0].PresentmentMaker == 1) {
+                _this.divPresentmentAccess = true;
                 _this.UserForm.controls['chkPresentMaker'].setValue(true);
             }
             if (_this.userdata[0].PresentmentChecker == 1) {
@@ -425,6 +429,12 @@ var UserComponent = /** @class */ (function () {
             else {
                 _this.UserForm.controls['chkView'].setValue(false);
                 _this.divNachUser = false;
+            }
+            if (_this.getAccessRight1[0].IsMandateEdit == true) {
+                _this.UserForm.controls['chkEdit'].setValue(true);
+            }
+            else {
+                _this.UserForm.controls['chkEdit'].setValue(false);
             }
             _this.getmaker = data.Table4;
             if (_this.userdata[0].PresentmentChecker == "1") {
@@ -469,22 +479,29 @@ var UserComponent = /** @class */ (function () {
                 if (_this.getAccessRight2[i].LinkID == 22) {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
-                //if (this.getAccessRight2[i].LinkID == 25) {
-                //    var ids = "25";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 26) {
-                //    var ids = "26";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 27) {
-                //    var ids = "27";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 28) {
-                //    var ids = "28";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
+                if (_this.getAccessRight2[i].LinkID == 25) {
+                    //var ids = "25";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 26) {
+                    //  var ids = "26";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 27) {
+                    // var ids = "27";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 28) {
+                    // var ids = "28";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+            }
+            if (_this.getcatcode[0].CategoryCode != "" || _this.getcatcode[0].CategoryCode != "undefined") {
+                _this.UserForm.controls['categorycode'].setValue(_this.getcatcode[0].CategoryCode);
             }
         });
         document.getElementById("btnSave").removeAttribute("disabled");
