@@ -257,6 +257,7 @@
     <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\DownloadMandateController.cs" />
     <Compile Include="Controllers\DownloadoldemandateController.cs" />
+    <Compile Include="Controllers\EntitySetupController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -800,6 +801,11 @@
     <Compile Include="Models\DownloadMandate\DownloadMandate.cs" />
     <Compile Include="Models\DownloadMandate\DownloadMandateDetails.cs" />
     <Compile Include="Models\DownloadMandate\DownloadMandateGridDetails.cs" />
+    <Compile Include="Models\EntitySetup\BindBank.cs" />
+    <Compile Include="Models\EntitySetup\BindCountry.cs" />
+    <Compile Include="Models\EntitySetup\EntityBusinessCode.cs" />
+    <Compile Include="Models\EntitySetup\EntitySetupDataAccess.cs" />
+    <Compile Include="Models\EntitySetup\MainGrid.cs" />
     <Compile Include="Models\ForgotPassword\Forgotflag.cs" />
     <Compile Include="Models\ForgotPassword\UserDetails.cs" />
     <Compile Include="Models\ForgotPassword\Value.cs" />
@@ -985,6 +991,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\downloadmandate\downloadmandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Enity_Setup\entity-setup-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Enity_Setup\entity-setup-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
@@ -1023,6 +1031,12 @@
     <TypeScriptCompile Include="ClientApp\Models\DownloadEmandate\DownloadEmandate.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\download-mandate-details.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\downloadmandategrid.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-bank.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-city.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-country.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-state.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\entity-business-code.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\main-grid.ts" />
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
