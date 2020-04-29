@@ -261,6 +261,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OldMandateController.cs" />
+    <Compile Include="Controllers\ReportViewController.cs" />
     <Compile Include="Controllers\UMRNHistoryController.cs" />
     <Compile Include="Controllers\UMRNUploadController.cs" />
     <Compile Include="Controllers\USerController.cs" />
@@ -814,6 +815,9 @@
     <Compile Include="Models\OldMandate\downloadOldMandateTableAttibute.cs" />
     <Compile Include="Models\OldMandate\OldMandateAttribute.cs" />
     <Compile Include="Models\OldMandate\OldMandateClass.cs" />
+    <Compile Include="Models\report-view\bindgrid.cs" />
+    <Compile Include="Models\report-view\BindUser.cs" />
+    <Compile Include="Models\report-view\report_view_DataAccess.cs" />
     <Compile Include="Models\UMRNUpload\GridSuccess.cs" />
     <Compile Include="Models\UMRNUpload\GridUnsuccess.cs" />
     <Compile Include="Models\UMRNUpload\MainGrid.cs" />
@@ -991,6 +995,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\report-vew\report-view.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\report-vew\report-view.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\UMRNUpload\umrn-upload.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\UMRNUpload\umrn-upload.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\UMRN_History\umrn-history-service.service.spec.ts" />
@@ -1030,6 +1036,8 @@
     <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateTable.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\Bankbind.ts" />
     <TypeScriptCompile Include="ClientApp\Models\OldEmandate\SearchData.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\report-view\bindgrid.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\report-view\BindUser.ts" />
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\GridSuccess.ts" />
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\GridUnsuccess.ts" />
     <TypeScriptCompile Include="ClientApp\Models\UMRNUpload\MainGrid.ts" />
