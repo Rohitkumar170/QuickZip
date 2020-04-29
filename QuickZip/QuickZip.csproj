@@ -197,6 +197,7 @@
     <Content Include="ClientApp\app\sidebar\sidebar.component.html" />
     <Content Include="ClientApp\assets\css\ace.min.css" />
     <Content Include="ClientApp\assets\css\font-awesome.min.css" />
+    <Content Include="ClientApp\assets\images\caution.png" />
     <Content Include="ClientApp\assets\images\caution2.png" />
     <Content Include="ClientApp\assets\images\kotak-bank-logo.png" />
     <Content Include="ClientApp\assets\images\loader.gif" />
@@ -254,6 +255,7 @@
     <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
     <Compile Include="Controllers\AllUMRNController.cs" />
     <Compile Include="Controllers\BankFormController.cs" />
+    <Compile Include="Controllers\BulkEMandateController.cs" />
     <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\DownloadMandateController.cs" />
     <Compile Include="Controllers\DownloadoldemandateController.cs" />
@@ -793,6 +795,8 @@
     <Compile Include="Models\BankForm\BindLogincheck.cs" />
     <Compile Include="Models\BankForm\BindLogoImageDetails.cs" />
     <Compile Include="Models\BankForm\BindSponserCode.cs" />
+    <Compile Include="Models\BulkEmandate\BulkEmandateAttribute.cs" />
+    <Compile Include="Models\BulkEmandate\BulkEMandateClass.cs" />
     <Compile Include="Models\CommonFlag.cs" />
     <Compile Include="Models\DownloadEmandate\DownloadEmandateaccesslayer.cs" />
     <Compile Include="Models\DownloadEmandate\Downloademandatebank.cs" />
@@ -979,6 +983,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\BankForm\bank-form.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\BulkEMandate\buld-emandate.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\BulkEMandate\buld-emandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadmandate\downloadmandate.service.spec.ts" />
@@ -1020,6 +1026,7 @@
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindSponserCode.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\CheckReference.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\SaveData.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\BulkEmandate\BulkEmandateAttributeClass.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadEmandate\DownloadEmandate.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\download-mandate-details.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\downloadmandategrid.ts" />
