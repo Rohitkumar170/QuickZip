@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
-import { UserServiceService } from 'ClientApp/app/Services/User/user-service.service';
+import { UserServiceService } from '../../Services/User/user-service.service';
 //import { Directive, HostListener } from '@angular/core';
 //import { UserServiceService } from 'ClientApp/app/Services/user/user-service.service';
 var UserComponent = /** @class */ (function () {
@@ -477,18 +477,18 @@ var UserComponent = /** @class */ (function () {
                 if (_this.getAccessRight2[i].LinkID == 22) {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
-                if (_this.getAccessRight2[i].LinkID == 25) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
-                if (_this.getAccessRight2[i].LinkID == 26) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
-                if (_this.getAccessRight2[i].LinkID == 27) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
-                if (_this.getAccessRight2[i].LinkID == 28) {
-                    document.getElementById(_this.getAccessRight2[i].LinkID).checked = true;
-                }
+                //if (this.getAccessRight2[i].LinkID == 25) {
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked=true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 26) {
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 27) {
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
+                //}
+                //if (this.getAccessRight2[i].LinkID == 28) {
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
+                //}
             }
         });
         document.getElementById("btnSave").removeAttribute("disabled");

@@ -507,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserComponent", function() { return UserComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var ClientApp_app_Services_User_user_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ClientApp/app/Services/User/user-service.service */ "./ClientApp/app/Services/User/user-service.service.ts");
+/* harmony import */ var _Services_User_user_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Services/User/user-service.service */ "./ClientApp/app/Services/User/user-service.service.ts");
 
 
 
