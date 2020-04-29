@@ -23,5 +23,11 @@ namespace QuickZip.Controllers
         {
             return ESDA.BingGridDataAccess();
         }
+        [HttpGet]
+        [Route("api/SaveData")]
+        public Dictionary<string, object> SaveDataApi()
+        {
+            return ESDA.BingGridDataAccess();
+        }
     }
 }

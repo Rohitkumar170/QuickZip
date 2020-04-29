@@ -23,6 +23,14 @@ export class EntitySetupServiceService {
     BingGrid(): Observable<any> {
         return this._http.get<any>(this.baseUrl + 'api/BingGrid');
     }
+    SaveData(em: any): Observable<any> {
+        const body = em;
+        const headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post<any>(this.baseUrl + 'api/SaveData', body, {
+            headers
+        });
+    }
+
     errorHandler(error: Response) {
         console.log(error);
         return Observable.throw(error);

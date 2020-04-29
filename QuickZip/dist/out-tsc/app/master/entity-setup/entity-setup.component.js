@@ -16,6 +16,9 @@ var EntitySetupComponent = /** @class */ (function () {
         this.ActivePaymentModeTab = false;
         this.PhysicalTab = false;
         this.IsThirdTransactionTab = false;
+        this.isSelected = false;
+        this.IsValidationCountEnableTab = false;
+        this.RecheckTab = false;
     }
     EntitySetupComponent.prototype.ngOnInit = function () {
         this.EntitySetupForm = this.formBuilder.group({
@@ -38,9 +41,29 @@ var EntitySetupComponent = /** @class */ (function () {
             NetBankingCh: [''],
             DebitCardCh: [''],
             AadhaarCardCh: [''],
-            ActivePaymentModeCh: ['']
-            // IsPhysicalMandatCh: [''],
-            // IsThirdTransactionCh:['']
+            ActivePaymentModeCh: [''],
+            IsPhysicalMandateCh: [''],
+            IsThirdTransactionCh: [''],
+            IsValidationCountEnableCh: [''],
+            recheckthepresentmentfileCh: [''],
+            SB_Ch: [''],
+            CA_Ch: [''],
+            CC_Ch: [''],
+            SB_NRE_Ch: [''],
+            SB_NRO_Ch: [''],
+            Other_Ch: [''],
+            IsSendEmail: [''],
+            IsRefNumerc: [''],
+            IsShowMandateMode: [''],
+            ISTodateMandatoryEnach_Ch: [''],
+            chkIsZipSure_Ch: [''],
+            chkIsAllowEManadte_Ch: [''],
+            chkIsRefrence2Mandatory: [''],
+            IsRefCheck_Ch: [''],
+            Cash_Ch: [''],
+            Cheque_Ch: [''],
+            DemandDraft_Ch: [''],
+            Electronic_Ch: ['']
         });
         this.Preloader = false;
         this.BindCountryAndBank();
@@ -69,9 +92,6 @@ var EntitySetupComponent = /** @class */ (function () {
         this.EntityFormDiv = true;
     };
     EntitySetupComponent.prototype.BackFun = function () {
-        //this.InsertAllFun();
-        //alert(this.AllFields.IsOverPrintMandate.value);
-        //alert(this.AllFields.IsEMandate.value);
         this.MainGideDiv = true;
         this.EntityFormDiv = false;
     };
@@ -80,22 +100,6 @@ var EntitySetupComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    EntitySetupComponent.prototype.InsertAllFun = function () {
-        var Code = this.AllFields.Code.value;
-        var EntityName = this.AllFields.EntityName.value;
-        var AppId = this.AllFields.AppID.value;
-        var MerchantKey = this.AllFields.MerchantKey.value;
-        var Name = this.AllFields.Name.value;
-        var Email = this.AllFields.Email.value;
-        var MobileNo = this.AllFields.MobileNo.value;
-        var Address = this.AllFields.Address.value;
-        var Country = this.AllFields.Country.value;
-        var State = this.AllFields.State.value;
-        var City = this.AllFields.City.value;
-        var PinCode = this.AllFields.PinCode.value;
-        var UserName = this.AllFields.UserName.value;
-        var EntityBCode = this.AllFields.EntityBCode.value;
-    };
     EntitySetupComponent.prototype.IsEMandateFun = function () {
         if (this.AllFields.IsEMandate.value == true) {
             this.EMandateMode = true;
@@ -135,6 +139,52 @@ var EntitySetupComponent = /** @class */ (function () {
         else {
             this.ActivePaymentModeTab = false;
         }
+    };
+    EntitySetupComponent.prototype.IsPhysicalMandateFun = function () {
+        if (this.AllFields.IsPhysicalMandateCh.value == true) {
+            this.PhysicalTab = true;
+        }
+        else {
+            this.PhysicalTab = false;
+        }
+    };
+    EntitySetupComponent.prototype.IsThirdTransactionFun = function () {
+        if (this.AllFields.IsThirdTransactionCh.value == true) {
+            this.IsThirdTransactionTab = true;
+        }
+        else {
+            this.IsThirdTransactionTab = false;
+        }
+    };
+    EntitySetupComponent.prototype.selectallFun = function (event) {
+        if (event.target.checked) {
+            this.isSelected = true;
+        }
+        else {
+            this.isSelected = false;
+        }
+    };
+    EntitySetupComponent.prototype.IsValidationCountEnableFun = function () {
+        if (this.AllFields.IsValidationCountEnableCh.value == true) {
+            this.IsValidationCountEnableTab = true;
+        }
+        else {
+            this.IsValidationCountEnableTab = false;
+        }
+    };
+    EntitySetupComponent.prototype.RecheckthepresentmentfileFun = function () {
+        if (this.AllFields.IsValidationCountEnableCh.value == true) {
+            this.RecheckTab = true;
+        }
+        else {
+            this.RecheckTab = false;
+        }
+    };
+    EntitySetupComponent.prototype.SaveFun = function () {
+        var data = this.EntitySetupForm.value;
+        this.ESService.SaveData(data).subscribe(function (data) {
+            console.log(data);
+        });
     };
     EntitySetupComponent = tslib_1.__decorate([
         Component({

@@ -9,9 +9,9 @@ import { MainGrid } from '../../../models/entity_setup/main-grid';
 import { count } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-entity-setup',
-  templateUrl: './entity-setup.component.html',
-  styleUrls: ['./entity-setup.component.css']
+    selector: 'app-entity-setup',
+    templateUrl: './entity-setup.component.html',
+    styleUrls: ['./entity-setup.component.css']
 })
 export class EntitySetupComponent implements OnInit {
     CountryData: BindCountry;
@@ -29,6 +29,10 @@ export class EntitySetupComponent implements OnInit {
     ActivePaymentModeTab: boolean = false;
     PhysicalTab: boolean = false;
     IsThirdTransactionTab: boolean = false;
+    isSelected: boolean = false;
+    IsValidationCountEnableTab: boolean = false;
+    RecheckTab: boolean = false;
+
     constructor(private ESService: EntitySetupServiceService, private formBuilder: FormBuilder) { }
 
     ngOnInit() {
@@ -37,7 +41,7 @@ export class EntitySetupComponent implements OnInit {
             EntityName: [''],
             AppID: [''],
             MerchantKey: [''],
-            Name: [''], 
+            Name: [''],
             Email: [''],
             MobileNo: [''],
             Address: [''],
@@ -52,14 +56,34 @@ export class EntitySetupComponent implements OnInit {
             NetBankingCh: [''],
             DebitCardCh: [''],
             AadhaarCardCh: [''],
-            ActivePaymentModeCh: ['']
-           // IsPhysicalMandatCh: [''],
-           // IsThirdTransactionCh:['']
+            ActivePaymentModeCh: [''],
+            IsPhysicalMandateCh: [''],
+            IsThirdTransactionCh: [''],
+            IsValidationCountEnableCh: [''],
+            recheckthepresentmentfileCh: [''],
+            SB_Ch: [''],
+            CA_Ch: [''],
+            CC_Ch: [''],
+            SB_NRE_Ch: [''],
+            SB_NRO_Ch: [''],
+            Other_Ch: [''],
+            IsSendEmail: [''],
+            IsRefNumerc: [''],
+            IsShowMandateMode: [''],
+            ISTodateMandatoryEnach_Ch: [''],
+            chkIsZipSure_Ch: [''],
+            chkIsAllowEManadte_Ch: [''],
+            chkIsRefrence2Mandatory: [''],
+            IsRefCheck_Ch: [''],
+            Cash_Ch: [''],
+            Cheque_Ch: [''],
+            DemandDraft_Ch: [''],
+            Electronic_Ch: ['']
         });
         this.Preloader = false;
         this.BindCountryAndBank();
         this.BingGrid();
-  }
+    }
 
     BindCountryAndBank() {
         this.ESService.BindCountryAndBank().subscribe(
@@ -67,7 +91,7 @@ export class EntitySetupComponent implements OnInit {
                 this.CountryData = data.Table;
                 this.BankData = data.Table1;
                 this.EntityBusinessCodeData = data.Table2;
-                });
+            });
     }
     CountryFunction(CountryId) {
 
@@ -85,30 +109,11 @@ export class EntitySetupComponent implements OnInit {
         this.EntityFormDiv = true;
     }
     BackFun() {
-        //this.InsertAllFun();
-        //alert(this.AllFields.IsOverPrintMandate.value);
-        //alert(this.AllFields.IsEMandate.value);
         this.MainGideDiv = true;
         this.EntityFormDiv = false;
     }
     get AllFields() { return this.EntitySetupForm.controls; }
 
-    InsertAllFun() {
-        var Code = this.AllFields.Code.value;
-        var EntityName = this.AllFields.EntityName.value;
-        var AppId = this.AllFields.AppID.value;
-        var MerchantKey = this.AllFields.MerchantKey.value;
-        var Name = this.AllFields.Name.value;
-        var Email = this.AllFields.Email.value;
-        var MobileNo = this.AllFields.MobileNo.value;
-        var Address = this.AllFields.Address.value;
-        var Country = this.AllFields.Country.value;
-        var State = this.AllFields.State.value;
-        var City = this.AllFields.City.value;
-        var PinCode = this.AllFields.PinCode.value;
-        var UserName = this.AllFields.UserName.value;
-        var EntityBCode = this.AllFields.EntityBCode.value;
-    }
     IsEMandateFun() {
         if (this.AllFields.IsEMandate.value == true) {
             this.EMandateMode = true;
@@ -141,7 +146,7 @@ export class EntitySetupComponent implements OnInit {
             this.AadhaarCardTab = false;
         }
     }
-    ActivePaymentModeFun() {      
+    ActivePaymentModeFun() {
         if (this.AllFields.ActivePaymentModeCh.value == true) {
             this.ActivePaymentModeTab = true;
         }
@@ -149,20 +154,51 @@ export class EntitySetupComponent implements OnInit {
             this.ActivePaymentModeTab = false;
         }
     }
-    //IsPhysicalMandatFun() {
-    //    if (this.AllFields.IsPhysicalMandatCh.value == true) {
-    //        this.PhysicalTab = true;
-    //    }
-    //    else {
-    //        this.PhysicalTab = false;
-    //    }
-    //}
-    //IsThirdTransactionFun() {
-    //    if (this.AllFields.IsThirdTransactionCh.value == true) {
-    //        this.IsThirdTransactionTab = true;
-    //    }
-    //    else {
-    //        this.IsThirdTransactionTab = false;
-    //    }
-    //}
+    IsPhysicalMandateFun() {
+        if (this.AllFields.IsPhysicalMandateCh.value == true) {
+            this.PhysicalTab = true;
+        }
+        else {
+            this.PhysicalTab = false;
+        }
+    }
+    IsThirdTransactionFun() {
+        if (this.AllFields.IsThirdTransactionCh.value == true) {
+            this.IsThirdTransactionTab = true;
+        }
+        else {
+            this.IsThirdTransactionTab = false;
+        }
+    }
+    selectallFun(event) {
+        if (event.target.checked) {
+            this.isSelected = true;
+        }
+        else {
+            this.isSelected = false;
+        }
+    }
+    IsValidationCountEnableFun() {
+        if (this.AllFields.IsValidationCountEnableCh.value == true) {
+            this.IsValidationCountEnableTab = true;
+        }
+        else {
+            this.IsValidationCountEnableTab = false;
+        }
+    }
+    RecheckthepresentmentfileFun() {
+        if (this.AllFields.IsValidationCountEnableCh.value == true) {
+            this.RecheckTab = true;
+        }
+        else {
+            this.RecheckTab = false;
+        }
+    }
+    SaveFun() {
+        const data = this.EntitySetupForm.value;
+        this.ESService.SaveData(data).subscribe(
+            (data) => {
+                console.log(data);
+            });
+    }
 }

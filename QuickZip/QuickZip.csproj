@@ -801,6 +801,7 @@
     <Compile Include="Models\DownloadMandate\DownloadMandate.cs" />
     <Compile Include="Models\DownloadMandate\DownloadMandateDetails.cs" />
     <Compile Include="Models\DownloadMandate\DownloadMandateGridDetails.cs" />
+    <Compile Include="Models\EntitySetup\AllFieldOfForm.cs" />
     <Compile Include="Models\EntitySetup\BindBank.cs" />
     <Compile Include="Models\EntitySetup\BindCountry.cs" />
     <Compile Include="Models\EntitySetup\EntityBusinessCode.cs" />

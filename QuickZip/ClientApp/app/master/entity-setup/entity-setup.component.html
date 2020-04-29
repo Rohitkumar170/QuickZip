@@ -23,7 +23,7 @@
                                     Edit
                                 </label>
                             </li>
-                            <li>
+                            <li (click)="SaveFun()">
                                 <i class="fa fa-floppy-o" aria-hidden="true" title="Save"></i>
                                 <label>
                                     Save
@@ -67,7 +67,7 @@
                 <table id="tblsecondgrd">
                     <thead>
                         <tr>
-                            <th style="width:90px;"><input name="all" type="checkbox">All</th>
+                            <th style="width:90px;"><input name="all" type="checkbox" (change)="selectallFun($event)">All</th>
                             <th style="width:150px;">Sr No.</th>
                             <th style="width:150px;">Code</th>
                             <th style="width:150px;">Name</th>
@@ -76,7 +76,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let Data of MainGridData">
-                            <td style="width:90px;"><input name="all" type="checkbox"></td>
+                            <td style="width:90px;"><input name="all" type="checkbox" [checked]="isSelected"></td>
                             <td style="width:150px;">{{Data.Srno}}</td>
                             <td style="width:150px;">{{Data.Code}}</td>
                             <td style="width:150px;">{{Data.Name}}</td>
@@ -422,6 +422,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="CCtexTextareaHighlight"></td>
+                                                                    
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -459,7 +460,7 @@
                                                                                 <input name="rdoNomGender" disabled="disabled" id="rdsb" value="sb" type="radio" />
                                                                                 <label class="no-padding">
                                                                                     <input class="entityCheck" name="overprint"
-                                                                                           value="checkbox" type="checkbox" />
+                                                                                           value="checkbox" type="checkbox" formControlName="SB_Ch" />
                                                                                     <span style="vertical-align: top">SB</span>
                                                                                 </label>
                                                                             </div>
@@ -467,7 +468,7 @@
                                                                                 <input name="rdoNomGender" disabled="disabled" id="rdca" value="ca" type="radio" />
                                                                                 <label class="no-padding">
                                                                                     <input class="entityCheck" name="overprint" id="Checkbox1"
-                                                                                           value="checkbox" type="checkbox" />
+                                                                                           value="checkbox" type="checkbox" formControlName="CA_Ch" />
                                                                                     <span style="vertical-align: top">CA</span>
                                                                                 </label>
                                                                             </div>
@@ -475,7 +476,7 @@
                                                                                 <input name="rdoNomGender" disabled="disabled" id="rdcc" value="cc" type="radio" />
                                                                                 <label class="no-padding">
                                                                                     <input class="entityCheck" name="overprint" id="Checkbox2"
-                                                                                           value="checkbox" type="checkbox" />
+                                                                                           value="checkbox" type="checkbox" formControlName="CC_Ch" />
                                                                                     <span style="vertical-align: top">CC</span>
                                                                                 </label>
                                                                             </div>
@@ -483,7 +484,7 @@
                                                                                 <input name="rdoNomGender" disabled="disabled" id="rdnbre" value="re" type="radio" />
                                                                                 <label class="no-padding">
                                                                                     <input class="entityCheck" name="overprint" id="Checkbox3"
-                                                                                           value="checkbox" type="checkbox" />
+                                                                                           value="checkbox" type="checkbox" formControlName="SB_NRE_Ch" />
                                                                                     <span style="vertical-align: top">SB-NRE</span>
                                                                                 </label>
                                                                             </div>
@@ -491,7 +492,7 @@
                                                                                 <input name="rdoNomGender" disabled="disabled" id="rdsbnrd" value="rd" type="radio" />
                                                                                 <label class="no-padding">
                                                                                     <input class="entityCheck" name="overprint" id="Checkbox5"
-                                                                                           value="checkbox" type="checkbox" />
+                                                                                           value="checkbox" type="checkbox" formControlName="SB_NRO_Ch" />
                                                                                     <span style="vertical-align: top">SB-NRO</span>
                                                                                 </label>
                                                                             </div>
@@ -499,7 +500,7 @@
                                                                                 <input name="rdoNomGender" disabled="disabled" id="rdother" value="ot" type="radio" />
                                                                                 <label class="no-padding">
                                                                                     <input class="entityCheck" name="overprint" id="Checkbox6"
-                                                                                           value="checkbox" type="checkbox" />
+                                                                                           value="checkbox" type="checkbox" formControlName="Other_Ch" />
                                                                                     <span style="vertical-align: top">Other</span>
                                                                                 </label>
                                                                             </div>
@@ -657,7 +658,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding" id="divphysicalcheck">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-9 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="overprint" value="Cheque" type="checkbox" />
+                                                                    <input name="overprint" value="Cheque" type="checkbox" formControlName="IsPhysicalMandateCh" (change)="IsPhysicalMandateFun()"/>
                                                                     <span>Is Physical Mandate</span>
                                                                 </label>
                                                             </div>
@@ -673,7 +674,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-9 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="reference" value="reference" type="checkbox" />
+                                                                    <input name="reference" value="reference" type="checkbox" formControlName="IsRefCheck_Ch" />
                                                                     <span>Is Reference Check</span>
                                                                 </label>
                                                             </div>
@@ -681,7 +682,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-9 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="reference" value="reference" type="checkbox" />
+                                                                    <input name="reference" value="reference" type="checkbox" formControlName="IsRefNumerc" />
                                                                     <span>Is Reference Numeric</span>
                                                                 </label>
                                                             </div>
@@ -689,7 +690,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-10 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="email" value="email" type="checkbox" />
+                                                                    <input name="email" value="email" type="checkbox" formControlName="IsSendEmail"/>
                                                                     <span>Send Email to Customer</span>
                                                                 </label>
                                                             </div>
@@ -697,7 +698,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-10 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="email" value="email" type="checkbox" />
+                                                                    <input name="email" value="email" type="checkbox" formControlName="IsShowMandateMode" />
                                                                     <span>Is Show Mandate Mode</span>
                                                                 </label>
                                                             </div>
@@ -706,7 +707,7 @@
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-11 col-sm-12 col-xs-12 no-padding">
                                                                     <input name="Validate"
-                                                                           value="Validate" type="checkbox" />
+                                                                           value="Validate" type="checkbox" formControlName="chkIsRefrence2Mandatory" />
                                                                     <span>Is Reference 2 Mandatory</span>
                                                                 </label>
                                                             </div>
@@ -714,7 +715,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="Validate" value="Validate" type="checkbox" />
+                                                                    <input name="Validate" value="Validate" type="checkbox" formControlName="chkIsAllowEManadte_Ch" />
                                                                     <span>Is Allow E-mandate in mobile</span>
                                                                 </label>
                                                             </div>
@@ -722,7 +723,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="Validate" value="Validate" type="checkbox" />
+                                                                    <input name="Validate" value="Validate" type="checkbox" formControlName="ISTodateMandatoryEnach_Ch" />
                                                                     <span>Is "To Date" mandatory for ENach</span>
                                                                 </label>
                                                             </div>
@@ -730,7 +731,7 @@
                                                         <div class="col-md-3 col-sm-3 col-xs-6 no-padding">
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-8 col-sm-12 col-xs-12 no-padding">
-                                                                    <input name="Validate" value="Validate" type="checkbox" />
+                                                                    <input name="Validate" value="Validate" type="checkbox" formControlName="chkIsZipSure_Ch" />
                                                                     <span>Is Ziplink</span>
                                                                 </label>
                                                             </div>
@@ -739,12 +740,12 @@
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-11 col-sm-12 col-xs-12 no-padding">
                                                                     <input name="Validate"
-                                                                           value="Validate" type="checkbox" />
+                                                                           value="Validate" type="checkbox" formControlName="IsValidationCountEnableCh" (change)="IsValidationCountEnableFun()" />
                                                                     <span>Is Validation Count Enable</span>
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-12 col-sm-12 col-xs-12 boxhead" id="DivAdminUserCount" style="display: none; padding-top:6px">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 boxhead" id="DivAdminUserCount" *ngIf="IsValidationCountEnableTab">  <!--style="display: none; padding-top:6px"-->
                                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                                                 <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
                                                                     <div class="form-group">
@@ -849,7 +850,7 @@
                                                             <div class="col-md-3 col-sm-12 col-xs-12 no-padding pull-left">
                                                                 <label class="col-md-8 col-sm-12 col-xs-12 no-padding">
                                                                     <input name="Validate"
-                                                                           value="Validate" type="checkbox" />
+                                                                           value="Validate" type="checkbox" formControlName="IsThirdTransactionCh" (change)="IsThirdTransactionFun()" />
                                                                     <span>Is Third Transaction</span>
                                                                 </label>
                                                             </div>
@@ -865,7 +866,7 @@
                                                                     <span>Enable Cancel User Wisespan</span>
                                                                 </label>
                                                             </div>
-                                                            <div id="DivBankAmount" style="display: none; margin-bottom: 8px" class="DivAllDimensionDetails col-md-12 col-sm-12 col-xs-12">
+                                                            <div id="DivBankAmount"  class="DivAllDimensionDetails col-md-12 col-sm-12 col-xs-12" *ngIf="IsThirdTransactionTab">  <!--style="display: none; margin-bottom: 8px"-->
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
                                                                     <div class="col-md-5 col-sm-5 col-xs-12 no-padding-left">
                                                                         <div class="form-group">
@@ -873,7 +874,15 @@
                                                                                 Bank Name
                                                                             </label>
                                                                             <div class="col-sm-7 col-md-7 col-xs-7 no-padding">
-                                                                                <input type="text" class="col-sm-12 col-md-12 col-xs-12 no-padding" />
+                                                                                <!--<input type="text" class="col-sm-12 col-md-12 col-xs-12 no-padding" />-->
+                                                                                <select id="" class="alldropdown">
+                                                                                    <option value="0">select Bank Name</option>
+                                                                                    <option *ngFor="let data of BankData"
+                                                                                            value={{data.bankid}}>
+                                                                                        {{data.Bank}}
+                                                                                    </option>
+
+                                                                                </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -911,7 +920,7 @@
                                                                     </div>
                                                                     <div style="">
                                                                         <label class="col-md-10 col-sm-10 col-xs-12" style="text-align: left;">
-                                                                            <input id="Chkmode1" value="Cash" type="checkbox" />
+                                                                            <input id="Chkmode1" value="Cash" type="checkbox" formControlName="Cash_Ch" />
                                                                             <span>Cash</span>
                                                                         </label>
                                                                     </div>
@@ -922,7 +931,7 @@
                                                                     </div>
                                                                     <div style="">
                                                                         <label class="col-md-10 col-sm-10 col-xs-12" style="text-align: left;">
-                                                                            <input id="Chkmode2" value="Cheque" type="checkbox" />
+                                                                            <input id="Chkmode2" value="Cheque" type="checkbox" formControlName="Cheque_Ch" />
                                                                             <span>Cheque</span>
                                                                         </label>
                                                                     </div>
@@ -933,7 +942,7 @@
                                                                     </div>
                                                                     <div style="">
                                                                         <label class="col-md-10 col-sm-10 col-xs-12" style="text-align:center;">
-                                                                            <input id="Chkmode3" value="DD" type="checkbox" />
+                                                                            <input id="Chkmode3" value="DD" type="checkbox" formControlName="DemandDraft_Ch" />
                                                                             <span>Demand Draft</span>
                                                                         </label>
                                                                     </div>
@@ -944,7 +953,7 @@
                                                                     </div>
                                                                     <div style="">
                                                                         <label class="col-md-10 col-sm-10 col-xs-12" style="text-align:center;">
-                                                                            <input id="Chkmode4" value="E" type="checkbox" />
+                                                                            <input id="Chkmode4" value="E" type="checkbox"  formControlName="Electronic_Ch" />
                                                                             <span>Electronic</span>
                                                                         </label>
                                                                     </div>
@@ -968,7 +977,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-12 col-xs-12 col-md-12 no-padding" id="divphysical" style="display: none">
+                                                        <div class="col-sm-12 col-xs-12 col-md-12 no-padding" id="divphysical" *ngIf="PhysicalTab" >  <!--style="display: none"-->
                                                             <div class=" col-sm-12 col-xs-12 col-md-12 boxhead ">
                                                                 <div class=" col-sm-12 col-xs-12 col-md-2 no-padding">
                                                                     <label class=" col-sm-6 col-md-3 col-xs-5 no-padding useright">
@@ -1200,12 +1209,12 @@
                                                         Would checker require to recheck the presentment file:
                                                     </label>
                                                     <div class="col-sm-2 col-md-2 col-xs-2 no-padding displayinlineblock">
-                                                        <input type="checkbox" class="pull-left">
+                                                        <input type="checkbox" class="pull-left" formControlName="recheckthepresentmentfileCh" (change)="RecheckthepresentmentfileFun()" >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                                                <div class="form-group" id="divPresentCheck" style="display: none">
+                                                <div class="form-group" id="divPresentCheck" *ngIf="RecheckTab">                          <!--style="display: none"-->
                                                     <label id="Label8" class="col-sm-5 col-md-4 col-xs-8 control-label ">
                                                         Should presentment file be processed if checker does not recheck:
                                                     </label>
