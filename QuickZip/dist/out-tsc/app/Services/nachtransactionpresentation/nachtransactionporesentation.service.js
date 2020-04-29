@@ -17,11 +17,35 @@ var NachtransactionporesentationService = /** @class */ (function () {
         return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/CheckUser/' + EntityId + '/' + UserId);
     };
     NachtransactionporesentationService.prototype.BindGridForm = function (EntityId, UserId, Bank) {
-        //alert("Service" + FromDate + " " + ToDate + Bank);
-        alert('Hii');
         return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindGridForm/' + EntityId + '/' + UserId + '/' + Bank);
     };
     //paras
+    NachtransactionporesentationService.prototype.BindMainGrid = function (UserId) {
+        alert('MainGrid');
+        return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindMainGrid/' + UserId);
+    };
+    NachtransactionporesentationService.prototype.BindUMRN = function (EntityId, UserId, PresDate) {
+        return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindUMRN/' + UserId + '/' + EntityId + '/' + PresDate);
+        // 
+    };
+    NachtransactionporesentationService.prototype.BindRefrence = function (EntityId, UserId, PresDate) {
+        //alert('hellos');
+        return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindRefrence/' + UserId + '/' + EntityId + '/' + PresDate);
+        // 
+    };
+    NachtransactionporesentationService.prototype.BindOnRowdblClick = function (EntityId, UserId, FileNo) {
+        return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindOnRowdblClick/' + UserId + '/' + EntityId + '/' + FileNo);
+        // 
+    };
+    NachtransactionporesentationService.prototype.BindUMRNOnchange = function (EntityId, UserId, RefrenceNo) {
+        return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindUMRNOnchange/' + UserId + '/' + EntityId + '/' + RefrenceNo);
+        // 
+    };
+    NachtransactionporesentationService.prototype.BindRefOnchange = function (EntityId, UserId, UMRN) {
+        alert('hellos');
+        return this._http.get(this.baseUrl + 'api/NachtransactionPresentation/BindRefOnchange/' + UserId + '/' + EntityId + '/' + UMRN);
+        // 
+    };
     NachtransactionporesentationService.prototype.errorHandler = function (error) {
         console.log(error);
         return Observable.throw(error);

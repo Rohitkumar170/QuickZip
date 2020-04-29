@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { error } from 'util';
-import { BankBind, CheckUser, BindGridForm } from '../../../models/nachtransactionpresentation/nachtransactionpresentation'
+import { BankBind, CheckUser, BindGridForm, BindMainGrid, BindUMRN, BindRefrence, BindOnRowdblClick, BindUMRNOnchange, BindRefOnchange} from '../../../models/nachtransactionpresentation/nachtransactionpresentation'
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +29,41 @@ export class NachtransactionporesentationService {
     }
 
     BindGridForm(EntityId, UserId, Bank): Observable<BindGridForm> {
-        //alert("Service" + FromDate + " " + ToDate + Bank);
-        alert('Hii');
         return this._http.get<BindGridForm>(this.baseUrl + 'api/NachtransactionPresentation/BindGridForm/' + EntityId + '/' + UserId + '/' + Bank);
     }
     //paras
+    BindMainGrid(UserId): Observable<BindMainGrid> {
+        alert('MainGrid');
+        return this._http.get<BindMainGrid>(this.baseUrl + 'api/NachtransactionPresentation/BindMainGrid/' + UserId );
+    }
 
+    BindUMRN(EntityId, UserId, PresDate): Observable<BindUMRN> {
 
+        return this._http.get<BindUMRN>(this.baseUrl + 'api/NachtransactionPresentation/BindUMRN/' + UserId + '/' + EntityId + '/' + PresDate); 
+       // 
+    }
+
+    BindRefrence(EntityId, UserId, PresDate): Observable<BindRefrence> {
+
+        //alert('hellos');
+        return this._http.get<BindRefrence>(this.baseUrl + 'api/NachtransactionPresentation/BindRefrence/' + UserId + '/' + EntityId + '/' + PresDate);
+        // 
+    }
+
+    BindOnRowdblClick(EntityId, UserId, FileNo): Observable<BindOnRowdblClick> {
+        return this._http.get<BindOnRowdblClick>(this.baseUrl + 'api/NachtransactionPresentation/BindOnRowdblClick/' + UserId + '/' + EntityId + '/' + FileNo);
+        // 
+    }
+    BindUMRNOnchange(EntityId, UserId, RefrenceNo): Observable<BindUMRNOnchange> {
+        return this._http.get<BindUMRNOnchange>(this.baseUrl + 'api/NachtransactionPresentation/BindUMRNOnchange/' + UserId + '/' + EntityId + '/' + RefrenceNo);
+        // 
+    }
+
+    BindRefOnchange(EntityId, UserId, UMRN): Observable<BindRefOnchange> {
+        alert('hellos');
+        return this._http.get<BindRefOnchange>(this.baseUrl + 'api/NachtransactionPresentation/BindRefOnchange/' + UserId + '/' + EntityId + '/' + UMRN);
+        // 
+    }
     errorHandler(error: Response) {
         console.log(error);
         return Observable.throw(error);

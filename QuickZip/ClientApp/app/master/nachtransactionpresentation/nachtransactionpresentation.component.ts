@@ -5,7 +5,7 @@ import { UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NachtransactionporesentationService } from 'ClientApp/app/Services/nachtransactionpresentation/nachtransactionporesentation.service';
-import { BankBind, BindGridForm } from 'ClientApp/Models/nachtransactionpresentation/nachtransactionpresentation';
+import { BankBind, BindGridForm, BindMainGrid, BindUMRN, BindRefrence, BindOnRowdblClick, BindRefOnchange, BindUMRNOnchange} from 'ClientApp/Models/nachtransactionpresentation/nachtransactionpresentation';
 @Component({
   selector: 'app-nachtransactionpresentation',
   templateUrl: './nachtransactionpresentation.component.html',
@@ -14,26 +14,47 @@ import { BankBind, BindGridForm } from 'ClientApp/Models/nachtransactionpresenta
 export class NachtransactionpresentationComponent implements OnInit {
     //bankbind: BankBind;
     bankbind: BankBind;
-    bindgrid: BindGridForm
+    bindgrid: BindGridForm;
+    bindmaingrid: BindMainGrid;
+    bindumrn: BindUMRN;
+    bindref: BindRefrence;
     i: any;
+    showlabel: boolean;
+    showlabel1: boolean;
+    showlabel2: boolean;
    // var EntityId;
     // var UserId;
     bank = 25;
     userid = 86;
     EntityId = 10;
+    UsErId = 95;
+    entityId = 13;
+    refNo = 'rrdtr';
+
 
    
 
     constructor(private NTPService: NachtransactionporesentationService) { }
 
     ngOnInit() {
-        this.BankBind();
+        this.showlabel2 = true;
+        this.showlabel = false;
+        this.showlabel1 = false;
+        this.BindMainGrid();
+        //this.BankBind();
         this.CheckUser();
+        //this.BindUMRN();
+        //this.BindRefrence();
+        this.BindOnRowdblClick();
 
         //this.BindGridForm();
   }
 
     BankBind() {
+        alert('NewButton');
+        this.showlabel2 = false;
+        this.showlabel = true;
+        this.showlabel1 = true;
         //let item = JSON.parse(sessionStorage.getItem('User'));
         this.NTPService.BankBind('86','10').
             subscribe(res => this.bankbind = res, error => console.log(error));
@@ -53,5 +74,49 @@ export class NachtransactionpresentationComponent implements OnInit {
         subscribe(res => this.bindgrid = res, error => console.log(error));
                 //this.Databind = data;
            // });
+    }
+    BindMainGrid() {
+        this.NTPService.BindMainGrid('95').
+            //subscribe((data) => {
+            //});
+            subscribe(res => this.bindmaingrid = res, error => console.log(error));
+    }
+    BindUMRN() {
+        var k = '020-04-30';
+        this.NTPService.BindUMRN('10', '86', '2020-04-30').
+            subscribe(res => this.bindumrn = res, error => console.log(error));
+            //subscribe((data) => {
+            //});
+    }
+    //BindRefrence() {
+    //    this.NTPService.BindRefrence('86', '10', '04/30/2020').
+    //        //subscribe((data) => {
+    //        //});
+    //}
+    BindRefrence() {  
+        alert('ButtonRefre');
+        this.NTPService.BindRefrence('10', '86', '2020-04-30').
+            subscribe(res => this.bindref = res, error => console.log(error));
+            //subscribe((data) => {
+            //});
+    }
+    BindOnRowdblClick() {
+
+        this.NTPService.BindOnRowdblClick('95', '13', '300720A13').
+            subscribe((data) => {
+            });
+    }
+
+    BindRefOnchange() {
+
+        this.NTPService.BindRefOnchange('95', '13', '123456789'). 
+            subscribe((data) => {
+            });
+    }
+    BindUMRNOnchange(UsErId,entityId,refNo) {
+
+        this.NTPService.BindUMRNOnchange('95', '13', 'rrdtr').  
+            subscribe((data) => {
+            });
     }
 }
