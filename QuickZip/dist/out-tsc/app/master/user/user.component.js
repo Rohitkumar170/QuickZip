@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
-import { UserServiceService } from 'ClientApp/app/Services/User/user-service.service';
+import { UserServiceService } from '../../Services/User/user-service.service';
 //import { Directive, HostListener } from '@angular/core';
 //import { UserServiceService } from 'ClientApp/app/Services/user/user-service.service';
 var UserComponent = /** @class */ (function () {
@@ -50,10 +50,12 @@ var UserComponent = /** @class */ (function () {
     };
     UserComponent.prototype.hide = function () {
         this.showModalsave = false;
+        this.showModal = false;
+        this.showModalalert = false;
     };
     UserComponent.prototype.ngOnInit = function () {
         this.UserForm = this.formBuilder.group({
-            UserName: ['', Validators.required],
+            UserName: [, Validators.required],
             sponsorbankcode: ['', Validators.required],
             categorycode: ['', Validators.required],
             Type: ['', Validators.required],
@@ -102,6 +104,10 @@ var UserComponent = /** @class */ (function () {
         this.bindUser();
         this.bindPresentmentMaker();
         this.BindPresentmentChecker();
+        this.UserForm.controls['sponsorbankcode'].setValue(0);
+        this.UserForm.controls['categorycode'].setValue(0);
+        this.UserForm.controls['maker'].setValue(0);
+        this.UserForm.controls['nachuser'].setValue(0);
     };
     UserComponent.prototype.isFieldValid = function (field) {
         return !this.UserForm.get(field).valid && this.UserForm.get(field).touched;
@@ -293,11 +299,10 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.SaveUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == -1) {
-                _this.message = 'User already exists';
-                alert(_this.message);
+                _this.showModalalert = true;
             }
             else {
                 _this.showModalsave = true;
@@ -317,7 +322,7 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.UpdateUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid).subscribe(function (data) {
+        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == 1) {
                 _this.showModalsave = true;
@@ -473,20 +478,16 @@ var UserComponent = /** @class */ (function () {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
                 //if (this.getAccessRight2[i].LinkID == 25) {
-                //    var ids = "25";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked=true;
                 //}
                 //if (this.getAccessRight2[i].LinkID == 26) {
-                //    var ids = "26";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
                 //}
                 //if (this.getAccessRight2[i].LinkID == 27) {
-                //    var ids = "27";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
                 //}
                 //if (this.getAccessRight2[i].LinkID == 28) {
-                //    var ids = "28";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
+                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
                 //}
             }
         });
@@ -549,13 +550,13 @@ var UserComponent = /** @class */ (function () {
         if (document.getElementById(ids1).checked == true) {
             this.chkvideolink.push(ids1);
         }
+        else {
+            this.chkvideolink.pop();
+        }
         //for (var i = 0; i < this.chkvideolink.length; i++) {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
         //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
         //}
-        else {
-            this.chkvideolink.pop();
-        }
     };
     UserComponent.prototype.download = function () {
         var _this = this;
@@ -625,6 +626,7 @@ var UserComponent = /** @class */ (function () {
         }
         this.UserForm.controls['nachuser'].setValue(userdata);
         this.showModal = false;
+        this.chkuserlist = [];
     };
     UserComponent.prototype.chkAllUser = function (event) {
         if (event.target.checked == true) {

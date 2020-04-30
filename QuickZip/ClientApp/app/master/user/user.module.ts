@@ -3,7 +3,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { CommonModule } from '@angular/common';
-import { UserServiceService } from 'ClientApp/app/Services/User/user-service.service';
+import { UserServiceService } from '../../Services/User/user-service.service';
 
 @NgModule({
     declarations: [UserComponent],

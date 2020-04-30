@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { error } from 'util';
-import { User } from 'ClientApp/Models/User/user';
-import { Users } from 'ClientApp/Models/User/users';
+import { User } from '../../../Models/User/user';
+import { Users } from '../../../Models/User/users';
 
 
 
