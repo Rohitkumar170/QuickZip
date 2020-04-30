@@ -16,7 +16,7 @@ export class BuldEmandateService {
         this.baseUrl = myAppUrl;
     }
 
-    GetGridAllData(UserId, EntityId, topVal, ActivityType) {
-        return this._http.get<BulkEmandateAttributeClass>(this.baseUrl + 'api/BulkEMandate/GetGridData/' + UserId + '/' + EntityId + '/' + topVal + '/' + ActivityType);
+    GetGridAllData(UserId, EntityId, topVal, ActivityType): Observable<any> {
+        return this._http.get<any>(this.baseUrl + 'api/BulkEMandate/GetGridData/' + UserId + '/' + EntityId + '/' + topVal + '/' + ActivityType);
     }
 }

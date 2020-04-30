@@ -7,7 +7,11 @@ using System.Xml;
 using System.Xml.Linq;
 using BusinessLibrary;
 using QuickZip.Entity;
+using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Net.NetworkInformation;
 using QuickZip.Models;
+using QuickZip.Models.BulkEmandate;
 
 
 namespace QuickZip.Models.BulkEmandate
@@ -16,17 +20,18 @@ namespace QuickZip.Models.BulkEmandate
     {
         QuickCheckEmandate_AngularEntities dbcontext = new QuickCheckEmandate_AngularEntities();
         List<BulkEmandateAttribute> dataList = new List<BulkEmandateAttribute>();
+        List<BulkEmandateTabledatacount> tblcount = new List<BulkEmandateTabledatacount>();
 
-        public IEnumerable<BulkEmandateAttribute> GetData(string UserId,string EntityId,string topVal,string ActivityType)
+        public Dictionary<string, object> GetData(string UserId,string EntityId,string topVal,string ActivityType)
         {
             try
             {
-                var Data = dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<BulkEmandateAttribute>().Execute("@QueryType", "@UserId", "@EntityId", "@topVal", "@ActivityType", "DataActivity", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), EntityId,topVal, ActivityType);
-                foreach (var dt in Data)
-                {
-                    dataList= dt.Cast<BulkEmandateAttribute>().ToList();
-                }
-                return dataList;
+                var Data = Common.Getdata(dbcontext.MultipleResults("[dbo].[Sp_Mandate]").With<BulkEmandateAttribute>().With<BulkEmandateTabledatacount>().Execute("@QueryType", "@UserId", "@EntityId", "@topVal", "@ActivityType", "DataActivity", DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(UserId.Replace("_", "%"))), DbSecurity.Decrypt(HttpContext.Current.Server.UrlDecode(EntityId.Replace("_", "%"))), topVal, ActivityType));
+                //foreach (var dt in Data)
+                //{
+                //    dataList= dt.Cast<BulkEmandateAttribute>().ToList();
+                //}
+                return Data;
             }
             catch(Exception ex)
             {

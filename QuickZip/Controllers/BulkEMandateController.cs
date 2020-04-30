@@ -16,7 +16,7 @@ namespace QuickZip.Controllers
 
         [HttpGet]
         [Route("api/BulkEMandate/GetGridData/{UserId}/{EntityId}/{topVal}/{ActivityType}")]
-        public IEnumerable<BulkEmandateAttribute> GetGridData(string UserId, string EntityId, string topVal, string ActivityType)
+        public Dictionary<string, object> GetGridData(string UserId, string EntityId, string topVal, string ActivityType)
         {
             return BulkEmandt.GetData(UserId, EntityId, topVal, ActivityType);
         }

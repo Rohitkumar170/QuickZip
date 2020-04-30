@@ -112,10 +112,13 @@ var styles_BulkEmandateComponent = [_bulk_emandate_component_css_shim_ngstyle__W
 var RenderType_BulkEmandateComponent = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_BulkEmandateComponent, data: {} });
 
 function View_BulkEmandateComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 10, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "td", [["style", "width:150px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "td", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "td", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](6, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "td", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](8, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "td", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](10, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.Srno; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.ActivityId; _ck(_v, 4, 0, currVal_1); var currVal_2 = _v.context.$implicit.ActivityName; _ck(_v, 6, 0, currVal_2); var currVal_3 = _v.context.$implicit.UploadedOn; _ck(_v, 8, 0, currVal_3); var currVal_4 = _v.context.$implicit.UserName; _ck(_v, 10, 0, currVal_4); }); }
-function View_BulkEmandateComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 44, "div", [["class", "main-content"], ["id", "maincontent"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 43, "div", [["class", "content"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 11, "div", [["class", "col-md-12 contnt-wrapper"], ["id", ""]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 10, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "div", [["class", "col-sm-4 col-md-4 col-xs-6 "]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "span", [["class", "legal"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Bulk E-Mandate"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 6, "div", [["class", "col-md-8 col-sm-8"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 2, "span", [["id", "btnp"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 0, "i", [["aria-hidden", "true"], ["class", "fa fa-file-text"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 0, "input", [["class", "btn btn-success"], ["id", "btnreject"], ["type", "button"], ["value", "New"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 2, "span", [["id", "btnspa"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 0, "i", [["aria-hidden", "true"], ["class", "fa fa-download"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 0, "input", [["class", " btn btn-success"], ["id", "btnexcel"], ["type", "button"], ["value", "Download Excel"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 30, "div", [["class", "col-md-12 col-sm-12 col-xs-12"], ["id", "tbldiv"], ["style", "margin-top:1%;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 15, "table", [["id", "tblUmrnhistory"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 11, "thead", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 10, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "th", [["style", "width:150px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["SR.No."])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Activity Id"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Activity Name"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Uploaded On"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Created By"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](28, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_BulkEmandateComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](30, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 13, "div", [["class", "col-md-6 col-sm-6 col-xs-6"], ["style", "float: right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](32, 0, null, null, 12, "div", [["class", "toolbar pull-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, null, 11, "ul", [["class", "toolbar-content"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](34, 0, null, null, 7, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, null, 6, "div", [["style", "color: #1f497d; margin-top: 8%;font-weight: bold;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Showing "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](37, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](38, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["150"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](42, 0, null, null, 2, "li", [["id", ""]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](43, 0, null, null, 0, "i", [["aria-hidden", "true"], ["class", ""], ["title", "Save"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](44, 0, null, null, 0, "input", [["class", "btn btn-primary"], ["id", "btnLoadMore"], ["style", "border: 1px solid #fff;padding: 3px 5px 3px 5px;font-size: 12px;"], ["type", "button"], ["value", "Load More"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+function View_BulkEmandateComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 44, "div", [["class", "main-content"], ["id", "maincontent"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 43, "div", [["class", "content"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 11, "div", [["class", "col-md-12 contnt-wrapper"], ["id", ""]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 10, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "div", [["class", "col-sm-4 col-md-4 col-xs-6 "]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "span", [["class", "legal"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Bulk E-Mandate"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 6, "div", [["class", "col-md-8 col-sm-8"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 2, "span", [["id", "btnp"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 0, "i", [["aria-hidden", "true"], ["class", "fa fa-file-text"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 0, "input", [["class", "btn btn-success"], ["id", "btnreject"], ["type", "button"], ["value", "New"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 2, "span", [["id", "btnspa"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 0, "i", [["aria-hidden", "true"], ["class", "fa fa-download"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 0, "input", [["class", " btn btn-success"], ["id", "btnexcel"], ["type", "button"], ["value", "Download Excel"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+        var pd_0 = (_co.downloadExcel() !== false);
+        ad = (pd_0 && ad);
+    } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 16, "div", [["class", "col-md-12 col-sm-12 col-xs-12"], ["id", "tbldiv"], ["style", "margin-top:1%;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 15, "table", [["id", "tblUmrnhistory"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 11, "thead", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 10, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "th", [["style", "width:150px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["SR.No."])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Activity Id"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Activity Name"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Uploaded On"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 1, "th", [["style", "width:220px;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Created By"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](28, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_BulkEmandateComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](30, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 13, "div", [["class", "col-md-6 col-sm-6 col-xs-6"], ["style", "float: right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](32, 0, null, null, 12, "div", [["class", "toolbar pull-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, null, 11, "ul", [["class", "toolbar-content"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](34, 0, null, null, 7, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, null, 6, "div", [["style", "color: #1f497d; margin-top: 8%;font-weight: bold;"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Showing "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](37, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](38, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](41, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](42, 0, null, null, 2, "li", [["id", ""]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](43, 0, null, null, 0, "i", [["aria-hidden", "true"], ["class", ""], ["title", "Save"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](44, 0, null, null, 0, "input", [["class", "btn btn-primary"], ["id", "btnLoadMore"], ["style", "border: 1px solid #fff;padding: 3px 5px 3px 5px;font-size: 12px;"], ["type", "button"], ["value", "Load More"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.pagenext() !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.tabledata; _ck(_v, 30, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.topVal; _ck(_v, 38, 0, currVal_1); }); }
+    } return ad; }, null, null))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.tabledata; _ck(_v, 30, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.topVal; _ck(_v, 38, 0, currVal_1); var currVal_2 = _co.count; _ck(_v, 41, 0, currVal_2); }); }
 function View_BulkEmandateComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-bulk-emandate", [], null, null, null, View_BulkEmandateComponent_0, RenderType_BulkEmandateComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _bulk_emandate_component__WEBPACK_IMPORTED_MODULE_3__["BulkEmandateComponent"], [_Services_BulkEMandate_buld_emandate_service__WEBPACK_IMPORTED_MODULE_4__["BuldEmandateService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var BulkEmandateComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-bulk-emandate", _bulk_emandate_component__WEBPACK_IMPORTED_MODULE_3__["BulkEmandateComponent"], View_BulkEmandateComponent_Host_0, {}, {}, []);
 
@@ -142,38 +145,91 @@ var BulkEmandateComponent = /** @class */ (function () {
         this.myservice = myservice;
         this.ActivityType = 'E';
         this.topVal = 50;
-        this.EntityId = '10';
     }
     BulkEmandateComponent.prototype.ngOnInit = function () {
         //ActivityType: string = 'p';
         var item = JSON.parse(sessionStorage.getItem('User'));
-        //sessionStorage.setItem('ReferenceId', JSON.stringify(data[0]));
-        //let item1 = JSON.parse(sessionStorage.getItem('ReferenceId'));
-        // alert(item1.ReferenceId);
+        // this.UserId = item.UserId;
+        this.EntityId = item.ReferenceId;
+        //alert(this.EntityId);
         this.BindGrid(this.EntityId, this.topVal, this.ActivityType);
     };
     BulkEmandateComponent.prototype.BindGrid = function (EntityId, topVal, ActivityType) {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        //  alert(item.UserId);
-        // console.log(item.UserId);
-        //  console.log(ActivityType);
         this.myservice.GetGridAllData(item.UserId, EntityId, topVal, ActivityType).subscribe(function (res) {
             console.log(res);
-            // console.log(res.length);
-            // alert(res);
-            _this.tabledata = res;
-            alert(_this.tabledata.length);
-            // var datalength = this.tabledata.length;
-            alert(JSON.stringify(res));
-            //var Count = JSON.parse(res).length;
+            _this.tabledata = res.Table;
+            _this.datacount = res.Table1;
+            console.log(_this.datacount);
+            //this.count = JSON.stringify(this.datacount);
+            var str = JSON.stringify(_this.datacount);
+            _this.count = str.replace('[{"Totalcount":', '').replace('}]', '');
+            if (_this.count == 0) {
+                _this.topVal = _this.count;
+            }
+            else {
+                _this.topVal = _this.count;
+            }
+            //  alert(this.tabledata.length);
+            //  alert(JSON.stringify(res));
         });
     };
     BulkEmandateComponent.prototype.pagenext = function () {
         var item = JSON.parse(sessionStorage.getItem('User'));
         this.topVal += 50;
+        if (this.topVal <= this.count) {
+            this.BindGrid(this.EntityId, this.topVal, this.ActivityType);
+        }
+        else {
+            this.topVal = this.count;
+            this.BindGrid(this.EntityId, this.topVal, this.ActivityType);
+        }
         //  console.log(this.topVal);
-        this.BindGrid(this.EntityId, this.topVal, this.ActivityType);
+    };
+    BulkEmandateComponent.prototype.ConvertToCSV = function (objArray) {
+        //this.HeaderArray = {
+        //}
+        var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+        var str = '';
+        var row = "";
+        for (var index in objArray[0]) {
+            //Now convert each value to string and comma-separated
+            row += index + ',';
+        }
+        row = row.slice(0, -1);
+        //append Label row with line break
+        str += row + '\r\n';
+        for (var i = 0; i < array.length; i++) {
+            var line = '';
+            //if (i == 0) {
+            //    for (var index in this.HeaderArray) {
+            //        if (line != '') line += ','
+            //        line += this.HeaderArray[index];
+            //    }
+            //    str += line + '\r\n';
+            //}
+            //var line = '';
+            for (var index in array[i]) {
+                if (line != '')
+                    line += ',';
+                line += array[i][index];
+            }
+            str += line + '\r\n';
+        }
+        return str;
+    };
+    BulkEmandateComponent.prototype.downloadExcel = function () {
+        var csvData = this.ConvertToCSV(JSON.stringify(this.tabledata));
+        var a = document.createElement("a");
+        a.setAttribute('style', 'display:none;');
+        document.body.appendChild(a);
+        var blob = new Blob([csvData], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'User_Results.csv'; /* your file name*/
+        a.click();
+        return 'success';
     };
     return BulkEmandateComponent;
 }());
