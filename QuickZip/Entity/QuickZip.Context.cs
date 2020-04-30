@@ -5470,5 +5470,10 @@ namespace QuickZip.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_WindowsService_Result>("Sp_WindowsService", queryTypeParameter);
         }
+
+        internal object MultipleResults()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

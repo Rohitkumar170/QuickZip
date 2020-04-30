@@ -71,15 +71,15 @@ var DownloadoldmandateComponent = /** @class */ (function () {
     //  list = [];
     //reject mandate
     DownloadoldmandateComponent.prototype.RejectData = function (FromDate, ToDate, RejectedReason, selected) {
-        var _this = this;
         //  alert(FromDate + " " + ToDate + " " + RejectedReason);
         //   alert(this.selectMandateId);
         //var modal = <HTMLElement>document.getElementById('myModal');
         //modal.style.display = 'block';
         //   var dta = <HTMLElement>document.getElementById('myform');
-        this.showModal = false;
+        var _this = this;
         var dta = document.getElementById('myform');
         dta.value = "";
+        this.showModal = false;
         var item = JSON.parse(sessionStorage.getItem('User'));
         // alert(item.UserId);
         if (RejectedReason != null) {
@@ -93,6 +93,7 @@ var DownloadoldmandateComponent = /** @class */ (function () {
         }
         else {
             //  alert("please checked the mandate and fill the Reason");
+            this.MandateMessage = true;
         }
     };
     DownloadoldmandateComponent.prototype.onChange = function (event, item) {
