@@ -147,12 +147,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _Services_downloadoldemandate_downloadoldemandate_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Services/downloadoldemandate/downloadoldemandate.service */ "./ClientApp/app/Services/downloadoldemandate/downloadoldemandate.service.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/// <reference path="../../../models/report-view/bindgrid.ts" />
 
 
 //import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 //import { Console } from '@angular/core/src/console';
 //import { element } from '@angular/core/src/render3';
+//import { Bindgrid } from '../../../models/report-view/bindgrid';
 var DownloadoldemandateComponent = /** @class */ (function () {
     //IsMandateID: string;
     function DownloadoldemandateComponent(_downloadservice) {
