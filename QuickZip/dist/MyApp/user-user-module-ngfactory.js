@@ -30,20 +30,20 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.CheckIsPresentmentChecker = function (EntityId) {
         return this._http.get(this.baseUrl + 'api/USer/CheckIsPresentmentChecker/' + EntityId);
     };
-    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId, checkbulkuploadlink, chkvideolink) {
+    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId, IsViewAll, checkbulkuploadlink, chkvideolink) {
         var body = em;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]().set('content-type', 'application/json');
-        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
+        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId + '/' + IsViewAll + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
             headers: headers
         });
     };
     UserServiceService.prototype.EditData = function (UserId) {
         return this._http.get(this.baseUrl + 'api/USer/EditData/' + UserId);
     };
-    UserServiceService.prototype.UpdateUser = function (em, EntityId, UserId, Id) {
+    UserServiceService.prototype.UpdateUser = function (em, EntityId, UserId, Id, IsViewAll, checkbulkuploadlink, chkvideolink) {
         var body = em;
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]().set('content-type', 'application/json');
-        return this._http.post(this.baseUrl + 'api/USer/UpdateData/' + EntityId + '/' + UserId + '/' + Id, body, {
+        return this._http.post(this.baseUrl + 'api/USer/UpdateData/' + EntityId + '/' + UserId + '/' + Id + '/' + IsViewAll + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
             headers: headers
         });
     };
@@ -481,13 +481,13 @@ function View_UserComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODUL
     } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\u00D7"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](84, 0, null, null, 2, "div", [["class", "modal-body"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](85, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" User Saved Successfully"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](87, 0, null, null, 2, "div", [["class", "modal-footer"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](88, 0, null, null, 1, "button", [["class", "btn btn-success"], ["data-dismiss", "modal"], ["type", "button"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.hide() !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Close"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](90, 0, null, null, 12, "div", [["class", "modal alertpop"], ["id", "myModal"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](91, 0, null, null, 11, "div", [["class", "modal-dialog"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](92, 0, null, null, 10, "div", [["class", "modal-content"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](93, 0, null, null, 4, "div", [["class", "modal-header"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](94, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](95, 0, null, null, 0, "img", [["src", "../../ClientApp/assets/images/caution2.png"], ["style", "height:62px"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](96, 0, null, null, 1, "button", [["class", "close"], ["data-dismiss", "modal"], ["type", "button"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+    } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Close"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](90, 0, null, null, 12, "div", [["class", "modal alertpop"], ["id", "myModal"]], [[4, "display", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](91, 0, null, null, 11, "div", [["class", "modal-dialog"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](92, 0, null, null, 10, "div", [["class", "modal-content"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](93, 0, null, null, 4, "div", [["class", "modal-header"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](94, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](95, 0, null, null, 0, "img", [["src", "../../ClientApp/assets/images/caution2.png"], ["style", "height:62px"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](96, 0, null, null, 1, "button", [["class", "close"], ["data-dismiss", "modal"], ["type", "button"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.hide() !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\u00D7"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](98, 0, null, null, 4, "div", [["class", "modal-body"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](99, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" User already exists"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](101, 0, null, null, 1, "button", [["class", "btn btn-success pull-right"], ["data-dismiss", "modal"], ["type", "button"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.hide() !== false);
         ad = (pd_0 && ad);
-    } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Close"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.tableid; _ck(_v, 47, 0, currVal_0); var currVal_1 = _co.formid; _ck(_v, 49, 0, currVal_1); var currVal_3 = _co.nachuser; _ck(_v, 73, 0, currVal_3); }, function (_ck, _v) { var _co = _v.component; var currVal_2 = (_co.showModal ? "block" : "none"); _ck(_v, 50, 0, currVal_2); var currVal_4 = (_co.showModalsave ? "block" : "none"); _ck(_v, 76, 0, currVal_4); }); }
+    } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Close"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.tableid; _ck(_v, 47, 0, currVal_0); var currVal_1 = _co.formid; _ck(_v, 49, 0, currVal_1); var currVal_3 = _co.nachuser; _ck(_v, 73, 0, currVal_3); }, function (_ck, _v) { var _co = _v.component; var currVal_2 = (_co.showModal ? "block" : "none"); _ck(_v, 50, 0, currVal_2); var currVal_4 = (_co.showModalsave ? "block" : "none"); _ck(_v, 76, 0, currVal_4); var currVal_5 = (_co.showModalalert ? "block" : "none"); _ck(_v, 90, 0, currVal_5); }); }
 function View_UserComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-user", [], null, null, null, View_UserComponent_0, RenderType_UserComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _user_component__WEBPACK_IMPORTED_MODULE_4__["UserComponent"], [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _Services_User_user_service_service__WEBPACK_IMPORTED_MODULE_5__["UserServiceService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var UserComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-user", _user_component__WEBPACK_IMPORTED_MODULE_4__["UserComponent"], View_UserComponent_Host_0, {}, {}, []);
 
@@ -559,10 +559,12 @@ var UserComponent = /** @class */ (function () {
     };
     UserComponent.prototype.hide = function () {
         this.showModalsave = false;
+        this.showModal = false;
+        this.showModalalert = false;
     };
     UserComponent.prototype.ngOnInit = function () {
         this.UserForm = this.formBuilder.group({
-            UserName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            UserName: [, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             sponsorbankcode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             categorycode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             Type: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -611,6 +613,10 @@ var UserComponent = /** @class */ (function () {
         this.bindUser();
         this.bindPresentmentMaker();
         this.BindPresentmentChecker();
+        this.UserForm.controls['sponsorbankcode'].setValue(0);
+        this.UserForm.controls['categorycode'].setValue(0);
+        this.UserForm.controls['maker'].setValue(0);
+        this.UserForm.controls['nachuser'].setValue(0);
     };
     UserComponent.prototype.isFieldValid = function (field) {
         return !this.UserForm.get(field).valid && this.UserForm.get(field).touched;
@@ -802,11 +808,10 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.SaveUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
+        this.userservice.SaveUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == -1) {
-                _this.message = 'User already exists';
-                alert(_this.message);
+                _this.showModalalert = true;
             }
             else {
                 _this.showModalsave = true;
@@ -826,7 +831,7 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.UpdateUser = function () {
         var _this = this;
         var item = JSON.parse(sessionStorage.getItem('User'));
-        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid).subscribe(function (data) {
+        this.userservice.UpdateUser(JSON.stringify(this.UserForm.value), item.ReferenceId, item.UserId, this.Userid, this.IsViewAll, this.checkbulkuploadlink, this.chkvideolink).subscribe(function (data) {
             _this.user = data;
             if (_this.user[0].Result == 1) {
                 _this.showModalsave = true;
@@ -968,6 +973,7 @@ var UserComponent = /** @class */ (function () {
             else {
                 _this.divaccessright = false;
             }
+            debugger;
             for (var i = 0; i < data.Table6.length; i++) {
                 if (_this.getAccessRight2[i].LinkID == 17) {
                     _this.UserForm.controls['chkUmrnHistory'].setValue(true);
@@ -981,22 +987,26 @@ var UserComponent = /** @class */ (function () {
                 if (_this.getAccessRight2[i].LinkID == 22) {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
-                //if (this.getAccessRight2[i].LinkID == 25) {
-                //    var ids = "25";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked=true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 26) {
-                //    var ids = "26";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 27) {
-                //    var ids = "27";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 28) {
-                //    var ids = "28";
-                //    (<HTMLInputElement>document.getElementById(ids)).checked = true;
-                //}
+                if (_this.getAccessRight2[i].LinkID == 25) {
+                    //var ids = "25";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 26) {
+                    //  var ids = "26";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 27) {
+                    // var ids = "27";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 28) {
+                    // var ids = "28";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
             }
         });
         document.getElementById("btnSave").removeAttribute("disabled");
@@ -1058,13 +1068,13 @@ var UserComponent = /** @class */ (function () {
         if (document.getElementById(ids1).checked == true) {
             this.chkvideolink.push(ids1);
         }
+        else {
+            this.chkvideolink.pop();
+        }
         //for (var i = 0; i < this.chkvideolink.length; i++) {
         //   // this.UserForm.controls['chkvideolink'].setValue(this.chkvideolink[i]);
         //   this.UserForm.setControl('chkvideolink', this.formBuilder.array(this.chkvideolink || []));
         //}
-        else {
-            this.chkvideolink.pop();
-        }
     };
     UserComponent.prototype.download = function () {
         var _this = this;
@@ -1125,6 +1135,7 @@ var UserComponent = /** @class */ (function () {
         }
         else {
             this.chkuserlist.splice(id);
+            document.getElementById('chkalluserlist').checked = false;
         }
     };
     UserComponent.prototype.getUserlist = function () {
@@ -1134,6 +1145,7 @@ var UserComponent = /** @class */ (function () {
         }
         this.UserForm.controls['nachuser'].setValue(userdata);
         this.showModal = false;
+        this.chkuserlist = [];
     };
     UserComponent.prototype.chkAllUser = function (event) {
         if (event.target.checked == true) {

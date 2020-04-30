@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
-import { UserServiceService } from '../../Services/User/user-service.service';
+import { UserServiceService } from 'ClientApp/app/Services/User/user-service.service';
 //import { Directive, HostListener } from '@angular/core';
 //import { UserServiceService } from 'ClientApp/app/Services/user/user-service.service';
 var UserComponent = /** @class */ (function () {
@@ -464,6 +464,7 @@ var UserComponent = /** @class */ (function () {
             else {
                 _this.divaccessright = false;
             }
+            debugger;
             for (var i = 0; i < data.Table6.length; i++) {
                 if (_this.getAccessRight2[i].LinkID == 17) {
                     _this.UserForm.controls['chkUmrnHistory'].setValue(true);
@@ -477,18 +478,26 @@ var UserComponent = /** @class */ (function () {
                 if (_this.getAccessRight2[i].LinkID == 22) {
                     _this.UserForm.controls['chkAllUMRN'].setValue(true);
                 }
-                //if (this.getAccessRight2[i].LinkID == 25) {
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked=true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 26) {
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 27) {
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
-                //}
-                //if (this.getAccessRight2[i].LinkID == 28) {
-                //    (<HTMLInputElement>document.getElementById(this.getAccessRight2[i].LinkID)).checked = true;
-                //}
+                if (_this.getAccessRight2[i].LinkID == 25) {
+                    //var ids = "25";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 26) {
+                    //  var ids = "26";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 27) {
+                    // var ids = "27";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
+                if (_this.getAccessRight2[i].LinkID == 28) {
+                    // var ids = "28";
+                    var ids = _this.getAccessRight2[i].LinkID;
+                    document.getElementById("" + ids + "").checked = true;
+                }
             }
         });
         document.getElementById("btnSave").removeAttribute("disabled");
@@ -617,6 +626,7 @@ var UserComponent = /** @class */ (function () {
         }
         else {
             this.chkuserlist.splice(id);
+            document.getElementById('chkalluserlist').checked = false;
         }
     };
     UserComponent.prototype.getUserlist = function () {

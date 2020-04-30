@@ -16,20 +16,20 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.CheckIsPresentmentChecker = function (EntityId) {
         return this._http.get(this.baseUrl + 'api/USer/CheckIsPresentmentChecker/' + EntityId);
     };
-    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId, checkbulkuploadlink, chkvideolink) {
+    UserServiceService.prototype.SaveUser = function (em, EntityId, UserId, IsViewAll, checkbulkuploadlink, chkvideolink) {
         var body = em;
         var headers = new HttpHeaders().set('content-type', 'application/json');
-        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
+        return this._http.post(this.baseUrl + 'api/USer/SaveData/' + EntityId + '/' + UserId + '/' + IsViewAll + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
             headers: headers
         });
     };
     UserServiceService.prototype.EditData = function (UserId) {
         return this._http.get(this.baseUrl + 'api/USer/EditData/' + UserId);
     };
-    UserServiceService.prototype.UpdateUser = function (em, EntityId, UserId, Id) {
+    UserServiceService.prototype.UpdateUser = function (em, EntityId, UserId, Id, IsViewAll, checkbulkuploadlink, chkvideolink) {
         var body = em;
         var headers = new HttpHeaders().set('content-type', 'application/json');
-        return this._http.post(this.baseUrl + 'api/USer/UpdateData/' + EntityId + '/' + UserId + '/' + Id, body, {
+        return this._http.post(this.baseUrl + 'api/USer/UpdateData/' + EntityId + '/' + UserId + '/' + Id + '/' + IsViewAll + '/' + checkbulkuploadlink + '/' + chkvideolink, body, {
             headers: headers
         });
     };

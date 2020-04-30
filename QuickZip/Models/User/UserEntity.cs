@@ -7,7 +7,7 @@ namespace QuickZip.Models.User
 {
     public class UserEntity
     {
-        public Boolean IsThirdTransaction { get; set; }
-        public Boolean iszipshorabps { get; set; }
+        public Nullable<Boolean> IsThirdTransaction { get; set; }
+        public Nullable<Boolean> iszipshorabps { get; set; }
     }
 }

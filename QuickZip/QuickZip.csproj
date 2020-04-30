@@ -259,6 +259,7 @@
     <Compile Include="Controllers\DownloadoldemandateController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkSetupController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OldMandateController.cs" />
     <Compile Include="Controllers\ReportViewController.cs" />
@@ -806,6 +807,9 @@
     <Compile Include="Models\ForgotPassword\Value.cs" />
     <Compile Include="Models\HistoricalMandate\HistoricalMandateClass.cs" />
     <Compile Include="Models\HistoricalMandate\HistoricalMandateDataAccess.cs" />
+    <Compile Include="Models\Link-setup\BindGrid.cs" />
+    <Compile Include="Models\Link-setup\IconName.cs" />
+    <Compile Include="Models\Link-setup\Link-setup.cs" />
     <Compile Include="Models\Login\Login.cs" />
     <Compile Include="Models\Login\Logindetails.cs" />
     <Compile Include="Models\Login\SaveLoginSessionTrxn.cs" />
@@ -991,6 +995,8 @@
     <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Link-setup\link-setup.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Link-setup\link-setup.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\oldmandate\oldmandate.service.spec.ts" />
@@ -1031,6 +1037,8 @@
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\downloadmandategrid.ts" />
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Link-setup\BindGrid.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Link-setup\IconName.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateClass1.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Old-Mandate\OldMandateTable.ts" />
