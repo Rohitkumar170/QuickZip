@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using QuickZip.Entity;
 using System.Xml.Linq;
 using System.Net.Http;
+using System.Xml;
 
 namespace QuickZip.Models.User
 {
@@ -84,10 +85,55 @@ namespace QuickZip.Models.User
             }
         }
 
-        public IEnumerable<Users> SaveUserData(Users userdata,string EntityId,string UserId,string dtUserRights_1,string dtUserRights_2, string dtSponsorBankCode,string dtCategoryCode,string dtPresentmentMaker, int chkPresentMaker,int chkPresentChecker,int IsZipSure,int IsAllowFundTransfer,int IsMandateEdit,int Ismandate,int IsBulk,int iSDashboard,int IsEnableCancel,int IsViewall,string Defaultpwd,string dtPaymentMode,string dtUserRights_3,string dtUserRights_4,int chkRefEdit)
+        public IEnumerable<Users> SaveUserData(Users userdata,string EntityId,string UserId,string dtUserRights_1,string dtUserRights_2, string dtSponsorBankCode,string dtCategoryCode,string dtPresentmentMaker, int chkPresentMaker,int chkPresentChecker,int IsZipSure,int IsAllowFundTransfer,int IsMandateEdit,int Ismandate,int IsBulk,int iSDashboard,int IsEnableCancel,int IsViewall,string Defaultpwd,string dtPaymentMode,string dtUserRights_3,string dtUserRights_4,int chkRefEdit,string checkbulkuploadlink, string chkvideolink)
         { 
             try
             {
+
+                string[] checkbulkuploadlnk = checkbulkuploadlink.Split(',');
+                string[] chkvideolnk = chkvideolink.Split(',');
+
+
+
+                XDocument doc = new XDocument();
+                doc.Add(new XElement("dtXml", checkbulkuploadlnk.Select(x => new XElement("LinkID", x))));
+
+                XDocument doc1 = new XDocument();
+                doc1.Add(new XElement("dtXml", chkvideolnk.Select(x => new XElement("LinkID", x))));
+
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("LinkID", typeof(Int64));
+                // Boolean IsFound = false;
+
+                for (int i = 0; i < checkbulkuploadlnk.Length; i++)
+                {
+                    DataRow dr = dt.NewRow();
+
+                    // dr = IsMandateID;
+                    dt.Rows.Add(checkbulkuploadlnk[i]);
+
+
+                }
+                string strTable = GetXmlByDatable(dt);
+
+                DataTable dt1 = new DataTable();
+                dt1.Columns.Add("LinkID", typeof(Int64));
+
+                for (int i = 0; i < chkvideolnk.Length; i++)
+                {
+                    DataRow dr = dt.NewRow();
+
+                    // dr = IsMandateID;
+                    dt1.Rows.Add(chkvideolnk[i]);
+
+
+                }
+                string strTable1 = GetXmlByDatable(dt1);
+
+
+
+
                 string password = "";
                 string passwordKey = "";
 
@@ -120,6 +166,41 @@ namespace QuickZip.Models.User
                 throw ex;
             }
         }
+
+        public string GetXmlByDatable(DataTable dtObjectforXml)
+        {
+            if (dtObjectforXml == null)
+                return "";
+            if (dtObjectforXml.Rows.Count == 0)
+                return "";
+
+            if (dtObjectforXml.TableName == "")
+                dtObjectforXml.TableName = "dtXml";
+
+            XmlDocument objectXmlDocument = new XmlDocument();
+            XmlElement objElement = objectXmlDocument.CreateElement(dtObjectforXml.TableName);
+
+            for (int iRecordCounter = 0; iRecordCounter < dtObjectforXml.Rows.Count; iRecordCounter++)
+            {
+                // Generate XmlObject and Append Nodes by calling a Child function.
+                objElement.AppendChild(BuildXmlElement(dtObjectforXml.Rows[iRecordCounter], objectXmlDocument));
+            }
+
+            objectXmlDocument.AppendChild(objElement);
+            return objectXmlDocument.OuterXml;
+        }
+
+        private XmlElement BuildXmlElement(DataRow drObjectforXml, XmlDocument objectXmlDocument)
+        {
+            XmlElement XmlElement = objectXmlDocument.CreateElement(drObjectforXml.Table.TableName);
+            for (int iColumnCounter = 0; iColumnCounter < drObjectforXml.Table.Columns.Count; iColumnCounter++)
+            {
+                XmlElement.SetAttribute(drObjectforXml.Table.Columns[iColumnCounter].ColumnName, Convert.ToString(drObjectforXml[iColumnCounter].ToString()));
+            }
+
+            return XmlElement;
+        }
+
 
         public IEnumerable<Users> UpdateUserData(Users userdata, string EntityId, string UserId, string dtUserRights_1, string dtUserRights_2, string dtSponsorBankCode, string dtCategoryCode, string dtPresentmentMaker, int chkPresentMaker, int chkPresentChecker, int IsZipSure, int IsAllowFundTransfer, int IsMandateEdit, int Ismandate, int IsBulk, int iSDashboard, int IsEnableCancel, int IsViewall, string Defaultpwd, string dtPaymentMode, string dtUserRights_3, string dtUserRights_4, int chkRefEdit,int Id)
         {

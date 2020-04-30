@@ -16,6 +16,7 @@ import { formatDate } from '@angular/common';
 })
 
 export class DownloadEmandateComponent implements OnInit {
+    dataArray: Array<DownloadEmandateclass> = [];
     SponserBankCode: any;
     HeaderArray;
     bankbind: Bankdetails;
@@ -28,7 +29,13 @@ export class DownloadEmandateComponent implements OnInit {
     checkFlag: number = 0;
     Ischecked: number = 0;
     IsMandateID: string;
-    //public errormsg: any;
+    CheckedCount: number = 0;
+    UncheckedCount: number = 0;
+    Preloader: boolean = true;
+   // public errormsg: any = "Please Select Mandate";
+    public errormsg: any;
+    showlabel: boolean;
+    length: any;
     //BindGridData: BindGridData;
     constructor(private DEService: DownloadEmandateServiceService, fb: FormBuilder) {
         this.fromdate = new Date();
@@ -45,9 +52,9 @@ export class DownloadEmandateComponent implements OnInit {
 
 
     ngOnInit() {
-
+        this.Preloader = false;
+        this.showlabel = false;
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         this.DEService.BankBind(item.UserId).
             subscribe((data) => {
                 this.bankbind = data.Table;
@@ -60,78 +67,63 @@ export class DownloadEmandateComponent implements OnInit {
 
         this.BankBind();
     }
+    Removelabel() { this.errormsg = ''; }
+
     BankBind() {
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         this.DEService.BankBind(item.UserId).
             subscribe((data) => {
                 this.bankbind = data.Table;
                 this.i = Object.entries(this.bankbind)[0][1];
-                this.SponserBankCode = this.i.sponsorbankcode;
-                console.log(this.bankbind);
             });
     }
     SearchFunction(FromDate, ToDate, Bank) {
+        this.Preloader = true;
         let item = JSON.parse(sessionStorage.getItem('User'));
-        console.log(item.UserId);
         this.DEService.BindGridData(FromDate, ToDate, Bank, item.UserId).subscribe(
             (data) => {
+                this.Preloader = false;
                 this.Databind = data;
-                console.log(this.Databind);
+                this.dataArray.push(this.Databind);
             });
-
+       
+        if (this.dataArray.length > 0) {
+           
+            this.showlabel = true;
+        }
     }
-    //Removelabel() { this.errormsg = ''; }
 
     toggleSelect = function (event) {
-        //toggleSelect(event) {
-        // var SelectionStatusOfMutants = [];
         this.all = event.target.checked;
         this.Databind.forEach(function (item) {
-            // console.log(item);
             item.selected = event.target.checked;
-            // this.onChange(event, item);
-
         });
 
         this.checkFlag = 1;
 
         if (event.target.checked) {
             this.Ischecked = 1;
-          //  alert('Checked');
-            //  this.Isallcheck = 1;
         }
         else {
             this.Ischecked = 0;
-           // alert('Not Checked');
         }
 
 
     }
 
     onChange(event, item) {
-
-        //var element = <HTMLInputElement>document.getElementById("is3dCheckBox");
-        //var isChecked = element.checked;
-        //if (count == '') {
         this.checkFlag = 0;
         this.IsMandateID = item.mandateid;
-        var CheckedCount = 0, UncheckedCount = 0;
-
         if (event.target.checked) {
             this.SelectionStatusOfMutants.push(item);
-
-            console.log(this.SelectionStatusOfMutants);
-            //alert('checked')
             this.Ischecked = 1;
-            CheckedCount++;
+            this.CheckedCount++;
 
         }
         else {
-            //alert('not checked')
             this.SelectionStatusOfMutants.pop();
-            UncheckedCount++;
-            if (UncheckedCount == CheckedCount) {
+            this.UncheckedCount++;
+            if (this.UncheckedCount == this.CheckedCount) {
                 this.Ischecked = 0;
             }
         }
@@ -184,14 +176,16 @@ export class DownloadEmandateComponent implements OnInit {
         }
         return str;
     }
+ 
     download() {
-       // alert(this.Ischecked);
-        if (this.Ischecked == 1 || this.Databind.length > 0) {
+
+        if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
             }
             else {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.Databind));
+
             }
             var a = document.createElement("a");
             a.setAttribute('style', 'display:none;');
@@ -204,7 +198,7 @@ export class DownloadEmandateComponent implements OnInit {
             return 'success';
         }
         else {
-            alert('checkbox not selected');
+            this.errormsg = "Please Select Mandate !!";
         }
     }
 

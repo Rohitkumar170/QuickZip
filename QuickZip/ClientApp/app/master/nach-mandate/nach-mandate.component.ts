@@ -11,6 +11,8 @@ import { BindEntitydebitcredit } from '../../../Models/BankForm/BindEntitydebitc
 import { BindLogincheck } from '../../../Models/BankForm/BindLogincheck';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { endWith } from 'rxjs/operators';
+import { DISABLED } from '@angular/forms/src/model';
+import { DatePipe, KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'app-nach-mandate',
@@ -21,16 +23,31 @@ export class NachMandateComponent implements OnInit {
     //---------------------------------------------------------Done By all Rohit----------------------------------------------------------------------------
     NachMandate: FormGroup; Table: BindEntityDetails; Table1: BindLogoImageDetails; Table2: BindBankNameDetails; Table3: BindSponserCode; Table4: BindBankUtilityCode; Table5: BindBankPaymentMode; Table6: BindEntityDetailsdata; Table7: BindDebitType; Table8: Bindfrequency; Table9: BindEntityPeriods; Table10: BindEntitydebitcredit; Table11: BindEntityCategorytype; Table12: BindLogincheck;
     lblIsRefrenceCheck; lblIsMandateEdit; lblIsRefrenceEdit; lblOverMandate; lblIsEMandate; lblIsPhysicalMandate; lblEntityId; lblUserid; lblBranchId; lblUserType; lblRefId;
+    lblTodateMandataoryforEsign = false; lblISSendEmailCustomer = false; IsShow = false; public _isActive = false; public _isimage: string = "";
+
+    btnCancel = false; btnSecVal = false; btnFirstVal = false; btnEditDisable = false; btnPhysicalMandate = false; btnEemandate = false; btnenach = false; 
     // Work on Header button work
     btnedit = false; btnscanprint = false; btnmandateprint = false; btnblackmandateprint = false; btnoldoverprintmandate = false; btnprint = false; btnscanhalf = false; btnscan = false; btnvalidate = false; AEresponse = false; btnregisfund = false; 
-    isDisabled: boolean = false; isDisabledback: boolean = false;
+    isDisabled: boolean = false; isDisabledback: boolean = false; UtilityCodedesabled: boolean = true; CreateCodedesabled: boolean = true; ModifyCodedesabled: boolean = true;
+    CancelCodedesabled: boolean = true; EntityNameCodedesabled: boolean = true; rdsbCodedesabled: boolean = true; rdcaCodedesabled: boolean = true; rdccCodedesabled: boolean = true;
+    rdnbreCodedesabled: boolean = true; rdsbnrdCodedesabled: boolean = true; rdotherCodedesabled: boolean = true; UMRNCodedesabled: boolean = true; Amountcodedisabled: boolean = true;
+    rdmonthlycodedisabled: boolean = true; rdquaterlycodedisabled: boolean = true; rdhalfyrlycodedisabled: boolean = true; rdyearlycodedisabled: boolean = true; Radio1codedisabled: boolean = true;
+   // rdfxdamtcodedisabled: boolean = true;
+    rdmaxamtcodedisabled: boolean = true; Reference2codedisabled: boolean = true; Periodtocodedisabled: boolean = true; Untillcancelledcodedisabled: boolean = true;
+    Customer2disabled: boolean = true; Customer3disabled: boolean = true; Cancelleddisabled: boolean = true; 
+
     //end header button work
 
     btnCancelDisabled: boolean = true; IsCancel = false;    
-    constructor(private router: Router, private formBuilder: FormBuilder, private _bankformService: BankFormService) { }
+    constructor(private router: Router, private formBuilder: FormBuilder, private _bankformService: BankFormService, public datepipe: DatePipe) { }
     ngOnInit() {
         this.NachMandate = this.formBuilder.group({
-            Catagorycode: ['']
+            MandateMode: [''], Catagorycode: [''], Mandatetype: [''], UMRN: [''], UMRNDATE: [''], Sponsorcode: [''],  Utilitycode: [''], Create: [''], Modify: [''],
+            Cancel: [''], Authrizename: [''], Todebit: [''], Bankaccountno: [''], Withbank: [''], IFSC: [''], MICR: [''], Amount: [''], Amountrupees: [''],
+            Frequency: [''],
+            Debittype: [''],
+            Reference: [''], Phoneno: [''], Refrence2: [''], Email: [''], PeriodFrom: [''], PeriodTo: [''], Untillcancelled: [''],
+            Customer1: [''], Customer2: [''], Customer3:['']
 
         });
         let Sessionvalue = JSON.parse(sessionStorage.getItem('User')); 
@@ -38,25 +55,79 @@ export class NachMandateComponent implements OnInit {
    
         this.BinddataonPageLoad();
     }
-    show() { alert('hii'); }
     get AllFields() { return this.NachMandate.controls; }
     BinddataonPageLoad() {
         this._bankformService.GetCategory().subscribe(
             (data) => {
-                this.Table11 = data.Table11; this.Table3 = data.Table3; this.Table2 = data.Table2;
+                this.Table12 = data.Table12; 
+                if (this.Table12[0].IsEnableCancel == false) {
+                    this.Cancelleddisabled = false;    
+                    this.btnCancel = true;
+                }
+                else {
+                    this.Cancelleddisabled = true;    
+                    this.IsCancel = false;
+                }
+                this.Table7 = data.Table7; this.Table8 = data.Table8; this.Table10 = data.Table10; this.Table9 = data.Table9; if (data.Table9[0].isenable == true) { this.Periodtocodedisabled = false } else { this.Periodtocodedisabled = true } if (data.Table9[1].isenable == true) { this.Untillcancelledcodedisabled = false } else { this.Untillcancelledcodedisabled = true }
+                this.Table2 = data.Table2; this.Table11 = data.Table11; this.Table3 = data.Table3; this.NachMandate.controls['Utilitycode'].setValue(this.Table3[0].utilityCode);
+                this.Table = data.Table; this.lblTodateMandataoryforEsign = this.Table[0].IsTodatemandatoryenach; this.lblISSendEmailCustomer = this.Table[0].ISSendEmailCustomer;
+                this.NachMandate.controls['Sponsorcode'].setValue(this.Table[0].SponsorBankCode);
+                if (this.Table[0].ModeOfPayment == 'Y') {
+                    this.IsShow = true;
+                    //jquery_1_11_3_min_p("#pnl2").css('display', 'block');
+                    //jquery_1_11_3_min_p("#lblTotal").attr('disabled', true);
+                } else {
+                    this.IsShow = false;
+                }
+                this.NachMandate.controls['PeriodFrom'].setValue(this.Table[0].FromDate);
+                this.NachMandate.controls['UMRNDATE'].setValue(public datepipe: DatePipe      this.Table[0].Date);
+                this.NachMandate.controls['Authrizename'].setValue(this.Table[0].Name);
+                this.EntityNameCodedesabled = true;
+                this.NachMandate.controls['Debittype'].setValue(this.Table[0].DebitType);
+                this.NachMandate.controls['Frequency'].setValue(this.Table[0].FrequencyType);
+                this.NachMandate.controls['Todebit'].setValue(this.Table[0].ToDebit);
+                if (this.Table[0].PeriodType == 'u') {
+                    this.NachMandate.controls['Untillcancelled'].setValue(true);
+                    this._isActive = true;
 
-                //if (this.Table12[0].IsEnableCancel == false) {
-                //    this.btnCancelDisabled = true;    
-                //    this.IsCancel = false;
-                //}
-                //else {
-                //    this.btnCancelDisabled = false;    
-                //    this.IsCancel = false;
-                //}
+                } else {
+                    this.NachMandate.controls['Untillcancelled'].setValue(false);
+                    this._isActive = false;
+                }
+                this.Table1 = data.Table1;
+                this._isimage = this.Table1[0].ImagePath;
 
-               
+                this.Table5 = data.Table5;
+
+                //var i = 0;
+                //var jsonData = eval(result.d.Table5);
+                //jQuery.each(jsonData, function (rec) {
+                //    if (jsonData[i].PaymentMode == 'Cash') {
+                //        jquery_1_11_3_min_p('#DivCash').css('display', 'block');
+                //        jquery_1_11_3_min_p('#divca').css('display', 'block');
+                //    }
+                //    if (jsonData[i].PaymentMode == 'Cheque') {
+                //        jquery_1_11_3_min_p('#DivChequee').css('display', 'block');
+                //        jquery_1_11_3_min_p('#divcq').css('display', 'block');
+                //    }
+                //    if (jsonData[i].PaymentMode == 'DD') {
+                //        jquery_1_11_3_min_p('#DivDDD').css('display', 'block');
+                //        jquery_1_11_3_min_p('#divdd').css('display', 'block');
+                //    }
+                //    if (jsonData[i].PaymentMode == 'E') {
+                //        jquery_1_11_3_min_p('#DivElectronic').css('display', 'block');
+                //        jquery_1_11_3_min_p('#divcad').css('display', 'block');
+                //    }
+                //    i++;
+
+                //});
+
+
             });
 
+    }
+    trackByFn(index, item) {
+        return index; // or item.id
     }
     //numberOnly(event): boolean {
     //    const charCode = (event.which) ? event.which : event.keyCode;

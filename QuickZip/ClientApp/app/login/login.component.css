@@ -766,3 +766,8 @@ a.headerRightIcon i {
     float: right;
     margin-left: 3px;
 }
+.divDisable {
+    background: #f0f0f0 !important;
+    opacity: 0.8;
+    pointer-events: none;
+}

@@ -11,6 +11,7 @@ import { formatDate } from '@angular/common';
     styleUrls: ['./downloadoldmandate.component.css']
 })
 export class DownloadoldmandateComponent implements OnInit {
+    Preloader: boolean = true;
     loading = false;
     checkFlag: number = 0;
     Ischecked: number = 0;
@@ -25,6 +26,18 @@ export class DownloadoldmandateComponent implements OnInit {
 
     constructor(public myservice: OldmandateService) { }
     showModal: boolean;
+    SuccessModal: boolean;
+    MandateMessage: boolean;
+    //onClick(event) {
+    //    this.showModal = true;
+
+
+    //}
+
+    hidemandate() {
+
+        this.SuccessModal = false;
+    }
 
     show() {
         this.showModal = true;
@@ -36,7 +49,7 @@ export class DownloadoldmandateComponent implements OnInit {
       //  let item = JSON.parse(sessionStorage.getItem('User'));
         //                console.log(item.UserId);
         //  this.currentdate;
-
+        this.MandateMessage = false;
         this.BankdataBind();
        // this.mydate(this.FromDate, thius,ToDate, selected);
         
@@ -57,7 +70,7 @@ export class DownloadoldmandateComponent implements OnInit {
 
 
         });
-
+        this.Preloader = false;
 
 
     }
@@ -78,14 +91,16 @@ export class DownloadoldmandateComponent implements OnInit {
        // alert(item.UserId);
         if (RejectedReason != null) {
             this.myservice.RejectData(FromDate, ToDate, RejectedReason, item.UserId, this.selectMandateId).subscribe((res) => {
-                console.log(res);
+               // console.log(res);
                // this.tabledata = res;
                 this.mydate(FromDate, ToDate, selected);
-                alert('Mandate Rejected');
+               // alert('Mandate Rejected');
+                this.SuccessModal = true;
             })
                 }
         else {
-            alert("please checked the mandate and fill the Reason");
+          //  alert("please checked the mandate and fill the Reason");
+
         }
      
     }
@@ -129,7 +144,7 @@ export class DownloadoldmandateComponent implements OnInit {
             this.SelectionStatusOfMutants.push(item);
             this.selectMandateId.push(item.mandateid);
  
-            console.log(this.SelectionStatusOfMutants);
+          //  console.log(this.SelectionStatusOfMutants);
           //  alert('checked')
             this.Ischecked = 1;
             CheckedCount++;
@@ -137,7 +152,7 @@ export class DownloadoldmandateComponent implements OnInit {
         }
         else {
             //
-            alert('please select mandate ');
+           // alert('please select mandate ');
             this.SelectionStatusOfMutants.pop();
             UncheckedCount++;
             if (UncheckedCount == CheckedCount) {
@@ -230,7 +245,7 @@ export class DownloadoldmandateComponent implements OnInit {
        
         //var formElement = <HTMLFormElement>document.getElementById('divLoarder2');
         //formElement.style.display = 'block';
-
+        this.Preloader = true;
         if (FromDate != null && ToDate != null) {
             let item = JSON.parse(sessionStorage.getItem('User'));
             //  console.log(item.UserId);
@@ -239,7 +254,8 @@ export class DownloadoldmandateComponent implements OnInit {
             //var c = selected;
             this.loading = true;
             this.myservice.BindbyDate(item.UserId, FromDate, ToDate, selected).subscribe((res) => {
-                   console.log(res);
+                this.Preloader = false;
+                  // console.log(res);
                 this.tabledata = res;
             });
            // this.loading = false;
@@ -308,10 +324,11 @@ export class DownloadoldmandateComponent implements OnInit {
         if (this.Ischecked == 1) {
             if (this.checkFlag == 0) {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.SelectionStatusOfMutants));
+                this.MandateMessage = false;
             }
             else {
                 var csvData = this.ConvertToCSV(JSON.stringify(this.tabledata));
-
+                this.MandateMessage = false;
             }
        // var csvData = this.ConvertToCSV(JSON.stringify(this.list));
         var a = document.createElement("a");
@@ -325,7 +342,8 @@ export class DownloadoldmandateComponent implements OnInit {
             return 'success';
         }
         else {
-            alert('checkbox not selected');
+           // alert('checkbox not selected');
+            this.MandateMessage = true;
         }
     }
     //nontrade;
@@ -353,18 +371,26 @@ export class DownloadoldmandateComponent implements OnInit {
     //}
     downloadScannedMandate() {
         this.ZipDownloadArray = [];
-        if (this.checkFlag == 0) {
-           
-            this.ZipDownloadArray = this.SelectionStatusOfMutants;
+        if (this.Ischecked == 1) {
+            if (this.checkFlag == 0) {
+
+                this.ZipDownloadArray = this.SelectionStatusOfMutants;
+            }
+            else {
+                this.ZipDownloadArray = this.tabledata
+            }
+            if (this.ZipDownloadArray.length == 0) {
+                // alert("please select mandate");
+            }
+            else {
+                this.getZipFile(JSON.stringify(this.ZipDownloadArray));
+            }
         }
         else {
-            this.ZipDownloadArray = this.tabledata
-        }
-        if (this.ZipDownloadArray.length == 0) {
-            alert("please select mandate");
-        }
-        else {
-            this.getZipFile(JSON.stringify(this.ZipDownloadArray));
+            // alert('checkbox not selected');
+
+            this.MandateMessage = true;
+
         }
     }
 
