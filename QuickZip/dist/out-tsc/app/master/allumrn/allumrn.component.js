@@ -2,42 +2,100 @@ import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AllumrnService } from '../../Services/Allumrn/allumrn.service';
+//import { Umrn_Class } from '../../../Models/Allumrn/Umrn_Class';
 var AllumrnComponent = /** @class */ (function () {
     function AllumrnComponent(formBuilder, _allumrn) {
         this.formBuilder = formBuilder;
         this._allumrn = _allumrn;
+        // Addumrn: FormGroup;
         this.submitted = false;
+        this.Preloader = true;
     }
     AllumrnComponent.prototype.ngOnInit = function () {
-        var _this = this;
+        this.showmodalcreateumrn = false;
+        this.showModalumrnstatement = false;
+        this.Preloader = false;
         // let item = JSON.parse(sessionStorage.getItem('User'));
-        var Entityid = 13;
-        var Pageno = 1;
-        this._allumrn.GridBind(Entityid, Pageno).subscribe(function (data) {
-            _this.Umrndta = data;
-            // console.log(this.Umrndta);
-        });
+        this.GridBind();
         this.Allumrn = this.formBuilder.group({
-            UMRN: ['', Validators.required],
-            CustomerName: ['', Validators.required],
-            ReferenceNumber: ['', Validators.required]
+            Searchvalidation: ['', Validators.required]
+        });
+        //this.Addumrn = this.formBuilder.group({
+        //    Newumrn: ['', Validators.required],
+        //    CustomerName: ['', Validators.required],
+        //    ReferenceNumber: ['', Validators.required],
+        //    Amount: ['', Validators.required],
+        //    FromDate: ['', Validators.required],
+        //    ToDate: ['', Validators.required]
+        //});
+    };
+    AllumrnComponent.prototype.GridBind = function () {
+        var _this = this;
+        this.Entityid = 13;
+        this.Pageno = 1;
+        this.Preloader = true;
+        this._allumrn.GridBind(this.Entityid, this.Pageno).subscribe(function (data) {
+            _this.Preloader = false;
+            _this.Umrndta = data;
+            console.log(_this.Umrndta);
         });
     };
-    //SearchFunction(UMRN, CustomerName, ReferenceNumber) {
-    //    let Entityid = 13;
-    //    let Pageno = 1;
-    //    var jasondata = {
-    //        "UMRN": UMRN,
-    //        "CustomerName": CustomerName,
-    //        "ReferenceNumber": ReferenceNumber,
-    //        "Entityid": Entityid,
-    //        "Pageno": Pageno
-    //    }
-    //    this._allumrn.SearchData(jasondata).subscribe(
-    //        (data) => {
-    //            this.Umrndta = data;
-    //        });
+    AllumrnComponent.prototype.onClick = function (event) {
+        this.showmodalcreateumrn = true;
+    };
+    AllumrnComponent.prototype.hide = function () {
+        this.showmodalcreateumrn = false;
+        this.showModalumrnstatement = false;
+    };
+    //onClick(event) {
+    //    this.showModalumrnstatement = true;
     //}
+    //hide() {
+    //    this.showModalumrnstatement = false;
+    //}
+    AllumrnComponent.prototype.Insertumrn = function (NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate) {
+        var _this = this;
+        var Entityid = 13;
+        var Userid = 86;
+        var CreatedBy = 1;
+        var jasondata = {
+            "UMRN": NEWUMRN,
+            "CustomerName": Customername,
+            "ReferenceNumber": ReferenceNumber,
+            "Entityid": Entityid,
+            "Amount": Amount,
+            "FromDate": FromDate,
+            "ToDate": ToDate,
+            "Userid": Userid,
+            "CreatedBy": CreatedBy
+        };
+        this._allumrn.AddUmrn(jasondata).subscribe(function (data) {
+            _this.insert = data;
+            alert("Data Save successfully");
+            _this.showmodalcreateumrn = false;
+        });
+    };
+    AllumrnComponent.prototype.onRowClicked = function (data) {
+        var _this = this;
+        alert("dlclick");
+        //const Currentrowid = this.Allumrn.value;
+        this.showModalumrnstatement = true;
+        // this.dataArray.push(data);
+        var UMRN = data.UMRN;
+        var Entityid = 13;
+        this._allumrn.GridDataDetails(UMRN, Entityid).subscribe(function (data) {
+            _this.Preloader = false;
+            _this.griddatadetail = data;
+            console.log(_this.griddatadetail);
+        });
+        // this.dataArray = data;
+        //this.showModalumrnstatement = true;
+        //this.Login.controls['FullName'].setValue(data.FullName);
+        //this.Login.controls['Email'].setValue(data.Email);
+        //this.Login.controls['Password'].setValue(data.Password);
+        //this.buttonDisabled1 = false;
+        //this.Temp = 2;
+    };
     AllumrnComponent.prototype.isFieldValid = function (field) {
         return !this.Allumrn.get(field).valid && this.Allumrn.get(field).touched;
     };
@@ -46,15 +104,68 @@ var AllumrnComponent = /** @class */ (function () {
             'validate': this.isFieldValid(field),
         };
     };
-    //SearchFunction() {
-    //    this.submitted = true;
-    //    if (this.Allumrn.valid) {
+    //isFieldValid1(field: string) {
+    //    return !this.Addumrn.get(field).valid && this.Addumrn.get(field).touched;
+    //}
+    //displayFieldCss1(field: string) {
+    //    return {
+    //        'validate': this.isFieldValid1(field),
+    //    };
+    //}
+    //Addumrn1() {
+    //    if (this.Addumrn.valid) {
     //        alert("valid");
+    //        //let Entityid = 13;
+    //        //let Pageno = 1;
+    //        //var umrn1 = UMRN.replace('\t', '');
+    //        //var CustomerName1 = CustomerName.replace('\t', '');
+    //        //var ReferenceNumber1 = ReferenceNumber.replace('\t', '');
+    //        //var jasondata = {
+    //        //    "UMRN": umrn1,
+    //        //    "CustomerName": CustomerName1,
+    //        //    "ReferenceNumber": ReferenceNumber1,
+    //        //    "Entityid": Entityid,
+    //        //    "Pageno": Pageno
+    //        //}
+    //        //this.Preloader = true;
+    //        //this._allumrn.SearchData(jasondata).subscribe(
+    //        //    (data) => {
+    //        //        this.Preloader = false;
+    //        //        this.Umrndta = data;
+    //        //    });
     //    } else {
     //        alert("Not valid");
-    //        this.validateAllFormFields(this.Allumrn);
+    //        this.validateAllFormFields(this.Addumrn);
     //    }
     //}
+    AllumrnComponent.prototype.SearchFunction = function (UMRN, CustomerName, ReferenceNumber) {
+        var _this = this;
+        //this.submitted = true;
+        if (this.Allumrn.valid) {
+            alert("valid");
+            var Entityid = 13;
+            var Pageno = 1;
+            var umrn1 = UMRN.replace('\t', '');
+            var CustomerName1 = CustomerName.replace('\t', '');
+            var ReferenceNumber1 = ReferenceNumber.replace('\t', '');
+            var jasondata = {
+                "UMRN": umrn1,
+                "CustomerName": CustomerName1,
+                "ReferenceNumber": ReferenceNumber1,
+                "Entityid": Entityid,
+                "Pageno": Pageno
+            };
+            this.Preloader = true;
+            this._allumrn.SearchData(jasondata).subscribe(function (data) {
+                _this.Preloader = false;
+                _this.Umrndta = data;
+            });
+        }
+        else {
+            alert("Not valid");
+            this.validateAllFormFields(this.Allumrn);
+        }
+    };
     AllumrnComponent.prototype.validateAllFormFields = function (formGroup) {
         var _this = this;
         Object.keys(formGroup.controls).forEach(function (field) {

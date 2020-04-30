@@ -783,6 +783,8 @@
     </Compile>
     <Compile Include="Models\Allumrn\Allumrnaccesslayer.cs" />
     <Compile Include="Models\Allumrn\GridData.cs" />
+    <Compile Include="Models\Allumrn\GridDataDetails.cs" />
+    <Compile Include="Models\Allumrn\Insertumrn.cs" />
     <Compile Include="Models\BankForm\BankFormData.cs" />
     <Compile Include="Models\BankForm\BindBankNameDetails.cs" />
     <Compile Include="Models\BankForm\BindBankPaymentMode.cs" />
@@ -1012,6 +1014,7 @@
     <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridData.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridDataDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Allumrn\Umrn_Class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankNameDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankPaymentMode.ts" />
