@@ -197,7 +197,6 @@
     <Content Include="ClientApp\app\sidebar\sidebar.component.html" />
     <Content Include="ClientApp\assets\css\ace.min.css" />
     <Content Include="ClientApp\assets\css\font-awesome.min.css" />
-    <Content Include="ClientApp\assets\images\caution.png" />
     <Content Include="ClientApp\assets\images\caution2.png" />
     <Content Include="ClientApp\assets\images\kotak-bank-logo.png" />
     <Content Include="ClientApp\assets\images\loader.gif" />
@@ -242,8 +241,6 @@
     </Content>
     <Content Include="ExcelFiles\UMRN.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Demo.html" />
-    <Content Include="Scripts\Demojavascriptfile.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
@@ -257,11 +254,10 @@
     <Compile Include="ClientApp\Models\OldEmandate\Banklist.cs" />
     <Compile Include="Controllers\AllUMRNController.cs" />
     <Compile Include="Controllers\BankFormController.cs" />
-    <Compile Include="Controllers\BulkEMandateController.cs" />
     <Compile Include="Controllers\DownloadEmandateController.cs" />
     <Compile Include="Controllers\DownloadMandateController.cs" />
     <Compile Include="Controllers\DownloadoldemandateController.cs" />
-    <Compile Include="Controllers\EntityBankController.cs" />
+    <Compile Include="Controllers\EntitySetupController.cs" />
     <Compile Include="Controllers\HistoricalMandateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -784,8 +780,6 @@
     </Compile>
     <Compile Include="Models\Allumrn\Allumrnaccesslayer.cs" />
     <Compile Include="Models\Allumrn\GridData.cs" />
-    <Compile Include="Models\Allumrn\GridDataDetails.cs" />
-    <Compile Include="Models\Allumrn\Insertumrn.cs" />
     <Compile Include="Models\BankForm\BankFormData.cs" />
     <Compile Include="Models\BankForm\BindBankNameDetails.cs" />
     <Compile Include="Models\BankForm\BindBankPaymentMode.cs" />
@@ -800,9 +794,6 @@
     <Compile Include="Models\BankForm\BindLogincheck.cs" />
     <Compile Include="Models\BankForm\BindLogoImageDetails.cs" />
     <Compile Include="Models\BankForm\BindSponserCode.cs" />
-    <Compile Include="Models\BulkEmandate\BulkEmandateAttribute.cs" />
-    <Compile Include="Models\BulkEmandate\BulkEMandateClass.cs" />
-    <Compile Include="Models\BulkEmandate\BulkEmandateTabledatacount.cs" />
     <Compile Include="Models\CommonFlag.cs" />
     <Compile Include="Models\DownloadEmandate\DownloadEmandateaccesslayer.cs" />
     <Compile Include="Models\DownloadEmandate\Downloademandatebank.cs" />
@@ -810,10 +801,12 @@
     <Compile Include="Models\DownloadMandate\DownloadMandate.cs" />
     <Compile Include="Models\DownloadMandate\DownloadMandateDetails.cs" />
     <Compile Include="Models\DownloadMandate\DownloadMandateGridDetails.cs" />
-    <Compile Include="Models\EntityBankSetup\Bank.cs" />
-    <Compile Include="Models\EntityBankSetup\Entity.cs" />
-    <Compile Include="Models\EntityBankSetup\EntityBank.cs" />
-    <Compile Include="Models\EntityBankSetup\EntityData.cs" />
+    <Compile Include="Models\EntitySetup\AllFieldOfForm.cs" />
+    <Compile Include="Models\EntitySetup\BindBank.cs" />
+    <Compile Include="Models\EntitySetup\BindCountry.cs" />
+    <Compile Include="Models\EntitySetup\EntityBusinessCode.cs" />
+    <Compile Include="Models\EntitySetup\EntitySetupDataAccess.cs" />
+    <Compile Include="Models\EntitySetup\MainGrid.cs" />
     <Compile Include="Models\ForgotPassword\Forgotflag.cs" />
     <Compile Include="Models\ForgotPassword\UserDetails.cs" />
     <Compile Include="Models\ForgotPassword\Value.cs" />
@@ -993,16 +986,14 @@
     <TypeScriptCompile Include="ClientApp\app\Services\Allumrn\allumrn.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\BankForm\bank-form.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\BulkEMandate\buld-emandate.service.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\BulkEMandate\buld-emandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\DownloadEmandate\download-emandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadmandate\downloadmandate.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadmandate\downloadmandate.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\downloadoldemandate\downloadoldemandate.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\EntityBankSetup\entity-bank.service.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\app\Services\EntityBankSetup\entity-bank.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Enity_Setup\entity-setup-service.service.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Services\Enity_Setup\entity-setup-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\Historical-Mandate\historical-mandate-service.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\login-service.service.spec.ts" />
@@ -1021,7 +1012,6 @@
     <TypeScriptCompile Include="ClientApp\environments\environment.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridData.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\Allumrn\GridDataDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Allumrn\Umrn_Class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankNameDetails.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindBankPaymentMode.ts" />
@@ -1039,13 +1029,15 @@
     <TypeScriptCompile Include="ClientApp\Models\BankForm\BindSponserCode.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\CheckReference.ts" />
     <TypeScriptCompile Include="ClientApp\Models\BankForm\SaveData.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\BulkEmandate\BulkEmandateAttributeClass.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadEmandate\DownloadEmandate.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\download-mandate-details.ts" />
     <TypeScriptCompile Include="ClientApp\Models\DownloadMandate\downloadmandategrid.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\EntityBankSetup\bank.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\EntityBankSetup\entity-data.ts" />
-    <TypeScriptCompile Include="ClientApp\Models\EntityBankSetup\entity.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-bank.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-city.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-country.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\bind-state.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\entity-business-code.ts" />
+    <TypeScriptCompile Include="ClientApp\Models\Entity_Setup\main-grid.ts" />
     <TypeScriptCompile Include="ClientApp\Models\global-error-handler.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Historical-Mandate\historical-mandate-class.ts" />
     <TypeScriptCompile Include="ClientApp\Models\Login\logindetails.ts" />

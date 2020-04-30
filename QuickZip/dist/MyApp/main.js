@@ -1425,7 +1425,7 @@ _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["platformBrowser"]().boot
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Kotak_Project\QuickZip\ClientApp\main.ts */"./ClientApp/main.ts");
+module.exports = __webpack_require__(/*! E:\projects\NewQuickzip\QuickZip\ClientApp\main.ts */"./ClientApp/main.ts");
 
 
 /***/ })
