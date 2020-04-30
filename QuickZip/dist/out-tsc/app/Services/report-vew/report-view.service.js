@@ -11,6 +11,9 @@ var ReportViewService = /** @class */ (function () {
     ReportViewService.prototype.BindUser = function (UserId) {
         return this._http.get(this.baseUrl + 'api/ReportView/BindUser/' + UserId);
     };
+    ReportViewService.prototype.SearchData = function (FromDate, Todate, userdrop, UserId) {
+        return this._http.get(this.baseUrl + 'api/ReportView/Bindgrid/' + FromDate + '/' + Todate + '/' + userdrop + '/' + UserId);
+    };
     ReportViewService = tslib_1.__decorate([
         Injectable({
             providedIn: 'root'

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportViewComponent } from './report-view.component';
 import { ReportViewRoutingModule } from './report-view-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 //import { ReportViewService } from 'ClientApp/app/Services/report-vew/report-view.service';
 
 
@@ -11,7 +12,7 @@ import { ReportViewRoutingModule } from './report-view-routing.module';
     declarations: [ReportViewComponent],
   imports: [
     CommonModule,
-    ReportViewRoutingModule
+      ReportViewRoutingModule, FormsModule, ReactiveFormsModule
     ]
    // providers:[ReportViewService]
 })

@@ -22,10 +22,10 @@ namespace QuickZip.Controllers
 
 
         [HttpGet]
-        [Route("api/ReportView/Bindgrid//{FromDate}/{ToDate}/{Bank}/{userid}")]
-        public Dictionary<string, object> SearchData(string FromDate, string ToDate, string userdrop, string UserId)
+        [Route("api/ReportView/Bindgrid/{FromDate}/{ToDate}/{username}/{userid}")]
+        public Dictionary<string, object> SearchData(string FromDate, string ToDate, string username, string UserId)
         {
-            return objuser.SearchData(FromDate, ToDate, userdrop, UserId);
+            return objuser.SearchData(FromDate, ToDate, username, UserId);
         }
     }
 }
