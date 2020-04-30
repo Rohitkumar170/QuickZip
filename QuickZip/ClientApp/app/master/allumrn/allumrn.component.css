@@ -4,7 +4,7 @@
 
 #tblallumrn tbody {
     display: inline-block;
-    max-height: 48vh;
+    max-height: 41vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }

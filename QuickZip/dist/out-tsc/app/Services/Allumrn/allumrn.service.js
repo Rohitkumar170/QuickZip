@@ -9,16 +9,16 @@ var AllumrnService = /** @class */ (function () {
         this.baseUrl = myAppUrl;
     }
     AllumrnService.prototype.GridBind = function (Entityid, Pageno) {
-        // alert("Service" + Entityid + " " + Pageno );
         return this._http.get(this.baseUrl + 'api/AllUMRN/GridBind/' + Entityid + '/' + Pageno);
     };
+    AllumrnService.prototype.GridBind1 = function (Entityid, Pageno) {
+        return this._http.get(this.baseUrl + 'api/AllUMRN/GridBind1/' + Entityid + '/' + Pageno);
+    };
     AllumrnService.prototype.GridDataDetails = function (UMRN, Entityid) {
-        // alert("Service" + Entityid + " " + Pageno );
         return this._http.get(this.baseUrl + 'api/AllUMRN/GridDataDetails/' + UMRN + '/' + Entityid);
     };
     AllumrnService.prototype.SearchData = function (em) {
         var body = em;
-        //  alert(body);
         var headers = new HttpHeaders().set('content-type', 'application/json');
         return this._http.post(this.baseUrl + 'api/AllUMRN/SearchData', body, {
             headers: headers
@@ -26,15 +26,18 @@ var AllumrnService = /** @class */ (function () {
     };
     AllumrnService.prototype.AddUmrn = function (em) {
         var body = em;
-        //  alert(body);
         var headers = new HttpHeaders().set('content-type', 'application/json');
         return this._http.post(this.baseUrl + 'api/AllUMRN/AddUmrn', body, {
             headers: headers
         });
     };
-    //AddUmrn(NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate, Entityid, Userid, CreatedBy): Observable<any> {
-    //    return this._http.get<any>(this.baseUrl + 'api/AllUMRN/AddUmrn/'+NEWUMRN+'/'+Customername+'/'+ReferenceNumber+'/'+Amount+'/'+FromDate+'/' +ToDate+'/'+Entityid+'/'+Userid+'/'+CreatedBy);
-    //}
+    AllumrnService.prototype.AddUmrn1 = function (em) {
+        var body = em;
+        var headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post(this.baseUrl + 'api/AllUMRN/AddUmrn1', body, {
+            headers: headers
+        });
+    };
     AllumrnService.prototype.errorHandler = function (error) {
         console.log(error);
         return Observable.throw(error);

@@ -18,6 +18,12 @@ namespace QuickZip.Controllers
         {
             return obj.GridBind(Entityid, Pageno);
         }
+        [HttpGet]
+        [Route("api/AllUMRN/GridBind1/{Entityid}/{Pageno}")]
+        public Dictionary<string, object> GridBind1(string Entityid, string Pageno)
+        {
+            return obj.GridBind1(Entityid, Pageno);
+        }
 
         [HttpPost]
         [Route("api/AllUMRN/SearchData")]
@@ -25,11 +31,12 @@ namespace QuickZip.Controllers
         {
             return obj.SearchData(searchdata);
         }
-
-        //public Dictionary<string, object> AddUmrn([FromBody] Insertumrn insertdata)
-        //{
-        //    return obj.AddUmrn(insertdata);
-        //}
+        [HttpPost]
+        [Route("api/AllUMRN/AddUmrn1")]
+        public Dictionary<string, object> AddUmrn1([FromBody] Insertumrn insertdata)
+        {
+            return obj.AddUmrn1(insertdata);
+        }
 
         [HttpPost]
         [Route("api/AllUMRN/AddUmrn")]
@@ -40,19 +47,13 @@ namespace QuickZip.Controllers
 
         [HttpGet]
         [Route("api/AllUMRN/GridDataDetails/{UMRN}/{Entityid}")]
-        public IEnumerable<GridData> GridDataDetails(string UMRN, string Entityid)
+        public IEnumerable<GridDataDetails> GridDataDetails(string UMRN, string Entityid)
         {
             return obj.GridDataDetails(UMRN, Entityid);
         }
 
         
-
-        //[Route("api/AllUMRN/AddUmrn/{NEWUMRN}/{Customername}/{ReferenceNumber}/{Amount}/{FromDate}/{ToDate}/{Entityid}/{Userid}/{CreatedBy}")]
-        //public Dictionary<string, object> AddUmrn(string NEWUMRN, string Customername, string ReferenceNumber, string Amount, string FromDate, string ToDate, string Entityid, string Userid, string CreatedBy )
-        //{
-        //    //NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate, Entityid, Userid, CreatedBy
-        //    return obj.AddUmrn(NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate, Entityid, Userid, CreatedBy);
-        //}
+        
 
     }
 }

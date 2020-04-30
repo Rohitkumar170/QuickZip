@@ -19,17 +19,23 @@ export class AllumrnService {
     }
 
     GridBind(Entityid, Pageno): Observable<GridData> {
-       // alert("Service" + Entityid + " " + Pageno );
+       
         return this._http.get<GridData>(this.baseUrl + 'api/AllUMRN/GridBind/' + Entityid + '/' + Pageno);
     }
-    GridDataDetails(UMRN, Entityid): Observable<GridData> {
-        // alert("Service" + Entityid + " " + Pageno );
-        return this._http.get<GridData>(this.baseUrl + 'api/AllUMRN/GridDataDetails/' + UMRN + '/' + Entityid);
+
+    GridBind1(Entityid, Pageno): Observable<any> {
+
+        return this._http.get<any>(this.baseUrl + 'api/AllUMRN/GridBind1/' + Entityid + '/' + Pageno);
+    }
+
+    GridDataDetails(UMRN, Entityid): Observable<GridDataDetails> {
+       
+        return this._http.get<GridDataDetails>(this.baseUrl + 'api/AllUMRN/GridDataDetails/' + UMRN + '/' + Entityid);
     }
 
     SearchData(em: any): Observable<GridData> {
         const body = em;
-       //  alert(body);
+       
         const headers = new HttpHeaders().set('content-type', 'application/json');
         return this._http.post<Umrn_Class>(this.baseUrl + 'api/AllUMRN/SearchData', body, {
             headers
@@ -37,19 +43,23 @@ export class AllumrnService {
     }
     AddUmrn(em: any): Observable<any> {
         const body = em;
-        //  alert(body);
+       
         const headers = new HttpHeaders().set('content-type', 'application/json');
         return this._http.post<any>(this.baseUrl + 'api/AllUMRN/AddUmrn', body, {
             headers
         });
     }
+
+    AddUmrn1(em: any): Observable<GridData> {
+        const body = em;
+
+        const headers = new HttpHeaders().set('content-type', 'application/json');
+        return this._http.post<GridData>(this.baseUrl + 'api/AllUMRN/AddUmrn1', body, {
+            headers
+        });
+    }
    
 
-    //AddUmrn(NEWUMRN, Customername, ReferenceNumber, Amount, FromDate, ToDate, Entityid, Userid, CreatedBy): Observable<any> {
-        
-    //    return this._http.get<any>(this.baseUrl + 'api/AllUMRN/AddUmrn/'+NEWUMRN+'/'+Customername+'/'+ReferenceNumber+'/'+Amount+'/'+FromDate+'/' +ToDate+'/'+Entityid+'/'+Userid+'/'+CreatedBy);
-        
-    //}
 
     errorHandler(error: Response) {
         console.log(error);
