@@ -241,6 +241,8 @@
     </Content>
     <Content Include="ExcelFiles\UMRN.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Demo.html" />
+    <Content Include="Scripts\Demojavascriptfile.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
